@@ -58,5 +58,6 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+    border-radius: 4px;
   }
 `;
