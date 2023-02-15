@@ -6,12 +6,13 @@ export const CustomButton = styled.button<ButtonProps>`
 	color: ${({ color }) => (color ? `var(--${color})` : null)};
 	background-color: ${({ bgcolor }) =>
 		bgcolor ? `var(--${bgcolor})` : null};
-	padding: ${({ component }) =>
+	height: ${({ component }) =>
 		component === "big"
-			? "0.75rem"
+			? "3rem"
 			: component === "medium"
-			? "0.4375rem"
+			? "2.5rem"
 			: null};
+	font-family: "Inter", sans-serif;
 	font-size: ${({ component }) =>
 		component === "big"
 			? "1rem"
