@@ -7,11 +7,11 @@ export const ContainerCheckboxButton = styled.div`
 	gap: 1.125rem;
 	font-size: 0.875rem;
 	font-weight: 500;
+`;
 
-	.container-inputs {
-		display: flex;
-		gap: 0.625rem;
-	}
+export const ContainerInputs = styled.div`
+	display: flex;
+	gap: 0.625rem;
 `;
 
 export const CheckboxButton = styled.label<CheckboxButtonProps>`
@@ -34,8 +34,8 @@ export const CheckboxButton = styled.label<CheckboxButtonProps>`
 		background-color: ${({ checked }) =>
 			checked ? "var(--brand2)" : null};
 	}
+`;
 
-	> input {
-		display: none;
-	}
+export const CustomInput = styled.input`
+	display: none;
 `;
