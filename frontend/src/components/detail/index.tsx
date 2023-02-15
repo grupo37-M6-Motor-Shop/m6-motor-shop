@@ -1,4 +1,4 @@
-import Container from "./style";
+import { Container, DetailLogo, DetailName } from "./style";
 
 interface IDetail {
 	name: string;
@@ -9,13 +9,13 @@ const Detail = ({ name }: IDetail) => {
 
 	return (
 		<Container>
-			<div className="logo">
+			<DetailLogo>
 				{initials.map((initial) => {
 					return initial[0];
 				})}
-			</div>
+			</DetailLogo>
 
-			<p className="type">{name}</p>
+			<DetailName>{name}</DetailName>
 		</Container>
 	);
 };
