@@ -1,6 +1,7 @@
 import { AppError } from "../errors/AppError";
 import { Request, Response, NextFunction } from "express";
 import AppDataSource from "../data-source";
+import User from "../entities/user.entity";
 
 const ensureIsActiveMiddleware = async (
 	req: Request,
