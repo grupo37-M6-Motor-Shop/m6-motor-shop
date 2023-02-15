@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { CheckboxButtonProps } from "../../interfaces/CheckboxButtonProps/CheckboxButtonProps";
-import { CheckboxButton, ContainerCheckboxButton } from "./style";
+import {
+	CheckboxButton,
+	ContainerCheckboxButton,
+	ContainerInputs,
+	CustomInput,
+} from "./style";
 
 const InputCheckbox = ({
 	label,
@@ -33,10 +38,10 @@ const InputCheckbox = ({
 	return (
 		<ContainerCheckboxButton>
 			{label}
-			<div className="container-inputs">
+			<ContainerInputs>
 				<CheckboxButton checked={checkbox1Value}>
 					{name1}
-					<input
+					<CustomInput
 						type="checkbox"
 						id={name1}
 						checked={checkbox1Value}
@@ -48,7 +53,7 @@ const InputCheckbox = ({
 				</CheckboxButton>
 				<CheckboxButton checked={checkbox2Value}>
 					{name2}
-					<input
+					<CustomInput
 						type="checkbox"
 						id={name2}
 						checked={checkbox2Value}
@@ -58,7 +63,7 @@ const InputCheckbox = ({
 
 					<span></span>
 				</CheckboxButton>
-			</div>
+			</ContainerInputs>
 		</ContainerCheckboxButton>
 	);
 };

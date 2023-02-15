@@ -1,9 +1,12 @@
 {
+  "name": "motor_shop",
+  "version": "1.0.0",
+  "main": "index.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
+    "dev": "ts-node-dev --ignore-watch node_modules scr/app.ts",
     "typeorm": "typeorm-ts-node-commonjs"
-  },
+   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",

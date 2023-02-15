@@ -4,7 +4,7 @@ import { InputProps } from "../../interfaces/InputProps/InputProps";
 
 const Input = ({ label, type, errorMessage, value, ...rest }: InputProps) => {
 	return (
-		<div>
+		<>
 			<CustomLabel>
 				{label}
 				<CustomInput type={type} {...rest} />
@@ -13,7 +13,7 @@ const Input = ({ label, type, errorMessage, value, ...rest }: InputProps) => {
 					{errorMessage && errorMessage}
 				</ErrorSpan>
 			</CustomLabel>
-		</div>
+		</>
 	);
 };
 
