@@ -54,6 +54,7 @@ export default createGlobalStyle`
     width: 100vw;
     height: 100vh;
     font-family: 'Lexend', sans-serif;
+    font-style: normal;
   }
 
   button {
