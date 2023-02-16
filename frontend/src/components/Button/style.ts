@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ButtonProps } from "../../interfaces/ButtonProps/ButtonProps";
 
 export const CustomButton = styled.button<ButtonProps>`
-	width: ${({ width }) => (width === "fullWidth" ? "100%" : null)};
+	width: ${({ width }) => (width === "fullWidth" ? "100%" : width)};
 	color: ${({ color }) => (color ? `var(--${color})` : null)};
 	background-color: ${({ bgcolor }) =>
 		bgcolor ? `var(--${bgcolor})` : null};
