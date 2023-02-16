@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { TextAreaProps } from "../../interfaces/TextAreaProps/TextAreaProps";
 
-export const CustomTextArea = styled.textarea`
+export const CustomTextArea = styled.textarea<TextAreaProps>`
 	width: 100%;
 	height: 5rem;
 	padding: 1rem;
@@ -26,12 +27,17 @@ export const CustomTextArea = styled.textarea`
 	}
 
 	:focus {
-		border: 0.0938rem solid var(--brand2);
+		border: ${({ offFocus }) =>
+			offFocus ? null : "0.0938rem solid var(--brand2)"};
 	}
 
 	::placeholder {
 		color: var(--grey3);
 		font-size: 1rem;
 		font-weight: 400;
+	}
+
+	@media screen and (min-width: 768px) {
+		border: ${({ offBorder }) => offBorder && "none"};
 	}
 `;
