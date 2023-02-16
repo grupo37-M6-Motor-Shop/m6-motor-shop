@@ -43,15 +43,24 @@ export const ContainerButtons = styled.div`
 	}
 `;
 
-export const ActionSection = styled.section`
-    padding: 40px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-`
+export const Section = styled.section`
+	padding: 40px 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
 
-export const TitleAction = styled.h5`
-    font-size: 24px;
-    font-weight: 600;
-    color: black;
-`
+	@media screen and (min-width: 1024px) {
+		padding: 40px 60px;
+	}
+`;
+
+export const TitleSection = styled.h5`
+	font-size: 24px;
+	font-weight: 600;
+	color: black;
+`;
+export const ListCards = styled.ul`
+	display: flex;
+	gap: 20px;
+	overflow-x: auto;
+`;
