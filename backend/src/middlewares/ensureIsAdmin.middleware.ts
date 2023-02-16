@@ -6,9 +6,9 @@ const ensureIsAdmMiddleware = (
 	res: Response,
 	next: NextFunction
 ) => {
-	const isAdinm = req.user.isAdmin;
+	const isAdm = req.user.isAdm;
 
-	if (!isAdinm) {
+	if (!isAdm) {
 		throw new AppError("User is not admin", 401);
 	}
 
