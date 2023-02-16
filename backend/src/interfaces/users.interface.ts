@@ -17,3 +17,13 @@ export interface IUser extends IUserRequest {
   createdAt: Date,
   updatedAt: Date,
 }
+
+export interface IUserUpdate {
+  name: string,
+  email: string,
+  cpf: string,
+  phone: string,
+  birthday: string,
+  description: string,
+  password: string,
+}
