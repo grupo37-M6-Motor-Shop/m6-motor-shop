@@ -41,7 +41,7 @@ export interface ButtonProps
 	bgcolor?: ColorsType;
 	component?: "medium" | "big";
 	border?: ColorsType;
-	width?: "fullWidth";
+	width?: "fullWidth" | string;
 	hover?: {
 		color?: ColorsType;
 		bgcolor?: ColorsType;
