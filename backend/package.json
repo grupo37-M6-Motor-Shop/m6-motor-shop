@@ -4,10 +4,11 @@
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --ignore-watch node_modules scr/app.ts",
+    "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs"
-   },
+  },
   "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "cors": "^2.8.5",

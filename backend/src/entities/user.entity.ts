@@ -12,9 +12,6 @@ class User {
   @Column({ length: 100 })
   name: string;
 
-  @Column({ length: 20, unique: true })
-  username: string;
-
   @Column({ length: 100, unique: true })
   email: string;
 
