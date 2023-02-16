@@ -1,5 +1,6 @@
 import { Router } from "express";
 import createUserController from "../controllers/users/createUser.controller";
+import deleteUserController from "../controllers/users/deleteUser.controller";
 import listUsersController from "../controllers/users/listUsers.controller";
 import retrieveUserController from "../controllers/users/retrieveUser.controller";
 import updateUserController from "../controllers/users/updateUser.controller";
@@ -15,5 +16,6 @@ userRoutes.get("", ensureAuthMiddleware, ensureIsAdmMiddleware, listUsersControl
 userRoutes.get("/profile", ensureAuthMiddleware, userProfileController);
 userRoutes.get("/:id", ensureAuthMiddleware, retrieveUserController);
 userRoutes.patch("/:id", ensureAuthMiddleware, updateUserController);
+userRoutes.delete("/:id", ensureAuthMiddleware, deleteUserController);
 
 export default userRoutes;
