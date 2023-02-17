@@ -55,14 +55,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >```json
 > {
 >   "name": "Admin",
-    "email": "admin@mail.com",
-    "cpf": "123.456.789-12",
-    "phone": "24999123456",
-    "birthday": "01/01/90",
-    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
-    "advertiser": false,
-    "password": "1234",
-    "isAdm": true
+>   "email": "admin@mail.com",
+>   "cpf": "123.456.789-12",
+>   "phone": "24999123456",
+>   "birthday": "01/01/90",
+>   "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>   "advertiser": false,
+>   "password": "1234",
+>   "isAdm": true
 > }
 >```
 >> ## Formato da resposta:
