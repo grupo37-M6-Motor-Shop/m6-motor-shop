@@ -65,22 +65,29 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >   "isAdm": true
 > }
 >```
+* A chave `isAdm` tem por padrao um valor booleando false, só alteramos ele para true, nós administradores 
+
 >> ## Formato da resposta:
 >
 > * Status: `201 CREATED`;
 > * A `password` do usuário deve ser armazenada como `hash` e `não deve ser retornada` na resposta;
 >
->```json
-> {
->   "id": "c95d139f-5c57-46ec-9ca7-545944a2b10b",
->   "name": "Lucas Silva",
->   "email": "lucas.silva@mail.com",
->   "isAdm": true,
->   "isActive": true,
->   "createdAt": "2022-10-21T23:19:09.501Z",
->   "updatedAt": "2022-10-21T23:19:09.501Z"
-> }
->```
+```json
+{
+	"name": "Admin",
+	"email": "admin@mail.com",
+	"cpf": "123.456.789-12",
+	"phone": "24999123456",
+	"birthday": "01/01/90",
+	"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+	"advertiser": false,
+	"isAdm": true,
+	"id": "3eabdcd4-cb31-4208-bfc4-c6d8089cf986",
+	"isActive": true,
+	"createdAt": "2023-02-17T21:20:35.532Z",
+	"updatedAt": "2023-02-17T21:20:35.532Z"
+}
+```
 > ## E-mail já cadastrado
 >> ## Formato da resposta:
 >
@@ -98,7 +105,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >
 >```json
 > {
->   "message": "Name, e-mail, password and isAdm are required fields"
+>   "message": "name, email, password, cpf, phone, birthday, description are required fields"
 > }
 >```
 > ## Enviando outros campos
@@ -108,14 +115,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >
 >```json
 > {
->   "message": "Only name, email, password and isAdm can be send"
+>   "message": "Only name, email, password, cpf, phone, birthday, description can be send"
 > }
 >```
 >---
 
 <br>
 
-> # Profile User - GET `/users/profile`
+> # Profile User - GET `/users`
 >> ## Formato da requisição:
 >
 > * Necessário autenticação por `token`
