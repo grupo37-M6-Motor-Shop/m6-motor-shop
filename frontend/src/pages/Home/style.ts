@@ -44,13 +44,13 @@ export const ContainerButtons = styled.div`
 `;
 
 export const Section = styled.section`
-	padding: 40px 12px;
+	padding: 40px 0 40px 12px;
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
 
 	@media screen and (min-width: 1024px) {
-		padding: 40px 60px;
+		padding: 40px 0 40px 60px;
 	}
 `;
 
@@ -61,6 +61,10 @@ export const TitleSection = styled.h5`
 `;
 export const ListCards = styled.ul`
 	display: flex;
-	gap: 20px;
+	gap: 12px;
 	overflow-x: auto;
+
+	@media screen and (min-width: 768px) {
+		gap: 48px;
+	}
 `;

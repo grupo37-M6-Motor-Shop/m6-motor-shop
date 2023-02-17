@@ -12,15 +12,16 @@ import {
 	ContainerInfoCard,
 	RightArrow,
 	Clock,
+	ContainerCarImg,
 } from "./style";
 
 const Card = ({ auction = false, ...props }) => {
 	return (
 		<CustomLi key={props.id} auction={auction}>
 			{!auction && (
-				<div>
+				<ContainerCarImg>
 					<CarImg src={props.urlImage} alt="car card" />
-				</div>
+				</ContainerCarImg>
 			)}
 			<ContainerInfoCard auction={auction} image={props.urlImage}>
 				<InfoCard auction={auction}>
