@@ -44,6 +44,7 @@ export const FontPrice = styled(FontCardTitle)`
 export const CustomLi = styled.li<props>`
 	${(props) => (props.auction ? "max-width: 735px;" : "max-width: 312px;")}
 	min-width: 312px;
+	height: 350px;
 	list-style: none;
 `;
 
@@ -89,13 +90,15 @@ export const Clock = styled.div`
 `;
 
 export const ContainerCarImg = styled.div`
-	height: 100%;
-	width: 100%;
+	height: 152px;
+	width: 312px;
+	display: flex;
+	justify-content: center;
+	background-color: var(--grey7);
 `;
 
 export const CarImg = styled.img`
-	height: 152px;
-	width: 312px;
+	object-fit: scale-down;
 `;
 
 export const ContainerPriceYearKm = styled.div<props>`
