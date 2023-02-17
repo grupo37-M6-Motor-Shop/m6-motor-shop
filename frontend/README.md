@@ -1,4 +1,4 @@
-#Motor Shop uma loja de carros e motos
+# Motor Shop uma loja de carros e motos
 
 Este projeto tem como objetivo facilitar a conexão de um usuario com o seu tao sonhado veiculo. nele, o usuario podera passiar pela loja de veiculos dando comentarios para o mesmo, alem de poder ver os comentarios de outros usuarios. o usuario que nao deseja apenas comprar um veiculo tambem poderá coloca-lo a venda na motor shop, sendo esse um anuncio padrao ou um leilao do veiculo.
 
