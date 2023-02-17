@@ -1,5 +1,6 @@
 import Button from "../../components/Button";
 import Card from "../../components/Card";
+import Footer from "../../components/Footer";
 import {
 	Section,
 	ContainerButtons,
@@ -136,13 +137,7 @@ const Home = () => {
 					</ListCards>
 				</Section>
 			</main>
-			<footer
-				style={{
-					width: "100%",
-					height: "80px",
-					backgroundColor: "var(--grey6)",
-				}}
-			></footer>
+			<Footer/>
 		</>
 	);
 };
