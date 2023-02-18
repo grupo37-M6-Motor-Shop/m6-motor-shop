@@ -2,9 +2,13 @@ import AppDataSource from "../../data-source";
 import User from "../../entities/user.entity";
 import { IUser } from "../../interfaces/users.interface";
 
-const listusersService = async (): Promise<IUser[]> => {
+const listusersService = async ( isAdm: boolean ): Promise<IUser[]> => {
   const userRepository = AppDataSource.getRepository(User);
-  const users = userRepository.find();
+  const users = await userRepository.find();
+
+  if (!isAdm) {
+    return users.filter((user) => !(user.isAdm || !user.isActive));
+  }
 
   return users;
 }
