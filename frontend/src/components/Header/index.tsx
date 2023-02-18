@@ -1,13 +1,36 @@
-import { StyledHeader, Image, Link, Nav, Div, Divise, Text, Avatar, Profile, DropDown } from "./style";
+import {
+	StyledHeader,
+	Image,
+	Link,
+	Nav,
+	DivNav,
+	Divise,
+	Text,
+	Avatar,
+	Profile,
+	DropDown,
+	DivBar,
+	Menu,
+	Divider,
+	Sidebar,
+	LinkBar,
+	Settings,
+	MenuAnimation,
+	MenuBurger,
+	DivButton
+} from "./style";
 import logo from '../../../public/img/motor_shop_logo_header.svg'
 import avatar from '../../../public/img/avatar.svg'
 import Button from "../Button";
 import { useState } from "react";
 
 const Header = () => {
-	const [dropDown, setDropDown] = useState(0)
+	const [dropDown, setDropDown] = useState<number>(0)
+	const [isSideBarVisible, setIsSideBarVisible] = useState<boolean>(false);
 	const token = false
 	const anunciante = false
+
+	const showSideBar = () => setIsSideBarVisible(!isSideBarVisible);
 
 	const handleClickdropDownProfile = () => {
 		if (dropDown === 0) {
@@ -16,37 +39,42 @@ const Header = () => {
 			setDropDown(0)
 		}
 	}
-	console.log(dropDown)
 
 	return (
 		<>
 			<StyledHeader>
 				<Image src={logo} alt='logo-motor-shop' />
 				<Nav>
-					<Div>
+					<DivNav>
+						<MenuBurger onClick={showSideBar}>
+							<MenuAnimation isSideBarVisible={isSideBarVisible} onClick={showSideBar}></MenuAnimation>
+						</MenuBurger>
 						<Link href="#carros">Carros</Link>
 						<Link href="#motos">Motos</Link>
 						<Link href="#leilao">Leilão</Link>
-					</Div>
+					</DivNav>
 					<Divise />
-					<Div>
-						{token ? (
+					<DivNav>
+						{!token ? (
 							<>
-								<Button
-									color={'brand1'}
-									bgcolor={'grey10'}
-									component={'big'}
-									width={'133px'}
-								>Fazer Login
-								</Button>
-								<Button
-									color={'grey0'}
-									bgcolor={'grey10'}
-									component={'big'}
-									border={'grey4'}
-									width={'133px'}
-								>Cadastrar
-								</Button>
+								<DivButton>
+									<Button
+										color={'brand1'}
+										bgcolor={'grey10'}
+										component={'big'}
+										width={'133px'}
+									>Fazer Login
+									</Button>
+									<Button
+										color={'grey0'}
+										bgcolor={'grey10'}
+										component={'big'}
+										border={'grey4'}
+										width={'133px'}
+									>Cadastrar
+									</Button>
+								</DivButton>
+
 							</>
 						) : (
 							<>
@@ -58,7 +86,6 @@ const Header = () => {
 											<DropDown dropdown={dropDown}>
 												<Text>Editar Perfil</Text>
 												<Text>Editar Endereço</Text>
-
 												<Text>Sair</Text>
 											</DropDown>
 										</>
@@ -75,8 +102,61 @@ const Header = () => {
 								</Profile>
 							</>
 						)}
-
-					</Div>
+						{isSideBarVisible && !token ? (
+							<Sidebar isSideBarVisible={isSideBarVisible}>
+								<Menu>
+									<DivBar>
+										<LinkBar href="#carros">Carros</LinkBar>
+										<LinkBar href="#motos">Motos</LinkBar>
+										<LinkBar href="#leilao">Leilão</LinkBar>
+									</DivBar>
+									<Divider />
+									<DivBar>
+										<LinkBar href="">Fazer Login</LinkBar>
+										<Button
+											color={'grey0'}
+											bgcolor={'grey10'}
+											component={'big'}
+											border={'grey4'}
+											width={'fullWidth'}
+										>Cadastrar
+										</Button>
+									</DivBar>
+								</Menu>
+							</Sidebar>
+						) : (
+							<Sidebar isSideBarVisible={isSideBarVisible}>
+								<Menu>
+									<DivBar>
+										<LinkBar href="#carros">Carros</LinkBar>
+										<LinkBar href="#motos">Motos</LinkBar>
+										<LinkBar href="#leilao">Leilão</LinkBar>
+									</DivBar>
+									<Divider />
+									<DivBar>
+										<Settings>
+											<Avatar src={avatar} alt='avatar' />
+											<Text>Samuel Leão</Text>
+										</Settings>
+										{!anunciante ? (
+											<>
+												<Text>Editar Perfil</Text>
+												<Text>Editar Endereço</Text>
+												<Text>Sair</Text>
+											</>
+										) : (
+											<>
+												<Text>Editar Perfil</Text>
+												<Text>Editar Endereço</Text>
+												<Text>Meus Anúncios</Text>
+												<Text>Sair</Text>
+											</>
+										)}
+									</DivBar>
+								</Menu>
+							</Sidebar>
+						)}
+					</DivNav>
 				</Nav>
 			</StyledHeader>
 		</>
