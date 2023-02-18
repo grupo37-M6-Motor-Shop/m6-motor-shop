@@ -179,15 +179,15 @@ export const Sidebar = styled.div<SidebarProps>`
     flex-direction: column;
     align-items: center;
     position: fixed;
-    height: 100vh;
-    width: 100vw;
+    width: 100%;
+    max-width: 425px;
     top: 5rem;
-    left: 0;
-    position: fixed;
+    right: 0;
     z-index: 3;
     opacity: ${(props) => (props.isSideBarVisible ? "1" : "0")};
     border-top: .2rem solid var(--grey6);
     background: var(--whiteFixed);
+    filter: drop-shadow(0px 40px 40px rgba(0, 0, 0, 0.09));
   }
 `;
 
