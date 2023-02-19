@@ -5,9 +5,12 @@ import { IAnnouncement } from "../../interfaces/announcements.interface";
 const list20RandomAnnoucementsService = async (): Promise<IAnnouncement[]> => {
 	const announcementRepository = AppDataSource.getRepository(Announcement);
 	const randomAnnouncements = announcementRepository
-		.createQueryBuilder()
+		.createQueryBuilder("announcements")
 		.orderBy("RANDOM()")
-		.take(20)
+		.leftJoinAndSelect("announcements.user", "users")
+		.leftJoinAndSelect("announcements.galerys", "galery")
+		.leftJoinAndSelect("announcements.comments", "comments")
+		.limit(20)
 		.getMany();
 
 	return randomAnnouncements;
