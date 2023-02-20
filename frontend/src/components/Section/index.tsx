@@ -29,13 +29,14 @@ const Section = ({ titleSection, value, vehicles , auction}: SectionProps) => {
         {
           auction ? 
             vehicles.map(
-              ({ id, userName, urlImage, description, mileage, year, price, typeAnnouncement }: IVehicle) =>
+              ({ id, userName, urlImage, title, description, mileage, year, price, typeAnnouncement }: IVehicle) =>
               typeAnnouncement === value && (
                 <Card
                   key={id}
                   auction
                   userName={userName}
                   urlImage={urlImage}
+                  title={title}
                   description={description}
                   mileage={mileage}
                   year={year}
