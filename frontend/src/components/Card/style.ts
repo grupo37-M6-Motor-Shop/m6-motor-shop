@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { FontIntegerNormal } from "../../style/fonts";
 
 interface props {
@@ -107,11 +107,11 @@ export const ContainerPriceYearKm = styled.div<props>`
 
 	${(props) =>
 		props.auction &&
-		`
+		css`
     flex-direction: column;
     gap: 20px;
     
-    @media (min-width: 400px) {
+    @media (min-width: 1710px) {
       flex-direction: row;
     }
   `}
