@@ -1,9 +1,9 @@
 import User from "../entities/user.entity";
-import Galery from "../entities/galery.entity";
 import Comment from "../entities/comment.entity";
+import gallery from "../entities/gallery.entity";
 
-export interface IAnnouncementRequest {
-	typeAnnouncement: string;
+export interface IAdRequest {
+	typeAd: string;
 	title: string;
 	description: string;
 	year: number;
@@ -11,20 +11,20 @@ export interface IAnnouncementRequest {
 	price: number;
 	isActive: boolean;
 	typeVehicle: string;
-	urlImage: string;
+	urlCoverImage: string;
 }
 
-export interface IAnnouncement extends IAnnouncementRequest {
+export interface IAd extends IAdRequest {
 	id: string;
 	createdAt: Date;
 	updatedAt: Date;
 	user: User;
 	comments: Comment[];
-	galerys: Galery[];
+	gallery: gallery;
 }
 
-export interface IAnnouncementUpdate {
-	typeAnnouncement?: string;
+export interface IAdUpdate {
+	typeAd?: string;
 	title?: string;
 	description?: string;
 	year?: number;
@@ -32,5 +32,5 @@ export interface IAnnouncementUpdate {
 	price?: number;
 	isActive?: boolean;
 	typeVehicle?: string;
-	urlImage?: string;
+	urlCoverImage?: string;
 }

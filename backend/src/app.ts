@@ -5,7 +5,8 @@ import "express-async-errors";
 import handleErrorMiddleware from "./middlewares/handleError.middleware";
 import userRoutes from "./routes/users.routes";
 import sessionRoutes from "./routes/sessions.routes";
-import announcementsRoutes from "./routes/announcements.routes";
+import adsRoutes from "./routes/ads.routes";
+import galleriesRoutes from "./routes/galleries.routes";
 
 const app = express();
 
@@ -13,7 +14,8 @@ app.use(cors());
 app.use(express.json());
 app.use("/users", userRoutes);
 app.use("/login", sessionRoutes);
-app.use("/announcements", announcementsRoutes);
+app.use("/ads", adsRoutes);
+app.use("/galleries", galleriesRoutes);
 
 app.use(handleErrorMiddleware);
 

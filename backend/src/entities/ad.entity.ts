@@ -1,23 +1,27 @@
 import {
+	BeforeRemove,
 	Column,
 	CreateDateColumn,
 	Entity,
+	getRepository,
+	JoinColumn,
 	ManyToOne,
 	OneToMany,
+	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from "typeorm";
 import Comment from "./comment.entity";
-import Galery from "./galery.entity";
+import Gallery from "./gallery.entity";
 import User from "./user.entity";
 
-@Entity("announcements")
-class Announcement {
+@Entity("ads")
+class Ad {
 	@PrimaryGeneratedColumn("uuid")
 	id: string;
 
 	@Column({ length: 6 })
-	typeAnnouncement: string;
+	typeAd: string;
 
 	@Column({ length: 200 })
 	title: string;
@@ -41,7 +45,7 @@ class Announcement {
 	typeVehicle: string;
 
 	@Column({ length: 1000 })
-	urlImage: string;
+	urlCoverImage: string;
 
 	@CreateDateColumn()
 	createdAt: Date;
@@ -52,17 +56,14 @@ class Announcement {
 	@ManyToOne(() => User, { eager: true })
 	user: User;
 
-	@OneToMany(() => Comment, (comment) => comment.announcement, {
+	@OneToMany(() => Comment, (comment) => comment.ad, {
 		eager: true,
 		cascade: true,
 	})
 	comments: Comment[];
 
-	@OneToMany(() => Galery, (galery) => galery.announcement, {
-		eager: true,
-		cascade: true,
-	})
-	galerys: Galery[];
+	@OneToOne(() => Gallery, (gallery) => gallery.ad, { eager: true })
+	gallery: Gallery;
 }
 
-export default Announcement;
+export default Ad;
