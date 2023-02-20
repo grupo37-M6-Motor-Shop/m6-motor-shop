@@ -4,7 +4,7 @@ import User from "../../entities/user.entity";
 import { AppError } from "../../errors/AppError";
 import { IUser, IUserUpdate } from "../../interfaces/users.interface"
 
-const updateUserService = async (isAdm: boolean, targetUser: string, loogedUser: string, data: IUserUpdate): Promise<IUser> => {
+const updateUserService = async (isAdm: boolean, targetUser: string, loggedUser: string, data: IUserUpdate): Promise<IUser> => {
   const { name, email, cpf, phone, birthday, description, password } = data;
 
   const userRepository = AppDataSource.getRepository(User);
@@ -16,7 +16,7 @@ const updateUserService = async (isAdm: boolean, targetUser: string, loogedUser:
     throw new AppError("User not found", 404);
   }
 
-  if(targetUser !== loogedUser && !isAdm) {
+  if(targetUser !== loggedUser && !isAdm) {
     throw new AppError("User is not admin", 401);
   }
 

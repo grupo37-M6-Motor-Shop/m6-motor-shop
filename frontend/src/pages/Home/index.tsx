@@ -1,6 +1,8 @@
 import Button from "../../components/Button";
 import Card from "../../components/Card";
+import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+
 import {
 	Section,
 	ContainerButtons,
@@ -183,15 +185,7 @@ const Home = () => {
 	];
 	return (
 		<>
-			<header
-				style={{
-					width: "100%",
-					height: "80px",
-					backgroundColor: "var(--grey6)",
-				}}
-			>
-				Motors Shop
-			</header>
+		<Header/>
 			<main id="#home">
 				<InfoSection>
 					<ContainerInfo>
@@ -223,7 +217,7 @@ const Home = () => {
 						</ContainerButtons>
 					</ContainerInfo>
 				</InfoSection>
-				<Section>
+				<Section id="leilao">
 					<TitleSection>Leião</TitleSection>
 					<ListCards>
 						{user.map(
@@ -243,7 +237,7 @@ const Home = () => {
 						)}
 					</ListCards>
 				</Section>
-				<Section>
+				<Section id="carros">
 					<TitleSection>Carros</TitleSection>
 					<ListCards>
 						{user.map(
@@ -262,7 +256,7 @@ const Home = () => {
 						)}
 					</ListCards>
 				</Section>
-				<Section>
+				<Section id="motos">
 					<TitleSection>Motos</TitleSection>
 					<ListCards>
 						{user.map(
