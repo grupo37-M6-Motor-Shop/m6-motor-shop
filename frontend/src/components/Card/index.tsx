@@ -43,11 +43,11 @@ const Card = ({ auction = false, ...props }) => {
 						image={props.userImage}
 					/>
 					<ContainerPriceYearKm auction={auction}>
-						<div>
-							<InfoKmYear>{props.mileage} KM</InfoKmYear>
-							<InfoKmYear>{props.year}</InfoKmYear>
-						</div>
-						<FontPrice>R$ {props.price}</FontPrice>
+							<div>
+								<InfoKmYear>{props.mileage} KM</InfoKmYear>
+								<InfoKmYear>{props.year}</InfoKmYear>
+							</div>
+							<FontPrice>R$ {props.price}</FontPrice>
 					</ContainerPriceYearKm>
 				</InfoCard>
 			</ContainerInfoCard>

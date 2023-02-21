@@ -1,17 +1,13 @@
 import Button from "../../components/Button";
-import Card from "../../components/Card";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-
+import Section from "../../components/Section";
 import {
-	Section,
 	ContainerButtons,
 	ContainerInfo,
 	InfoHome,
 	InfoSection,
-	ListCards,
 	TitleHome,
-	TitleSection,
 } from "./style";
 
 const Home = () => {
@@ -79,7 +75,7 @@ const Home = () => {
 			title: "VW VOYAGE 1.6 MSI FLEX",
 			description:
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-			mileage: 1002000,
+			mileage: 102000,
 			year: 2018,
 			price: "R$ 55.990,00",
 			typeAnnouncement: "Leilão",
@@ -217,64 +213,25 @@ const Home = () => {
 						</ContainerButtons>
 					</ContainerInfo>
 				</InfoSection>
-				<Section id="leilao">
-					<TitleSection>Leião</TitleSection>
-					<ListCards>
-						{user.map(
-							(vehicle) =>
-								vehicle.typeAnnouncement === "Leilão" && (
-									<Card
-										key={vehicle.id}
-										auction
-										userName={vehicle.userName}
-										urlImage={vehicle.urlImage}
-										description={vehicle.description}
-										mileage={vehicle.mileage}
-										year={vehicle.year}
-										price={vehicle.price}
-									/>
-								)
-						)}
-					</ListCards>
-				</Section>
-				<Section id="carros">
-					<TitleSection>Carros</TitleSection>
-					<ListCards>
-						{user.map(
-							(vehicle) =>
-								vehicle.typeVehicle === "Carro" && (
-									<Card
-										key={vehicle.id}
-										userName={vehicle.userName}
-										urlImage={vehicle.urlImage}
-										description={vehicle.description}
-										mileage={vehicle.mileage}
-										year={vehicle.year}
-										price={vehicle.price}
-									/>
-								)
-						)}
-					</ListCards>
-				</Section>
-				<Section id="motos">
-					<TitleSection>Motos</TitleSection>
-					<ListCards>
-						{user.map(
-							(vehicle) =>
-								vehicle.typeVehicle === "Moto" && (
-									<Card
-										key={vehicle.id}
-										userName={vehicle.userName}
-										urlImage={vehicle.urlImage}
-										description={vehicle.description}
-										mileage={vehicle.mileage}
-										year={vehicle.year}
-										price={vehicle.price}
-									/>
-								)
-						)}
-					</ListCards>
-				</Section>
+
+				<Section 
+					titleSection="Leilão"
+					value="Leilão" 
+					vehicles={user} 
+					auction={true} 
+				/>
+				<Section 
+					titleSection="Carros"
+					value="Carro" 
+					vehicles={user} 
+					auction={false} 
+				/>
+				<Section 
+					titleSection="Motos"
+					value="Moto" 
+					vehicles={user} 
+					auction={false} 
+				/>
 			</main>
 			<Footer />
 		</>
