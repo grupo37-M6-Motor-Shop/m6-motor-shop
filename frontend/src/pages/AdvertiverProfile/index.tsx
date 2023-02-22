@@ -1,6 +1,7 @@
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import ModalDelete from "../../components/ModalAdDelete";
 import Section from "../../components/Section";
 import { BackgroundInfo, Container, Description, Info, InfoUser, Main, Name, Tag, UserImg } from "./style";
 
@@ -173,45 +174,47 @@ const AdvertiverProfile = () => {
       typeVehicle: "Moto",
     },
   ];
-  
+
   return (
     <Container>
-      <Header/>
+      <Header />
       <Main>
         <InfoUser>
-          <BackgroundInfo/>
-            <Info>
-              <UserImg> LS </UserImg>
-              <Name>
-                <p>Lucas Silva</p>
-                <Tag>Anunciante</Tag>
-              </Name>
-              <Description>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam asperiores ipsum debitis suscipit vel, blanditiis quos! Consequatur repellat quis quos aliquam?</Description>
-              <Button color="brand1" bgcolor="grey10" component="big" border="brand1" width="10rem">Criar Anúncio</Button>
-            </Info>
+          <BackgroundInfo />
+          <Info>
+            <UserImg> LS </UserImg>
+            <Name>
+              <p>Lucas Silva</p>
+              <Tag>Anunciante</Tag>
+            </Name>
+            <Description>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam asperiores ipsum debitis suscipit vel, blanditiis quos! Consequatur repellat quis quos aliquam?</Description>
+            <Button color="brand1" bgcolor="grey10" component="big" border="brand1" width="10rem">Criar Anúncio</Button>
+          </Info>
           {/* </BackgroundInfo> */}
         </InfoUser>
 
-        <Section 
-					titleSection="Leilão"
-					value="Leilão" 
-					vehicles={user} 
-					auction={true} 
-				/>
-				<Section 
-					titleSection="Carros"
-					value="Carro" 
-					vehicles={user} 
-					auction={false} 
-				/>
-				<Section 
-					titleSection="Motos"
-					value="Moto" 
-					vehicles={user} 
-					auction={false} 
-				/>
+        <Section
+          titleSection="Leilão"
+          value="Leilão"
+          vehicles={user}
+          auction={true}
+        />
+        <Section
+          titleSection="Carros"
+          value="Carro"
+          vehicles={user}
+          auction={false}
+        />
+        <Section
+          titleSection="Motos"
+          value="Moto"
+          vehicles={user}
+          auction={false}
+        />
+        {/* Descomete a modal delete caso queira visualiza-la */}
+        {/* <ModalDelete/> */}
       </Main>
-      <Footer/>
+      <Footer />
     </Container>
   );
 }

@@ -19,8 +19,8 @@ import {
 	MenuBurger,
 	DivButton
 } from "./style";
-import logo from '../../../public/img/motor_shop_logo_header.svg'
-import avatar from '../../../public/img/avatar.svg'
+import logo from '../../assets/img/motor_shop_logo_header.svg'
+import avatar from '../../assets/img/avatar.svg';
 import Button from "../Button";
 import { useState } from "react";
 
