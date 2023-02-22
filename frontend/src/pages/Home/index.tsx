@@ -9,9 +9,9 @@ import {
 	InfoSection,
 	TitleHome,
 } from "./style";
-import ModalAdUpdate from "../../components/ModalAdUpdate";
 
 const Home = () => {
+	document.body.style.overflow = "unset";
 	const user = [
 		{
 			id: 1,
@@ -182,7 +182,7 @@ const Home = () => {
 	];
 	return (
 		<>
-		<Header/>
+			<Header />
 			<main id="#home">
 				<InfoSection>
 					<ContainerInfo>
@@ -215,25 +215,24 @@ const Home = () => {
 					</ContainerInfo>
 				</InfoSection>
 
-				<Section 
+				<Section
 					titleSection="Leilão"
-					value="Leilão" 
-					vehicles={user} 
-					auction={true} 
+					value="Leilão"
+					vehicles={user}
+					auction={true}
 				/>
-				<Section 
+				<Section
 					titleSection="Carros"
-					value="Carro" 
-					vehicles={user} 
-					auction={false} 
+					value="Carro"
+					vehicles={user}
+					auction={false}
 				/>
-				<Section 
+				<Section
 					titleSection="Motos"
-					value="Moto" 
-					vehicles={user} 
-					auction={false} 
+					value="Moto"
+					vehicles={user}
+					auction={false}
 				/>
-				<ModalAdUpdate />
 			</main>
 			<Footer />
 		</>

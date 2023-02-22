@@ -13,7 +13,7 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div`
-	width: 90%;
+	width: 92%;
 	max-width: 32.5rem;
 	height: fit-content;
 	max-height: 90vh;
@@ -43,16 +43,16 @@ export const Content = styled.div`
 	height: 100%;
 	overflow-y: auto;
 	::-webkit-scrollbar {
-   		width: .625rem;
-  	}
-  	::-webkit-scrollbar-track {
-    	background: var(--whiteFixed);
-  	}
-  	::-webkit-scrollbar-thumb {
+		width: 0.625rem;
+	}
+	::-webkit-scrollbar-track {
+		background: var(--whiteFixed);
+	}
+	::-webkit-scrollbar-thumb {
 		background-color: var(--grey5);
-		border-radius: .3125rem;
-		border: .1875rem solid var(--whiteFixed);
-  	}
+		border-radius: 0.3125rem;
+		border: 0.1875rem solid var(--whiteFixed);
+	}
 `;
 
 export const Children = styled.div`

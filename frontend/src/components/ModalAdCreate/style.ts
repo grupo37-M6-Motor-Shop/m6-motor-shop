@@ -12,7 +12,7 @@ export const Div = styled.div`
     display: flex;
     justify-content: flex-end;
     gap: .625rem;
-    padding-top: 3.4375rem;
+    padding: 2.5rem 0 0.5rem 0;
 `;
 
 export const Grid = styled.div`
