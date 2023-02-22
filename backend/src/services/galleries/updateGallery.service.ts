@@ -30,7 +30,10 @@ const updateGalleryService = async (
 		urlImage6,
 	});
 
-	const updatedGallery = await galleryRepository.findOneBy({ id: galleryId });
+	const updatedGallery = await galleryRepository.findOne({
+		where: { id: galleryId },
+		relations: { ad: true },
+	});
 
 	return updatedGallery!;
 };
