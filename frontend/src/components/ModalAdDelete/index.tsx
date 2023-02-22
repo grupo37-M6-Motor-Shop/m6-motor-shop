@@ -2,7 +2,8 @@ import Button from "../Button";
 import Modal from "../modal";
 import { TextQuestion, TextWarning, Div } from "./style";
 
-const ModalDelete = () => {
+const ModalAdDelete = () => {
+	document.body.style.overflow = "hidden";
 	return (
 		<Modal title={'Excluir anúncio'}>
 			<TextQuestion>Tem certeza que deseja remover este anúncio?</TextQuestion>
@@ -29,4 +30,4 @@ const ModalDelete = () => {
 	);
 };
 
-export default ModalDelete;
+export default ModalAdDelete;
