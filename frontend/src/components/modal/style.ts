@@ -16,6 +16,7 @@ export const Card = styled.div`
 	width: 90%;
 	max-width: 32.5rem;
 	height: fit-content;
+	max-height: 90vh;
 	display: flex;
 	flex-direction: column;
 	padding: 1rem;
@@ -40,6 +41,18 @@ export const Title = styled.div`
 export const Content = styled.div`
 	width: 100%;
 	height: 100%;
+	overflow-y: auto;
+	::-webkit-scrollbar {
+   		width: .625rem;
+  	}
+  	::-webkit-scrollbar-track {
+    	background: var(--whiteFixed);
+  	}
+  	::-webkit-scrollbar-thumb {
+		background-color: var(--grey5);
+		border-radius: .3125rem;
+		border: .1875rem solid var(--whiteFixed);
+  	}
 `;
 
 export const Children = styled.div`
