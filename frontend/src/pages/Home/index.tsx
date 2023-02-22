@@ -9,6 +9,7 @@ import {
 	InfoSection,
 	TitleHome,
 } from "./style";
+import ModalAdUpdate from "../../components/ModalAdUpdate";
 
 const Home = () => {
 	const user = [
@@ -232,6 +233,7 @@ const Home = () => {
 					vehicles={user} 
 					auction={false} 
 				/>
+				<ModalAdUpdate />
 			</main>
 			<Footer />
 		</>

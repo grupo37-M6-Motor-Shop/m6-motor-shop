@@ -1,5 +1,5 @@
 import Button from "../Button";
-import Modal from "../modal";
+import Modal from "../Modal";
 import { TextQuestion, TextWarning, Div } from "./style";
 
 const ModalDelete = () => {
