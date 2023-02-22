@@ -1,11 +1,13 @@
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import ModalDelete from "../../components/ModalAdDelete";
+import ModalAdCreate from "../../components/ModalAdCreate";
+import ModalAdDelete from "../../components/ModalAdDelete";
 import Section from "../../components/Section";
 import { BackgroundInfo, Container, Description, Info, InfoUser, Main, Name, Tag, UserImg } from "./style";
 
 const AdvertiverProfile = () => {
+  document.body.style.overflow = "unset";
   const user = [
     {
       id: 1,
@@ -211,8 +213,8 @@ const AdvertiverProfile = () => {
           vehicles={user}
           auction={false}
         />
-        {/* Descomete a modal delete caso queira visualiza-la */}
-        {/* <ModalDelete/> */}
+        {/* <ModalAdDelete/> */} {/* Descomete a modal delete caso queira visualiza-la */}
+        {/* <ModalAdCreate/> */} {/* Descomete a modal create caso queira visualiza-la */}
       </Main>
       <Footer />
     </Container>

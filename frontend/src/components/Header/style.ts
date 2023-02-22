@@ -186,6 +186,7 @@ export const Sidebar = styled.div<SidebarProps>`
     right: 0;
     z-index: 3;
     opacity: ${(props) => (props.isSideBarVisible ? "1" : "0")};
+    pointer-events: ${(props: SidebarProps) => props.isSideBarVisible ? `all` : `none`};
     border-top: .2rem solid var(--grey6);
     background: var(--whiteFixed);
     filter: drop-shadow(0px 40px 40px rgba(0, 0, 0, 0.09));
