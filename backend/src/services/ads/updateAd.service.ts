@@ -38,8 +38,13 @@ const updateAdService = async (
 		urlCoverImage,
 	});
 
-	const updatedAd = await adRepository.findOneBy({
-		id: adId,
+	const updatedAd = await adRepository.findOne({
+		where: { id: adId },
+		relations: {
+			gallery: true,
+			user: true,
+			comments: true,
+		},
 	});
 
 	return updatedAd!;

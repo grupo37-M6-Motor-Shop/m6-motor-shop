@@ -1,10 +1,7 @@
 import {
-	BeforeRemove,
 	Column,
 	CreateDateColumn,
 	Entity,
-	getRepository,
-	JoinColumn,
 	ManyToOne,
 	OneToMany,
 	OneToOne,
@@ -35,8 +32,8 @@ class Ad {
 	@Column()
 	mileage: number;
 
-	@Column({ type: "decimal", precision: 12, scale: 2 })
-	price: number;
+	@Column({ length: 12 })
+	price: string;
 
 	@Column({ default: true })
 	isActive: boolean;
@@ -53,16 +50,13 @@ class Ad {
 	@UpdateDateColumn()
 	updatedAt: Date;
 
-	@ManyToOne(() => User, { eager: true })
+	@ManyToOne(() => User)
 	user: User;
 
-	@OneToMany(() => Comment, (comment) => comment.ad, {
-		eager: true,
-		cascade: true,
-	})
+	@OneToMany(() => Comment, (comment) => comment.ad, { cascade: true })
 	comments: Comment[];
 
-	@OneToOne(() => Gallery, (gallery) => gallery.ad, { eager: true })
+	@OneToOne(() => Gallery, (gallery) => gallery.ad)
 	gallery: Gallery;
 }
 

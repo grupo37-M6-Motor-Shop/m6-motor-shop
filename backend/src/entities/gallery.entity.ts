@@ -14,7 +14,7 @@ class Gallery {
 	@PrimaryGeneratedColumn("uuid")
 	id: string;
 
-	@Column({ length: 1000 })
+	@Column({ length: 1000, default: null })
 	urlImage1: string;
 
 	@Column({ length: 1000, default: null })
