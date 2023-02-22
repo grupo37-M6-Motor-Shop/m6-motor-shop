@@ -48,32 +48,34 @@ const createAdService = async (
 		user: foundUser,
 	});
 
-	if (
-		urlImage1 ||
-		urlImage2 ||
-		urlImage3 ||
-		urlImage4 ||
-		urlImage5 ||
-		urlImage6
-	) {
-		const newGallery: IGallery = galleryRepository.create({
-			urlImage1,
-			urlImage2,
-			urlImage3,
-			urlImage4,
-			urlImage5,
-			urlImage6,
-			ad: newAd,
-		});
+	const newGallery: IGallery = galleryRepository.create({
+		urlImage1,
+		urlImage2,
+		urlImage3,
+		urlImage4,
+		urlImage5,
+		urlImage6,
+		ad: newAd,
+	});
 
-		await galleryRepository.save(newGallery);
+	await galleryRepository.save(newGallery);
 
-		newAd.gallery = newGallery;
-	}
+	newAd.gallery = newGallery;
 
 	await adRepository.save(newAd);
 
-	return newAd;
+	const cretedAd = await adRepository.findOne({
+		where: {
+			id: newAd.id,
+		},
+		relations: {
+			gallery: true,
+			user: true,
+			comments: true,
+		},
+	});
+
+	return cretedAd!;
 };
 
 export default createAdService;

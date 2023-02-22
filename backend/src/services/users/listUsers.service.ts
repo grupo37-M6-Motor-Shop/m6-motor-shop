@@ -5,11 +5,7 @@ import { IUser } from "../../interfaces/users.interface";
 const listusersService = async (isAdm: boolean): Promise<IUser[]> => {
 	const userRepository = AppDataSource.getRepository(User);
 	const users = await userRepository.find({
-		relations: {
-			address: true,
-			ads: { gallery: true },
-			comments: true,
-		},
+		relations: { address: true },
 	});
 
 	if (!isAdm) {
