@@ -15,15 +15,16 @@ interface IVehicle {
 }
 
 interface SectionProps {
+  id?: string;
   titleSection: string;
   value: string;
   vehicles: IVehicle[];
   auction: boolean;
 }
 
-const Section = ({ titleSection, value, vehicles , auction}: SectionProps) => {
+const Section = ({ id, titleSection, value, vehicles , auction}: SectionProps) => {
   return (
-    <CustonSection>
+    <CustonSection id={id}>
       <TitleSection>{ titleSection }</TitleSection>
       <ListCards>
         {

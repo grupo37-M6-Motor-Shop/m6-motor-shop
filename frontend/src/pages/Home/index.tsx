@@ -214,19 +214,22 @@ const Home = () => {
 					</ContainerInfo>
 				</InfoSection>
 
-				<Section 
+				<Section
+					id="leilao"
 					titleSection="Leilão"
 					value="Leilão" 
 					vehicles={user} 
-					auction={true} 
+					auction={true}
 				/>
-				<Section 
+				<Section
+					id="carros"
 					titleSection="Carros"
 					value="Carro" 
 					vehicles={user} 
 					auction={false} 
 				/>
 				<Section 
+					id="motos"
 					titleSection="Motos"
 					value="Moto" 
 					vehicles={user} 
