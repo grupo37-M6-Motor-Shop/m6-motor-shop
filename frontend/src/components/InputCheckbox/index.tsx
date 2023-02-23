@@ -55,7 +55,7 @@ const InputCheckbox = React.forwardRef(
 							id={name1}
 							checked={checkbox1Value}
 							value={"Venda"}
-							// onChange={handleCheckbox1Change}
+							onChange={handleCheckbox1Change}
 							{...rest}
 							// {...register!("Venda")}
 						/>
@@ -69,7 +69,7 @@ const InputCheckbox = React.forwardRef(
 							id={name2}
 							checked={checkbox2Value}
 							value={"Leilão"}
-							// onChange={handleCheckbox2Change}
+							onChange={handleCheckbox2Change}
 							{...rest}
 							// {...register!("Venda")}
 						/>

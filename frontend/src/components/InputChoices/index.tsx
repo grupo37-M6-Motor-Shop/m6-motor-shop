@@ -14,21 +14,17 @@ const InputChoices = React.forwardRef(
 			choice2,
 			register,
 			error,
+			setSelectedValue,
+			value,
 			...rest
 		}: InputChoicesProps,
 		ref
 	) => {
-		const [selectedValue, setSelectedValue] = useState("");
+
 
 		return (
 			<CustomLabel style={{ display: "flex", flexDirection: "column" }}>
 				{label}
-				<input
-					{...rest}
-					type="text"
-					value={selectedValue}
-					{...register(name)}
-				/>
 				<div
 					style={{ display: "flex", gap: "20px", paddingTop: "15px" }}
 				>
