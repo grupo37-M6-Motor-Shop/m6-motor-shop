@@ -12,7 +12,6 @@ import {
 
 const Home = () => {
 	document.body.style.overflow = "unset";
-	const advertiser = true;
 	const user = [
 		{
 			id: 1,
@@ -190,7 +189,7 @@ const Home = () => {
 			price: "45.000,00",
 			typeAnnouncement: "Venda",
 			typeVehicle: "Moto",
-			isActive: false,
+			isActive: true,
 		},
 	];
 	return (
@@ -233,26 +232,18 @@ const Home = () => {
 					value="Leilão"
 					vehicles={user}
 					auction={true}
-					advertiser={advertiser}
-					profile
 				/>
 				<Section
 					titleSection="Carros"
 					value="Carro"
 					vehicles={user}
 					auction={false}
-					advertiser={advertiser}
-					profile
-					tags
 				/>
 				<Section
 					titleSection="Motos"
 					value="Moto"
 					vehicles={user}
 					auction={false}
-					advertiser={advertiser}
-					profile
-					tags
 				/>
 			</main>
 			<Footer />

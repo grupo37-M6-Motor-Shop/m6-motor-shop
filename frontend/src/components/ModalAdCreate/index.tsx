@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button";
 import Input from "../Input";
 import InputCheckbox from "../InputCheckbox";
 import InputTextArea from "../InputTextArea";
 import Modal from "../modal";
 import { Text, Div, Grid, GridFullWidth } from "./style";
+import { schemaCreateAd } from "../../validations/FormCreateAd";
+import { IFormCreateAd } from "../../interfaces/FormCreateAd/FromCreateAd";
+import Form from "../Form";
+import { MotorShopContext } from "../../context";
+import InputChoices from "../InputChoices";
 
 interface AdditionalInputsProps {
 	count: number;
@@ -13,6 +20,15 @@ interface AdditionalInputsProps {
 const ModalAdCreate = () => {
 	const [numInputs, setNumInputs] = useState(1);
 	document.body.style.overflow = "hidden";
+	const { handleCloseModal, registerAd } = useContext(MotorShopContext);
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<IFormCreateAd>({
+		resolver: yupResolver(schemaCreateAd),
+	});
 
 	const addInput = () => {
 		if (numInputs < 6) {
@@ -27,9 +43,11 @@ const ModalAdCreate = () => {
 			inputs.push(
 				<Input
 					key={`gallery-input-${i}`}
+					name={`urlImage${i}`}
 					label={`${i}° Imagem da galeria`}
-					type={'url'}
-					placeholder={'Inserir URL da imagem'}
+					type={"url"}
+					placeholder={"Inserir URL da imagem"}
+					register={register}
 				/>
 			);
 		}
@@ -37,96 +55,130 @@ const ModalAdCreate = () => {
 		return <div>{inputs}</div>;
 	};
 	return (
-		<Modal title={'Criar anuncio'}>
-			<InputCheckbox
-				label={'Tipo de anuncio'}
-				name1={'Venda'}
-				name2={'Leilão'}
-			/>
-			<Text>Infomações do veículo</Text>
-			<Input
-				label={'Título'}
-				type={'text'}
-				placeholder={'Digitar título'}
-
-			/>
-			<Grid>
-				<Input
-					label={'Ano'}
-					type={'number'}
-					placeholder={'Digitar ano'}
-				/>
-				<Input
-					label={'Quilometragem'}
-					type={'number'}
-					placeholder={'0'}
+		<Modal title={"Criar anuncio"}>
+			<Form onSubmit={handleSubmit(registerAd)}>
+				{/* <InputCheckbox
+					label="Tipo de anúncio"
+					register={register}
+					name1="Venda"
+					name2="Leilão"
+					checked
+				/> */}
+				<InputChoices
+					label="Tipo de anúncio"
+					name="typeAd"
+					choice1="Venda"
+					choice2="Leilão"
+					register={register}
+					error={errors.typeAd}
 				/>
 
-				<GridFullWidth>
+				<Text>Infomações do veículo</Text>
+				<Input
+					name={"title"}
+					label={"Título"}
+					type={"text"}
+					placeholder={"Digitar título"}
+					error={errors.title}
+					register={register}
+				/>
+				<Grid>
 					<Input
-						label={'Preço'}
-						type={'text'}
-						placeholder={'Digitar preço'}
+						name={"year"}
+						label={"Ano"}
+						type={"number"}
+						placeholder={"Digitar ano"}
+						error={errors.year}
+						register={register}
 					/>
-				</GridFullWidth>
-			</Grid>
-			<InputTextArea
-				label={'Descrição'}
-				placeholder={'Digitar descrição'}
-			/>
-			<InputCheckbox
-				label={'Tipo de veículo'}
-				name1={'Carro'}
-				name2={'Moto'}
-			/>
-			<Text>Infomações do veículo</Text>
-			<Input
-				label={'Título'}
-				type={'text'}
-				placeholder={'Digitar título'}
-			/>
-			<Input
-				label={'Imagem da capa'}
-				type={'url'}
-				placeholder={'Inserir URL da imagem'}
-			/>
-			<Input
-				key={`gallery-input-1`}
-				label={'1° Imagem da galeria'}
-				type={'url'}
-				placeholder={'Inserir URL da imagem'}
-			/>
-			<AdditionalInputs count={numInputs} />
-			{numInputs < 6 && (
-				<Button
-					color={'brand1'}
-					bgcolor={'brand4'}
-					component={'medium'}
-					width={'100%'}
-					style={{ maxWidth: '315px' }}
-					onClick={addInput}
-				>
-					Adicionar campo para imagem da galeria
-				</Button>
-			)}
-			<Div>
-				<Button
-					color={'grey2'}
-					bgcolor={'grey6'}
-					component={'big'}
-					width={'126px'}
-				>
-					Cancelar
-				</Button>
-				<Button
-					color={'brand4'}
-					bgcolor={'brand3'}
-					component={'big'}
-					width={'193px'}
-				>
-					Criar anúncio
-				</Button>
-			</Div>
+					<Input
+						name={"mileage"}
+						label={"Quilometragem"}
+						type={"number"}
+						placeholder={"0"}
+						error={errors.mileage}
+						register={register}
+					/>
+
+					<GridFullWidth>
+						<Input
+							name={"price"}
+							label={"Preço"}
+							type={"text"}
+							placeholder={"Digitar preço"}
+							error={errors.price}
+							register={register}
+						/>
+					</GridFullWidth>
+				</Grid>
+				<InputTextArea
+					name={"description"}
+					label={"Descrição"}
+					placeholder={"Digitar descrição"}
+					error={errors.description}
+					register={register}
+				/>
+				<InputChoices
+					label="Tipo de veículo"
+					name="typeVehicle"
+					choice1="Carro"
+					choice2="Moto"
+					register={register}
+					error={errors.typeVehicle}
+				/>
+				<Input
+					name={"urlCoverImage"}
+					label={"Imagem da capa"}
+					type={"url"}
+					placeholder={"Inserir URL da imagem"}
+					error={errors.urlCoverImage}
+					register={register}
+				/>
+				<Input
+					key={"gallery-input-1"}
+					name={"urlImage1"}
+					label={"1° Imagem da galeria"}
+					type={"url"}
+					placeholder={"Inserir URL da imagem"}
+					error={errors.urlImage1}
+					register={register}
+				/>
+				<AdditionalInputs count={numInputs} />
+				{numInputs < 6 && (
+					<Button
+						type="button"
+						color={"brand1"}
+						bgcolor={"brand4"}
+						component={"medium"}
+						width={"100%"}
+						style={{ maxWidth: "315px" }}
+						onClick={addInput}
+					>
+						Adicionar campo para imagem da galeria
+					</Button>
+				)}
+				<Div>
+					<Button
+						onClick={handleCloseModal}
+						type="button"
+						color={"grey2"}
+						bgcolor={"grey6"}
+						component={"big"}
+						width={"126px"}
+					>
+						Cancelar
+					</Button>
+					<Button
+						type="submit"
+						color={"whiteFixed"}
+						bgcolor={"brand1"}
+						component={"big"}
+						width={"193px"}
+					>
+						Criar anúncio
+					</Button>
+				</Div>
+			</Form>
 		</Modal>
 	);
 };

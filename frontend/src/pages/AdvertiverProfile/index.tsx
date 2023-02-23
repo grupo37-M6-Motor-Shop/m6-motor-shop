@@ -1,3 +1,4 @@
+import { useContext, useState } from "react";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
@@ -5,6 +6,7 @@ import ModalAdCreate from "../../components/ModalAdCreate";
 import ModalAdDelete from "../../components/ModalAdDelete";
 import ModalAdUpdate from "../../components/ModalAdUpdate";
 import Section from "../../components/Section";
+import { MotorShopContext } from "../../context";
 import {
 	BackgroundInfo,
 	Container,
@@ -18,8 +20,17 @@ import {
 } from "./style";
 
 const AdvertiverProfile = () => {
+	const {
+		openModalCreateAd,
+		setOpenModalCreateAd,
+		openModalUpdateAd,
+		setOpenModalUpdateAd,
+		openModalDeleteAd,
+		setOpenModalDeleteAd,
+	} = useContext(MotorShopContext);
 	document.body.style.overflow = "unset";
 	const advertiser = true;
+
 	const user = [
 		{
 			id: 1,
@@ -226,6 +237,7 @@ const AdvertiverProfile = () => {
 								border="brand1"
 								width="10rem"
 								hover={{ bgcolor: "brand4" }}
+								onClick={() => setOpenModalCreateAd(true)}
 							>
 								Criar Anúncio
 							</Button>
@@ -259,11 +271,10 @@ const AdvertiverProfile = () => {
 					profile
 					tags
 				/>
-				{/* <ModalAdDelete/> */}{" "}
-				{/* Descomete a modal delete caso queira visualiza-la */}
-				{/* <ModalAdCreate/> */}{" "}
-				{/* Descomete a modal create caso queira visualiza-la */}
-				{/* <ModalAdUpdate /> */}
+
+				{openModalDeleteAd && <ModalAdDelete />}
+				{openModalUpdateAd && <ModalAdUpdate />}
+				{openModalCreateAd && <ModalAdCreate />}
 			</Main>
 			<Footer />
 		</Container>
