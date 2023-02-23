@@ -16,6 +16,7 @@ interface IVehicle {
 }
 
 interface SectionProps {
+  id?: string;
 	titleSection: string;
 	value: string;
 	vehicles: IVehicle[];
@@ -25,7 +26,7 @@ interface SectionProps {
 	profile?: boolean;
 }
 
-const Section = ({
+const Section = ({ id,
 	titleSection,
 	value,
 	vehicles,
@@ -35,7 +36,7 @@ const Section = ({
 	profile,
 }: SectionProps) => {
 	return (
-		<CustonSection>
+		<CustonSection id={id}>
 			<TitleSection>{titleSection}</TitleSection>
 			{!profile && (
 				<ListCards>
