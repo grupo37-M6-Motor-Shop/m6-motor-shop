@@ -7,4 +7,5 @@ export interface InputChoicesProps extends React.InputHTMLAttributes<HTMLInputEl
     choice2: string
     register: UseFormRegister<any>;
 	error?: FieldError | undefined;
+    setSelectedValue: React.Dispatch<React.SetStateAction<string>>
 }

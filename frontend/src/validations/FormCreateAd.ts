@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const schemaCreateAd = yup.object().shape({
-	typeAd: yup.string().required(),
+	// typeAd: yup.string().required(),
 	title: yup.string().required(),
 	description: yup.string().required(),
 	year: yup
@@ -13,7 +13,7 @@ export const schemaCreateAd = yup.object().shape({
 		.required()
 		.typeError("Campo obrigatório"),
 	price: yup.string().required(),
-	typeVehicle: yup.string().required(),
+	// typeVehicle: yup.string().required(),
 	urlCoverImage: yup.string().required(),
 	urlImage1: yup.string().required(),
 	urlImage6: yup.string(),
