@@ -3,12 +3,14 @@ import AdvertiverProfile from "../pages/AdvertiverProfile";
 import DetailAd from "../pages/DetailAd";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const RoutesMain = () => {
   return (
     <Routes>
       <Route path="/homepage" element={<Home />}/>
       <Route path="/login" element={<Login />}/>
+      <Route path="/register" element={<Register />}/>
       <Route path="/profile" element={<AdvertiverProfile />}/>
       <Route path="/detail-ad" element={<DetailAd />}/>
       <Route path="*" element={<Navigate  to="/homepage" />}/>

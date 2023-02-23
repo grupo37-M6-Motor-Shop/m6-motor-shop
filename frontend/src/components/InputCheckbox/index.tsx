@@ -14,7 +14,7 @@ const InputCheckbox = ({
 	checked,
 	...rest
 }: CheckboxButtonProps) => {
-	const [checkbox1Value, setCheckbox1Value] = useState(false);
+	const [checkbox1Value, setCheckbox1Value] = useState(checked || false);
 	const [checkbox2Value, setCheckbox2Value] = useState(false);
 
 	const handleCheckbox1Change = (
