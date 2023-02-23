@@ -1,3 +1,4 @@
+import Button from "../Button";
 import Detail from "../Detail";
 import {
 	CustomLi,
@@ -13,6 +14,7 @@ import {
 	RightArrow,
 	Clock,
 	ContainerCarImg,
+	IsActiveInfo,
 } from "./style";
 
 const Card = ({ auction = false, ...props }) => {
@@ -20,6 +22,11 @@ const Card = ({ auction = false, ...props }) => {
 		<CustomLi key={props.id} auction={auction}>
 			{!auction && (
 				<ContainerCarImg>
+					{!props.advertiser && props.tags && (
+						<IsActiveInfo isActive={props.isActive}>
+							{props.isActive ? "Ativo" : "Inativo"}
+						</IsActiveInfo>
+					)}
 					<CarImg src={props.urlImage} alt="car card" />
 				</ContainerCarImg>
 			)}
@@ -43,15 +50,69 @@ const Card = ({ auction = false, ...props }) => {
 						image={props.userImage}
 					/>
 					<ContainerPriceYearKm auction={auction}>
-							<div>
-								<InfoKmYear>{props.mileage} KM</InfoKmYear>
-								<InfoKmYear>{props.year}</InfoKmYear>
-							</div>
-							<FontPrice>R$ {props.price}</FontPrice>
+						<div>
+							<InfoKmYear>{props.mileage} KM</InfoKmYear>
+							<InfoKmYear>{props.year}</InfoKmYear>
+						</div>
+						<FontPrice>R$ {props.price}</FontPrice>
 					</ContainerPriceYearKm>
 				</InfoCard>
 			</ContainerInfoCard>
-			{auction && (
+			{!auction && props.advertiser && (
+				<>
+					<Button
+						component="medium"
+						color="grey1"
+						border="grey1"
+						bgcolor="tranparent"
+						width="80px"
+						hover={{ bgcolor: "grey6" }}
+						style={{ marginRight: "10px" }}
+					>
+						Editar
+					</Button>
+					<Button
+						component="medium"
+						color="grey1"
+						border="grey1"
+						bgcolor="tranparent"
+						width="105px"
+						hover={{ bgcolor: "grey6" }}
+						style={{ marginLeft: "10px" }}
+					>
+						Ver como
+					</Button>
+				</>
+			)}
+			{auction && props.advertiser && (
+				<ButtonAuction
+					style={{ justifyContent: "flex-start", gap: "20px" }}
+				>
+					<Button
+						type="button"
+						component="medium"
+						bgcolor="tranparent"
+						color="whiteFixed"
+						border="whiteFixed"
+						width="8.125rem"
+						hover={{ bgcolor: "brand2" }}
+					>
+						Editar
+					</Button>
+					<Button
+						type="button"
+						component="medium"
+						bgcolor="tranparent"
+						color="whiteFixed"
+						border="whiteFixed"
+						width="8.125rem"
+						hover={{ bgcolor: "brand2" }}
+					>
+						Ver como
+					</Button>
+				</ButtonAuction>
+			)}
+			{auction && !props.advertiser && (
 				<ButtonAuction>
 					<span>Acessar página do leilão</span>
 					<RightArrow src="/img/right_arrow.png" alt="right arrow" />

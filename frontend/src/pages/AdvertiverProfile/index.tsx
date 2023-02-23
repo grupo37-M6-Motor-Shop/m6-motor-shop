@@ -19,6 +19,7 @@ import {
 
 const AdvertiverProfile = () => {
 	document.body.style.overflow = "unset";
+	const advertiser = true;
 	const user = [
 		{
 			id: 1,
@@ -30,9 +31,10 @@ const AdvertiverProfile = () => {
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
 			mileage: 1000,
 			year: 1990,
-			price: "R$ 170.000,00",
+			price: "170.000,00",
 			typeAnnouncement: "Leilão",
 			typeVehicle: "Carro",
+			isActive: true,
 		},
 		{
 			id: 2,
@@ -44,9 +46,10 @@ const AdvertiverProfile = () => {
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
 			mileage: 1000,
 			year: 1990,
-			price: "R$ 150.000,00",
+			price: "150.000,00",
 			typeAnnouncement: "Venda",
 			typeVehicle: "Carro",
+			isActive: false,
 		},
 		{
 			id: 3,
@@ -58,9 +61,10 @@ const AdvertiverProfile = () => {
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
 			mileage: 1000,
 			year: 1990,
-			price: "R$ 200.000,00",
+			price: "200.000,00",
 			typeAnnouncement: "Leilão",
 			typeVehicle: "Carro",
+			isActive: true,
 		},
 		{
 			id: 4,
@@ -72,9 +76,10 @@ const AdvertiverProfile = () => {
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
 			mileage: 0,
 			year: 2023,
-			price: "R$ 61.990,00",
+			price: "61.990,00",
 			typeAnnouncement: "Venda",
 			typeVehicle: "Carro",
+			isActive: true,
 		},
 		{
 			id: 5,
@@ -85,9 +90,10 @@ const AdvertiverProfile = () => {
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
 			mileage: 102000,
 			year: 2018,
-			price: "R$ 55.990,00",
+			price: "55.990,00",
 			typeAnnouncement: "Leilão",
 			typeVehicle: "Carro",
+			isActive: true,
 		},
 		{
 			id: 6,
@@ -98,9 +104,10 @@ const AdvertiverProfile = () => {
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
 			mileage: 80000,
 			year: 2012,
-			price: "R$ 26.000,00",
+			price: "26.000,00",
 			typeAnnouncement: "Venda",
 			typeVehicle: "Carro",
+			isActive: false,
 		},
 		{
 			id: 7,
@@ -112,9 +119,10 @@ const AdvertiverProfile = () => {
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
 			mileage: 30000,
 			year: 2020,
-			price: "R$ 190.000,00",
+			price: "190.000,00",
 			typeAnnouncement: "Venda",
 			typeVehicle: "Carro",
+			isActive: false,
 		},
 		{
 			id: 8,
@@ -126,9 +134,10 @@ const AdvertiverProfile = () => {
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
 			mileage: 50000,
 			year: 2018,
-			price: "R$ 140.000,00",
+			price: "140.000,00",
 			typeAnnouncement: "Venda",
 			typeVehicle: "Carro",
+			isActive: true,
 		},
 		{
 			id: 9,
@@ -140,9 +149,10 @@ const AdvertiverProfile = () => {
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
 			mileage: 50000,
 			year: 2018,
-			price: "R$ 28.900,00",
+			price: "28.900,00",
 			typeAnnouncement: "Venda",
 			typeVehicle: "Moto",
+			isActive: true,
 		},
 		{
 			id: 10,
@@ -154,9 +164,10 @@ const AdvertiverProfile = () => {
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
 			mileage: 50000,
 			year: 2018,
-			price: "R$ 15.900,00",
+			price: "15.900,00",
 			typeAnnouncement: "Venda",
 			typeVehicle: "Moto",
+			isActive: false,
 		},
 		{
 			id: 11,
@@ -168,9 +179,10 @@ const AdvertiverProfile = () => {
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
 			mileage: 35000,
 			year: 2021,
-			price: "R$ 21.000,00",
+			price: "21.000,00",
 			typeAnnouncement: "Leilão",
 			typeVehicle: "Moto",
+			isActive: false,
 		},
 		{
 			id: 12,
@@ -182,9 +194,10 @@ const AdvertiverProfile = () => {
 				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
 			mileage: 10000,
 			year: 2022,
-			price: "R$ 45.000,00",
+			price: "45.000,00",
 			typeAnnouncement: "Venda",
 			typeVehicle: "Moto",
+			isActive: false,
 		},
 	];
 
@@ -201,21 +214,22 @@ const AdvertiverProfile = () => {
 							<Tag>Anunciante</Tag>
 						</Name>
 						<Description>
-							Lorem ipsum dolor, sit amet consectetur adipisicing
-							elit. Veniam asperiores ipsum debitis suscipit vel,
-							blanditiis quos! Consequatur repellat quis quos
-							aliquam?
+							Lorem Ipsum is simply dummy text of the printing and
+							typesetting industry. Lorem Ipsum has been the
+							industry's standard dummy text ever since the 1500s
 						</Description>
-						<Button
-							color="brand1"
-							bgcolor="grey10"
-							component="big"
-							border="brand1"
-							width="10rem"
-							hover={{ bgcolor: "brand4" }}
-						>
-							Criar Anúncio
-						</Button>
+						{advertiser && (
+							<Button
+								color="brand1"
+								bgcolor="grey10"
+								component="big"
+								border="brand1"
+								width="10rem"
+								hover={{ bgcolor: "brand4" }}
+							>
+								Criar Anúncio
+							</Button>
+						)}
 					</Info>
 					{/* </BackgroundInfo> */}
 				</InfoUser>
@@ -224,21 +238,31 @@ const AdvertiverProfile = () => {
 					value="Leilão"
 					vehicles={user}
 					auction={true}
+					advertiser={advertiser}
+					profile
 				/>
 				<Section
 					titleSection="Carros"
 					value="Carro"
 					vehicles={user}
 					auction={false}
+					advertiser={advertiser}
+					profile
+					tags
 				/>
 				<Section
 					titleSection="Motos"
 					value="Moto"
 					vehicles={user}
 					auction={false}
+					advertiser={advertiser}
+					profile
+					tags
 				/>
-				{/* <ModalAdDelete/> */} {/* Descomete a modal delete caso queira visualiza-la */}
-				{/* <ModalAdCreate/> */} {/* Descomete a modal create caso queira visualiza-la */}
+				{/* <ModalAdDelete/> */}{" "}
+				{/* Descomete a modal delete caso queira visualiza-la */}
+				{/* <ModalAdCreate/> */}{" "}
+				{/* Descomete a modal create caso queira visualiza-la */}
 				{/* <ModalAdUpdate /> */}
 			</Main>
 			<Footer />

@@ -17,37 +17,40 @@ import {
 	Settings,
 	MenuAnimation,
 	MenuBurger,
-	DivButton
+	DivButton,
 } from "./style";
-import logo from '../../assets/img/motor_shop_logo_header.svg'
-import avatar from '../../assets/img/avatar.svg';
+import logo from "../../assets/img/motor_shop_logo_header.svg";
+import avatar from "../../assets/img/avatar.svg";
 import Button from "../Button";
 import { useState } from "react";
 
 const Header = () => {
-	const [dropDown, setDropDown] = useState<number>(0)
+	const [dropDown, setDropDown] = useState<number>(0);
 	const [isSideBarVisible, setIsSideBarVisible] = useState<boolean>(false);
-	const token = false
-	const anunciante = false
+	const token = false;
+	const anunciante = false;
 
 	const showSideBar = () => setIsSideBarVisible(!isSideBarVisible);
 
 	const handleClickdropDownProfile = () => {
 		if (dropDown === 0) {
-			setDropDown(1)
+			setDropDown(1);
 		} else {
-			setDropDown(0)
+			setDropDown(0);
 		}
-	}
+	};
 
 	return (
 		<>
 			<StyledHeader>
-				<Image src={logo} alt='logo-motor-shop' />
+				<Image src={logo} alt="logo-motor-shop" />
 				<Nav>
 					<DivNav>
 						<MenuBurger onClick={showSideBar}>
-							<MenuAnimation isSideBarVisible={isSideBarVisible} onClick={showSideBar}></MenuAnimation>
+							<MenuAnimation
+								isSideBarVisible={isSideBarVisible}
+								onClick={showSideBar}
+							></MenuAnimation>
 						</MenuBurger>
 						<Link href="#carros">Carros</Link>
 						<Link href="#motos">Motos</Link>
@@ -59,27 +62,31 @@ const Header = () => {
 							<>
 								<DivButton>
 									<Button
-										color={'brand1'}
-										bgcolor={'grey10'}
-										component={'big'}
-										width={'133px'}
-									>Fazer Login
+										color={"brand1"}
+										bgcolor={"grey10"}
+										component={"big"}
+										width={"133px"}
+									>
+										Fazer Login
 									</Button>
 									<Button
-										color={'grey0'}
-										bgcolor={'grey10'}
-										component={'big'}
-										border={'grey4'}
-										width={'133px'}
-									>Cadastrar
+										color={"grey0"}
+										bgcolor={"grey10"}
+										component={"big"}
+										border={"grey4"}
+										width={"133px"}
+										hover={{ bgcolor: "brand4" }}
+									>
+										Cadastrar
 									</Button>
 								</DivButton>
-
 							</>
 						) : (
 							<>
-								<Profile onClick={() => handleClickdropDownProfile()}>
-									<Avatar src={avatar} alt='avatar' />
+								<Profile
+									onClick={() => handleClickdropDownProfile()}
+								>
+									<Avatar src={avatar} alt="avatar" />
 									<Text>Samuel Leão</Text>
 									{!anunciante ? (
 										<>
@@ -114,12 +121,13 @@ const Header = () => {
 									<DivBar>
 										<LinkBar href="">Fazer Login</LinkBar>
 										<Button
-											color={'grey0'}
-											bgcolor={'grey10'}
-											component={'big'}
-											border={'grey4'}
-											width={'fullWidth'}
-										>Cadastrar
+											color={"grey0"}
+											bgcolor={"grey10"}
+											component={"big"}
+											border={"grey4"}
+											width={"fullWidth"}
+										>
+											Cadastrar
 										</Button>
 									</DivBar>
 								</Menu>
@@ -135,7 +143,7 @@ const Header = () => {
 									<Divider />
 									<DivBar>
 										<Settings>
-											<Avatar src={avatar} alt='avatar' />
+											<Avatar src={avatar} alt="avatar" />
 											<Text>Samuel Leão</Text>
 										</Settings>
 										{!anunciante ? (
