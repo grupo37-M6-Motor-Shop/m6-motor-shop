@@ -5,6 +5,7 @@ interface props {
 	colorRandom?: string;
 	auction?: boolean;
 	image?: string;
+	isActive?: boolean;
 }
 
 export const FontCardDescription = styled(FontIntegerNormal)<props>`
@@ -22,12 +23,16 @@ export const FontCardDescription = styled(FontIntegerNormal)<props>`
     font-size: 16px;
     line-height: 28px;
     -webkit-line-clamp: 1;
+
+	@media screen and (max-width: 1024px) {
+		-webkit-line-clamp: 3;
+	}
   `}
 `;
 export const FontCardTitle = styled.span<props>`
 	font-weight: 600;
 	font-size: 16px;
-	line-height: 20px;
+	min-height: calc(2em + 10px);
 
 	${(props) =>
 		props.auction &&
@@ -42,9 +47,9 @@ export const FontPrice = styled(FontCardTitle)`
 `;
 
 export const CustomLi = styled.li<props>`
+	width: 100%;
 	${(props) => (props.auction ? "max-width: 735px;" : "max-width: 312px;")}
 	min-width: 312px;
-	height: 350px;
 	list-style: none;
 `;
 
@@ -95,6 +100,7 @@ export const ContainerCarImg = styled.div`
 	display: flex;
 	justify-content: center;
 	background-color: var(--grey7);
+	position: relative;
 `;
 
 export const CarImg = styled.img`
@@ -108,13 +114,13 @@ export const ContainerPriceYearKm = styled.div<props>`
 	${(props) =>
 		props.auction &&
 		css`
-    flex-direction: column;
-    gap: 20px;
-    
-    @media (min-width: 1710px) {
-      flex-direction: row;
-    }
-  `}
+			flex-direction: column;
+			gap: 20px;
+
+			@media (min-width: 1710px) {
+				flex-direction: row;
+			}
+		`}
 `;
 
 export const InfoKmYear = styled(FontIntegerNormal)`
@@ -139,4 +145,16 @@ export const ButtonAuction = styled.div`
 export const RightArrow = styled.img`
 	width: 26px;
 	height: 14px;
+`;
+
+export const IsActiveInfo = styled.div<props>`
+	top: 10px;
+	left: 24px;
+	position: absolute;
+	background-color: ${(props) =>
+		props.isActive ? "var(--brand1)" : "var(--grey4)"};
+	color: var(--whiteFixed);
+	font-weight: 500;
+	font-size: 14px;
+	padding: 5px 7px;
 `;

@@ -23,6 +23,6 @@ export const ListCards = styled.ul`
 	overflow-x: auto;
 
 	@media screen and (min-width: 768px) {
-		gap: 48px;
+		gap: 24px;
 	}
 `;
