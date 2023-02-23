@@ -26,7 +26,7 @@ export const ContainerForm = styled.div`
 
 export const Title = styled.p`
   color: var(--grey1);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.25rem;
 `;
 
