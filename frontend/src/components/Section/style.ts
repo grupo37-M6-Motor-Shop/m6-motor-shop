@@ -17,12 +17,12 @@ export const TitleSection = styled.h5`
 	color: black;
 `;
 export const ListCards = styled.ul`
-	padding: 3rem;
+	padding: 3rem 0;
 	display: flex;
 	gap: 12px;
 	overflow-x: auto;
 
 	@media screen and (min-width: 768px) {
-		gap: 48px;
+		gap: 24px;
 	}
 `;

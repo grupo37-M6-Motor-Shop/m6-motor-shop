@@ -1,5 +1,5 @@
 import { StyledFooter, Image, Button, Text } from "./style";
-import logo from "../../../public/img/motor_shop.svg";
+import logo from "../../assets/img/motor_shop.svg";
 import { FaAngleUp } from "react-icons/fa";
 
 const Footer = () => {

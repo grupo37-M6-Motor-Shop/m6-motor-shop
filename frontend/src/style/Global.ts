@@ -60,4 +60,30 @@ export default createGlobalStyle`
     cursor: pointer;
     border-radius: 0.25rem;
   }
+
+  *::-webkit-scrollbar {
+    width: .625rem;
+    height: .625rem;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--grey8);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--brand2);
+    border-radius: 10rem;
+    border: .1875rem solid var(--grey8);
+  }
+
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
 `;
