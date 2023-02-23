@@ -1,9 +1,12 @@
+import { FieldError, UseFormRegister } from "react-hook-form";
+
 export interface TextAreaProps
 	extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
 	label?: string;
-	errorMessage?: string;
+	name: string;
 	width?: string;
-	error?: boolean;
 	offBorder?: boolean;
 	offFocus?: boolean;
+	register?: UseFormRegister<any>;
+	error?: FieldError | undefined;
 }

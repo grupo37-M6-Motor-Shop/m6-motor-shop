@@ -27,6 +27,7 @@ const InputComment = () => {
 			>
 				<InputWrapper>
 					<InputTextArea
+						name="comment"
 						placeholder="Digitar comentário"
 						width="100%"
 						style={{ height: "8rem", margin: 0 }}
