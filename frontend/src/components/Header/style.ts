@@ -14,6 +14,7 @@ export const StyledHeader = styled.header`
 	padding: 0 3.125rem;
 	font-family: "Inter", sans-serif;
 	border-bottom: .125rem solid var(--grey6);
+  z-index: 20;
 `;
 
 export const Image = styled.img`

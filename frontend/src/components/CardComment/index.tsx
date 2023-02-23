@@ -4,14 +4,14 @@ import { ContainerCardComment, ContainerDetailAndCreation, CreationTime } from "
 
 const CardComment = ({ ...props }) => {
   const creatioTime = (): string => {
-    return "testando";
+    return "3 dias";
   };
 
   return (
     <ContainerCardComment>
       <ContainerDetailAndCreation>
         <Detail name={props.name} colorFont="--grey1" />
-        <CreationTime>- {creatioTime()}</CreationTime>
+        <CreationTime>• há {creatioTime()}</CreationTime>
       </ContainerDetailAndCreation>
       <FontIntegerNormal>{props.description}</FontIntegerNormal>
     </ContainerCardComment>

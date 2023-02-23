@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
 export const ContainerPhotoList = styled.div`
+  width: 100%;
+  max-width: 27rem;
   padding: 36px 44px;
+  border-radius: 0.25rem;
+  background-color: var(--whiteFixed);
 `;
 
 export const TextPhoto = styled.h2``;
@@ -24,5 +28,5 @@ export const ContainerPhoto = styled.li`
 `;
 
 export const Photo = styled.img`
-  height: 47%;
+  width: 100%;
 `;
