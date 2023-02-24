@@ -14,4 +14,5 @@ export interface IFormUpdateAd {
 	urlImage4?: string;
 	urlImage5?: string;
 	urlImage6?: string;
+	galleryId?: string;
 }

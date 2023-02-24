@@ -24,7 +24,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const [openModalDeleteAd, setOpenModalDeleteAd] = useState(false);
 	const [isActiveAd, setIsActiveAd] = useState(false);
 
-
 	// localStorage.setItem(
 	// 	"@motor-shop:token",
 	// 	JSON.stringify(
@@ -110,9 +109,11 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	};
 
 	const updateAd = async (data: IFormUpdateAd, adId: string) => {
+		const galleryData = data;
 		try {
 			api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 			await api.patch<IFormUpdateAd>(`/ads/${adId}`, data);
+			await api.patch(`/galleries/${galleryData.galleryId}`, galleryData);
 			getRandomAds();
 			handleCloseModal();
 		} catch (error) {

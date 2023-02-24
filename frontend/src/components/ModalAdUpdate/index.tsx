@@ -21,13 +21,32 @@ interface AdditionalInputsProps {
 const ModalAdUpdate = () => {
 	const [numInputs, setNumInputs] = useState(1);
 	document.body.style.overflow = "hidden";
-	const { handleCloseModal, ad, updateAd, isActiveAd } = useContext(MotorShopContext);
+	const { handleCloseModal, setOpenModalDeleteAd, ad, updateAd, isActiveAd } =
+		useContext(MotorShopContext);
 
-	const { id, typeAd, typeVehicle, description, isActive, mileage, price, title, urlCoverImage, year, gallery } = ad
-	const [selectedValueTypeAd, setSelectedValueTypeAd] = useState<string | void>(typeAd);
-	const [selectedValueTypeVec, setSelectedValueTypeVec] = useState<string | void>(typeVehicle);
-	const [selectedValueAdPublic, setSelectedValueAdPublic] = useState<string | void>(isActive === true ? "Sim" : "Não");
-	
+	const {
+		id,
+		typeAd,
+		typeVehicle,
+		description,
+		isActive,
+		mileage,
+		price,
+		title,
+		urlCoverImage,
+		year,
+		gallery,
+	} = ad;
+	const [selectedValueTypeAd, setSelectedValueTypeAd] = useState<
+		string | void
+	>(typeAd);
+	const [selectedValueTypeVec, setSelectedValueTypeVec] = useState<
+		string | void
+	>(typeVehicle);
+	const [selectedValueAdPublic, setSelectedValueAdPublic] = useState<
+		string | void
+	>(isActive === true ? "Sim" : "Não");
+
 	const {
 		register,
 		handleSubmit,
@@ -37,15 +56,25 @@ const ModalAdUpdate = () => {
 	});
 
 	const newUpdateAd = (data: IFormUpdateAd) => {
-		const newData = { ...data, typeAd: selectedValueTypeAd, typeVehicle: selectedValueTypeVec, isActive: isActiveAd }
-		updateAd(newData, ad.id)
-	}
+		const newData = {
+			...data,
+			typeAd: selectedValueTypeAd,
+			typeVehicle: selectedValueTypeVec,
+			isActive: isActiveAd,
+			galleryId: gallery.id,
+		};
+		updateAd(newData, ad.id);
+	};
 
 	const addInput = () => {
 		if (numInputs < 6) {
 			setNumInputs(numInputs + 1);
 		}
 	};
+
+	const handleClickDelete = () => {
+		handleCloseModal()
+	}
 
 	const AdditionalInputs = ({ count }: AdditionalInputsProps) => {
 		const inputs = [];
@@ -57,6 +86,19 @@ const ModalAdUpdate = () => {
 					name={`urlImage${i}`}
 					label={`${i}° Imagem da galeria`}
 					type={"url"}
+					defaultValue={
+						i === 2
+							? gallery.urlImage2
+							: i === 3
+							? gallery.urlImage3
+							: i === 4
+							? gallery.urlImage4
+							: i === 5
+							? gallery.urlImage5
+							: i === 6
+							? gallery.urlImage6
+							: ""
+					}
 					placeholder={"Inserir URL da imagem"}
 					register={register}
 				/>
@@ -167,6 +209,7 @@ const ModalAdUpdate = () => {
 					name={"urlImage1"}
 					label={"1° Imagem da galeria"}
 					type={"url"}
+					defaultValue={gallery.urlImage1}
 					placeholder={"Inserir URL da imagem"}
 					error={errors.urlImage1}
 					register={register}
@@ -192,6 +235,7 @@ const ModalAdUpdate = () => {
 						bgcolor={"grey6"}
 						component={"big"}
 						width={"126px"}
+						onClick={() => {}}
 					>
 						Excluir anúncio
 					</Button>

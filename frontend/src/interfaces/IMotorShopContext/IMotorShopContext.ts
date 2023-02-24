@@ -13,13 +13,13 @@ export interface IMotorShopContext {
 	setAd: (state: IAds) => void;
 	getAdbyId: (adId: string) => void;
 	isLoggedIn: boolean;
-	setIsLoggedIn: (state: boolean) => void;
+	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 	openModalCreateAd: boolean;
-	setOpenModalCreateAd: (state: boolean) => void;
+	setOpenModalCreateAd: React.Dispatch<React.SetStateAction<boolean>>;
 	openModalUpdateAd: boolean;
-	setOpenModalUpdateAd: (state: boolean) => void;
+	setOpenModalUpdateAd: React.Dispatch<React.SetStateAction<boolean>>;
 	openModalDeleteAd: boolean;
-	setOpenModalDeleteAd: (state: boolean) => void;
+	setOpenModalDeleteAd: React.Dispatch<React.SetStateAction<boolean>>;
 	handleCloseModal: () => void;
 	registerAd: (data: any) => void;
 	getRandomAds: () => void;
