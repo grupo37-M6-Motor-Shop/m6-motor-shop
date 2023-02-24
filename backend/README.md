@@ -49,8 +49,9 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 > # Create User - POST `/users`
 >> ## Formato da requisição:
 >
-> * O `email` deve ser único;
+> * O `email`, `CPF` devem ser únicos;
 > * Todos os campos são `obrigatórios`;
+> * A chave `isAdm` tem por padrao um valor booleando `false`, só alteramos ele para `true`, nós administradores 
 >
 >```json
 > {
@@ -65,64 +66,55 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >   "isAdm": true
 > }
 >```
-* A chave `isAdm` tem por padrao um valor booleando false, só alteramos ele para true, nós administradores 
-
+>
 >> ## Formato da resposta:
 >
 > * Status: `201 CREATED`;
 > * A `password` do usuário deve ser armazenada como `hash` e `não deve ser retornada` na resposta;
 >
-```json
-{
-	"name": "Admin",
-	"email": "admin@mail.com",
-	"cpf": "123.456.789-12",
-	"phone": "24999123456",
-	"birthday": "01/01/90",
-	"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
-	"advertiser": false,
-	"isAdm": true,
-	"id": "3eabdcd4-cb31-4208-bfc4-c6d8089cf986",
-	"isActive": true,
-	"createdAt": "2023-02-17T21:20:35.532Z",
-	"updatedAt": "2023-02-17T21:20:35.532Z"
-}
-```
+>```json
+>{
+>	"name": "Admin",
+>	"email": "admin@mail.com",
+>	"cpf": "123.456.789-12",
+>	"phone": "24999123456",
+>	"birthday": "01/01/90",
+>	"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>	"advertiser": false,
+>	"isAdm": true,
+>	"newPassrwordCode": null,
+>	"id": "078beee5-c3f6-411f-8af5-93c9a6fd2d0e",
+>	"isActive": true,
+>	"createdAt": "2023-02-23T23:24:24.744Z",
+>	"updatedAt": "2023-02-23T23:24:24.744Z"
+>}
+>```
 > ## E-mail já cadastrado
 >> ## Formato da resposta:
 >
 > * Status: `409 CONFLICT`;
 >
 >```json
+>
 > {
 >   "message": "E-mail already exists"
 > }
 >```
-> ## Faltando campo obrigatório
+> ## CPF já cadastrado
 >> ## Formato da resposta:
 >
-> * Status: `400 BAD REQUEST`;
+> * Status: `409 CONFLICT`;
 >
 >```json
 > {
->   "message": "name, email, password, cpf, phone, birthday, description are required fields"
-> }
->```
-> ## Enviando outros campos
->> ## Formato da resposta:
->
-> * Status: `400 BAD REQUEST`;
->
->```json
-> {
->   "message": "Only name, email, password, cpf, phone, birthday, description can be send"
+>   "message": "CPF already exists"
 > }
 >```
 >---
 
 <br>
 
-> # Profile User - GET `/users`
+> # Profile User - GET `/users/profile`
 >> ## Formato da requisição:
 >
 > * Necessário autenticação por `token`
@@ -133,15 +125,24 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 > * A `password` do usuário `não deve ser retornada` na resposta;
 >
 >```json
-> {
->   "id": "d54d166e-5c57-46ec-9ca7-545944a2b15b",
->   "name": "Lívia Oliveira",
->   "email": "livia.oliveira@mail.com",
->   "isAdm": true,
->   "isActive": true,
->   "createdAt": "2022-10-21T23:19:09.501Z",
->   "updatedAt": "2022-10-21T23:19:09.501Z"
-> }
+>{
+>	"id": "078beee5-c3f6-411f-8af5-93c9a6fd2d0e",
+>	"name": "Admin",
+>	"email": "admin@mail.com",
+>	"cpf": "123.456.789-12",
+>	"phone": "24999123456",
+>	"birthday": "01/01/90",
+>	"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>	"advertiser": false,
+>	"newPassrwordCode": null,
+>	"isActive": true,
+>	"isAdm": true,
+>	"createdAt": "2023-02-23T23:24:24.744Z",
+>	"updatedAt": "2023-02-23T23:24:24.744Z",
+>	"address": null,
+>	"ads": [],
+>	"comments": []
+>}
 >```
 > ## Sem token / token inválido
 >> ## Formato da resposta:
@@ -161,7 +162,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >> ## Formato da requisição:
 >
 > * Necessário autenticação por `token`;
-> * Apenas o `administrador` pode ver os dados de outro `administrador` e de usuário desativados - `(IsActive = false)`;
+> * Apenas o `administrador` pode ver os dados de outro `administrador` e de usuário desativados - `(isActive = false)`;
 >
 >> ## Formato da resposta:
 >
@@ -169,15 +170,24 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 > * A `password` do usuário `não deve ser retornada` na resposta;
 >
 >```json
-> {
->   "id": "c95d139f-5c57-46ec-9ca7-545944a2b10b",
->   "name": "Maria Belchior",
->   "email": "maria.belchior@mail.com",
->   "isAdm": false,
->   "isActive": true,
->   "createdAt": "2022-10-21T23:19:09.501Z",
->   "updatedAt": "2022-10-21T23:19:09.501Z"
-> }
+>{
+>	"id": "0f4a8191-e40f-47ee-89a6-13a86cfb56c5",
+>	"name": "Anunciante 1",
+>	"email": "anunciante.1@mail.com",
+>	"cpf": "753.952.901.62",
+>	"phone": "24992654895",
+>	"birthday": "22/05/85",
+>	"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>	"advertiser": false,
+>	"newPassrwordCode": null,
+>	"isActive": true,
+>	"isAdm": false,
+>	"createdAt": "2023-02-23T23:30:49.524Z",
+>	"updatedAt": "2023-02-23T23:30:49.524Z",
+>	"address": null,
+>	"ads": [],
+>	"comments": []
+>}
 >```
 > ## Sem token / token inválido
 >> ## Formato da resposta:
@@ -215,34 +225,64 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >> ## Formato da requisição:
 >
 > * Necessário autenticação por `token`;
-> * Necessário ser `administrador`;
 >
 >> ## Formato da resposta:
 >
 > * Status: `200 OK`;
 > * A `password` dos usuários `não deve ser retornada` na resposta;
+> * Caso o usuário logado `não seja` administrador, usuários `administradores` e `desativados` não serão retornados;
 >
 >```json
-> [
->   {
->      "id": "b983742d-f496-4e0d-b1aa-171081b4c0ed",
->      "name": "Felipe Vieira",
->      "email": "felipe.vieira@mail.com",
->      "isAdm": false,
->      "isActive": true,
->      "createdAt": "2022-10-30T17:00:27.841Z",
->      "updatedAt": "2022-10-30T17:00:27.841Z"
->    },
->    {
->      "id": "d43cb0e4-7e4f-4809-969e-d3afcaa3afea",
->      "name": "Letícia Angelin",
->      "email": "leticia.angelin@mail.com",
->      "isAdm": false,
->      "isActive": true,
->      "createdAt": "2022-11-01T02:01:54.416Z",
->      "updatedAt": "2022-11-01T02:01:54.416Z"
->    }
-> ]
+>[
+>	{
+>		"id": "e8182885-f71a-42c8-94fe-4ca1ab04308c",
+>		"name": "Comprador 1",
+>		"email": "comprador.1@mail.com",
+>		"cpf": "256.156.327.12",
+>		"phone": "24992654895",
+>		"birthday": "24/05/87",
+>		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>		"advertiser": false,
+>		"newPassrwordCode": null,
+>		"isActive": true,
+>		"isAdm": false,
+>		"createdAt": "2023-02-23T23:30:56.512Z",
+>		"updatedAt": "2023-02-23T23:30:56.512Z",
+>		"address": null
+>	},
+>	{
+>		"id": "0f4a8191-e40f-47ee-89a6-13a86cfb56c5",
+>		"name": "Anunciante 1",
+>		"email": "anunciante.1@mail.com",
+>		"cpf": "753.952.901.62",
+>		"phone": "24992654895",
+>		"birthday": "22/05/85",
+>		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>		"advertiser": false,
+>		"newPassrwordCode": null,
+>		"isActive": true,
+>		"isAdm": false,
+>		"createdAt": "2023-02-23T23:30:49.524Z",
+>		"updatedAt": "2023-02-23T23:30:49.524Z",
+>		"address": null
+>	},
+>	{
+>		"id": "078beee5-c3f6-411f-8af5-93c9a6fd2d0e",
+>		"name": "Admin",
+>		"email": "admin1@mail.com",
+>		"cpf": "123.456.789-12",
+>		"phone": "24999123456",
+>		"birthday": "01/01/90",
+>		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>		"advertiser": false,
+>		"newPassrwordCode": null,
+>		"isActive": true,
+>		"isAdm": true,
+>		"createdAt": "2023-02-23T23:24:24.744Z",
+>		"updatedAt": "2023-02-23T23:24:24.744Z",
+>		"address": null
+>	}
+>]
 >```
 > ## Sem token / token inválido
 >> ## Formato da resposta:
@@ -251,16 +291,6 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >```json
 > {
 >   "message": "Missing authorization headers"
-> }
->```
-> ## Sem ser administrador
->> ## Formato da resposta:
->
-> * Status: `401 UNAUTHORIZED`;
->
->```json
-> {
->   "message": "User is not admin"
 > }
 >```
 >---
@@ -272,14 +302,18 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >
 > * Necessário autenticação por `token`;
 > * Apenas o `administrador` pode atualizar `outros usuários`;
-> * Apenas os campos de `name`, `email` e `password` podem ser alterados;
+> * Apenas os campos de `name`, `email`, `cpf`, `phone`, `birthday`, `description` e `password` podem ser alterados;
 >  
 >```json
-> {
->   "name": "Lucas Developer",
->   "email": "lucas.developer@mail.com",
->   "password": "5678"
-> }
+>{
+>	"name": "Anunciante Atualizado",
+>	"email": "anunciante.atualizado@mail.com",
+>	"cpf": "111.222.333.44",
+>	"phone": "22981458595",
+>	"birthday": "22/05/85",
+>	"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>	"password": "123456"
+>}
 >```
 >> ## Formato da resposta:
 >
@@ -287,15 +321,24 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 > * A `password` do usuário `não deve ser retornada` na resposta;
 >
 >```json
-> {
->   "id": "8e3d8a20-8f55-4e5c-b382-a48e0557a1d5",
->   "name": "Lucas Developer",
->   "email": "lucas.developer@mail.com",
->   "isAdm": true,
->   "isActive": true,
->   "createdAt": "2022-10-20T20:47:27.856Z",
->   "updatedAt": "2022-10-21T00:08:28.036Z"
-> }
+>{
+>	"id": "e8182885-f71a-42c8-94fe-4ca1ab04308c",
+>	"name": "Anunciante Atualizado",
+>	"email": "anunciante.atualizado@mail.com",
+>	"cpf": "111.222.333.44",
+>	"phone": "22981458595",
+>	"birthday": "22/05/85",
+>	"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>	"advertiser": false,
+>	"newPassrwordCode": null,
+>	"isActive": true,
+>	"isAdm": false,
+>	"createdAt": "2023-02-23T23:30:56.512Z",
+>	"updatedAt": "2023-02-23T23:49:51.609Z",
+>	"address": null,
+>	"ads": [],
+>	"comments": []
+>}
 >```
 > ## Sem token / token inválido
 >> ## Formato da resposta:
@@ -317,7 +360,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >   "message": "User not found"
 > }
 >```
-> ## Atualizando outro usuário sem ser administrador
+> ## Atualizando outro usuário sem ser `administrador`
 >> ## Formato da resposta:
 >
 > * Status: `401 UNAUTHORIZED`;
@@ -325,16 +368,6 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >```json
 > {
 >   "message": "User is not admin"
-> }
->```
-> ## Atualizando outros campos
->> ## Formato da resposta:
->
-> * Status: `400 BAD REQUEST`;
->
->```json
-> {
->   "message": "Only the name, email and password fields can be changed"
 > }
 >```
 >---
@@ -362,7 +395,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >   "message": "Missing authorization headers"
 > }
 >```
-> ## Id inválido | Usuário que já está desativado - `(IsActive = false)`
+> ## Id inválido:
 >> ## Formato da resposta:
 >
 > * Status: `404 NOT FOUND`;
@@ -397,10 +430,10 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 > * Necessário usuário estar ativo - `isActive = true`
 >>
 >```json
-> {
->   "email": "naiane.reis@mail.com",
->   "password": "3256"
-> }
+>{
+>	"email": "comprador.1@mail.com",
+>	"password": "1234"
+>}
 >```
 >> ## Formato da resposta:
 >
@@ -421,14 +454,54 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >   "message": "Invalid e-mail or password"
 > }
 >```
-> ## Enviando outros campos
+>---
+
+<br>
+
+---
+---
+
+<br>
+
+
+> # Create Ad - POST `/ads`
+>> ## Formato da requisição:
+>
+> * O `email`, `CPF` devem ser únicos;
+> * Todos os campos são `obrigatórios`;
+> * A chave `isAdm` tem por padrao um valor booleando `false`, só alteramos ele para `true`, nós administradores 
+>
+>```json
+
+>```
+>
 >> ## Formato da resposta:
 >
-> * Status: `400 BAD REQUEST`;
+> * Status: `201 CREATED`;
+> * A `password` do usuário deve ser armazenada como `hash` e `não deve ser retornada` na resposta;
+>
+>```json
+
+>```
+> ## E-mail já cadastrado
+>> ## Formato da resposta:
+>
+> * Status: `409 CONFLICT`;
+>
+>```json
+>
+> {
+>   "message": "E-mail already exists"
+> }
+>```
+> ## CPF já cadastrado
+>> ## Formato da resposta:
+>
+> * Status: `409 CONFLICT`;
 >
 >```json
 > {
->   "message": "Only the email and password can be send"
+>   "message": "CPF already exists"
 > }
 >```
 >---
