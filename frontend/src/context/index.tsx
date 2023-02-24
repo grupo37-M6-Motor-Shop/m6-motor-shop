@@ -48,6 +48,9 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		if (token) {
 			setIsLoggedIn(true);
 			getUserByProfile();
+			// const ad = JSON.parse(window.localStorage.getItem("@motor-shop:ad") || "{}");
+			// getAdbyId(ad.id)
+			// console.log(ad)
 			// getUserById("e4e1de6d-56c2-41cf-b6c6-7771fb648875");
 		}
 	}, [token]);
@@ -94,6 +97,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			// api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 			const res = await api.get<IAds>(`/ads/${idAd}`);
 			setAd(res.data);
+			localStorage.setItem("@motor-shop:ad", JSON.stringify(res.data));
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
@@ -138,13 +142,13 @@ const MotorShopProvider = ({ children }: IProvider) => {
 
 	const deleteAd = async (adId: string) => {
 		try {
-			await api.delete(`/ads/${adId}`)
-			getRandomAds()
+			await api.delete(`/ads/${adId}`);
+			getRandomAds();
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
 		}
-	}
+	};
 
 	return (
 		<MotorShopContext.Provider

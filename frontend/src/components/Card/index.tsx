@@ -35,12 +35,12 @@ const Card = ({ auction = false, ...props }) => {
 		setOpenModalUpdateAd(true);
 	};
 
-	const handClickDetail = () => {
-		getAdbyId(props.id);
-		navigate("/detail-ad", { replace: true });
+	const handClickDetail = async () => {
+		await getAdbyId(props.id);
+		navigate(`/detail-ad/${props.id}`, { replace: true });
 	};
 	return (
-		<CustomLi key={props.id} auction={auction}>
+		<CustomLi key={props.id} auction={auction} >
 			{!auction && (
 				<ContainerCarImg>
 					{!props.advertiser && props.tags && (
