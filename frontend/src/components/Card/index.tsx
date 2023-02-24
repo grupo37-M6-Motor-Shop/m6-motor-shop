@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { MotorShopContext } from "../../context";
 import Button from "../Button";
 import Detail from "../Detail";
@@ -22,10 +23,18 @@ import {
 const Card = ({ auction = false, ...props }) => {
 	const { setOpenModalUpdateAd, getAdbyId } = useContext(MotorShopContext);
 
+	const navigate = useNavigate();
+
 	const handleClickUpdate = () => {
-		getAdbyId(props.id)
-		setOpenModalUpdateAd(true)
-	}
+		getAdbyId(props.id);
+		setOpenModalUpdateAd(true);
+	};
+
+	const handClickDetail = () => {
+		console.log("click");
+		getAdbyId(props.id);
+		navigate("/detail-ad", { replace: true });
+	};
 	return (
 		<CustomLi key={props.id} auction={auction}>
 			{!auction && (
@@ -88,6 +97,7 @@ const Card = ({ auction = false, ...props }) => {
 						width="105px"
 						hover={{ bgcolor: "grey6" }}
 						style={{ marginLeft: "10px" }}
+						onClick={handClickDetail}
 					>
 						Ver como
 					</Button>
@@ -117,6 +127,7 @@ const Card = ({ auction = false, ...props }) => {
 						border="whiteFixed"
 						width="8.125rem"
 						hover={{ bgcolor: "brand2" }}
+						onClick={handClickDetail}
 					>
 						Ver como
 					</Button>

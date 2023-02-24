@@ -97,7 +97,7 @@ const DetailAd = () => {
               <CardComment name="Marcelo Silva" description="Excelente. Gostaria de saber sobre a forma de pagamento."/>
               <CardComment name="Larissa Neves" description="Lorem ipsum dolor sit amet. Et autem fuga et quas officiis et nostrum repellat hic molestias perspiciatis aut adipisci accusantium est voluptatem similique non ipsam quis. Est excepturi commodi a atque nulla est distinctio animi."/>
             </Comments>
-            <InputComment/>
+            {/* <InputComment/> */}
           </ContainerComments>
         </Content>
       </Main>
