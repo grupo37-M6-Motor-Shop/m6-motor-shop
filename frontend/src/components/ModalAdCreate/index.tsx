@@ -65,13 +65,6 @@ const ModalAdCreate = () => {
 	return (
 		<Modal title={"Criar anuncio"}>
 			<Form onSubmit={handleSubmit(newRegisterAd)}>
-				{/* <InputCheckbox
-					label="Tipo de anúncio"
-					// register={register}
-					name1="Venda"
-					name2="Leilão"
-					
-				/> */}
 				<InputChoices
 					label="Tipo de anúncio"
 					name="typeAd"
