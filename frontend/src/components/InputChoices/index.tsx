@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import { useState } from "react";
 import { FiAlertCircle } from "react-icons/fi";
+import { MotorShopContext } from "../../context";
 import { InputChoicesProps } from "../../interfaces/InputChoices/InputChoices";
 import Button from "../Button";
 import { CustomLabel, ErrorSpan } from "../Input/style";
@@ -21,6 +22,8 @@ const InputChoices = React.forwardRef(
 		ref
 	) => {
 
+		const { setIsActiveAd } = useContext(MotorShopContext)
+
 
 		return (
 			<CustomLabel style={{ display: "flex", flexDirection: "column" }}>
@@ -36,7 +39,7 @@ const InputChoices = React.forwardRef(
 						bgcolor="tranparent"
 						border="grey4"
 						width="100%"
-						onClick={() => setSelectedValue(choice1)}
+						onClick={() => setSelectedValue(choice1 === "Sim" ? setIsActiveAd(true) : choice1)}
 					>
 						{choice1}
 					</Button>
@@ -47,7 +50,7 @@ const InputChoices = React.forwardRef(
 						bgcolor="tranparent"
 						border="grey4"
 						width="100%"
-						onClick={() => setSelectedValue(choice2)}
+						onClick={() => setSelectedValue(choice2 === "Sim" ? setIsActiveAd(false) : choice2)}
 					>
 						{choice2}
 					</Button>

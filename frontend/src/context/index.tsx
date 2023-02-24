@@ -22,15 +22,21 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const [openModalCreateAd, setOpenModalCreateAd] = useState(false);
 	const [openModalUpdateAd, setOpenModalUpdateAd] = useState(false);
 	const [openModalDeleteAd, setOpenModalDeleteAd] = useState(false);
+	const [isActiveAd, setIsActiveAd] = useState(false);
 
-	console.log(randomAds);
 
-	/* localStorage.setItem(
+	// localStorage.setItem(
+	// 	"@motor-shop:token",
+	// 	JSON.stringify(
+	// 		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbSI6ZmFsc2UsImlhdCI6MTY3NzIzNzAyNiwiZXhwIjoxNjc3MzIzNDI2LCJzdWIiOiJiOWRlYmRjZC1hNmU5LTQ4YmQtYTYzZS00ZjZkN2I5NWVmODQifQ.Ue7vZSpl03ryBsLFkq0V-j2rhcr_uwdRXcE3SR7D35M"
+	// 	)?.replace(/"/gi, ""));
+
+	localStorage.setItem(
 		"@motor-shop:token",
 		JSON.stringify(
 			"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbSI6ZmFsc2UsImlhdCI6MTY3NzE4NjAxNSwiZXhwIjoxNjc3MjcyNDE1LCJzdWIiOiJlNGUxZGU2ZC01NmMyLTQxY2YtYjZjNi03NzcxZmI2NDg4NzUifQ.hCCSQvhuDizyPkdOIgx6Y694g1any9pV0s_Jbgjqt8M"
 		)?.replace(/"/gi, "")
-	); */ /* use token do sua api */
+	); /* use token do sua api */
 
 	const token = localStorage.getItem("@motor-shop:token");
 
@@ -104,7 +110,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	};
 
 	const updateAd = async (data: IFormUpdateAd, adId: string) => {
-		console.log(data);
 		try {
 			api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 			await api.patch<IFormUpdateAd>(`/ads/${adId}`, data);
@@ -142,6 +147,8 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				handleCloseModal,
 				registerAd,
 				getRandomAds,
+				isActiveAd,
+				setIsActiveAd,
 			}}
 		>
 			{children}

@@ -1,12 +1,12 @@
 export interface IFormUpdateAd {
-	typeAd?: string;
+	typeAd?: string | void;
 	title?: string;
 	description?: string;
 	year?: number;
 	mileage?: number;
 	price?: string;
 	isActive?: boolean;
-	typeVehicle?: string;
+	typeVehicle?: string | void;
 	urlCoverImage?: string;
 	urlImage1?: string;
 	urlImage2?: string;
