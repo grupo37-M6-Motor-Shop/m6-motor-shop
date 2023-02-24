@@ -2,10 +2,12 @@ import { UserImg, ContainerUser, FontTwoLatters, FontUserName } from "./style";
 import { DetailProps } from "../../interfaces/DetailProps/DetailProps";
 
 const Detail = ({ auction, colorFont, name, image }: DetailProps) => {
-  const twoLetters = (): JSX.Element => {
-    const first = name[0];
-    const second = name[name.indexOf(" ") + 1];
-    return <FontTwoLatters>{`${first}${second}`.toUpperCase()}</FontTwoLatters>;
+  const twoLetters = () => {
+    if(name !== undefined) {
+      const first = name[0];
+      const second = name[name.indexOf(" ") + 1];
+      return <FontTwoLatters>{`${first}${second}`.toUpperCase()}</FontTwoLatters>;
+		}
   };
 
   const backgroundImgRandom = (): string => {

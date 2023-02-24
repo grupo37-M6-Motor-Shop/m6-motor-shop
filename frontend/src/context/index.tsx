@@ -1,9 +1,12 @@
 import { AxiosError } from "axios";
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { IFormCreateAd } from "../interfaces/FormCreateAd/FromCreateAd";
 import { IFormUpdateAd } from "../interfaces/FormUpdateAd/FormUpdateAd";
 import { IAds } from "../interfaces/IAds/IAds";
 import { IError } from "../interfaces/IError/IError";
+import { ILogin } from "../interfaces/ILogin/ILogin";
 import { IMotorShopContext } from "../interfaces/IMotorShopContext/IMotorShopContext";
 import { IProvider } from "../interfaces/IProvider/IProvider";
 import { IUser } from "../interfaces/IUser/IUser";
@@ -23,29 +26,40 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const [openModalUpdateAd, setOpenModalUpdateAd] = useState(false);
 	const [openModalDeleteAd, setOpenModalDeleteAd] = useState(false);
 	const [isActiveAd, setIsActiveAd] = useState(false);
+	const [token, setToken] = useState(localStorage.getItem("@motors-shop:token") || "");
 
-	// localStorage.setItem(
-	// 	"@motor-shop:token",
-	// 	JSON.stringify(
-	// 		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbSI6ZmFsc2UsImlhdCI6MTY3NzIzNzAyNiwiZXhwIjoxNjc3MzIzNDI2LCJzdWIiOiJiOWRlYmRjZC1hNmU5LTQ4YmQtYTYzZS00ZjZkN2I5NWVmODQifQ.Ue7vZSpl03ryBsLFkq0V-j2rhcr_uwdRXcE3SR7D35M"
-	// 	)?.replace(/"/gi, ""));
-
-	localStorage.setItem(
-		"@motor-shop:token",
-		JSON.stringify(
-			"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbSI6ZmFsc2UsImlhdCI6MTY3NzE4NjAxNSwiZXhwIjoxNjc3MjcyNDE1LCJzdWIiOiJlNGUxZGU2ZC01NmMyLTQxY2YtYjZjNi03NzcxZmI2NDg4NzUifQ.hCCSQvhuDizyPkdOIgx6Y694g1any9pV0s_Jbgjqt8M"
-		)?.replace(/"/gi, "")
-	); /* use token do sua api */
-
-	const token = localStorage.getItem("@motor-shop:token");
+	  const navigate = useNavigate();
 
 	useEffect(() => {
+    const loadUser = async () => {
+      if (token !== "") {
+        try{
+          api.defaults.headers.Authorization = `Bearer ${token}`;
+
+          await api.get("/users/profile").then((res) => setUser(res.data));
+          navigate("/homepage", { replace: true });
+        } catch(error) {
+          console.error(error);
+        }
+      }
+    }
+		loadUser();
+
 		if (token) {
 			setIsLoggedIn(true);
 			getUserByProfile();
 			// getUserById("e4e1de6d-56c2-41cf-b6c6-7771fb648875");
 		}
-	}, []);
+	}, [token]);
+
+	const signIn = async (data: ILogin) => {
+		const { email, password } = data;
+		const token = await api.post("/login", { email, password }).then(res => res.data.token);
+		api.defaults.headers.Authorization = `Bearer ${token}`;
+
+    localStorage.setItem("@motors-shop:token", token);
+    setToken(token);
+	}
 
 	const handleCloseModal = () => {
 		setOpenModalCreateAd(false);
@@ -55,7 +69,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 
 	const getUserByProfile = async () => {
 		try {
-			api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+			// api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 			const res = await api.get<IUser>("/users/profile");
 			setUserProfile(res.data);
 		} catch (error) {
@@ -66,7 +80,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 
 	const getUserById = async (userId: string) => {
 		try {
-			api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+			// api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 			const res = await api.get<IUser>(`/users/${userId}`);
 			setUser(res.data);
 		} catch (error) {
@@ -77,7 +91,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 
 	const getAdbyId = async (idAd: string) => {
 		try {
-			api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+			// api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 			const res = await api.get<IAds>(`/ads/${idAd}`);
 			setAd(res.data);
 		} catch (error) {
@@ -98,7 +112,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 
 	const registerAd = async (data: IFormCreateAd) => {
 		try {
-			api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+			// api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 			await api.post<IFormCreateAd>("/ads", data);
 			getRandomAds();
 			handleCloseModal();
@@ -111,7 +125,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const updateAd = async (data: IFormUpdateAd, adId: string) => {
 		const galleryData = data;
 		try {
-			api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+			// api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 			await api.patch<IFormUpdateAd>(`/ads/${adId}`, data);
 			await api.patch(`/galleries/${galleryData.galleryId}`, galleryData);
 			getRandomAds();
@@ -160,7 +174,9 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				getRandomAds,
 				isActiveAd,
 				setIsActiveAd,
-				deleteAd
+				deleteAd,
+				signIn,
+				token,
 			}}
 		>
 			{children}

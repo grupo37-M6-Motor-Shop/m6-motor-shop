@@ -1,11 +1,26 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Form from "../../components/Form";
 import Header from "../../components/Header";
 import Input from "../../components/Input";
+import { MotorShopContext } from "../../context";
+import { ILogin } from "../../interfaces/ILogin/ILogin";
+import { schemaLogin } from "../../validations/FormLogin";
 import { Container, ContainerForm, Fieldset, ForgotPassword, Main, Title } from "./styles";
 
 const Login = () => {
+  const { signIn } = useContext(MotorShopContext);
+  const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<ILogin>({
+		resolver: yupResolver(schemaLogin),
+	});
+
   return (
     <Container>
       <Header/>
@@ -14,17 +29,21 @@ const Login = () => {
           <Title>
             Login
           </Title>
-          <Form>
+          <Form onSubmit={handleSubmit(signIn)}>
             <Fieldset style={{gap: 0}}>
               <Input
-                label="Usuário"
+                label="Email"
                 type="text"
-                placeholder="Digitar usuário"
+                placeholder="Digitar email"
+                register={register}
+                name="email"
               />
               <Input
                 label="Senha"
                 type="password"
                 placeholder="Digitar senha"
+                register={register}
+                name="password"
               />
             </Fieldset>
             <ForgotPassword>
@@ -37,6 +56,7 @@ const Login = () => {
                 bgcolor={'brand1'}
                 component={'big'}
                 width={'100%'}
+                type="submit"
               >
                 Entrar
               </Button>
