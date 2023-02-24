@@ -28,4 +28,5 @@ export interface IMotorShopContext {
 	updateAd: (data: IFormUpdateAd, adId: string) => void;
 	isActiveAd: boolean;
 	setIsActiveAd: React.Dispatch<React.SetStateAction<boolean>>;
+	deleteAd: (adId: string) => void;
 }
