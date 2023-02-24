@@ -467,12 +467,26 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 > # Create Ad - POST `/ads`
 >> ## Formato da requisição:
 >
-> * O `email`, `CPF` devem ser únicos;
-> * Todos os campos são `obrigatórios`;
-> * A chave `isAdm` tem por padrao um valor booleando `false`, só alteramos ele para `true`, nós administradores 
+> * Necessário autenticação por `token`;
+> * Os campos `urlImage1` a `urlImage6` são opcionais;
 >
 >```json
-
+>{
+>	"typeAd": "Leilão",
+>	"title": "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes",
+>	"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>	"year": 1990,
+>	"mileage": 10000,
+>	"price": "170.000,00",
+>	"typeVehicle": "Carro",
+>	"urlCoverImage": "https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
+>	"urlImage1": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>	"urlImage2": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>	"urlImage3": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>	"urlImage4": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>	"urlImage5": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>	"urlImage6": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg"
+>}
 >```
 >
 >> ## Formato da resposta:
@@ -481,29 +495,443 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 > * A `password` do usuário deve ser armazenada como `hash` e `não deve ser retornada` na resposta;
 >
 >```json
+>{
+>	"id": "a456b9ab-17d6-4040-87c1-30ff08619662",
+>	"typeAd": "Leilão",
+>	"title": "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes",
+>	"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>	"year": 1990,
+>	"mileage": 10000,
+>	"price": "170.000,00",
+>	"isActive": true,
+>	"typeVehicle": "Carro",
+>	"urlCoverImage": "https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
+>	"createdAt": "2023-02-24T01:18:07.506Z",
+>	"updatedAt": "2023-02-24T01:18:07.506Z",
+>	"gallery": {
+>		"id": "dbc4c5d2-2bc4-44f2-b85c-ba1d54170f69",
+>		"urlImage1": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>		"urlImage2": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>		"urlImage3": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>		"urlImage4": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>		"urlImage5": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>		"urlImage6": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>		"createdAt": "2023-02-24T01:18:07.473Z",
+>		"updatedAt": "2023-02-24T01:18:07.506Z"
+>	},
+>	"user": {
+>		"id": "64cae1d7-be4d-47f6-8ccf-75a49dbaebad",
+>		"name": "Anunciante 1",
+>		"email": "anunciante.1@mail.com",
+>		"cpf": "753.952.901.62",
+>		"phone": "24992654895",
+>		"birthday": "22/05/85",
+>		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>		"advertiser": false,
+>		"password": "$2a$10$HtuifB.sdLG.2phhxJJHbOvDarVLbc.V7z8bqW8SIFWVO3sVz05rO",
+>		"newPassrwordCode": null,
+>		"isActive": true,
+>		"isAdm": false,
+>		"createdAt": "2023-02-24T01:14:15.324Z",
+>		"updatedAt": "2023-02-24T01:14:15.324Z"
+>	},
+>	"comments": []
+>}
+>```
+>---
 
->```
-> ## E-mail já cadastrado
+<br>
+
+> # List Ads - GET `/ads`
 >> ## Formato da resposta:
 >
-> * Status: `409 CONFLICT`;
+> * Status: `200 OK`;
 >
 >```json
->
-> {
->   "message": "E-mail already exists"
-> }
+>[
+>	{
+>		"id": "a456b9ab-17d6-4040-87c1-30ff08619662",
+>		"typeAd": "Leilão",
+>		"title": "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes",
+>		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>		"year": 1990,
+>		"mileage": 10000,
+>		"price": "170.000,00",
+>		"isActive": true,
+>		"typeVehicle": "Carro",
+>		"urlCoverImage": "https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
+>		"createdAt": "2023-02-24T01:18:07.506Z",
+>		"updatedAt": "2023-02-24T01:18:07.506Z",
+>		"gallery": {
+>			"id": "dbc4c5d2-2bc4-44f2-b85c-ba1d54170f69",
+>			"urlImage1": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>			"urlImage2": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>			"urlImage3": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>			"urlImage4": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>			"urlImage5": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>			"urlImage6": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>			"createdAt": "2023-02-24T01:18:07.473Z",
+>			"updatedAt": "2023-02-24T01:18:07.506Z"
+>		},
+>		"user": {
+>			"id": "64cae1d7-be4d-47f6-8ccf-75a49dbaebad",
+>			"name": "Anunciante 1",
+>			"email": "anunciante.1@mail.com",
+>			"cpf": "753.952.901.62",
+>			"phone": "24992654895",
+>			"birthday": "22/05/85",
+>			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>			"advertiser": false,
+>			"password": "$2a$10$HtuifB.sdLG.2phhxJJHbOvDarVLbc.V7z8bqW8SIFWVO3sVz05rO",
+>			"newPassrwordCode": null,
+>			"isActive": true,
+>			"isAdm": false,
+>			"createdAt": "2023-02-24T01:14:15.324Z",
+>			"updatedAt": "2023-02-24T01:14:15.324Z"
+>		},
+>		"comments": []
+>	},
+>	{
+>		"id": "26dd6afe-029b-4784-b805-eeadf91930d1",
+>		"typeAd": "Venda",
+>		"title": "Fiat Mobi Trekking",
+>		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>		"year": 2023,
+>		"mileage": 0,
+>		"price": "61.990,00",
+>		"isActive": true,
+>		"typeVehicle": "Carro",
+>		"urlCoverImage": "https://cdn.autopapo.com.br/box/uploads/2022/03/25160359/fiat-mobi-trekking-2023-cinza-frente-scaled.jpg",
+>		"createdAt": "2023-02-24T01:25:47.457Z",
+>		"updatedAt": "2023-02-24T01:25:47.457Z",
+>		"gallery": {
+>			"id": "526f621e-84b3-4b06-b3d4-7af8844fbc0b",
+>			"urlImage1": null,
+>			"urlImage2": null,
+>			"urlImage3": null,
+>			"urlImage4": null,
+>			"urlImage5": null,
+>			"urlImage6": null,
+>			"createdAt": "2023-02-24T01:25:47.429Z",
+>			"updatedAt": "2023-02-24T01:25:47.457Z"
+>		},
+>		"user": {
+>			"id": "64cae1d7-be4d-47f6-8ccf-75a49dbaebad",
+>			"name": "Anunciante 1",
+>			"email": "anunciante.1@mail.com",
+>			"cpf": "753.952.901.62",
+>			"phone": "24992654895",
+>			"birthday": "22/05/85",
+>			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>			"advertiser": false,
+>			"password": "$2a$10$HtuifB.sdLG.2phhxJJHbOvDarVLbc.V7z8bqW8SIFWVO3sVz05rO",
+>			"newPassrwordCode": null,
+>			"isActive": true,
+>			"isAdm": false,
+>			"createdAt": "2023-02-24T01:14:15.324Z",
+>			"updatedAt": "2023-02-24T01:14:15.324Z"
+>		},
+>		"comments": []
+>	}
+>]
 >```
-> ## CPF já cadastrado
+>---
+
+<br/>
+
+> # Random Ads - GET `/ads/random`
 >> ## Formato da resposta:
 >
-> * Status: `409 CONFLICT`;
+> * Status: `200 OK`;
+> * Retorna até 20 `anúncios` aleatórios;
 >
 >```json
+>[
+>	{
+>		"id": "a456b9ab-17d6-4040-87c1-30ff08619662",
+>		"typeAd": "Leilão",
+>		"title": "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes",
+>		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>		"year": 1990,
+>		"mileage": 10000,
+>		"price": "170.000,00",
+>		"isActive": true,
+>		"typeVehicle": "Carro",
+>		"urlCoverImage": "https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
+>		"createdAt": "2023-02-24T01:18:07.506Z",
+>		"updatedAt": "2023-02-24T01:18:07.506Z",
+>		"gallery": {
+>			"id": "dbc4c5d2-2bc4-44f2-b85c-ba1d54170f69",
+>			"urlImage1": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>			"urlImage2": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>			"urlImage3": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>			"urlImage4": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>			"urlImage5": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>			"urlImage6": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>			"createdAt": "2023-02-24T01:18:07.473Z",
+>			"updatedAt": "2023-02-24T01:18:07.506Z"
+>		},
+>		"user": {
+>			"id": "64cae1d7-be4d-47f6-8ccf-75a49dbaebad",
+>			"name": "Anunciante 1",
+>			"email": "anunciante.1@mail.com",
+>			"cpf": "753.952.901.62",
+>			"phone": "24992654895",
+>			"birthday": "22/05/85",
+>			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>			"advertiser": false,
+>			"password": "$2a$10$HtuifB.sdLG.2phhxJJHbOvDarVLbc.V7z8bqW8SIFWVO3sVz05rO",
+>			"newPassrwordCode": null,
+>			"isActive": true,
+>			"isAdm": false,
+>			"createdAt": "2023-02-24T01:14:15.324Z",
+>			"updatedAt": "2023-02-24T01:14:15.324Z"
+>		},
+>		"comments": []
+>	},
+>	{
+>		"id": "26dd6afe-029b-4784-b805-eeadf91930d1",
+>		"typeAd": "Venda",
+>		"title": "Fiat Mobi Trekking",
+>		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>		"year": 2023,
+>		"mileage": 0,
+>		"price": "61.990,00",
+>		"isActive": true,
+>		"typeVehicle": "Carro",
+>		"urlCoverImage": "https://cdn.autopapo.com.br/box/uploads/2022/03/25160359/fiat-mobi-trekking-2023-cinza-frente-scaled.jpg",
+>		"createdAt": "2023-02-24T01:25:47.457Z",
+>		"updatedAt": "2023-02-24T01:25:47.457Z",
+>		"gallery": {
+>			"id": "526f621e-84b3-4b06-b3d4-7af8844fbc0b",
+>			"urlImage1": null,
+>			"urlImage2": null,
+>			"urlImage3": null,
+>			"urlImage4": null,
+>			"urlImage5": null,
+>			"urlImage6": null,
+>			"createdAt": "2023-02-24T01:25:47.429Z",
+>			"updatedAt": "2023-02-24T01:25:47.457Z"
+>		},
+>		"user": {
+>			"id": "64cae1d7-be4d-47f6-8ccf-75a49dbaebad",
+>			"name": "Anunciante 1",
+>			"email": "anunciante.1@mail.com",
+>			"cpf": "753.952.901.62",
+>			"phone": "24992654895",
+>			"birthday": "22/05/85",
+>			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>			"advertiser": false,
+>			"password": "$2a$10$HtuifB.sdLG.2phhxJJHbOvDarVLbc.V7z8bqW8SIFWVO3sVz05rO",
+>			"newPassrwordCode": null,
+>			"isActive": true,
+>			"isAdm": false,
+>			"createdAt": "2023-02-24T01:14:15.324Z",
+>			"updatedAt": "2023-02-24T01:14:15.324Z"
+>		},
+>		"comments": []
+>	}
+>]
+>```
+>---
+
+<br/>
+
+> # Retrieve User - GET `/users/:id-ad`
+>> ## Formato da resposta:
+>
+> * Status: `200 OK`;
+>
+>```json
+>{
+>	"id": "26dd6afe-029b-4784-b805-eeadf91930d1",
+>	"typeAd": "Venda",
+>	"title": "Fiat Mobi Trekking",
+>	"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>	"year": 2023,
+>	"mileage": 0,
+>	"price": "61.990,00",
+>	"isActive": true,
+>	"typeVehicle": "Carro",
+>	"urlCoverImage": "https://cdn.autopapo.com.br/box/uploads/2022/03/25160359/fiat-mobi-trekking-2023-cinza-frente-scaled.jpg",
+>	"createdAt": "2023-02-24T01:25:47.457Z",
+>	"updatedAt": "2023-02-24T01:25:47.457Z",
+>	"user": {
+>		"id": "64cae1d7-be4d-47f6-8ccf-75a49dbaebad",
+>		"name": "Anunciante 1",
+>		"email": "anunciante.1@mail.com",
+>		"cpf": "753.952.901.62",
+>		"phone": "24992654895",
+>		"birthday": "22/05/85",
+>		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>		"advertiser": false,
+>		"password": "$2a$10$HtuifB.sdLG.2phhxJJHbOvDarVLbc.V7z8bqW8SIFWVO3sVz05rO",
+>		"newPassrwordCode": null,
+>		"isActive": true,
+>		"isAdm": false,
+>		"createdAt": "2023-02-24T01:14:15.324Z",
+>		"updatedAt": "2023-02-24T01:14:15.324Z"
+>	},
+>	"gallery": {
+>		"id": "526f621e-84b3-4b06-b3d4-7af8844fbc0b",
+>		"urlImage1": null,
+>		"urlImage2": null,
+>		"urlImage3": null,
+>		"urlImage4": null,
+>		"urlImage5": null,
+>		"urlImage6": null,
+>		"createdAt": "2023-02-24T01:25:47.429Z",
+>		"updatedAt": "2023-02-24T01:25:47.457Z"
+>	},
+>	"comments": []
+>}
+>```
+> ## Id inválido
+>> ## Formato da resposta:
+>
+> * Status: `404 NOT FOUND`;
+>```json
 > {
->   "message": "CPF already exists"
+>   "message": "Ad not found"
 > }
 >```
 >---
 
 <br>
+
+> # Update Ad - PATCH `/users/:id-ad`
+>> ## Formato da requisição:
+>
+> * Necessário autenticação por `token`;
+> * Apenas os campos de `typeAd`, `title`, `description`, `year`, `mileage`, `price`, `typeVehicle`, `isActive`, `urlCoverImage` e `urlImage1` à `urlImage6` podem ser alterados;
+> * Alterando a propriedade `isActive`, é possível atualizar o anúncio entre `publicado` e `não publicado`.
+>  
+>```json
+>{
+>	"typeAd": "Venda",
+>	"title": "Fiat Mobi Trekking",
+>	"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>	"year": 2023,
+>	"mileage": 0,
+>	"price": "61.990,00",
+>	"typeVehicle": "Carro",
+>	"isActive": false,
+>	"urlCoverImage": "https://cdn.autopapo.com.br/box/uploads/2022/03/25160359/fiat-mobi-trekking-2023-cinza-frente-scaled.jpg",
+>	"urlImage1": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>	"urlImage2": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>	"urlImage3": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>	"urlImage4": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>	"urlImage5": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>	"urlImage6": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg"
+>}
+>```
+>> ## Formato da resposta:
+>
+> * Status: `200 OK`;  
+>
+>```json
+>{
+>	"id": "26dd6afe-029b-4784-b805-eeadf91930d1",
+>	"typeAd": "Venda",
+>	"title": "Fiat Mobi Trekking",
+>	"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>	"year": 2023,
+>	"mileage": 0,
+>	"price": "61.990,00",
+>	"isActive": false,
+>	"typeVehicle": "Carro",
+>	"urlCoverImage": "https://cdn.autopapo.com.br/box/uploads/2022/03/25160359/fiat-mobi-trekking-2023-cinza-frente-scaled.jpg",
+>	"createdAt": "2023-02-24T01:25:47.457Z",
+>	"updatedAt": "2023-02-24T01:40:14.824Z",
+>	"gallery": {
+>		"id": "526f621e-84b3-4b06-b3d4-7af8844fbc0b",
+>		"urlImage1": null,
+>		"urlImage2": null,
+>		"urlImage3": null,
+>		"urlImage4": null,
+>		"urlImage5": null,
+>		"urlImage6": null,
+>		"createdAt": "2023-02-24T01:25:47.429Z",
+>		"updatedAt": "2023-02-24T01:25:47.457Z"
+>	},
+>	"user": {
+>		"id": "64cae1d7-be4d-47f6-8ccf-75a49dbaebad",
+>		"name": "Anunciante 1",
+>		"email": "anunciante.1@mail.com",
+>		"cpf": "753.952.901.62",
+>		"phone": "24992654895",
+>		"birthday": "22/05/85",
+>		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>		"advertiser": false,
+>		"password": "$2a$10$HtuifB.sdLG.2phhxJJHbOvDarVLbc.V7z8bqW8SIFWVO3sVz05rO",
+>		"newPassrwordCode": null,
+>		"isActive": true,
+>		"isAdm": false,
+>		"createdAt": "2023-02-24T01:14:15.324Z",
+>		"updatedAt": "2023-02-24T01:14:15.324Z"
+>	},
+>	"comments": []
+>}
+>```
+> ## Sem token / token inválido
+>> ## Formato da resposta:
+>  
+> * Status: `401 UNAUTHORIZED`;
+>
+>```json
+> {
+>   "message": "Missing authorization headers"
+> }
+>```
+>
+> ## Id inválido
+>> ## Formato da resposta:
+>  
+> * Status: `404 NOT FOUND`;
+>
+>```json
+> {
+>   "message": "Ad not found"
+> }
+>```
+>---
+
+<br>
+
+> # Delete Ad - DELETE `/users/:id-ad`
+>> ## Formato da requisição:
+>
+> * Necessário autenticação por `token`;
+> 
+>> ## Formato da resposta:
+>
+> * Status: `204 NO CONTENT`;
+>
+> ## Sem token / token inválido
+>> ## Formato da resposta:
+>
+> * Status: `401 UNAUTHORIZED`;
+>
+>```json
+> {
+>   "message": "Missing authorization headers"
+> }
+>```
+> ## Id inválido:
+>> ## Formato da resposta:
+>
+> * Status: `404 NOT FOUND`;
+>
+>```json
+> {
+>   "message": "Ad not found"
+> }
+>```
+>---
+
+<br>
+
+---
+---
+
+<br/>

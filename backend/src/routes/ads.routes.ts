@@ -12,7 +12,7 @@ const adsRoutes = Router();
 adsRoutes.post("", ensureAuthMiddleware, createAdController);
 adsRoutes.get("", listAllAdsController);
 adsRoutes.get("/random", list20RandomAdsController);
-adsRoutes.get("/:id", ensureAuthMiddleware, retrieveAdController);
+adsRoutes.get("/:id", retrieveAdController);
 adsRoutes.patch("/:id", ensureAuthMiddleware, updateAdController);
 adsRoutes.delete("/:id", ensureAuthMiddleware, deleteAdController);
 
