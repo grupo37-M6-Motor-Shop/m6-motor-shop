@@ -108,8 +108,14 @@ export const DivButton = styled.div`
 	}
 `;
 
-export const Avatar = styled.img`
-
+export const Avatar = styled.div`
+  background-color: var(--brand1);
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Text = styled.p`

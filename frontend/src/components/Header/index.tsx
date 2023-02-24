@@ -22,13 +22,14 @@ import {
 import logo from "../../assets/img/motor_shop_logo_header.svg";
 import avatar from "../../assets/img/avatar.svg";
 import Button from "../Button";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { MotorShopContext } from "../../context";
+import Detail from "../Detail";
 
 const Header = () => {
 	const [dropDown, setDropDown] = useState<number>(0);
 	const [isSideBarVisible, setIsSideBarVisible] = useState<boolean>(false);
-	const token = false;
-	const anunciante = false;
+	const {token, user: {name, advertiser}} = useContext(MotorShopContext);
 
 	const showSideBar = () => setIsSideBarVisible(!isSideBarVisible);
 
@@ -58,7 +59,7 @@ const Header = () => {
 					</DivNav>
 					<Divise />
 					<DivNav>
-						{!token ? (
+						{token === "" ? (
 							<>
 								<DivButton>
 									<Button
@@ -86,9 +87,8 @@ const Header = () => {
 								<Profile
 									onClick={() => handleClickdropDownProfile()}
 								>
-									<Avatar src={avatar} alt="avatar" />
-									<Text>Samuel Leão</Text>
-									{!anunciante ? (
+									<Detail name={name} />
+									{!advertiser ? (
 										<>
 											<DropDown dropdown={dropDown}>
 												<Text>Editar Perfil</Text>
@@ -109,7 +109,7 @@ const Header = () => {
 								</Profile>
 							</>
 						)}
-						{isSideBarVisible && !token ? (
+						{isSideBarVisible && token === "" ? (
 							<Sidebar isSideBarVisible={isSideBarVisible}>
 								<Menu>
 									<DivBar>
@@ -143,10 +143,9 @@ const Header = () => {
 									<Divider />
 									<DivBar>
 										<Settings>
-											<Avatar src={avatar} alt="avatar" />
-											<Text>Samuel Leão</Text>
+										<Detail name={name} />
 										</Settings>
-										{!anunciante ? (
+										{!advertiser ? (
 											<>
 												<Text>Editar Perfil</Text>
 												<Text>Editar Endereço</Text>

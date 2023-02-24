@@ -1,5 +1,6 @@
 import { IFormUpdateAd } from "../FormUpdateAd/FormUpdateAd";
 import { IAds } from "../IAds/IAds";
+import { ILogin } from "../ILogin/ILogin";
 import { IUser } from "../IUser/IUser";
 
 export interface IMotorShopContext {
@@ -29,4 +30,6 @@ export interface IMotorShopContext {
 	isActiveAd: boolean;
 	setIsActiveAd: React.Dispatch<React.SetStateAction<boolean>>;
 	deleteAd: (adId: string) => void;
+	signIn: (data: ILogin) => void;
+	token: string;
 }

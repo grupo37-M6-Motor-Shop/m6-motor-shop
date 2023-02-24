@@ -7,11 +7,11 @@ import Global from "./style/Global";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
-		<MotorShopProvider>
 			<BrowserRouter>
-				<Global />
-				<App />
+				<MotorShopProvider>
+					<Global />
+					<App />
+				</MotorShopProvider>
 			</BrowserRouter>
-		</MotorShopProvider>
 	</React.StrictMode>
 );
