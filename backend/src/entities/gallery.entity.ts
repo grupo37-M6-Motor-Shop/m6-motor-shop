@@ -14,22 +14,22 @@ class Gallery {
 	@PrimaryGeneratedColumn("uuid")
 	id: string;
 
-	@Column({ length: 1000, default: null })
+	@Column({ length: 1000, default: "" })
 	urlImage1: string;
 
-	@Column({ length: 1000, default: null })
+	@Column({ length: 1000, default: "" })
 	urlImage2: string;
 
-	@Column({ length: 1000, default: null })
+	@Column({ length: 1000, default: "" })
 	urlImage3: string;
 
-	@Column({ length: 1000, default: null })
+	@Column({ length: 1000, default: "" })
 	urlImage4: string;
 
-	@Column({ length: 1000, default: null })
+	@Column({ length: 1000, default: "" })
 	urlImage5: string;
 
-	@Column({ length: 1000, default: null })
+	@Column({ length: 1000, default: "" })
 	urlImage6: string;
 
 	@CreateDateColumn()
