@@ -27,10 +27,10 @@ const Card = ({ auction = false, ...props }) => {
 							{props.isActive ? "Ativo" : "Inativo"}
 						</IsActiveInfo>
 					)}
-					<CarImg src={props.urlImage} alt="car card" />
+					<CarImg src={props.urlCoverImage} alt="car card" />
 				</ContainerCarImg>
 			)}
-			<ContainerInfoCard auction={auction} image={props.urlImage}>
+			<ContainerInfoCard auction={auction} image={props.urlCoverImage}>
 				<InfoCard auction={auction}>
 					{auction && (
 						<Clock>
