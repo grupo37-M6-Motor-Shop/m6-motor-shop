@@ -256,7 +256,7 @@ const AdvertiverProfile = () => {
 					titleSection="Leilão"
 					value="Leilão"
 					user={userProfile}
-					vehicles={userProfile.ads}
+					vehicles={randomAds}
 					auction={true}
 					advertiser={userProfile.advertiser}
 					profile
@@ -265,7 +265,7 @@ const AdvertiverProfile = () => {
 					titleSection="Carros"
 					value="Carro"
 					user={userProfile}
-					vehicles={userProfile.ads}
+					vehicles={randomAds}
 					auction={false}
 					advertiser={userProfile.advertiser}
 					profile
@@ -275,7 +275,7 @@ const AdvertiverProfile = () => {
 					titleSection="Motos"
 					value="Moto"
 					user={userProfile}
-					vehicles={userProfile.ads}
+					vehicles={randomAds}
 					auction={false}
 					advertiser={userProfile.advertiser}
 					profile

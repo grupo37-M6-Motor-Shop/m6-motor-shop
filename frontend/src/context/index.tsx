@@ -28,7 +28,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const [isActiveAd, setIsActiveAd] = useState(false);
 	const [token, setToken] = useState(localStorage.getItem("@motors-shop:token") || "");
 
-	  const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	useEffect(() => {
     const loadUser = async () => {
