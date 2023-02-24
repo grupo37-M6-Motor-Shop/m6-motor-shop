@@ -74,6 +74,7 @@ const ModalAdUpdate = () => {
 
 	const handleClickDelete = () => {
 		handleCloseModal()
+		setOpenModalDeleteAd(true)
 	}
 
 	const AdditionalInputs = ({ count }: AdditionalInputsProps) => {
@@ -235,7 +236,7 @@ const ModalAdUpdate = () => {
 						bgcolor={"grey6"}
 						component={"big"}
 						width={"126px"}
-						onClick={() => {}}
+						onClick={handleClickDelete}
 					>
 						Excluir anúncio
 					</Button>

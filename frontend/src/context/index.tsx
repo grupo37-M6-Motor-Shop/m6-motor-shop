@@ -122,6 +122,16 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		}
 	};
 
+	const deleteAd = async (adId: string) => {
+		try {
+			await api.delete(`/ads/${adId}`)
+			getRandomAds()
+		} catch (error) {
+			const err = error as AxiosError<IError>;
+			console.log(err);
+		}
+	}
+
 	return (
 		<MotorShopContext.Provider
 			value={{
@@ -150,6 +160,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				getRandomAds,
 				isActiveAd,
 				setIsActiveAd,
+				deleteAd
 			}}
 		>
 			{children}
