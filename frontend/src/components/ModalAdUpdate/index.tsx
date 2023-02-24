@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import { MotorShopContext } from "../../context";
+import { IFormUpdateAd } from "../../interfaces/FormUpdateAd/FormUpdateAd";
+import { schemaUpdateAd } from "../../validations/FormUpdateAds";
 import Button from "../Button";
 import Form from "../Form";
 import Input from "../Input";
 import InputCheckbox from "../InputCheckbox";
+import InputChoices from "../InputChoices";
 import InputTextArea from "../InputTextArea";
 import Modal from "../modal";
 import { Div, Grid, GridFullWidth } from "../ModalAdCreate/style";
-import { InfoSpan } from "./style";
+import { Text } from "./style";
 
 interface AdditionalInputsProps {
 	count: number;
@@ -15,6 +21,31 @@ interface AdditionalInputsProps {
 const ModalAdUpdate = () => {
 	const [numInputs, setNumInputs] = useState(1);
 	document.body.style.overflow = "hidden";
+	const { handleCloseModal, ad, updateAd } = useContext(MotorShopContext);
+	const [selectedValueTypeAd, setSelectedValueTypeAd] = useState("");
+	const [selectedValueTypeVec, setSelectedValueTypeVec] = useState("");
+	const [selectedValueAdPublic, setSelectedValueAdPublic] = useState("");
+	const [isActiveAd, setIsActiveAd] = useState(true)
+
+	const { id, typeAd, typeVehicle, description, isActive, mileage, price, title, urlCoverImage, year, gallery } = ad
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<IFormUpdateAd>({
+		resolver: yupResolver(schemaUpdateAd),
+	});
+
+	const newUpdateAd = (data: IFormUpdateAd) => {
+		if (selectedValueAdPublic === "Não") {
+			setIsActiveAd(false)
+		} else {
+	
+		}
+		const newData = { ...data, typeAd: selectedValueTypeAd, typeVehicle: selectedValueTypeVec, isActive: isActiveAd }
+		updateAd(newData, ad.id)
+	}
 
 	const addInput = () => {
 		if (numInputs < 6) {
@@ -31,99 +62,128 @@ const ModalAdUpdate = () => {
 					key={`gallery-input-${i}`}
 					name={`urlImage${i}`}
 					label={`${i}° Imagem da galeria`}
-					type="text"
-					placeholder="https://image.com"
-					defaultValue={""}
+					type={"url"}
+					placeholder={"Inserir URL da imagem"}
+					register={register}
 				/>
 			);
 		}
 
 		return <div>{inputs}</div>;
 	};
-
 	return (
-		<Modal title="Editar Anúncio">
-			<Form>
-				<InputCheckbox
-					name="typeAd"
+		<Modal title={"Criar anuncio"}>
+			<Form onSubmit={handleSubmit(newUpdateAd)}>
+				<InputChoices
 					label="Tipo de anúncio"
-					name1="Venda"
-					name2="Leilão"
+					name="typeAd"
+					choice1="Venda"
+					choice2="Leilão"
+					register={register}
+					defaultValue={typeAd}
+					value={selectedValueTypeAd}
+					setSelectedValue={setSelectedValueTypeAd}
+					error={errors.typeAd}
 				/>
-				<InfoSpan>Informações do veículo</InfoSpan>
+
+				<Text>Infomações do veículo</Text>
 				<Input
-					name="title"
-					label="Título"
-					type="text"
-					placeholder="Digitar título"
-					defaultValue={""}
+					name={"title"}
+					label={"Título"}
+					type={"text"}
+					defaultValue={title}
+					placeholder={"Digitar título"}
+					error={errors.title}
+					register={register}
 				/>
 				<Grid>
 					<Input
-						name="year"
-						type="number"
-						label="Ano"
-						defaultValue={""}
-						placeholder="Digitar ano"
+						name={"year"}
+						label={"Ano"}
+						type={"number"}
+						defaultValue={year}
+						placeholder={"Digitar ano"}
+						error={errors.year}
+						register={register}
 					/>
 					<Input
-						name="miliage"
-						type="number"
-						label="Quilometragem"
-						defaultValue={""}
-						placeholder="0"
+						name={"mileage"}
+						label={"Quilometragem"}
+						type={"number"}
+						defaultValue={mileage}
+						placeholder={"0"}
+						error={errors.mileage}
+						register={register}
 					/>
+
 					<GridFullWidth>
 						<Input
-							name="price"
-							type="text"
-							label="Preço"
-							defaultValue={""}
-							placeholder="Digitar preço"
+							name={"price"}
+							label={"Preço"}
+							type={"text"}
+							defaultValue={price}
+							placeholder={"Digitar preço"}
+							error={errors.price}
+							register={register}
 						/>
 					</GridFullWidth>
 				</Grid>
 				<InputTextArea
-					name="description"
-					label="Descrição"
-					error
-					defaultValue={""}
-					placeholder="Digitar descrição"
+					name={"description"}
+					label={"Descrição"}
+					defaultValue={description}
+					placeholder={"Digitar descrição"}
+					error={errors.description}
+					register={register}
 				/>
-				<InputCheckbox
-					name="typeVehicle"
+				<InputChoices
 					label="Tipo de veículo"
-					name1="Carro"
-					name2="Moto"
+					name="typeVehicle"
+					choice1="Carro"
+					choice2="Moto"
+					defaultValue={typeVehicle}
+					value={selectedValueTypeVec}
+					setSelectedValue={setSelectedValueTypeVec}
+					register={register}
+					error={errors.typeVehicle}
 				/>
-				<InputCheckbox
-					name="isActive"
+				<InputChoices
 					label="Publicado"
-					name1="Sim"
-					name2="Não"
+					name="isActive"
+					choice1="Sim"
+					choice2="Não"
+					value={selectedValueAdPublic}
+					setSelectedValue={setSelectedValueAdPublic}
+					register={register}
+					error={errors.typeVehicle}
+				/>
+
+				<Input
+					name={"urlCoverImage"}
+					label={"Imagem da capa"}
+					type={"url"}
+					defaultValue={urlCoverImage}
+					placeholder={"Inserir URL da imagem"}
+					error={errors.urlCoverImage}
+					register={register}
 				/>
 				<Input
-					name="urlCoverImage"
-					label="Imagem da capa"
-					type="text"
-					placeholder="https://image.com"
-					defaultValue={""}
-				/>
-				<Input
-					name="urlImage1"
-					label="1º imagem da galeria"
-					type="text"
-					placeholder="https://image.com"
-					defaultValue={""}
+					key={"gallery-input-1"}
+					name={"urlImage1"}
+					label={"1° Imagem da galeria"}
+					type={"url"}
+					placeholder={"Inserir URL da imagem"}
+					error={errors.urlImage1}
+					register={register}
 				/>
 				<AdditionalInputs count={numInputs} />
 				{numInputs < 6 && (
 					<Button
 						type="button"
-						color="brand1"
-						bgcolor="brand4"
-						component="medium"
-						width="100%"
+						color={"brand1"}
+						bgcolor={"brand4"}
+						component={"medium"}
+						width={"100%"}
 						style={{ maxWidth: "315px" }}
 						onClick={addInput}
 					>
@@ -133,20 +193,19 @@ const ModalAdUpdate = () => {
 				<Div>
 					<Button
 						type="button"
-						color="grey2"
-						bgcolor="grey6"
-						component="big"
-						width="100%"
+						color={"grey2"}
+						bgcolor={"grey6"}
+						component={"big"}
+						width={"126px"}
 					>
 						Excluir anúncio
 					</Button>
 					<Button
 						type="submit"
-						color="whiteFixed"
-						bgcolor="brand1"
-						component="big"
-						width="100%"
-						hover={{ bgcolor: "brand2" }}
+						color={"whiteFixed"}
+						bgcolor={"brand1"}
+						component={"big"}
+						width={"193px"}
 					>
 						Salvar alterações
 					</Button>
@@ -155,5 +214,4 @@ const ModalAdUpdate = () => {
 		</Modal>
 	);
 };
-
 export default ModalAdUpdate;

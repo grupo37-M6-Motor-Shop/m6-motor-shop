@@ -25,6 +25,7 @@ const InputChoices = React.forwardRef(
 		return (
 			<CustomLabel style={{ display: "flex", flexDirection: "column" }}>
 				{label}
+
 				<div
 					style={{ display: "flex", gap: "20px", paddingTop: "15px" }}
 				>
