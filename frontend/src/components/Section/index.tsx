@@ -1,32 +1,37 @@
+import { IAds } from "../../interfaces/IAds/IAds";
+import { IUser } from "../../interfaces/IUser/IUser";
 import Card from "../Card";
 import { CustonSection, ListCards, TitleSection } from "./style";
 
-interface IVehicle {
-	id: number;
-	userName: string;
-	urlImage: string;
-	title?: string;
-	description: string;
-	mileage: number;
-	year: number;
-	price: string;
-	typeAnnouncement: string;
-	typeVehicle: string;
-	isActive: boolean;
-}
+// interface IVehicle {
+// 	id: number;
+// 	userName: string;
+// 	urlImage: string;
+// 	title?: string;
+// 	description: string;
+// 	mileage: number;
+// 	year: number;
+// 	price: string;
+// 	typeAnnouncement: string;
+// 	typeVehicle: string;
+// 	isActive: boolean;
+// }
 
 interface SectionProps {
-  id?: string;
+	id?: string;
+	user: IUser;
 	titleSection: string;
 	value: string;
-	vehicles: IVehicle[];
+	vehicles: IAds[];
 	auction: boolean;
 	advertiser?: boolean;
 	tags?: boolean;
 	profile?: boolean;
 }
 
-const Section = ({ id,
+const Section = ({
+	id,
+	user,
 	titleSection,
 	value,
 	vehicles,
@@ -44,23 +49,25 @@ const Section = ({ id,
 						? vehicles.map(
 								({
 									id,
-									userName,
-									urlImage,
+									user,
+									urlCoverImage,
 									title,
 									description,
 									mileage,
 									year,
 									price,
-									typeAnnouncement,
+									typeAd,
 									isActive,
-								}: IVehicle) =>
-									typeAnnouncement === value &&
+									typeVehicle,
+								}: IAds) =>
+									typeAd === value &&
 									isActive && (
 										<Card
 											key={id}
 											auction
-											userName={userName}
-											urlImage={urlImage}
+											id={id}
+											userName={user.name}
+											urlCoverImage={urlCoverImage}
 											title={title}
 											description={description}
 											mileage={mileage}
@@ -75,22 +82,24 @@ const Section = ({ id,
 						: vehicles.map(
 								({
 									id,
-									userName,
-									urlImage,
+									user,
+									urlCoverImage,
 									title,
 									description,
 									mileage,
 									year,
 									price,
+									typeAd,
 									typeVehicle,
 									isActive,
-								}: IVehicle) =>
+								}: IAds) =>
 									typeVehicle === value &&
 									isActive && (
 										<Card
 											key={id}
-											userName={userName}
-											urlImage={urlImage}
+											id={id}
+											userName={user.name}
+											urlCoverImage={urlCoverImage}
 											title={title}
 											description={description}
 											mileage={mileage}
@@ -110,22 +119,24 @@ const Section = ({ id,
 						? vehicles.map(
 								({
 									id,
-									userName,
-									urlImage,
+									user,
+									urlCoverImage,
 									title,
 									description,
 									mileage,
 									year,
 									price,
-									typeAnnouncement,
+									typeAd,
 									isActive,
-								}: IVehicle) =>
-									typeAnnouncement === value && (
+									typeVehicle,
+								}: IAds) =>
+									typeAd === value && (
 										<Card
 											key={id}
 											auction
-											userName={userName}
-											urlImage={urlImage}
+											id={id}
+											userName={user.name}
+											urlCoverImage={urlCoverImage}
 											title={title}
 											description={description}
 											mileage={mileage}
@@ -140,8 +151,8 @@ const Section = ({ id,
 						: vehicles.map(
 								({
 									id,
-									userName,
-									urlImage,
+									user,
+									urlCoverImage,
 									title,
 									description,
 									mileage,
@@ -149,12 +160,14 @@ const Section = ({ id,
 									price,
 									typeVehicle,
 									isActive,
-								}: IVehicle) =>
+									typeAd,
+								}: IAds) =>
 									typeVehicle === value && (
 										<Card
 											key={id}
-											userName={userName}
-											urlImage={urlImage}
+											id={id}
+											userName={user.name}
+											urlCoverImage={urlCoverImage}
 											title={title}
 											description={description}
 											mileage={mileage}

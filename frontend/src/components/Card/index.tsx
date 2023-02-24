@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { MotorShopContext } from "../../context";
 import Button from "../Button";
 import Detail from "../Detail";
 import {
@@ -18,6 +20,12 @@ import {
 } from "./style";
 
 const Card = ({ auction = false, ...props }) => {
+	const { setOpenModalUpdateAd, getAdbyId } = useContext(MotorShopContext);
+
+	const handleClickUpdate = () => {
+		getAdbyId(props.id)
+		setOpenModalUpdateAd(true)
+	}
 	return (
 		<CustomLi key={props.id} auction={auction}>
 			{!auction && (
@@ -68,6 +76,7 @@ const Card = ({ auction = false, ...props }) => {
 						width="80px"
 						hover={{ bgcolor: "grey6" }}
 						style={{ marginRight: "10px" }}
+						onClick={handleClickUpdate}
 					>
 						Editar
 					</Button>
@@ -96,6 +105,7 @@ const Card = ({ auction = false, ...props }) => {
 						border="whiteFixed"
 						width="8.125rem"
 						hover={{ bgcolor: "brand2" }}
+						onClick={handleClickUpdate}
 					>
 						Editar
 					</Button>

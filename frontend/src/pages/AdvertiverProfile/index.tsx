@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
@@ -7,6 +7,8 @@ import ModalAdDelete from "../../components/ModalAdDelete";
 import ModalAdUpdate from "../../components/ModalAdUpdate";
 import Section from "../../components/Section";
 import { MotorShopContext } from "../../context";
+import { IAds } from "../../interfaces/IAds/IAds";
+import api from "../../services";
 import {
 	BackgroundInfo,
 	Container,
@@ -29,9 +31,14 @@ const AdvertiverProfile = () => {
 		setOpenModalDeleteAd,
 	} = useContext(MotorShopContext);
 	document.body.style.overflow = "unset";
-	const advertiser = true;
+	
+	const { userProfile, randomAds, getRandomAds } = useContext(MotorShopContext);
 
-	const user = [
+	useEffect(() => {
+		getRandomAds()
+	}, [])
+
+	const userD = [
 		{
 			id: 1,
 			userName: "Felipe Vieira",
@@ -229,7 +236,7 @@ const AdvertiverProfile = () => {
 							typesetting industry. Lorem Ipsum has been the
 							industry's standard dummy text ever since the 1500s
 						</Description>
-						{advertiser && (
+						{userProfile.advertiser && (
 							<Button
 								color="brand1"
 								bgcolor="grey10"
@@ -248,26 +255,29 @@ const AdvertiverProfile = () => {
 				<Section
 					titleSection="Leilão"
 					value="Leilão"
-					vehicles={user}
+					user={userProfile}
+					vehicles={randomAds}
 					auction={true}
-					advertiser={advertiser}
+					advertiser={userProfile.advertiser}
 					profile
 				/>
 				<Section
 					titleSection="Carros"
 					value="Carro"
-					vehicles={user}
+					user={userProfile}
+					vehicles={randomAds}
 					auction={false}
-					advertiser={advertiser}
+					advertiser={userProfile.advertiser}
 					profile
 					tags
 				/>
 				<Section
 					titleSection="Motos"
 					value="Moto"
-					vehicles={user}
+					user={userProfile}
+					vehicles={randomAds}
 					auction={false}
-					advertiser={advertiser}
+					advertiser={userProfile.advertiser}
 					profile
 					tags
 				/>
