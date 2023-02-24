@@ -9,5 +9,5 @@ export interface InputChoicesProps
 	isActive?: boolean;
 	register: UseFormRegister<any>;
 	error?: FieldError | undefined;
-	setSelectedValue: React.Dispatch<React.SetStateAction<string>>;
+	setSelectedValue: React.Dispatch<React.SetStateAction<string | void>>;
 }

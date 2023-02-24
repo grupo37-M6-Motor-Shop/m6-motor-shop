@@ -21,14 +21,13 @@ interface AdditionalInputsProps {
 const ModalAdUpdate = () => {
 	const [numInputs, setNumInputs] = useState(1);
 	document.body.style.overflow = "hidden";
-	const { handleCloseModal, ad, updateAd } = useContext(MotorShopContext);
-	const [selectedValueTypeAd, setSelectedValueTypeAd] = useState("");
-	const [selectedValueTypeVec, setSelectedValueTypeVec] = useState("");
-	const [selectedValueAdPublic, setSelectedValueAdPublic] = useState("");
-	const [isActiveAd, setIsActiveAd] = useState(true)
+	const { handleCloseModal, ad, updateAd, isActiveAd } = useContext(MotorShopContext);
 
 	const { id, typeAd, typeVehicle, description, isActive, mileage, price, title, urlCoverImage, year, gallery } = ad
-
+	const [selectedValueTypeAd, setSelectedValueTypeAd] = useState<string | void>(typeAd);
+	const [selectedValueTypeVec, setSelectedValueTypeVec] = useState<string | void>(typeVehicle);
+	const [selectedValueAdPublic, setSelectedValueAdPublic] = useState<string | void>(isActive === true ? "Sim" : "Não");
+	
 	const {
 		register,
 		handleSubmit,
@@ -38,11 +37,6 @@ const ModalAdUpdate = () => {
 	});
 
 	const newUpdateAd = (data: IFormUpdateAd) => {
-		if (selectedValueAdPublic === "Não") {
-			setIsActiveAd(false)
-		} else {
-	
-		}
 		const newData = { ...data, typeAd: selectedValueTypeAd, typeVehicle: selectedValueTypeVec, isActive: isActiveAd }
 		updateAd(newData, ad.id)
 	}
@@ -81,7 +75,7 @@ const ModalAdUpdate = () => {
 					choice2="Leilão"
 					register={register}
 					defaultValue={typeAd}
-					value={selectedValueTypeAd}
+					value={`${selectedValueTypeAd}`}
 					setSelectedValue={setSelectedValueTypeAd}
 					error={errors.typeAd}
 				/>
@@ -101,7 +95,7 @@ const ModalAdUpdate = () => {
 						name={"year"}
 						label={"Ano"}
 						type={"number"}
-						defaultValue={year}
+						defaultValue={`${year}`}
 						placeholder={"Digitar ano"}
 						error={errors.year}
 						register={register}
@@ -110,7 +104,7 @@ const ModalAdUpdate = () => {
 						name={"mileage"}
 						label={"Quilometragem"}
 						type={"number"}
-						defaultValue={mileage}
+						defaultValue={`${mileage}`}
 						placeholder={"0"}
 						error={errors.mileage}
 						register={register}
@@ -142,7 +136,7 @@ const ModalAdUpdate = () => {
 					choice1="Carro"
 					choice2="Moto"
 					defaultValue={typeVehicle}
-					value={selectedValueTypeVec}
+					value={`${selectedValueTypeVec}`}
 					setSelectedValue={setSelectedValueTypeVec}
 					register={register}
 					error={errors.typeVehicle}
@@ -152,10 +146,11 @@ const ModalAdUpdate = () => {
 					name="isActive"
 					choice1="Sim"
 					choice2="Não"
-					value={selectedValueAdPublic}
+					defaultValue={`${selectedValueAdPublic}`}
+					value={`${selectedValueAdPublic}`}
 					setSelectedValue={setSelectedValueAdPublic}
 					register={register}
-					error={errors.typeVehicle}
+					error={errors.isActive}
 				/>
 
 				<Input

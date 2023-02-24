@@ -21,8 +21,8 @@ const ModalAdCreate = () => {
 	const [numInputs, setNumInputs] = useState(1);
 	document.body.style.overflow = "hidden";
 	const { handleCloseModal, registerAd } = useContext(MotorShopContext);
-	const [selectedValueTypeAd, setSelectedValueTypeAd] = useState("Venda");
-	const [selectedValueTypeVec, setSelectedValueTypeVec] = useState("Carro");
+	const [selectedValueTypeAd, setSelectedValueTypeAd] = useState<string | void>("Venda");
+	const [selectedValueTypeVec, setSelectedValueTypeVec] = useState<string | void>("Carro");
 
 
 	const {
@@ -34,7 +34,6 @@ const ModalAdCreate = () => {
 	});
 
 	const newRegisterAd = (data: any) => {
-		console.log(data)
 		const newData = { ...data, typeAd: selectedValueTypeAd, typeVehicle: selectedValueTypeVec }
 		registerAd(newData)
 	}
@@ -79,7 +78,7 @@ const ModalAdCreate = () => {
 					choice1="Venda"
 					choice2="Leilão"
 					register={register}
-					value={selectedValueTypeAd}
+					value={`${selectedValueTypeAd}`}
 					setSelectedValue={setSelectedValueTypeAd}
 					error={errors.typeAd}
 				/>
@@ -134,7 +133,7 @@ const ModalAdCreate = () => {
 					name="typeVehicle"
 					choice1="Carro"
 					choice2="Moto"
-					value={selectedValueTypeVec}
+					value={`${selectedValueTypeVec}`}
 					setSelectedValue={setSelectedValueTypeVec}
 					register={register}
 					error={errors.typeVehicle}

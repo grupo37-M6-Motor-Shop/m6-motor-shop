@@ -26,4 +26,6 @@ export interface IMotorShopContext {
 	getUserByProfile: () => void;
 	getUserById: (userId: string) => void;
 	updateAd: (data: IFormUpdateAd, adId: string) => void;
+	isActiveAd: boolean;
+	setIsActiveAd: React.Dispatch<React.SetStateAction<boolean>>;
 }

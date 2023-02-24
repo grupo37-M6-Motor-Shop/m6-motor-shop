@@ -21,17 +21,21 @@ import {
 } from "./style";
 
 const Card = ({ auction = false, ...props }) => {
-	const { setOpenModalUpdateAd, getAdbyId } = useContext(MotorShopContext);
+	const { setOpenModalUpdateAd, getAdbyId, ad, setIsActiveAd } = useContext(MotorShopContext);
 
 	const navigate = useNavigate();
 
-	const handleClickUpdate = () => {
-		getAdbyId(props.id);
+	const handleClickUpdate = async () => {
+		if (ad.isActive) {
+			setIsActiveAd(true)
+		} else {
+			setIsActiveAd(false)
+		}
+		await getAdbyId(props.id);
 		setOpenModalUpdateAd(true);
 	};
 
 	const handClickDetail = () => {
-		console.log("click");
 		getAdbyId(props.id);
 		navigate("/detail-ad", { replace: true });
 	};

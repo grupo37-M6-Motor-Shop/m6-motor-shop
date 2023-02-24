@@ -31,7 +31,6 @@ const InputCheckbox = React.forwardRef(
 				setCheckbox2Value(false);
 			}
 			setCheckbox1Value(event.target.checked);
-			console.log(event.target.value);
 		};
 
 		const handleCheckbox2Change = (
@@ -41,7 +40,6 @@ const InputCheckbox = React.forwardRef(
 				setCheckbox1Value(false);
 			}
 			setCheckbox2Value(event.target.checked);
-			console.log(event.target.value);
 		};
 
 		return (
