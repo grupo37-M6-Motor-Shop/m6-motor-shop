@@ -32,4 +32,5 @@ export interface IMotorShopContext {
 	deleteAd: (adId: string) => void;
 	signIn: (data: ILogin) => void;
 	token: string;
+	getAdbyIdNotOwner: (adId: string) => void;
 }

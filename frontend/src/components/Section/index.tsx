@@ -3,23 +3,9 @@ import { IUser } from "../../interfaces/IUser/IUser";
 import Card from "../Card";
 import { CustonSection, ListCards, TitleSection } from "./style";
 
-// interface IVehicle {
-// 	id: number;
-// 	userName: string;
-// 	urlImage: string;
-// 	title?: string;
-// 	description: string;
-// 	mileage: number;
-// 	year: number;
-// 	price: string;
-// 	typeAnnouncement: string;
-// 	typeVehicle: string;
-// 	isActive: boolean;
-// }
-
 interface SectionProps {
 	id?: string;
-	user: IUser;
+	userAd?: IUser;
 	titleSection: string;
 	value: string;
 	vehicles: IAds[];
@@ -31,7 +17,7 @@ interface SectionProps {
 
 const Section = ({
 	id,
-	user,
+	userAd,
 	titleSection,
 	value,
 	vehicles,
@@ -66,7 +52,7 @@ const Section = ({
 											key={id}
 											auction
 											id={id}
-											userName={user.name}
+											user={user}
 											urlCoverImage={urlCoverImage}
 											title={title}
 											description={description}
@@ -98,7 +84,7 @@ const Section = ({
 										<Card
 											key={id}
 											id={id}
-											userName={user.name}
+											user={user}
 											urlCoverImage={urlCoverImage}
 											title={title}
 											description={description}
@@ -119,7 +105,6 @@ const Section = ({
 						? vehicles.map(
 								({
 									id,
-									user,
 									urlCoverImage,
 									title,
 									description,
@@ -135,7 +120,7 @@ const Section = ({
 											key={id}
 											auction
 											id={id}
-											userName={user.name}
+											user={userAd}
 											urlCoverImage={urlCoverImage}
 											title={title}
 											description={description}
@@ -151,7 +136,6 @@ const Section = ({
 						: vehicles.map(
 								({
 									id,
-									user,
 									urlCoverImage,
 									title,
 									description,
@@ -166,7 +150,7 @@ const Section = ({
 										<Card
 											key={id}
 											id={id}
-											userName={user.name}
+											user={userAd}
 											urlCoverImage={urlCoverImage}
 											title={title}
 											description={description}
