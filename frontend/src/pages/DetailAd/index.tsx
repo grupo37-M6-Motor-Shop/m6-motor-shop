@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import CardComment from "../../components/CardComment";
 import Footer from "../../components/Footer";
@@ -29,31 +30,13 @@ import {
 } from "./style";
 
 const DetailAd = () => {
-	const { ad, userProfile } = useContext(MotorShopContext);
+	const { ad, userProfile, getUserById } = useContext(MotorShopContext);
 
-	const user = {
-		id: 1,
-		userName: "João da Silva",
-		urlImage:
-			"https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
-		title: "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes",
-		description:
-			"Lorem ipsum dolor sit amet. Et autem fuga et quas officiis et nostrum repellat hic molestias perspiciatis aut adipisci accusantium est voluptatem similique non ipsam quis. Est excepturi commodi a atque nulla est distinctio animi.",
-		descrip:
-			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-		mileage: 1000,
-		year: 1990,
-		price: "R$ 170.000,00",
-		typeAnnouncement: "Leilão",
-		typeVehicle: "Carro",
-		images: [
-			"https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
-			"https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
-			"https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
-			"https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
-			"https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
-			"https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
-		],
+	const navigate = useNavigate();
+
+	const handleClick = async () => {
+		await getUserById(ad.user.id);
+		navigate("/profile", { replace: true });
 	};
 
 	return (
@@ -98,14 +81,14 @@ const DetailAd = () => {
 							<PhotoList
 								id={ad.gallery.id}
 								urlImage1={ad.gallery.urlImage1}
-                urlImage2={ad.gallery.urlImage2}
-                urlImage3={ad.gallery.urlImage3}
-                urlImage4={ad.gallery.urlImage4}
-                urlImage5={ad.gallery.urlImage5}
-                urlImage6={ad.gallery.urlImage6}
+								urlImage2={ad.gallery.urlImage2}
+								urlImage3={ad.gallery.urlImage3}
+								urlImage4={ad.gallery.urlImage4}
+								urlImage5={ad.gallery.urlImage5}
+								urlImage6={ad.gallery.urlImage6}
 							/>
 							<Info>
-								<UserImg>JD</UserImg>
+								<UserImg>{userProfile.name[0]}</UserImg>
 								<Name>{userProfile.name}</Name>
 								<Description align="center">
 									{userProfile.description}
@@ -115,6 +98,7 @@ const DetailAd = () => {
 									bgcolor="grey0"
 									component="medium"
 									width="14rem"
+									onClick={handleClick}
 								>
 									Ver todos os anúncios
 								</Button>

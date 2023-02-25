@@ -21,15 +21,21 @@ import {
 } from "./style";
 
 const Card = ({ auction = false, ...props }) => {
-	const { setOpenModalUpdateAd, getAdbyId, ad, setIsActiveAd } = useContext(MotorShopContext);
+	const {
+		setOpenModalUpdateAd,
+		getAdbyId,
+		getAdbyIdNotOwner,
+		ad,
+		setIsActiveAd,
+	} = useContext(MotorShopContext);
 
 	const navigate = useNavigate();
 
 	const handleClickUpdate = async () => {
 		if (ad.isActive) {
-			setIsActiveAd(true)
+			setIsActiveAd(true);
 		} else {
-			setIsActiveAd(false)
+			setIsActiveAd(false);
 		}
 		await getAdbyId(props.id);
 		setOpenModalUpdateAd(true);
@@ -39,10 +45,17 @@ const Card = ({ auction = false, ...props }) => {
 		await getAdbyId(props.id);
 		navigate(`/detail-ad/${props.id}`, { replace: true });
 	};
+
+	const handleClickAdvertiser = async () => {
+		if (!props.advertiser && props.isActive) {
+			await getAdbyIdNotOwner(props.id);
+			navigate(`/detail-ad/${props.id}`, { replace: true });
+		}
+	};
 	return (
-		<CustomLi key={props.id} auction={auction} >
+		<CustomLi key={props.id} auction={auction}>
 			{!auction && (
-				<ContainerCarImg>
+				<ContainerCarImg onClick={handleClickAdvertiser}>
 					{!props.advertiser && props.tags && (
 						<IsActiveInfo isActive={props.isActive}>
 							{props.isActive ? "Ativo" : "Inativo"}
@@ -51,7 +64,11 @@ const Card = ({ auction = false, ...props }) => {
 					<CarImg src={props.urlCoverImage} alt="car card" />
 				</ContainerCarImg>
 			)}
-			<ContainerInfoCard auction={auction} image={props.urlCoverImage}>
+			<ContainerInfoCard
+				auction={auction}
+				image={props.urlCoverImage}
+				onClick={handleClickAdvertiser}
+			>
 				<InfoCard auction={auction}>
 					{auction && (
 						<Clock>
@@ -67,7 +84,7 @@ const Card = ({ auction = false, ...props }) => {
 					</FontCardDescription>
 					<Detail
 						auction={auction}
-						name={props.userName}
+						name={props.user.name}
 						image={props.userImage}
 					/>
 					<ContainerPriceYearKm auction={auction}>

@@ -14,11 +14,11 @@ import { MotorShopContext } from "../../context";
 
 const Home = () => {
 	document.body.style.overflow = "unset";
-	const { user, randomAds, getRandomAds } = useContext(MotorShopContext)
+	const { user, randomAds, getRandomAds } = useContext(MotorShopContext);
 
 	useEffect(() => {
-		getRandomAds()
-	}, [])
+		getRandomAds();
+	}, []);
 
 	const userD = [
 		{
@@ -236,23 +236,23 @@ const Home = () => {
 				</InfoSection>
 
 				<Section
+					id="leilao"
 					titleSection="Leilão"
 					value="Leilão"
-					user={user}
 					vehicles={randomAds}
 					auction={true}
 				/>
 				<Section
+					id="carros"
 					titleSection="Carros"
 					value="Carro"
-					user={user}
 					vehicles={randomAds}
 					auction={false}
 				/>
 				<Section
+					id="leilao"
 					titleSection="Motos"
 					value="Moto"
-					user={user}
 					vehicles={randomAds}
 					auction={false}
 				/>

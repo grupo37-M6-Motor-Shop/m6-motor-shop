@@ -9,6 +9,7 @@ interface props {
 }
 
 export const FontCardDescription = styled(FontIntegerNormal)<props>`
+	min-height: calc(2em + 20px);
 	font-weight: 400;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -19,14 +20,15 @@ export const FontCardDescription = styled(FontIntegerNormal)<props>`
 	${(props) =>
 		props.auction &&
 		`
-    color: var(--grey5); 
-    font-size: 16px;
-    line-height: 28px;
-    -webkit-line-clamp: 1;
+		min-height: calc(2em + 52px);
+		color: var(--grey5); 
+		font-size: 16px;
+		line-height: 28px;
+		-webkit-line-clamp: 1;
 
-	@media screen and (max-width: 1024px) {
-		-webkit-line-clamp: 3;
-	}
+		@media screen and (max-width: 1024px) {
+			-webkit-line-clamp: 3;
+		}
   `}
 `;
 export const FontCardTitle = styled.span<props>`
@@ -61,6 +63,7 @@ export const ContainerInfoCard = styled.div<props>`
     background-position: center;
     background-size: cover;
     `}
+	cursor: pointer
 `;
 
 export const InfoCard = styled(ContainerInfoCard)`
@@ -101,6 +104,12 @@ export const ContainerCarImg = styled.div`
 	justify-content: center;
 	background-color: var(--grey7);
 	position: relative;
+	cursor: pointer;
+	border: 2px solid transparent;
+
+	:hover {
+		border: 2px solid var(--brand1);
+	}
 `;
 
 export const CarImg = styled.img`

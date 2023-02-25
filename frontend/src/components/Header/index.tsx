@@ -20,7 +20,7 @@ import {
 	DivButton,
 	ContainerUser,
 	FontUserName,
-	UserImg
+	UserImg,
 } from "./style";
 import logo from "../../assets/img/motor_shop_logo_header.svg";
 import Button from "../Button";
@@ -31,10 +31,22 @@ import { useNavigate } from "react-router-dom";
 const Header = ({ auction, colorFont, image }: any) => {
 	const [dropDown, setDropDown] = useState<number>(0);
 	const [isSideBarVisible, setIsSideBarVisible] = useState<boolean>(false);
-	const { token, user: { name, advertiser }, getUserByProfile } = useContext(MotorShopContext);
-	const navigate = useNavigate()
+	const {
+		token,
+		user: { name, advertiser },
+		getUserByProfile,
+		setIsLoggedIn,
+	} = useContext(MotorShopContext);
+	const navigate = useNavigate();
 	const showSideBar = () => setIsSideBarVisible(!isSideBarVisible);
-	const [backgroundColor, setBackgroundColor] = useState<string | undefined>(undefined);
+	const [backgroundColor, setBackgroundColor] = useState<string | undefined>(
+		undefined
+	);
+
+	const handleClickProfile = async () => {
+		await getUserByProfile();
+		navigate("/profile");
+	};
 
 	const setBackgroundRandomColor = () => {
 		if (!backgroundColor) {
@@ -74,7 +86,11 @@ const Header = ({ auction, colorFont, image }: any) => {
 		if (name !== undefined) {
 			const first = name[0];
 			const second = name[name.indexOf(" ") + 1];
-			return <FontTwoLatters>{`${first}${second}`.toUpperCase()}</FontTwoLatters>;
+			return (
+				<FontTwoLatters>
+					{`${first}${second}`.toUpperCase()}
+				</FontTwoLatters>
+			);
 		}
 	};
 
@@ -124,9 +140,18 @@ const Header = ({ auction, colorFont, image }: any) => {
 						) : (
 							<>
 								<Profile>
-									<ContainerUser onClick={() => handleClickdropDownProfile()}>
-										<UserImg colorRandom={backgroundColor}>{image ? image : twoLetters()}</UserImg>
-										<FontUserName auction={auction} colorFont={colorFont}>
+									<ContainerUser
+										onClick={() =>
+											handleClickdropDownProfile()
+										}
+									>
+										<UserImg colorRandom={backgroundColor}>
+											{image ? image : twoLetters()}
+										</UserImg>
+										<FontUserName
+											auction={auction}
+											colorFont={colorFont}
+										>
 											{name}
 										</FontUserName>
 									</ContainerUser>
@@ -135,10 +160,16 @@ const Header = ({ auction, colorFont, image }: any) => {
 											<DropDown dropdown={dropDown}>
 												<Text>Editar Perfil</Text>
 												<Text>Editar Endereço</Text>
-												<Text onClick={() => {
-													localStorage.clear()
-													navigate(`/homepage`)
-												}}>Sair</Text>
+												<Text
+													onClick={() => {
+														localStorage.clear();
+														setIsLoggedIn(false);
+														handleClickdropDownProfile();
+														navigate(`/homepage`);
+													}}
+												>
+													Sair
+												</Text>
 											</DropDown>
 										</>
 									) : (
@@ -146,14 +177,21 @@ const Header = ({ auction, colorFont, image }: any) => {
 											<DropDown dropdown={dropDown}>
 												<Text>Editar Perfil</Text>
 												<Text>Editar Endereço</Text>
-												<Text onClick={() => {
-													getUserByProfile()
-													navigate(`/profile`)
-												}}>Meus Anúncios</Text>
-												<Text onClick={() => {
-													localStorage.clear()
-													navigate(`/homepage`)
-												}}>Sair</Text>
+												<Text
+													onClick={handleClickProfile}
+												>
+													Meus Anúncios
+												</Text>
+												<Text
+													onClick={() => {
+														localStorage.clear();
+														setIsLoggedIn(false);
+														handleClickdropDownProfile();
+														navigate(`/homepage`);
+													}}
+												>
+													Sair
+												</Text>
 											</DropDown>
 										</>
 									)}
@@ -164,13 +202,21 @@ const Header = ({ auction, colorFont, image }: any) => {
 							<Sidebar isSideBarVisible={isSideBarVisible}>
 								<Menu>
 									<DivBar>
-										<LinkBar href="/homepage#carros">Carros</LinkBar>
-										<LinkBar href="/homepage#motos">Motos</LinkBar>
-										<LinkBar href="/homepage#leilao">Leilão</LinkBar>
+										<LinkBar href="/homepage#carros">
+											Carros
+										</LinkBar>
+										<LinkBar href="/homepage#motos">
+											Motos
+										</LinkBar>
+										<LinkBar href="/homepage#leilao">
+											Leilão
+										</LinkBar>
 									</DivBar>
 									<Divider />
 									<DivBar>
-										<LinkBar href="/login" >Fazer Login</LinkBar>
+										<LinkBar href="/login">
+											Fazer Login
+										</LinkBar>
 										<Button
 											color={"grey0"}
 											bgcolor={"grey10"}
@@ -187,16 +233,33 @@ const Header = ({ auction, colorFont, image }: any) => {
 							<Sidebar isSideBarVisible={isSideBarVisible}>
 								<Menu>
 									<DivBar>
-										<LinkBar href="/homepage#carros">Carros</LinkBar>
-										<LinkBar href="/homepage#motos">Motos</LinkBar>
-										<LinkBar href="/homepage#leilao">Leilão</LinkBar>
+										<LinkBar href="/homepage#carros">
+											Carros
+										</LinkBar>
+										<LinkBar href="/homepage#motos">
+											Motos
+										</LinkBar>
+										<LinkBar href="/homepage#leilao">
+											Leilão
+										</LinkBar>
 									</DivBar>
 									<Divider />
 									<DivBar>
 										<Settings>
 											<ContainerUser>
-												<UserImg colorRandom={backgroundColor}>{image ? image : twoLetters()}</UserImg>
-												<FontUserName auction={auction} colorFont={colorFont}>
+												<UserImg
+													colorRandom={
+														backgroundColor
+													}
+												>
+													{image
+														? image
+														: twoLetters()}
+												</UserImg>
+												<FontUserName
+													auction={auction}
+													colorFont={colorFont}
+												>
 													{name}
 												</FontUserName>
 											</ContainerUser>
@@ -205,23 +268,32 @@ const Header = ({ auction, colorFont, image }: any) => {
 											<>
 												<Text>Editar Perfil</Text>
 												<Text>Editar Endereço</Text>
-												<Text onClick={() => {
-													localStorage.clear()
-													navigate(`/homepage`)
-												}}>Sair</Text>
+												<Text
+													onClick={() => {
+														localStorage.clear();
+														navigate(`/homepage`);
+													}}
+												>
+													Sair
+												</Text>
 											</>
 										) : (
 											<>
 												<Text>Editar Perfil</Text>
 												<Text>Editar Endereço</Text>
-												<Text onClick={() => {
-													getUserByProfile()
-													navigate(`/profile`)
-												}}>Meus Anúncios</Text>
-												<Text onClick={() => {
-													localStorage.clear()
-													navigate(`/homepage`)
-												}}>Sair</Text>
+												<Text
+													onClick={handleClickProfile}
+												>
+													Meus Anúncios
+												</Text>
+												<Text
+													onClick={() => {
+														localStorage.clear();
+														navigate(`/homepage`);
+													}}
+												>
+													Sair
+												</Text>
 											</>
 										)}
 									</DivBar>
