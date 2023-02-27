@@ -7,3 +7,8 @@ export const schemaSendEmailForgotPassword= yup.object().shape({
 export const schemaValidateCodeForgotPassword= yup.object().shape({
 	newPasswordCode: yup.string().required(),
 });
+
+export const schemaRedefinePassword= yup.object().shape({
+	password: yup.string().required(),
+	confirmPassword: yup.string().required(),
+});
