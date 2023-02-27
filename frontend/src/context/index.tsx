@@ -10,6 +10,7 @@ import { IError } from "../interfaces/IError/IError";
 import { ILogin } from "../interfaces/ILogin/ILogin";
 import { IMotorShopContext } from "../interfaces/IMotorShopContext/IMotorShopContext";
 import { IProvider } from "../interfaces/IProvider/IProvider";
+import { IRegisterUser } from "../interfaces/IRegisterUser/IRegisterUser";
 import { IUser } from "../interfaces/IUser/IUser";
 import api from "../services";
 
@@ -28,12 +29,10 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const [openModalDeleteAd, setOpenModalDeleteAd] = useState(false);
 	const [ modalEditUser, setModalEditUser ] = useState<boolean>(false);
 	const [isActiveAd, setIsActiveAd] = useState(false);
+	const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
 	const [token, setToken] = useState(
 		localStorage.getItem("@motors-shop:token") || ""
 	);
-
-	console.log("ad", ad);
-	console.log("userProfile", userProfile);
 
 	const navigate = useNavigate();
 
@@ -69,6 +68,16 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const logout = () => {
 		localStorage.removeItem("@motors-shop:token");
 		window.location.reload();
+	}
+
+	const registerUser = async (data: IRegisterUser) => {
+		try {
+			const user = await api.post("/users", data);
+			// const addrress = await api.post("/address", data);
+		} catch (error) {
+			const err = error as AxiosError<IError>;
+			console.log(err);
+		}
 	}
 
 	const handleCloseModal = () => {
@@ -210,6 +219,9 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				setModalEditUser,
 				updateUser,
 				logout,
+				isAdvertiser,
+				setIsAdvertiser,
+				registerUser,
 			}}
 		>
 			{children}

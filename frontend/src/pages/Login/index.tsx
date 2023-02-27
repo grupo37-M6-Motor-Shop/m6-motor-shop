@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Form from "../../components/Form";
@@ -22,6 +22,7 @@ const Login = () => {
 	} = useForm<ILogin>({
 		resolver: yupResolver(schemaLogin),
 	});
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -71,6 +72,7 @@ const Login = () => {
                 border={'grey4'}
                 component={'big'}
                 width={'100%'}
+                onClick={() => navigate("/register")}
               >
                 Cadastrar
               </Button>

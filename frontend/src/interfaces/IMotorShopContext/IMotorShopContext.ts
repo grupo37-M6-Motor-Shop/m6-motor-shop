@@ -2,6 +2,7 @@ import { IFormUpdateAd } from "../FormUpdateAd/FormUpdateAd";
 import { FormUpdateUser } from "../FormUpdateUser/FormUpdateUser";
 import { IAds } from "../IAds/IAds";
 import { ILogin } from "../ILogin/ILogin";
+import { IRegisterUser } from "../IRegisterUser/IRegisterUser";
 import { IUser } from "../IUser/IUser";
 
 export interface IMotorShopContext {
@@ -38,4 +39,7 @@ export interface IMotorShopContext {
 	setModalEditUser: React.Dispatch<React.SetStateAction<boolean>>;
 	updateUser: (data: FormUpdateUser) => void;
 	logout: () => void;
+	isAdvertiser: boolean;
+	setIsAdvertiser: React.Dispatch<React.SetStateAction<boolean>>;
+	registerUser: (data: IRegisterUser) => void;
 }
