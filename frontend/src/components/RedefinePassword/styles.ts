@@ -1,19 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: var(--grey8);
-`;
-
-export const Main = styled.div`
-  width: 100%;
-  min-height: calc(100vh - 180px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-`;
-
-export const ContainerForm = styled.div`
   width: 100%;
   max-width: 25rem;
   padding: 2rem;
@@ -22,18 +9,9 @@ export const ContainerForm = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  
-  form {
-    a {
-      text-align: end;
-      font-weight: 500;
-      color: var(--grey2);
-      cursor: pointer;
-    }
-  }
 `;
 
-export const Title = styled.p`
+export const Title = styled.div`
   color: var(--grey1);
   font-weight: 500;
   font-size: 1.25rem;
