@@ -1,4 +1,5 @@
 import { IFormUpdateAd } from "../FormUpdateAd/FormUpdateAd";
+import { FormUpdateUser } from "../FormUpdateUser/FormUpdateUser";
 import { IAds } from "../IAds/IAds";
 import { ILogin } from "../ILogin/ILogin";
 import { IUser } from "../IUser/IUser";
@@ -35,4 +36,5 @@ export interface IMotorShopContext {
 	getAdbyIdNotOwner: (adId: string) => void;
 	modalEditUser: boolean;
 	setModalEditUser: React.Dispatch<React.SetStateAction<boolean>>;
+	updateUser: (data: FormUpdateUser) => void;
 }

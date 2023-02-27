@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { IFormCreateAd } from "../interfaces/FormCreateAd/FromCreateAd";
 import { IFormUpdateAd } from "../interfaces/FormUpdateAd/FormUpdateAd";
+import { FormUpdateUser } from "../interfaces/FormUpdateUser/FormUpdateUser";
 import { IAds } from "../interfaces/IAds/IAds";
 import { IError } from "../interfaces/IError/IError";
 import { ILogin } from "../interfaces/ILogin/ILogin";
@@ -95,6 +96,17 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			console.log(err);
 		}
 	};
+
+	const updateUser = async (data: FormUpdateUser) => {
+		try {
+			const res = await api.patch<IUser>(`/users/${user.id}`, data)
+			setUser(res.data)
+			handleCloseModal()
+		} catch (error) {
+			const err = error as AxiosError<IError>;
+			console.log(err);
+		}
+	}
 
 	const getAdbyId = async (idAd: string) => {
 		try {
@@ -198,6 +210,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				getAdbyIdNotOwner,
 				modalEditUser,
 				setModalEditUser,
+				updateUser,
 			}}
 		>
 			{children}
