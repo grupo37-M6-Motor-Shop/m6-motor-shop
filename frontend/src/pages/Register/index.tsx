@@ -1,14 +1,35 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Form from "../../components/Form";
 import Header from "../../components/Header";
 import Input from "../../components/Input";
-import InputCheckbox from "../../components/InputCheckbox";
+import InputChoices from "../../components/InputChoices";
 import InputTextArea from "../../components/InputTextArea";
+import { MotorShopContext } from "../../context";
+import { IRegisterUser } from "../../interfaces/IRegisterUser/IRegisterUser";
+import { schemaRegisterUser } from "../../validations/FormRegisterUser";
 import { Container, ContainerForm, Fieldset, Main, Title } from "./styles";
 
 const Register = () => {
+  const { isAdvertiser, registerUser } = useContext(MotorShopContext);
+  const [selectedIsAdvertiser, setSelectedIsAdvertiser] = useState<string | void>("Comprador");
   document.body.style.overflow = "unset";
+  const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<IRegisterUser>({
+		resolver: yupResolver(schemaRegisterUser),
+	});
+
+  const newRegisterUser = (data: IRegisterUser) => {
+    const newData = {...data, advertiser: isAdvertiser}
+    registerUser(newData)
+  }
+
   return (
     <Container>
       <Header/>
@@ -17,38 +38,56 @@ const Register = () => {
           <Title>
             Cadastro
           </Title>
-          <Form>
+          <Form onSubmit={handleSubmit(newRegisterUser)}>
             <Fieldset style={{gap: 0}}>
               <p>Informações pessoais</p>
               <Input
                 label="Nome"
                 type="text"
                 placeholder="Ex: Samuel Leão"
+                name="name"
+                register={register}
+                error={errors.name}
               />
               <Input
                 label="Email"
                 type="text"
                 placeholder="Ex: samuel@kenzie.com.br"
+                name="email"
+                register={register}
+                error={errors.email}
               />
               <Input
                 label="CPF"
                 type="text"
                 placeholder="000.000.000-00"
+                name="cpf"
+                register={register}
+                error={errors.cpf}
               />
               <Input
                 label="Celular"
                 type="text"
                 placeholder="(DDD) 90000-0000"
+                name="phone"
+                register={register}
+                error={errors.phone}
               />
               <Input
                 label="Data de Nascimento"
                 type="text"
                 placeholder="00/00/00"
+                name="birthday"
+                register={register}
+                error={errors.birthday}
               />
 
               <InputTextArea
                 label="Descrição"
                 placeholder="Digitar descrição"
+                name="description"
+                register={register}
+                error={errors.description}
               />
 
 
@@ -60,6 +99,9 @@ const Register = () => {
                 label="CEP"
                 type="text"
                 placeholder="00000.000"
+                name="cep"
+                register={register}
+                error={errors.cep}
               />
 
               <Fieldset style={{flexDirection: "row", gap: "0.5rem"}}>
@@ -67,12 +109,18 @@ const Register = () => {
                   label="Estado"
                   type="text"
                   placeholder="Digitar Estado"
+                  name="state"
+                  register={register}
+                  error={errors.state}
                 />
                 
                 <Input
                   label="Cidade"
                   type="text"
                   placeholder="Digitar cidade"
+                  name="city"
+                  register={register}
+                  error={errors.city}
                 />
               </Fieldset>
 
@@ -80,6 +128,9 @@ const Register = () => {
                 label="Rua"
                 type="text"
                 placeholder="Digitar rua"
+                name="street"
+                register={register}
+                error={errors.street}
               />
 
               <Fieldset style={{flexDirection: "row", gap: "0.5rem"}}>
@@ -87,20 +138,33 @@ const Register = () => {
                 label="Número"
                 type="text"
                 placeholder="Digitar número"
+                name="number"
+                register={register}
+                error={errors.number}
               />
               
               <Input
                 label="Complemento"
                 type="text"
                 placeholder="Ex: apart 307"
+                name="complement"
+                register={register}
+                error={errors.complement}
               />
               </Fieldset>
             </Fieldset>
 
             <Fieldset>
-              <p>Tipo de conta</p>
-
-              <InputCheckbox name1="Comprador" name2="Anunciante" checked/>
+              <InputChoices
+                label="Tipo de conta"
+                name="advertiser"
+                choice1="Comprador"
+                choice2="Anunciante"
+                register={register}
+                error={errors.advertiser}
+                value={`${selectedIsAdvertiser}`}
+                setSelectedValue={setSelectedIsAdvertiser}
+              />
 
             </Fieldset>
 
@@ -109,11 +173,17 @@ const Register = () => {
                 label="Senha"
                 type="password"
                 placeholder="Digitar senha"
+                name="password"
+                register={register}
+                error={errors.password}
               />
               <Input
                 label="Confirmar de Senha"
                 type="password"
                 placeholder="Digitar senha"
+                name="confirmPassword"
+                register={register}
+                error={errors.confirmPassword}
               />
             </Fieldset>
 
@@ -124,6 +194,7 @@ const Register = () => {
                 bgcolor={'brand1'}
                 component={'big'}
                 width={'100%'}
+                type="submit"
               >
                 Finalizar Cadastro
               </Button>

@@ -79,7 +79,7 @@ const Section = ({
 									typeVehicle,
 									isActive,
 								}: IAds) =>
-									typeVehicle === value &&
+									typeVehicle === value && typeAd === "Venda" &&
 									isActive && (
 										<Card
 											key={id}
@@ -146,7 +146,7 @@ const Section = ({
 									isActive,
 									typeAd,
 								}: IAds) =>
-									typeVehicle === value && (
+									typeVehicle === value && typeAd === "Venda" && (
 										<Card
 											key={id}
 											id={id}
