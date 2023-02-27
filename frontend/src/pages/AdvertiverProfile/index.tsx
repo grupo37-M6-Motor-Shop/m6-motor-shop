@@ -38,24 +38,6 @@ const AdvertiverProfile = () => {
 		}
 	}, []);
 
-	const userD = [
-		{
-			id: 1,
-			userName: "Felipe Vieira",
-			urlImage:
-				"https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
-			title: "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes",
-			description:
-				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-			mileage: 1000,
-			year: 1990,
-			price: "170.000,00",
-			typeAnnouncement: "Leilão",
-			typeVehicle: "Carro",
-			isActive: true,
-		},
-	];
-
 	return (
 		<Container>
 			<Header />

@@ -45,17 +45,15 @@ const MotorShopProvider = ({ children }: IProvider) => {
 					await api
 						.get("/users/profile")
 						.then((res) => setUser(res.data));
+					setIsLoggedIn(true)
 					navigate("/homepage", { replace: true });
 				} catch (error) {
 					console.error(error);
+					localStorage.removeItem("@motors-shop:token");
 				}
 			}
 		};
 		loadUser();
-
-		if (token) {
-			setIsLoggedIn(true);
-		}
 	}, [token]);
 
 	const signIn = async (data: ILogin) => {
@@ -63,10 +61,15 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		const token = await api
 			.post("/login", { email, password })
 			.then((res) => res.data.token);
-
 		localStorage.setItem("@motors-shop:token", token);
 		setToken(token);
+		api.defaults.headers.Authorization = `Bearer ${token}`;
 	};
+
+	const logout = () => {
+		localStorage.removeItem("@motors-shop:token");
+		window.location.reload();
+	}
 
 	const handleCloseModal = () => {
 		setOpenModalCreateAd(false);
@@ -77,7 +80,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 
 	const getUserByProfile = async () => {
 		try {
-			api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 			const res = await api.get<IUser>("/users/profile");
 			setUserProfile(res.data);
 		} catch (error) {
@@ -88,7 +90,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 
 	const getUserById = async (userId: string) => {
 		try {
-			api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 			const res = await api.get<IUser>(`/users/${userId}`);
 			setUserProfile(res.data);
 		} catch (error) {
@@ -141,7 +142,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 
 	const registerAd = async (data: IFormCreateAd) => {
 		try {
-			api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 			await api.post<IFormCreateAd>("/ads", data);
 			getUserByProfile();
 			handleCloseModal();
@@ -154,7 +154,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const updateAd = async (data: IFormUpdateAd, adId: string) => {
 		const galleryData = data;
 		try {
-			api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 			await api.patch<IFormUpdateAd>(`/ads/${adId}`, data);
 			await api.patch(`/galleries/${galleryData.galleryId}`, galleryData);
 			getUserByProfile();
@@ -167,7 +166,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 
 	const deleteAd = async (adId: string) => {
 		try {
-			api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 			await api.delete(`/ads/${adId}`);
 			getUserByProfile();
 		} catch (error) {
@@ -211,6 +209,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				modalEditUser,
 				setModalEditUser,
 				updateUser,
+				logout,
 			}}
 		>
 			{children}
