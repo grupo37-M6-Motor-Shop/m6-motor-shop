@@ -21,12 +21,12 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
+  padding: 0.75rem;
   gap: 2rem;
 
   @media screen and (min-width: 1240px) {
-    max-width: 80vw;
-    align-items: center;
+    max-width: 1240px;
+    align-items: flex-start;
   }
 `;
 
@@ -46,6 +46,7 @@ export const BackgroundContent = styled.div`
 
 export const ContainerInfo = styled.div`
   width: 100%;
+  max-width: 1240px;
   margin-top: 2rem;
   z-index: 2;
   gap: 1rem;
@@ -53,9 +54,9 @@ export const ContainerInfo = styled.div`
   flex-direction: column;
   align-items: center;
   
-  @media screen and (min-width: 1240px) {
+  @media screen and (min-width: 1250px) {
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
   }
 `;
@@ -93,6 +94,7 @@ export const InfoVehicle = styled.div`
 `;
 
 export const Description = styled.div<DescriptionProps>`
+  border-radius: 0.25rem;
   background-color: var(--whiteFixed);
   padding: 2rem;
   color: var(--grey2);
@@ -143,7 +145,7 @@ export const InfoAdvertiser = styled.div`
   gap: 1rem;
   max-width: 47rem;
   
-  @media screen and (min-width: 1240px) {
+  @media screen and (min-width: 1250px) {
     max-width: 27rem;
   }
 `;
@@ -183,13 +185,14 @@ export const Name = styled.div`
 
 export const ContainerComments = styled.div`
   width: 100%;
+  max-width: 1240px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 
-  @media screen and (min-width: 1240px) {
-    align-items: flex-start;
+  @media screen and (min-width: 1250px) {
+    max-width: 750px;
   }
 `;
 
