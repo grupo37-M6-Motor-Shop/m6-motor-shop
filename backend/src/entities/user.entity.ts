@@ -27,7 +27,7 @@ class User {
 	@Column({ length: 14, unique: true })
 	cpf: string;
 
-	@Column({ length: 11 })
+	@Column({ length: 16 })
 	phone: string;
 
 	@Column({ length: 8 })
