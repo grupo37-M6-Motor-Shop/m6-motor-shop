@@ -10,6 +10,8 @@ export const StyledFooter = styled.footer`
 	background-color: var(--grey0);
 	height: 100px;
 	color: var(--whiteFixed);
+	position: absolute;
+	bottom: 0;
 	@media (max-width: 600px) {
 		flex-direction: column;
 		height: 250px;
