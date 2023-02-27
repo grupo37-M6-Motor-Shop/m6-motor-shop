@@ -10,8 +10,13 @@ import InputTextArea from "../InputTextArea";
 import { Div } from "../ModalAdCreate/style";
 import Button from "../Button";
 import { FormUpdateUser } from "../../interfaces/FormUpdateUser/FormUpdateUser";
+import { useContext } from "react";
+import { MotorShopContext } from "../../context";
 
 const ModalEditUser = () => {
+  const { user, updateUser, handleCloseModal } = useContext(MotorShopContext)
+  const { name, email, cpf, phone, birthday, description } = user
+
   const {
 		register,
 		handleSubmit,
@@ -23,13 +28,14 @@ const ModalEditUser = () => {
   return (
     <Modal title="Editar Perfil">
 
-			<Form>
+			<Form onSubmit={handleSubmit(updateUser)}>
         <Fieldset>
           <p>Informações pessoais</p>
           <Input
             label="Nome"
             type="text"
             placeholder="Digitar nome"
+            defaultValue={name}
             register={register}
             name="name"
             error={errors.name}
@@ -38,6 +44,7 @@ const ModalEditUser = () => {
             label="Email"
             type="text"
             placeholder="samuel@kenzie.com.br"
+            defaultValue={email}
             register={register}
             name="email"
             error={errors.email}
@@ -46,6 +53,7 @@ const ModalEditUser = () => {
             label="CPF"
             type="text"
             placeholder="000.000.000-09"
+            defaultValue={cpf}
             register={register}
             name="cpf"
             error={errors.cpf}
@@ -54,6 +62,7 @@ const ModalEditUser = () => {
             label="Celular"
             type="text"
             placeholder="(024) 99921-2165"
+            defaultValue={phone}
             register={register}
             name="phone"
             error={errors.phone}
@@ -62,6 +71,7 @@ const ModalEditUser = () => {
             label="Data de Nascimento"
             type="text"
             placeholder="09/12/90"
+            defaultValue={birthday}
             register={register}
             name="birthday"
             error={errors.birthday}
@@ -70,6 +80,7 @@ const ModalEditUser = () => {
             label="Descrição"
             name="description"
             placeholder="Digitar descrição"
+            defaultValue={description}
             register={register}
             error={errors.description}
           />
@@ -82,6 +93,7 @@ const ModalEditUser = () => {
 						component={"big"}
 						width={"126px"}
             hover={{bgcolor: "grey5"}}
+            onClick={handleCloseModal}
 					>
 						Cancelar
 					</Button>

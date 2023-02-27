@@ -1,5 +1,5 @@
 export interface FormUpdateUser {
-  name?: string;
+	name?: string;
 	email?: string;
 	cpf?: string;
 	phone?: string;
