@@ -12,6 +12,7 @@ interface props {
 export const FontTwoLatters = styled(FontIntegerNormal)`
   color: var(--whiteFixed);
 `;
+
 export const FontUserName = styled(FontIntegerNormal) <props>`
   ${(props) => props.auction && `color: var(--whiteFixed);`}
   ${(props) => `color: var(${props.colorFont})`};
@@ -19,20 +20,19 @@ export const FontUserName = styled(FontIntegerNormal) <props>`
 
 export const ContainerUser = styled.div`
   display: flex;
-  gap: 8px;
+  gap: .5rem;
   align-items: center;
 `;
 
 export const UserImg = styled.div<props>`
   background-color: ${(props) => `var(${props.colorRandom})`};
-  height: 32px;
-  width: 32px;
+  height: 2rem;
+  width: 2rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-
 
 export const StyledHeader = styled.header`
 	display: flex;
@@ -176,7 +176,7 @@ export const DropDown = styled.div<DropdownProps>`
     bottom: 0rem;
     width: 12.5rem;
     height:min-content;
-    left: 53%;
+    left: 38%;
     padding: 2.125rem;
     opacity: ${(props: DropdownProps) => props.dropdown};
     pointer-events: ${(props: DropdownProps) => props.dropdown === 0 ? `none` : `all`};
