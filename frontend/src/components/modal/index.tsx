@@ -10,7 +10,8 @@ interface IModal {
 
 const Modal = ({ title, children }: IModal) => {
 	const { handleCloseModal } = useContext(MotorShopContext);
-
+	document.body.style.overflow = "hidden";
+	
 	return (
 		<Container>
 			<Card>

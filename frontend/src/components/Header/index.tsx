@@ -28,6 +28,8 @@ import Button from "../Button";
 import { useContext, useState } from "react";
 import { MotorShopContext } from "../../context";
 import { useNavigate } from "react-router-dom";
+import Modal from "../modal";
+import ModalEditUser from "../ModalEditUser";
 
 const Header = ({ auction, colorFont, image }: any) => {
 	const [dropDown, setDropDown] = useState<number>(0);
@@ -37,6 +39,8 @@ const Header = ({ auction, colorFont, image }: any) => {
 		user: { name, advertiser },
 		getUserByProfile,
 		setIsLoggedIn,
+		modalEditUser,
+		setModalEditUser,
 	} = useContext(MotorShopContext);
 	const navigate = useNavigate();
 	const showSideBar = () => setIsSideBarVisible(!isSideBarVisible);
@@ -159,7 +163,10 @@ const Header = ({ auction, colorFont, image }: any) => {
 									{!advertiser ? (
 										<>
 											<DropDown dropdown={dropDown}>
-												<Text>Editar Perfil</Text>
+												<Text onClick={() => {
+													handleClickdropDownProfile()
+													setModalEditUser(true)
+												}} >Editar Perfil</Text>
 												<Text>Editar Endereço</Text>
 												<Text
 													onClick={() => {
@@ -176,7 +183,10 @@ const Header = ({ auction, colorFont, image }: any) => {
 									) : (
 										<>
 											<DropDown dropdown={dropDown}>
-												<Text>Editar Perfil</Text>
+												<Text onClick={() => {
+													handleClickdropDownProfile()
+													setModalEditUser(true)
+												}}  >Editar Perfil</Text>
 												<Text>Editar Endereço</Text>
 												<Text
 													onClick={handleClickProfile}
@@ -267,7 +277,10 @@ const Header = ({ auction, colorFont, image }: any) => {
 										</Settings>
 										{!advertiser ? (
 											<>
-												<Text>Editar Perfil</Text>
+												<Text onClick={() => {
+													handleClickdropDownProfile()
+													setModalEditUser(true)
+												}}  >Editar Perfil</Text>
 												<Text>Editar Endereço</Text>
 												<Text
 													onClick={() => {
@@ -280,7 +293,10 @@ const Header = ({ auction, colorFont, image }: any) => {
 											</>
 										) : (
 											<>
-												<Text>Editar Perfil</Text>
+												<Text onClick={() => {
+													handleClickdropDownProfile()
+													setModalEditUser(true)
+												}} >Editar Perfil</Text>
 												<Text>Editar Endereço</Text>
 												<Text
 													onClick={handleClickProfile}
@@ -304,6 +320,9 @@ const Header = ({ auction, colorFont, image }: any) => {
 					</DivProfile>
 				</Nav>
 			</StyledHeader>
+			{
+				modalEditUser && <ModalEditUser/>
+			}
 		</>
 	);
 };
