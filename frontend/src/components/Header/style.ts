@@ -57,7 +57,6 @@ export const Nav = styled.nav`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 2.75rem;
   @media (max-width: 900px) {
     justify-content: center;
     gap: 0rem;
@@ -123,11 +122,18 @@ export const Divise = styled.div`
 	}
 `;
 
+export const DivProfile = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+`;
+
 export const DivNav = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 2.75rem;
+  padding-right: 2.75rem;
 `;
 
 export const DivButton = styled.div`
@@ -135,6 +141,7 @@ export const DivButton = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	gap: 2.75rem;
+  padding-left: 1.5rem;
   @media (max-width: 900px) {
 		display: none;
 	}
@@ -159,10 +166,12 @@ export const Text = styled.p`
 
 export const Profile = styled.div`
 	display: flex;
+  min-width: 120px;
+  justify-content: center;
 	align-items: center;
-	gap: .3125rem;
 	cursor: pointer;
 	position: relative;
+  padding-left: 2.75rem;
   @media (max-width: 900px) {
 		display: none;
 	}
@@ -174,9 +183,9 @@ export const DropDown = styled.div<DropdownProps>`
     position: absolute;
 		gap: 1rem;
     bottom: 0rem;
-    width: 12.5rem;
+    width: 12rem;
     height:min-content;
-    left: 38%;
+    left: 61%;
     padding: 2.125rem;
     opacity: ${(props: DropdownProps) => props.dropdown};
     pointer-events: ${(props: DropdownProps) => props.dropdown === 0 ? `none` : `all`};

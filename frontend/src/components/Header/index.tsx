@@ -21,6 +21,7 @@ import {
 	ContainerUser,
 	FontUserName,
 	UserImg,
+	DivProfile
 } from "./style";
 import logo from "../../assets/img/motor_shop_logo_header.svg";
 import Button from "../Button";
@@ -111,7 +112,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 						<Link href="/homepage#leilao">Leilão</Link>
 					</DivNav>
 					<Divise />
-					<DivNav>
+					<DivProfile>
 						{token === "" ? (
 							<>
 								<DivButton>
@@ -300,7 +301,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 								</Menu>
 							</Sidebar>
 						)}
-					</DivNav>
+					</DivProfile>
 				</Nav>
 			</StyledHeader>
 		</>
