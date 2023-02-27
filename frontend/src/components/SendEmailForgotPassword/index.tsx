@@ -5,17 +5,18 @@ import Form from "../../components/Form";
 import Input from "../../components/Input";
 import { Container, Fieldset, Title } from "./styles";
 import { schemaSendEmailForgotPassword } from "../../validations/FormForgotPassword"
-import { IFormForgotPassword } from "../../interfaces/IFormForgotPassword/IFormForgotPassword";
+import { ISendEmailForgotPassword } from "../../interfaces/IFormForgotPassword/IFormForgotPassword";
+import { useNavigate } from "react-router-dom";
 
 const SendEmailForgotPassword = () => {
   const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<IFormForgotPassword>({
+	} = useForm<ISendEmailForgotPassword>({
 		resolver: yupResolver(schemaSendEmailForgotPassword),
 	});
-
+	const navigate = useNavigate();
 
   return (
     <Container>
@@ -53,6 +54,7 @@ const SendEmailForgotPassword = () => {
             bgcolor={'grey6'}
             component={'big'}
             width={'100%'}
+            onClick={() => navigate("/login")}
           >
             Cancelar
           </Button>

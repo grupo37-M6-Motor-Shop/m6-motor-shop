@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Form from "../../components/Form";
@@ -9,7 +10,7 @@ import Input from "../../components/Input";
 import { MotorShopContext } from "../../context";
 import { ILogin } from "../../interfaces/ILogin/ILogin";
 import { schemaLogin } from "../../validations/FormLogin";
-import { Container, ContainerForm, Fieldset, ForgotPassword, Main, Title } from "./styles";
+import { Container, ContainerForm, Fieldset, Main, Title } from "./styles";
 
 const Login = () => {
   const { signIn } = useContext(MotorShopContext);
@@ -46,9 +47,9 @@ const Login = () => {
                 name="password"
               />
             </Fieldset>
-            <ForgotPassword>
+            <Link to="/forgot-password">
               Esqueci minha senha
-            </ForgotPassword>
+            </Link>
 
             <Fieldset style={{textAlign: "center", padding: "1rem 0"}}>
               <Button
