@@ -14,6 +14,7 @@ import { Container, ContainerForm, Fieldset, Main, Title } from "./styles";
 
 const Login = () => {
   const { signIn } = useContext(MotorShopContext);
+  document.body.style.overflow = "unset";
   const {
 		register,
 		handleSubmit,

@@ -7,6 +7,7 @@ import Gallery from "./entities/gallery.entity";
 import Comment from "./entities/comment.entity";
 import { createTables1677076210524 } from "./migrations/1677076210524-createTables";
 import { alterTables1677231112876 } from "./migrations/1677231112876-alterTables";
+import { alterTable1677517847611 } from "./migrations/1677517847611-alterTable";
 
 const AppDataSource = new DataSource({
 	type: "postgres",
@@ -18,7 +19,7 @@ const AppDataSource = new DataSource({
 	synchronize: true,
 	logging: true,
 	entities: [User, Address, Ad, Comment, Gallery],
-	migrations: [createTables1677076210524, alterTables1677231112876],
+	migrations: [createTables1677076210524, alterTables1677231112876, alterTable1677517847611],
 });
 
 export default AppDataSource;
