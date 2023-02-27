@@ -8,6 +8,7 @@ import InputTextArea from "../../components/InputTextArea";
 import { Container, ContainerForm, Fieldset, Main, Title } from "./styles";
 
 const Register = () => {
+  document.body.style.overflow = "unset";
   return (
     <Container>
       <Header/>

@@ -33,4 +33,6 @@ export interface IMotorShopContext {
 	signIn: (data: ILogin) => void;
 	token: string;
 	getAdbyIdNotOwner: (adId: string) => void;
+	modalEditUser: boolean;
+	setModalEditUser: React.Dispatch<React.SetStateAction<boolean>>;
 }

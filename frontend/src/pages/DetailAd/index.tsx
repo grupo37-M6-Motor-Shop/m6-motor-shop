@@ -31,7 +31,7 @@ import {
 
 const DetailAd = () => {
 	const { ad, userProfile, getUserById } = useContext(MotorShopContext);
-
+	document.body.style.overflow = "unset";
 	const navigate = useNavigate();
 
 	const handleClick = async () => {

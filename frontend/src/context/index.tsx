@@ -25,6 +25,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const [openModalCreateAd, setOpenModalCreateAd] = useState(false);
 	const [openModalUpdateAd, setOpenModalUpdateAd] = useState(false);
 	const [openModalDeleteAd, setOpenModalDeleteAd] = useState(false);
+	const [ modalEditUser, setModalEditUser ] = useState<boolean>(false);
 	const [isActiveAd, setIsActiveAd] = useState(false);
 	const [token, setToken] = useState(
 		localStorage.getItem("@motors-shop:token") || ""
@@ -70,6 +71,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		setOpenModalCreateAd(false);
 		setOpenModalDeleteAd(false);
 		setOpenModalUpdateAd(false);
+		setModalEditUser(false);
 	};
 
 	const getUserByProfile = async () => {
@@ -194,6 +196,8 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				signIn,
 				token,
 				getAdbyIdNotOwner,
+				modalEditUser,
+				setModalEditUser,
 			}}
 		>
 			{children}

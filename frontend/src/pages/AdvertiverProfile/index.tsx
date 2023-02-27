@@ -20,6 +20,7 @@ import {
 } from "./style";
 
 const AdvertiverProfile = () => {
+	document.body.style.overflow = "unset";
 	const {
 		openModalCreateAd,
 		setOpenModalCreateAd,
