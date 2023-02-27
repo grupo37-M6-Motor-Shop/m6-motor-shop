@@ -37,4 +37,5 @@ export interface IMotorShopContext {
 	modalEditUser: boolean;
 	setModalEditUser: React.Dispatch<React.SetStateAction<boolean>>;
 	updateUser: (data: FormUpdateUser) => void;
+	logout: () => void;
 }

@@ -45,17 +45,15 @@ const MotorShopProvider = ({ children }: IProvider) => {
 					await api
 						.get("/users/profile")
 						.then((res) => setUser(res.data));
+					setIsLoggedIn(true)
 					navigate("/homepage", { replace: true });
 				} catch (error) {
 					console.error(error);
+					localStorage.removeItem("@motors-shop:token");
 				}
 			}
 		};
 		loadUser();
-
-		if (token) {
-			setIsLoggedIn(true);
-		}
 	}, [token]);
 
 	const signIn = async (data: ILogin) => {
@@ -67,6 +65,11 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		localStorage.setItem("@motors-shop:token", token);
 		setToken(token);
 	};
+
+	const logout = () => {
+		localStorage.removeItem("@motors-shop:token");
+		window.location.reload();
+	}
 
 	const handleCloseModal = () => {
 		setOpenModalCreateAd(false);
@@ -211,6 +214,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				modalEditUser,
 				setModalEditUser,
 				updateUser,
+				logout,
 			}}
 		>
 			{children}

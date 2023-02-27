@@ -28,19 +28,18 @@ import Button from "../Button";
 import { useContext, useState } from "react";
 import { MotorShopContext } from "../../context";
 import { useNavigate } from "react-router-dom";
-import Modal from "../modal";
 import ModalEditUser from "../ModalEditUser";
 
 const Header = ({ auction, colorFont, image }: any) => {
 	const [dropDown, setDropDown] = useState<number>(0);
 	const [isSideBarVisible, setIsSideBarVisible] = useState<boolean>(false);
 	const {
-		token,
+		isLoggedIn,
 		user: { name, advertiser },
 		getUserByProfile,
-		setIsLoggedIn,
 		modalEditUser,
 		setModalEditUser,
+		logout,
 	} = useContext(MotorShopContext);
 	const navigate = useNavigate();
 	const showSideBar = () => setIsSideBarVisible(!isSideBarVisible);
@@ -117,7 +116,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 					</DivNav>
 					<Divise />
 					<DivProfile>
-						{token === "" ? (
+						{!isLoggedIn ? (
 							<>
 								<DivButton>
 									<Button
@@ -170,10 +169,8 @@ const Header = ({ auction, colorFont, image }: any) => {
 												<Text>Editar Endereço</Text>
 												<Text
 													onClick={() => {
-														localStorage.clear();
-														setIsLoggedIn(false);
+														logout()
 														handleClickdropDownProfile();
-														navigate(`/homepage`);
 													}}
 												>
 													Sair
@@ -195,10 +192,8 @@ const Header = ({ auction, colorFont, image }: any) => {
 												</Text>
 												<Text
 													onClick={() => {
-														localStorage.clear();
-														setIsLoggedIn(false);
+														logout()
 														handleClickdropDownProfile();
-														navigate(`/homepage`);
 													}}
 												>
 													Sair
@@ -209,7 +204,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 								</Profile>
 							</>
 						)}
-						{isSideBarVisible && token === "" ? (
+						{isSideBarVisible && !isLoggedIn ? (
 							<Sidebar isSideBarVisible={isSideBarVisible}>
 								<Menu>
 									<DivBar>
@@ -283,10 +278,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 												}}  >Editar Perfil</Text>
 												<Text>Editar Endereço</Text>
 												<Text
-													onClick={() => {
-														localStorage.clear();
-														navigate(`/homepage`);
-													}}
+													onClick={logout}
 												>
 													Sair
 												</Text>
@@ -304,10 +296,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 													Meus Anúncios
 												</Text>
 												<Text
-													onClick={() => {
-														localStorage.clear();
-														navigate(`/homepage`);
-													}}
+													onClick={logout}
 												>
 													Sair
 												</Text>
