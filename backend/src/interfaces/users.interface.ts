@@ -10,10 +10,25 @@ export interface IUserRequest {
   advertiser: boolean,
   password: string,
   isAdm: boolean,
+  cep: string;
+	state: string,
+	city: string,
+	street: string,
+	number: string,
+	complement: string
 }
 
-export interface IUser extends IUserRequest {
+export interface IUser {
   id: string,
+  name: string,
+  email: string,
+  cpf: string,
+  phone: string,
+  birthday: string,
+  description: string,
+  advertiser: boolean,
+  password: string,
+  isAdm: boolean,
   createdAt: Date,
   updatedAt: Date,
 }

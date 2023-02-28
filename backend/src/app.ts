@@ -7,6 +7,7 @@ import userRoutes from "./routes/users.routes";
 import sessionRoutes from "./routes/sessions.routes";
 import adsRoutes from "./routes/ads.routes";
 import galleriesRoutes from "./routes/galleries.routes";
+import addressRoutes from "./routes/address.routes";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use("/users", userRoutes);
 app.use("/login", sessionRoutes);
 app.use("/ads", adsRoutes);
 app.use("/galleries", galleriesRoutes);
+app.use("/address", addressRoutes);
 
 app.use(handleErrorMiddleware);
 

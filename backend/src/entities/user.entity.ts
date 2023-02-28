@@ -58,8 +58,7 @@ class User {
 	@UpdateDateColumn()
 	updatedAt: Date;
 
-	@OneToOne(() => Address, { cascade: true })
-	@JoinColumn()
+	@OneToOne(() => Address, (address) => address.user)
 	address: Address;
 
 	@OneToMany(() => Ad, (ad) => ad.user)

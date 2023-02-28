@@ -2,9 +2,13 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	JoinColumn,
+	OneToMany,
+	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from "typeorm";
+import User from "./user.entity";
 
 @Entity("address")
 class Address {
@@ -24,7 +28,7 @@ class Address {
 	street: string;
 
 	@Column()
-	number: number;
+	number: string;
 
 	@Column({ length: 500 })
 	complement: string;
@@ -34,6 +38,11 @@ class Address {
 
 	@UpdateDateColumn()
 	updatedAt: Date;
+
+	@OneToOne(() => User, (user) => user.address, { onDelete: "CASCADE" })
+	@JoinColumn()
+	user: User;
+
 }
 
 export default Address;
