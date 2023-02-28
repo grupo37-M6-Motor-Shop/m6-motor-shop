@@ -1,7 +1,6 @@
 import { AxiosError } from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { IFormCreateAd } from "../interfaces/FormCreateAd/FromCreateAd";
 import { IFormUpdateAd } from "../interfaces/FormUpdateAd/FormUpdateAd";
 import { FormUpdateUser } from "../interfaces/FormUpdateUser/FormUpdateUser";
@@ -27,7 +26,9 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const [openModalCreateAd, setOpenModalCreateAd] = useState(false);
 	const [openModalUpdateAd, setOpenModalUpdateAd] = useState(false);
 	const [openModalDeleteAd, setOpenModalDeleteAd] = useState(false);
-	const [ modalEditUser, setModalEditUser ] = useState<boolean>(false);
+	const [modalEditUser, setModalEditUser] = useState<boolean>(false);
+	const [openModalRegisterUserSuccess, setOpenModalRegisterUserSuccess] =
+		useState(false);
 	const [isActiveAd, setIsActiveAd] = useState(false);
 	const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
 	const [token, setToken] = useState(
@@ -44,7 +45,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 					await api
 						.get("/users/profile")
 						.then((res) => setUser(res.data));
-					setIsLoggedIn(true)
+					setIsLoggedIn(true);
 					navigate("/homepage", { replace: true });
 				} catch (error) {
 					console.error(error);
@@ -68,23 +69,24 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const logout = () => {
 		localStorage.removeItem("@motors-shop:token");
 		window.location.reload();
-	}
+	};
 
 	const registerUser = async (data: IRegisterUser) => {
 		try {
-			const user = await api.post("/users", data);
-			// const addrress = await api.post("/address", data);
+			await api.post("/users", data);
+			setOpenModalRegisterUserSuccess(true);
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
 		}
-	}
+	};
 
 	const handleCloseModal = () => {
 		setOpenModalCreateAd(false);
 		setOpenModalDeleteAd(false);
 		setOpenModalUpdateAd(false);
 		setModalEditUser(false);
+		setOpenModalRegisterUserSuccess(false);
 	};
 
 	const getUserByProfile = async () => {
@@ -109,14 +111,14 @@ const MotorShopProvider = ({ children }: IProvider) => {
 
 	const updateUser = async (data: FormUpdateUser) => {
 		try {
-			const res = await api.patch<IUser>(`/users/${user.id}`, data)
-			setUser(res.data)
-			handleCloseModal()
+			const res = await api.patch<IUser>(`/users/${user.id}`, data);
+			setUser(res.data);
+			handleCloseModal();
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
 		}
-	}
+	};
 
 	const getAdbyId = async (idAd: string) => {
 		try {
@@ -206,6 +208,8 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				setOpenModalUpdateAd,
 				openModalDeleteAd,
 				setOpenModalDeleteAd,
+				openModalRegisterUserSuccess,
+				setOpenModalRegisterUserSuccess,
 				handleCloseModal,
 				registerAd,
 				getRandomAds,
