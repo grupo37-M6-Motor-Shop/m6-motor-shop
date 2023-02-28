@@ -21,7 +21,7 @@ import {
 	ContainerUser,
 	FontUserName,
 	UserImg,
-	DivProfile
+	DivProfile,
 } from "./style";
 import logo from "../../assets/img/motor_shop_logo_header.svg";
 import Button from "../Button";
@@ -29,6 +29,7 @@ import { useContext, useState } from "react";
 import { MotorShopContext } from "../../context";
 import { useNavigate } from "react-router-dom";
 import ModalEditUser from "../ModalEditUser";
+import ModalEditAddressUser from "../ModalEditAddressUser";
 
 const Header = ({ auction, colorFont, image }: any) => {
 	const [dropDown, setDropDown] = useState<number>(0);
@@ -39,6 +40,8 @@ const Header = ({ auction, colorFont, image }: any) => {
 		getUserByProfile,
 		modalEditUser,
 		setModalEditUser,
+		openModalUpdateAddresUser,
+		setOpenModalUpdateAddresUser,
 		logout,
 	} = useContext(MotorShopContext);
 	const navigate = useNavigate();
@@ -162,14 +165,27 @@ const Header = ({ auction, colorFont, image }: any) => {
 									{!advertiser ? (
 										<>
 											<DropDown dropdown={dropDown}>
-												<Text onClick={() => {
-													handleClickdropDownProfile()
-													setModalEditUser(true)
-												}} >Editar Perfil</Text>
-												<Text>Editar Endereço</Text>
 												<Text
 													onClick={() => {
-														logout()
+														handleClickdropDownProfile();
+														setModalEditUser(true);
+													}}
+												>
+													Editar Perfil
+												</Text>
+												<Text
+													onClick={() => {
+														handleClickdropDownProfile();
+														setOpenModalUpdateAddresUser(
+															true
+														);
+													}}
+												>
+													Editar Endereço
+												</Text>
+												<Text
+													onClick={() => {
+														logout();
 														handleClickdropDownProfile();
 													}}
 												>
@@ -180,11 +196,24 @@ const Header = ({ auction, colorFont, image }: any) => {
 									) : (
 										<>
 											<DropDown dropdown={dropDown}>
-												<Text onClick={() => {
-													handleClickdropDownProfile()
-													setModalEditUser(true)
-												}}  >Editar Perfil</Text>
-												<Text>Editar Endereço</Text>
+												<Text
+													onClick={() => {
+														handleClickdropDownProfile();
+														setModalEditUser(true);
+													}}
+												>
+													Editar Perfil
+												</Text>
+												<Text
+													onClick={() => {
+														handleClickdropDownProfile();
+														setOpenModalUpdateAddresUser(
+															true
+														);
+													}}
+												>
+													Editar Endereço
+												</Text>
 												<Text
 													onClick={handleClickProfile}
 												>
@@ -192,7 +221,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 												</Text>
 												<Text
 													onClick={() => {
-														logout()
+														logout();
 														handleClickdropDownProfile();
 													}}
 												>
@@ -272,32 +301,36 @@ const Header = ({ auction, colorFont, image }: any) => {
 										</Settings>
 										{!advertiser ? (
 											<>
-												<Text onClick={() => {
-													handleClickdropDownProfile()
-													setModalEditUser(true)
-												}}  >Editar Perfil</Text>
-												<Text>Editar Endereço</Text>
 												<Text
-													onClick={logout}
+													onClick={() => {
+														handleClickdropDownProfile();
+														setModalEditUser(true);
+													}}
 												>
+													Editar Perfil
+												</Text>
+												<Text>Editar Endereço</Text>
+												<Text onClick={logout}>
 													Sair
 												</Text>
 											</>
 										) : (
 											<>
-												<Text onClick={() => {
-													handleClickdropDownProfile()
-													setModalEditUser(true)
-												}} >Editar Perfil</Text>
+												<Text
+													onClick={() => {
+														handleClickdropDownProfile();
+														setModalEditUser(true);
+													}}
+												>
+													Editar Perfil
+												</Text>
 												<Text>Editar Endereço</Text>
 												<Text
 													onClick={handleClickProfile}
 												>
 													Meus Anúncios
 												</Text>
-												<Text
-													onClick={logout}
-												>
+												<Text onClick={logout}>
 													Sair
 												</Text>
 											</>
@@ -309,9 +342,8 @@ const Header = ({ auction, colorFont, image }: any) => {
 					</DivProfile>
 				</Nav>
 			</StyledHeader>
-			{
-				modalEditUser && <ModalEditUser/>
-			}
+			{modalEditUser && <ModalEditUser />}
+			{openModalUpdateAddresUser && <ModalEditAddressUser />}
 		</>
 	);
 };

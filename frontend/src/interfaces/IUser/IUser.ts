@@ -1,3 +1,4 @@
+import { IAddress } from "../IAddress/IAddress";
 import { IAds } from "../IAds/IAds";
 
 export interface IUser {
@@ -12,7 +13,7 @@ export interface IUser {
 	newPassrwordCode: string | null;
 	isActive: boolean;
 	isAdm: boolean;
-	address: {} | null;
+	address: IAddress;
 	ads: IAds[];
 	comments: Comment[];
 }
