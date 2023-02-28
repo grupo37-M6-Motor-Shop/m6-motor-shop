@@ -14,6 +14,7 @@ import { IRegisterUser } from "../interfaces/IRegisterUser/IRegisterUser";
 import { IUser } from "../interfaces/IUser/IUser";
 import api from "../services";
 import { toast } from "react-toastify";
+import { FormCreateComment } from "../interfaces/FormCreateComment/FormCreateComment";
 
 export const MotorShopContext = createContext<IMotorShopContext>(
 	{} as IMotorShopContext
@@ -226,6 +227,19 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		}
 	};
 
+	const createComment = async (data: FormCreateComment) => {
+		console.log(data)
+		// try {
+		// 	const res = await api.post("/comment", data)
+		// 	toast.success("Comentário postado!")
+		// 	getAdbyId(ad.id)
+		// } catch (error) {
+		// 	const err = error as AxiosError<IError>;
+		// 	console.log(err);
+		// 	toast.error("Algo deu errado! Tente novamente!");
+		// }
+	}
+
 	return (
 		<MotorShopContext.Provider
 			value={{
@@ -270,6 +284,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				setIsAdvertiser,
 				registerUser,
 				updateAddressUser,
+				createComment,
 			}}
 		>
 			{children}

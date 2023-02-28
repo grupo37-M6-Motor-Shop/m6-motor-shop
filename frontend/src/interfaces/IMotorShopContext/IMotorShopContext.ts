@@ -1,3 +1,4 @@
+import { FormCreateComment } from "../FormCreateComment/FormCreateComment";
 import { IFormUpdateAd } from "../FormUpdateAd/FormUpdateAd";
 import { FormUpdateAddressUser } from "../FormUpdateAddressUser/FormUpdateAddressUser";
 import { FormUpdateUser } from "../FormUpdateUser/FormUpdateUser";
@@ -50,4 +51,5 @@ export interface IMotorShopContext {
 	openModalUpdateAddresUser: boolean;
 	setOpenModalUpdateAddresUser: React.Dispatch<React.SetStateAction<boolean>>;
 	updateAddressUser: (data: FormUpdateAddressUser, addressId: string) => void;
+	createComment: (data: FormCreateComment) => void;
 }

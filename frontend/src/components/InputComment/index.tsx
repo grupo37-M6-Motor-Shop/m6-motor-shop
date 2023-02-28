@@ -1,4 +1,9 @@
-import { useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext, useEffect, useState } from "react";
+import { useForm, useWatch } from "react-hook-form";
+import { MotorShopContext } from "../../context";
+import { FormCreateComment } from "../../interfaces/FormCreateComment/FormCreateComment";
+import { schemaCreateComment } from "../../validations/FormCreateComment";
 import Button from "../Button";
 import Detail from "../Detail";
 import Form from "../Form";
@@ -12,28 +17,46 @@ import {
 } from "./style";
 
 const InputComment = () => {
-	const [isLoggedIn, setIsLoggedIn] = useState(true);
+	const { isLoggedIn, user, createComment, ad } =
+		useContext(MotorShopContext);
 	const [defaultValue, setDefaultValue] = useState("");
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<FormCreateComment>({
+		resolver: yupResolver(schemaCreateComment),
+	});
+
+	const handleClick = (data: any) => {
+		const newData = { ...data, adId: ad.id };
+		createComment(newData);
+		setDefaultValue("");
+	};
 
 	return (
 		<Container>
-			{isLoggedIn && <Detail name="João da Silva" />}
+			{isLoggedIn && <Detail name={user.name} />}
 			<Form
 				style={{
 					display: "flex",
 					flexDirection: "column",
 					gap: "15px",
 				}}
+				onSubmit={handleSubmit(handleClick)}
 			>
 				<InputWrapper>
 					<InputTextArea
-						name="comment"
+						name="description"
 						placeholder="Digitar comentário"
 						width="100%"
 						style={{ height: "8rem", margin: 0 }}
 						defaultValue={defaultValue}
 						offFocus
 						offBorder
+						register={register}
+						error={errors.description}
 					/>
 					<ButtonWrapper>
 						<Button
