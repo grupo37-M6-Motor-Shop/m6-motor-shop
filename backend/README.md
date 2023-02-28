@@ -49,9 +49,9 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 > # Create User - POST `/users`
 >> ## Formato da requisição:
 >
-> * O `email`, `CPF` devem ser únicos;
+> * O `email` e `CPF` devem ser únicos;
 > * Todos os campos são `obrigatórios`;
-> * A chave `isAdm` tem por padrao um valor booleando `false`, só alteramos ele para `true`, nós administradores 
+> * A chave `isAdm` tem por padrao um valor booleando `false`, só alteramos ele para `true` nos administradores 
 >
 >```json
 > {
@@ -63,7 +63,13 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >   "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
 >   "advertiser": false,
 >   "password": "1234",
->   "isAdm": true
+>   "isAdm": true,
+>   "cep": "26.206-000",
+>   "state": "RJ",
+>   "city": "Volta Redonda",
+>   "street": "Rua das Laranjeiras",
+>   "number": "105", 
+>   "complement": "Próximo a quadra"
 > }
 >```
 >
@@ -81,12 +87,23 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	"birthday": "01/01/90",
 >	"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
 >	"advertiser": false,
->	"isAdm": true,
+>	"address": {
+>		"id": "65da75f6-092a-4bd4-a2d8-90b07aa15944",
+>		"cep": "26.206-000",
+>		"state": "RJ",
+>		"city": "Volta Redonda",
+>		"street": "Rua das Laranjeiras",
+>		"number": "105",
+>		"complement": "Próximo a quadra",
+>		"createdAt": "2023-02-28T13:29:43.622Z",
+>		"updatedAt": "2023-02-28T13:29:43.622Z"
+>	},
 >	"newPassrwordCode": null,
->	"id": "078beee5-c3f6-411f-8af5-93c9a6fd2d0e",
+>	"id": "b8e243b1-bcfc-4c84-a9b3-8d5ac356d55f",
 >	"isActive": true,
->	"createdAt": "2023-02-23T23:24:24.744Z",
->	"updatedAt": "2023-02-23T23:24:24.744Z"
+>	"isAdm": true,
+>	"createdAt": "2023-02-28T13:29:43.728Z",
+>	"updatedAt": "2023-02-28T13:29:43.728Z"
 >}
 >```
 > ## E-mail já cadastrado
@@ -139,7 +156,17 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	"isAdm": true,
 >	"createdAt": "2023-02-23T23:24:24.744Z",
 >	"updatedAt": "2023-02-23T23:24:24.744Z",
->	"address": null,
+>	"address": {
+>		"id": "65da75f6-092a-4bd4-a2d8-90b07aa15944",
+>		"cep": "26.206-000",
+>		"state": "RJ",
+>		"city": "Volta Redonda",
+>		"street": "Rua das Laranjeiras",
+>		"number": "105",
+>		"complement": "Próximo a quadra",
+>		"createdAt": "2023-02-28T13:29:43.622Z",
+>		"updatedAt": "2023-02-28T13:29:43.622Z"
+>	},
 >	"ads": [],
 >	"comments": []
 >}
@@ -184,7 +211,17 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	"isAdm": false,
 >	"createdAt": "2023-02-23T23:30:49.524Z",
 >	"updatedAt": "2023-02-23T23:30:49.524Z",
->	"address": null,
+>	"address": {
+>		"id": "23dvb5f6-092a-4bd4-a2d8-b56c5aa113a8",
+>		"cep": "28.125-000",
+>		"state": "RJ",
+>		"city": "Piraí",
+>		"street": "E",
+>		"number": "208",
+>		"complement": "Em frente ao mercado",
+>		"createdAt": "2023-02-28T13:29:43.622Z",
+>		"updatedAt": "2023-02-28T13:29:43.622Z"
+>	},
 >	"ads": [],
 >	"comments": []
 >}
@@ -248,7 +285,17 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >		"isAdm": false,
 >		"createdAt": "2023-02-23T23:30:56.512Z",
 >		"updatedAt": "2023-02-23T23:30:56.512Z",
->		"address": null
+>		"address": {
+>		  "id": "65da75f6-092a-4bd4-a2d8-90b07aa265845",
+>		  "cep": "26.225-000",
+>		  "state": "RJ",
+>		  "city": "Volta Redonda",
+>		  "street": "Avenida Amaral Peixoto",
+>		  "number": "140",
+>		  "complement": "Aptr. 1",
+>		  "createdAt": "2023-02-28T13:29:43.622Z",
+>		  "updatedAt": "2023-02-28T13:29:43.622Z"
+>		}
 >	},
 >	{
 >		"id": "0f4a8191-e40f-47ee-89a6-13a86cfb56c5",
@@ -264,7 +311,17 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >		"isAdm": false,
 >		"createdAt": "2023-02-23T23:30:49.524Z",
 >		"updatedAt": "2023-02-23T23:30:49.524Z",
->		"address": null
+>		"address": {
+>		  "id": "23dvb5f6-092a-4bd4-a2d8-b56c5aa113a8",
+>		  "cep": "28.125-000",
+>		  "state": "RJ",
+>		  "city": "Piraí",
+>		  "street": "E",
+>		  "number": "208",
+>		  "complement": "Em frente ao mercado",
+>		  "createdAt": "2023-02-28T13:29:43.622Z",
+>		  "updatedAt": "2023-02-28T13:29:43.622Z"
+>		}
 >	},
 >	{
 >		"id": "078beee5-c3f6-411f-8af5-93c9a6fd2d0e",
@@ -280,7 +337,17 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >		"isAdm": true,
 >		"createdAt": "2023-02-23T23:24:24.744Z",
 >		"updatedAt": "2023-02-23T23:24:24.744Z",
->		"address": null
+>		"address": {
+>		  "id": "65da75f6-092a-4bd4-a2d8-90b07aa15944",
+>		  "cep": "26.206-000",
+>		  "state": "RJ",
+>		  "city": "Volta Redonda",
+>		  "street": "Rua das Laranjeiras",
+>		  "number": "25",
+>		  "complement": "Próximo a quadra",
+>		  "createdAt": "2023-02-28T13:29:43.622Z",
+>		  "updatedAt": "2023-02-28T13:29:43.622Z"
+>		}
 >	}
 >]
 >```
@@ -335,7 +402,17 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	"isAdm": false,
 >	"createdAt": "2023-02-23T23:30:56.512Z",
 >	"updatedAt": "2023-02-23T23:49:51.609Z",
->	"address": null,
+>	"address": {
+>	  "id": "23dvb5f6-092a-4bd4-a2d8-b56c5aa113a8",
+>	  "cep": "28.125-000",
+>	  "state": "RJ",
+>	  "city": "Piraí",
+>	  "street": "E",
+>	  "number": "208",
+>	  "complement": "Em frente ao mercado",
+>	  "createdAt": "2023-02-28T13:29:43.622Z",
+>	  "updatedAt": "2023-02-28T13:29:43.622Z"
+>	}
 >	"ads": [],
 >	"comments": []
 >}
@@ -606,12 +683,12 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >		"updatedAt": "2023-02-24T01:25:47.457Z",
 >		"gallery": {
 >			"id": "526f621e-84b3-4b06-b3d4-7af8844fbc0b",
->			"urlImage1": null,
->			"urlImage2": null,
->			"urlImage3": null,
->			"urlImage4": null,
->			"urlImage5": null,
->			"urlImage6": null,
+>			"urlImage1": "",
+>			"urlImage2": "",
+>			"urlImage3": "",
+>			"urlImage4": "",
+>			"urlImage5": "",
+>			"urlImage6": "",
 >			"createdAt": "2023-02-24T01:25:47.429Z",
 >			"updatedAt": "2023-02-24T01:25:47.457Z"
 >		},
@@ -704,12 +781,12 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >		"updatedAt": "2023-02-24T01:25:47.457Z",
 >		"gallery": {
 >			"id": "526f621e-84b3-4b06-b3d4-7af8844fbc0b",
->			"urlImage1": null,
->			"urlImage2": null,
->			"urlImage3": null,
->			"urlImage4": null,
->			"urlImage5": null,
->			"urlImage6": null,
+>			"urlImage1": "",
+>			"urlImage2": "",
+>			"urlImage3": "",
+>			"urlImage4": "",
+>			"urlImage5": "",
+>			"urlImage6": "",
 >			"createdAt": "2023-02-24T01:25:47.429Z",
 >			"updatedAt": "2023-02-24T01:25:47.457Z"
 >		},
@@ -774,12 +851,12 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	},
 >	"gallery": {
 >		"id": "526f621e-84b3-4b06-b3d4-7af8844fbc0b",
->		"urlImage1": null,
->		"urlImage2": null,
->		"urlImage3": null,
->		"urlImage4": null,
->		"urlImage5": null,
->		"urlImage6": null,
+>		"urlImage1": "",
+>		"urlImage2": "",
+>		"urlImage3": "",
+>		"urlImage4": "",
+>		"urlImage5": "",
+>		"urlImage6": "",
 >		"createdAt": "2023-02-24T01:25:47.429Z",
 >		"updatedAt": "2023-02-24T01:25:47.457Z"
 >	},
@@ -845,12 +922,12 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	"updatedAt": "2023-02-24T01:40:14.824Z",
 >	"gallery": {
 >		"id": "526f621e-84b3-4b06-b3d4-7af8844fbc0b",
->		"urlImage1": null,
->		"urlImage2": null,
->		"urlImage3": null,
->		"urlImage4": null,
->		"urlImage5": null,
->		"urlImage6": null,
+>		"urlImage1": "",
+>		"urlImage2": "",
+>		"urlImage3": "",
+>		"urlImage4": "",
+>		"urlImage5": "",
+>		"urlImage6": "",
 >		"createdAt": "2023-02-24T01:25:47.429Z",
 >		"updatedAt": "2023-02-24T01:25:47.457Z"
 >	},
