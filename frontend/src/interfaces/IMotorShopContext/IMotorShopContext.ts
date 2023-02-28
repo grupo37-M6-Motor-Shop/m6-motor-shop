@@ -1,4 +1,5 @@
 import { IFormUpdateAd } from "../FormUpdateAd/FormUpdateAd";
+import { FormUpdateAddressUser } from "../FormUpdateAddressUser/FormUpdateAddressUser";
 import { FormUpdateUser } from "../FormUpdateUser/FormUpdateUser";
 import { IAds } from "../IAds/IAds";
 import { ILogin } from "../ILogin/ILogin";
@@ -46,4 +47,7 @@ export interface IMotorShopContext {
 	setOpenModalRegisterUserSuccess: React.Dispatch<
 		React.SetStateAction<boolean>
 	>;
+	openModalUpdateAddresUser: boolean;
+	setOpenModalUpdateAddresUser: React.Dispatch<React.SetStateAction<boolean>>;
+	updateAddressUser: (data: FormUpdateAddressUser, addressId: string) => void;
 }

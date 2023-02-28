@@ -198,6 +198,7 @@ const Register = () => {
 								bgcolor={"brand1"}
 								component={"big"}
 								width={"100%"}
+								hover={{ bgcolor: "brand2" }}
 								type="submit"
 							>
 								Finalizar Cadastro
