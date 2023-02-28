@@ -39,7 +39,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const [token, setToken] = useState(
 		localStorage.getItem("@motors-shop:token") || ""
 	);
-	console.log(user);
 
 	const navigate = useNavigate();
 
@@ -228,17 +227,16 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	};
 
 	const createComment = async (data: FormCreateComment) => {
-		console.log(data)
-		// try {
-		// 	const res = await api.post("/comment", data)
-		// 	toast.success("Comentário postado!")
-		// 	getAdbyId(ad.id)
-		// } catch (error) {
-		// 	const err = error as AxiosError<IError>;
-		// 	console.log(err);
-		// 	toast.error("Algo deu errado! Tente novamente!");
-		// }
-	}
+		try {
+			await api.post("/comment", data);
+			toast.success("Comentário postado!");
+			getAdbyId(ad.id);
+		} catch (error) {
+			const err = error as AxiosError<IError>;
+			console.log(err);
+			toast.error("Algo deu errado! Tente novamente!");
+		}
+	};
 
 	return (
 		<MotorShopContext.Provider

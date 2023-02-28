@@ -29,8 +29,12 @@ const InputComment = () => {
 		resolver: yupResolver(schemaCreateComment),
 	});
 
-	const handleClick = (data: any) => {
-		const newData = { ...data, adId: ad.id };
+	const handleClick = (data: FormCreateComment) => {
+		const { description } = data;
+		const newData = {
+			description: defaultValue === "" ? description : defaultValue,
+			adId: ad.id,
+		};
 		createComment(newData);
 		setDefaultValue("");
 	};
@@ -52,7 +56,7 @@ const InputComment = () => {
 						placeholder="Digitar comentário"
 						width="100%"
 						style={{ height: "8rem", margin: 0 }}
-						defaultValue={defaultValue}
+						value={defaultValue !== "" ? defaultValue : undefined}
 						offFocus
 						offBorder
 						register={register}
