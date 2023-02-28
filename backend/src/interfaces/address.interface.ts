@@ -1,6 +1,3 @@
-import Address from "../entities/address.entity";
-import User from "../entities/user.entity";
-
 export interface IAddressRequest {
   	cep: string;
 	state: string,
@@ -22,7 +19,7 @@ export interface IAddress {
   updatedAt: Date,
 }
 
-export interface IAdressUpdate {
+export interface IAddressUpdate {
   	cep: string;
 	state: string,
 	city: string,

@@ -5,7 +5,7 @@ import Address from "./entities/address.entity";
 import Ad from "./entities/ad.entity";
 import Gallery from "./entities/gallery.entity";
 import Comment from "./entities/comment.entity";
-import { createTables1677587708739 } from "./migrations/1677587708739-createTables";
+import { createTables1677606110791 } from "./migrations/1677606110791-createTables";
 
 const AppDataSource = new DataSource({
 	type: "postgres",
@@ -17,7 +17,7 @@ const AppDataSource = new DataSource({
 	synchronize: true,
 	logging: true,
 	entities: [User, Address, Ad, Comment, Gallery],
-	migrations: [ createTables1677587708739  ],
+	migrations: [createTables1677606110791],
 });
 
 export default AppDataSource;

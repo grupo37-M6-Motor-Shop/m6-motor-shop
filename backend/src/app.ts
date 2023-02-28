@@ -8,6 +8,7 @@ import sessionRoutes from "./routes/sessions.routes";
 import adsRoutes from "./routes/ads.routes";
 import galleriesRoutes from "./routes/galleries.routes";
 import addressRoutes from "./routes/address.routes";
+import commentRoutes from "./routes/comment.routes";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use("/login", sessionRoutes);
 app.use("/ads", adsRoutes);
 app.use("/galleries", galleriesRoutes);
 app.use("/address", addressRoutes);
+app.use("/comment", commentRoutes);
 
 app.use(handleErrorMiddleware);
 

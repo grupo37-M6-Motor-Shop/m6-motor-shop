@@ -64,7 +64,7 @@ class User {
 	@OneToMany(() => Ad, (ad) => ad.user)
 	ads: Ad[];
 
-	@OneToMany(() => Comment, (comment) => comment.owner, { cascade: true })
+	@OneToMany(() => Comment, (comment) => comment.owner)
 	comments: Comment[];
 }
 
