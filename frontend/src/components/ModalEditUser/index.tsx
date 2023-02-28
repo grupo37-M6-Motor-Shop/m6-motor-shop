@@ -1,4 +1,3 @@
-
 import { useForm } from "react-hook-form";
 import Form from "../Form";
 import Input from "../Input";
@@ -14,10 +13,10 @@ import { useContext } from "react";
 import { MotorShopContext } from "../../context";
 
 const ModalEditUser = () => {
-  const { user, updateUser, handleCloseModal } = useContext(MotorShopContext)
-  const { name, email, cpf, phone, birthday, description } = user
+	const { user, updateUser, handleCloseModal } = useContext(MotorShopContext);
+	const { name, email, cpf, phone, birthday, description } = user;
 
-  const {
+	const {
 		register,
 		handleSubmit,
 		formState: { errors },
@@ -25,66 +24,65 @@ const ModalEditUser = () => {
 		resolver: yupResolver(schemaUpdateUser),
 	});
 
-  return (
-    <Modal title="Editar Perfil">
-
+	return (
+		<Modal title="Editar Perfil">
 			<Form onSubmit={handleSubmit(updateUser)}>
-        <Fieldset>
-          <p>Informações pessoais</p>
-          <Input
-            label="Nome"
-            type="text"
-            placeholder="Digitar nome"
-            defaultValue={name}
-            register={register}
-            name="name"
-            error={errors.name}
-          />
-          <Input
-            label="Email"
-            type="text"
-            placeholder="samuel@kenzie.com.br"
-            defaultValue={email}
-            register={register}
-            name="email"
-            error={errors.email}
-          />
-          <Input
-            label="CPF"
-            type="text"
-            placeholder="000.000.000-09"
-            defaultValue={cpf}
-            register={register}
-            name="cpf"
-            error={errors.cpf}
-          />
-          <Input
-            label="Celular"
-            type="text"
-            placeholder="(024) 99921-2165"
-            defaultValue={phone}
-            register={register}
-            name="phone"
-            error={errors.phone}
-          />
-          <Input
-            label="Data de Nascimento"
-            type="text"
-            placeholder="09/12/90"
-            defaultValue={birthday}
-            register={register}
-            name="birthday"
-            error={errors.birthday}
-          />
-          <InputTextArea
-            label="Descrição"
-            name="description"
-            placeholder="Digitar descrição"
-            defaultValue={description}
-            register={register}
-            error={errors.description}
-          />
-        </Fieldset>
+				<Fieldset>
+					<p>Informações pessoais</p>
+					<Input
+						label="Nome"
+						type="text"
+						placeholder="Digitar nome"
+						defaultValue={name}
+						register={register}
+						name="name"
+						error={errors.name}
+					/>
+					<Input
+						label="Email"
+						type="text"
+						placeholder="samuel@kenzie.com.br"
+						defaultValue={email}
+						register={register}
+						name="email"
+						error={errors.email}
+					/>
+					<Input
+						label="CPF"
+						type="text"
+						placeholder="000.000.000-09"
+						defaultValue={cpf}
+						register={register}
+						name="cpf"
+						error={errors.cpf}
+					/>
+					<Input
+						label="Celular"
+						type="text"
+						placeholder="(024) 99921-2165"
+						defaultValue={phone}
+						register={register}
+						name="phone"
+						error={errors.phone}
+					/>
+					<Input
+						label="Data de Nascimento"
+						type="text"
+						placeholder="09/12/90"
+						defaultValue={birthday}
+						register={register}
+						name="birthday"
+						error={errors.birthday}
+					/>
+					<InputTextArea
+						label="Descrição"
+						name="description"
+						placeholder="Digitar descrição"
+						defaultValue={description}
+						register={register}
+						error={errors.description}
+					/>
+				</Fieldset>
 				<Div>
 					<Button
 						type="button"
@@ -92,8 +90,8 @@ const ModalEditUser = () => {
 						bgcolor={"grey6"}
 						component={"big"}
 						width={"126px"}
-            hover={{bgcolor: "grey5"}}
-            onClick={handleCloseModal}
+						hover={{ bgcolor: "grey5" }}
+						onClick={handleCloseModal}
 					>
 						Cancelar
 					</Button>
@@ -103,14 +101,14 @@ const ModalEditUser = () => {
 						bgcolor={"brand1"}
 						component={"big"}
 						width={"193px"}
-            hover={{bgcolor: "brand2"}}
+						hover={{ bgcolor: "brand2" }}
 					>
 						Salvar alterações
 					</Button>
 				</Div>
 			</Form>
-    </Modal>
-  )
-}
+		</Modal>
+	);
+};
 
 export default ModalEditUser;
