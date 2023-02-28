@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button";
 import Input from "../Input";
-import InputCheckbox from "../InputCheckbox";
 import InputTextArea from "../InputTextArea";
 import Modal from "../modal";
 import { Text, Div, Grid, GridFullWidth } from "./style";
@@ -21,9 +20,12 @@ const ModalAdCreate = () => {
 	const [numInputs, setNumInputs] = useState(1);
 	document.body.style.overflow = "hidden";
 	const { handleCloseModal, registerAd } = useContext(MotorShopContext);
-	const [selectedValueTypeAd, setSelectedValueTypeAd] = useState<string | void>("Venda");
-	const [selectedValueTypeVec, setSelectedValueTypeVec] = useState<string | void>("Carro");
-
+	const [selectedValueTypeAd, setSelectedValueTypeAd] = useState<
+		string | void
+	>("Venda");
+	const [selectedValueTypeVec, setSelectedValueTypeVec] = useState<
+		string | void
+	>("Carro");
 
 	const {
 		register,
@@ -34,9 +36,13 @@ const ModalAdCreate = () => {
 	});
 
 	const newRegisterAd = (data: any) => {
-		const newData = { ...data, typeAd: selectedValueTypeAd, typeVehicle: selectedValueTypeVec }
-		registerAd(newData)
-	}
+		const newData = {
+			...data,
+			typeAd: selectedValueTypeAd,
+			typeVehicle: selectedValueTypeVec,
+		};
+		registerAd(newData);
+	};
 
 	const addInput = () => {
 		if (numInputs < 6) {
