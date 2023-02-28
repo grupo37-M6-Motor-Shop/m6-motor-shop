@@ -13,7 +13,7 @@ const retrieveAdService = async (adId: string): Promise<IAd> => {
 		relations: {
 			user: true,
 			gallery: true,
-			comments: true,
+			comments: { owner: true },
 		},
 	});
 
