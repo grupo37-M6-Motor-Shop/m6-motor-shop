@@ -501,6 +501,231 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 
 <br>
 
+> # Create Address - POST `/address`
+>> ## Formato da requisição:
+>
+> * Todos os campos são `obrigatórios`;
+> * A criação do `address` de um `user` é feita em na criação de usuário;
+>
+>```json
+> {
+>	 "cep": "26.206-000",
+>	 "state": "RJ",
+>	 "city": "Volta Redonda",
+>	 "street": "Rua das Laranjeiras",
+>	 "number": "105",
+>	 "complement": "Próximo a quadra"
+> }
+>```
+>
+>> ## Formato da resposta:
+>
+> * Status: `201 CREATED`;
+>
+>```json
+>{
+>	 "id": "65da75f6-092a-4bd4-a2d8-90b07aa15944",
+>	 "cep": "26.206-000",
+>	 "state": "RJ",
+>	 "city": "Volta Redonda",
+>	 "street": "Rua das Laranjeiras",
+>	 "number": "105",
+>	 "complement": "Próximo a quadra",
+>	 "createdAt": "2023-02-28T13:29:43.622Z",
+>	 "updatedAt": "2023-02-28T13:29:43.622Z"
+>}
+>```
+>---
+
+<br>
+
+> # Retrieve Address - GET `/address/:id-address`
+>> ## Formato da requisição:
+>
+> * Necessário autenticação por `token`;
+>
+>> ## Formato da resposta:
+>
+> * Status: `200 OK`;
+>
+>```json
+>{
+>	 "id": "23dvb5f6-092a-4bd4-a2d8-b56c5aa113a8",
+>	 "cep": "28.125-000",
+>	 "state": "RJ",
+>	 "city": "Piraí",
+>	 "street": "E",
+>	 "number": "208",
+>	 "complement": "Em frente ao mercado",
+>	 "createdAt": "2023-02-28T13:29:43.622Z",
+>	 "updatedAt": "2023-02-28T13:29:43.622Z"
+>}
+>```
+> ## Sem token / token inválido
+>> ## Formato da resposta:
+>
+> * Status: `401 UNAUTHORIZED`;
+>```json
+> {
+>   "message": "Missing authorization headers"
+> }
+>```
+> ## Id inválido
+>> ## Formato da resposta:
+>
+> * Status: `404 NOT FOUND`;
+>```json
+> {
+>   "message": "Address not found"
+> }
+>```
+>---
+
+<br>
+
+> # List Address - GET `/address`
+>> ## Formato da requisição:
+>
+> * Necessário autenticação por `token`;
+>
+>> ## Formato da resposta:
+>
+> * Status: `200 OK`;
+>
+>```json
+>[
+>	{
+>		"id": "65da75f6-092a-4bd4-a2d8-90b07aa15944",
+>		"cep": "27.185-000",
+>		"state": "RJ",
+>		"city": "Piraí",
+>		"street": "E",
+>		"number": "25",
+>		"complement": "Próximo a quadra",
+>		"createdAt": "2023-02-28T13:29:43.622Z",
+>		"updatedAt": "2023-02-28T13:29:43.728Z"
+>	},
+>	{
+>		"id": "06e8ee55-b412-4422-8c27-d4fcb8d3f253",
+>		"cep": "27.185-000",
+>		"state": "RJ",
+>		"city": "Volta Redonda",
+>		"street": "Rua das Laranjeiras",
+>		"number": "205",
+>		"complement": "",
+>		"createdAt": "2023-02-28T17:31:35.873Z",
+>		"updatedAt": "2023-02-28T17:31:36.042Z"
+>	}
+>]
+>```
+> ## Sem token / token inválido
+>> ## Formato da resposta:
+>
+> * Status: `401 UNAUTHORIZED`;
+>```json
+> {
+>   "message": "Missing authorization headers"
+> }
+>```
+>---
+
+<br>
+
+> # Update Address - PATCH `/address/:id-address`
+>> ## Formato da requisição:
+>
+> * Necessário autenticação por `token`;
+> * Apenas os campos de `cep`, `state`, `city`, `street`, `numer` e `complement` podem ser alterados;
+>  
+>```json
+>{ 
+>	 "cep": "27.200-000",
+>	 "state": "SP",
+>	 "city": "São Paulo",
+>	 "street": "Avenida Paulista",
+>	 "number": "123",
+>	 "complement": "Próximo ao cruzamento"
+>} 
+>```
+>> ## Formato da resposta:
+>
+> * Status: `200 OK`;  
+>
+>```json
+>{ 
+>	 "id": "65da75f6-092a-4bd4-a2d8-90b07aa15944",
+>	 "cep": "27.200-000",
+>	 "state": "SP",
+>	 "city": "São Paulo",
+>	 "street": "Avenida Paulista",
+>	 "number": "123",
+>	 "complement": "Próximo ao cruzamento",
+>	 "createdAt": "2023-02-28T13:29:43.622Z",
+>	 "updatedAt": "2023-02-28T17:38:04.131Z"
+>} 
+>```
+> ## Sem token / token inválido
+>> ## Formato da resposta:
+>  
+> * Status: `401 UNAUTHORIZED`;
+>
+>```json
+> {
+>   "message": "Missing authorization headers"
+> }
+>```
+> ## Id inválido
+>> ## Formato da resposta:
+>  
+> * Status: `404 NOT FOUND`;
+>
+>```json
+> {
+>   "message": "Address not found"
+> }
+>```
+>---
+
+<br>
+
+> # Delete Address - DELETE `/address/:id-address`
+>> ## Formato da requisição:
+>
+> * Necessário autenticação por `token`;
+> 
+>> ## Formato da resposta:
+>
+> * Status: `204 NO CONTENT`;
+>
+> ## Sem token / token inválido
+>> ## Formato da resposta:
+>
+> * Status: `401 UNAUTHORIZED`;
+>
+>```json
+> {
+>   "message": "Missing authorization headers"
+> }
+>```
+> ## Id inválido:
+>> ## Formato da resposta:
+>
+> * Status: `404 NOT FOUND`;
+>
+>```json
+> {
+>   "message": "Address not found"
+> }
+>```
+>---
+
+<br>
+
+---
+---
+
+<br>
+
 > # Login - POST `/login`
 >> ## Formato da requisição:
 >>
