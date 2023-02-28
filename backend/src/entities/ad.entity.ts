@@ -50,10 +50,10 @@ class Ad {
 	@UpdateDateColumn()
 	updatedAt: Date;
 
-	@ManyToOne(() => User)
+	@ManyToOne(() => User, (user) => user.ads,{onDelete: "CASCADE"})
 	user: User;
 
-	@OneToMany(() => Comment, (comment) => comment.ad, { cascade: true })
+	@OneToMany(() => Comment, (comment) => comment.ad)
 	comments: Comment[];
 
 	@OneToOne(() => Gallery, (gallery) => gallery.ad)

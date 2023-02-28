@@ -1,6 +1,5 @@
 import AppDataSource from "../../data-source";
 import Address from "../../entities/address.entity";
-import { AppError } from "../../errors/AppError";
 import { IAddress, IAddressRequest } from "../../interfaces/address.interface";
 
 const createAddressService = async (address: IAddressRequest): Promise<IAddress> => {

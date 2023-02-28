@@ -1,7 +1,7 @@
 import AppDataSource from "../../data-source";
 import Address from "../../entities/address.entity";
 import { AppError } from "../../errors/AppError";
-import { IAddress, IAdressUpdate } from "../../interfaces/address.interface";
+import { IAddress, IAddressUpdate } from "../../interfaces/address.interface";
 
 const updateAddressService = async (
 	{
@@ -11,7 +11,7 @@ const updateAddressService = async (
 		street,
 		number,
 		complement,
-	}: IAdressUpdate,
+	}: IAddressUpdate,
 	id: string
 ): Promise<IAddress> => {
 	const addressRepository = AppDataSource.getRepository(Address);
@@ -32,11 +32,11 @@ const updateAddressService = async (
 		complement,
 	});
 
-	const updatedAd = await addressRepository.findOne({
+	const updatedAddress = await addressRepository.findOne({
 		where: { id: id }
 	});
 
-	return updatedAd!;
+	return updatedAddress!;
 };
 
 export default updateAddressService;
