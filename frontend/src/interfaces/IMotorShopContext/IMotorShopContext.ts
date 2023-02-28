@@ -42,4 +42,8 @@ export interface IMotorShopContext {
 	isAdvertiser: boolean;
 	setIsAdvertiser: React.Dispatch<React.SetStateAction<boolean>>;
 	registerUser: (data: IRegisterUser) => void;
+	openModalRegisterUserSuccess: boolean;
+	setOpenModalRegisterUserSuccess: React.Dispatch<
+		React.SetStateAction<boolean>
+	>;
 }
