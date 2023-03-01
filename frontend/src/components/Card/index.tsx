@@ -86,11 +86,13 @@ const Card = ({ auction = false, ...props }) => {
 					<FontCardDescription auction={auction}>
 						{props.description}
 					</FontCardDescription>
-					<Detail
-						auction={auction}
-						name={props.user.name}
-						image={props.userImage}
-					/>
+					{!props.advertiser && (
+						<Detail
+							auction={auction}
+							name={props.user.name}
+							image={props.userImage}
+						/>
+					)}
 					<ContainerPriceYearKm auction={auction}>
 						<div>
 							<InfoKmYear>{props.mileage} KM</InfoKmYear>

@@ -5,17 +5,21 @@ import ForgotPassword from "../pages/ForgotPassword";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import ProtectedRoutes from "./ProtectedRoutes/protectedRoutes";
 
 const RoutesMain = () => {
 	return (
 		<Routes>
 			<Route path="*" element={<Navigate to="/homepage" />} />
 			<Route path="/homepage" element={<Home />} />
-			<Route path="/login" element={<Login />} />
 			<Route path="/forgot-password" element={<ForgotPassword />} />
-			<Route path="/register" element={<Register />} />
 			<Route path="/profile/:id" element={<AdvertiverProfile />} />
 			<Route path="/detail-ad/:id" element={<DetailAd />} />
+
+			<Route element={<ProtectedRoutes />}>
+				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
+			</Route>
 		</Routes>
 	);
 };

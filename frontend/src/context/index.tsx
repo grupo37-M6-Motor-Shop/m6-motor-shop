@@ -49,10 +49,14 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			if (token !== "") {
 				try {
 					api.defaults.headers.Authorization = `Bearer ${token}`;
-					await api
-						.get("/users/profile")
-						.then((res) => setUser(res.data));
+					const res = await api.get("/users/profile");
+					setUser(res.data);
 					setIsLoggedIn(true);
+					if (token.length > 1 && prevLocation) {
+						navigate(prevLocation);
+					} else if (token.length > 1) {
+						navigate("/homepage");
+					}
 				} catch (error) {
 					console.error(error);
 					localStorage.removeItem("@motors-shop:token");
@@ -63,28 +67,18 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	}, [token]);
 
 	const signIn = async (data: ILogin) => {
-		const { email, password } = data;
-		const token = await api
-			.post("/login", { email, password })
-			.then((res) => res.data.token)
-			.catch((error) => {
-				const err = error as AxiosError<IError>;
-				console.log(err);
-				if (
-					err.response?.data.message === "Invalid e-mail or password"
-				) {
-					return toast.error("Email ou senha inválidos!");
-				}
-				toast.error("Algo deu errado! Tente Novamente!");
-			});
-		localStorage.setItem("@motors-shop:token", token);
-		setToken(token);
-		api.defaults.headers.Authorization = `Bearer ${token}`;
-
-		if (token.length > 1 && prevLocation) {
-			navigate(prevLocation);
-		} else if (token.length > 1) {
-			navigate("/homepage");
+		try {
+			const { email, password } = data;
+			const res = await api.post("/login", { email, password });
+			localStorage.setItem("@motors-shop:token", res.data.token);
+			setToken(res.data.token);
+		} catch (error) {
+			const err = error as AxiosError<IError>;
+			console.log(err);
+			if (err.response?.data.message === "Invalid e-mail or password") {
+				return toast.error("Email ou senha inválidos!");
+			}
+			toast.error("Algo deu errado! Tente Novamente!");
 		}
 	};
 
@@ -92,6 +86,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		localStorage.removeItem("@motors-shop:token");
 		navigate("/homepage");
 		setIsLoggedIn(false);
+		setUser({} as IUser);
 	};
 
 	const registerUser = async (data: IRegisterUser) => {
@@ -310,7 +305,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				createComment,
 				deleteUser,
 				prevLocation,
-				setPrevLocation
+				setPrevLocation,
 			}}
 		>
 			{children}
