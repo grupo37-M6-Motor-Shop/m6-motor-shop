@@ -29,8 +29,6 @@ const Card = ({ auction = false, ...props }) => {
 		setIsActiveAd,
 	} = useContext(MotorShopContext);
 
-	console.log(props.advertiser);
-
 	const navigate = useNavigate();
 
 	const handleClickUpdate = async () => {

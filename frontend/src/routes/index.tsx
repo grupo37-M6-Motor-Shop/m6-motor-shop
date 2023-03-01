@@ -14,7 +14,7 @@ const RoutesMain = () => {
 			<Route path="/login" element={<Login />} />
 			<Route path="/forgot-password" element={<ForgotPassword />} />
 			<Route path="/register" element={<Register />} />
-			<Route path="/profile" element={<AdvertiverProfile />} />
+			<Route path="/profile/:id" element={<AdvertiverProfile />} />
 			<Route path="/detail-ad/:id" element={<DetailAd />} />
 		</Routes>
 	);

@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
@@ -7,6 +8,8 @@ import ModalAdDelete from "../../components/ModalAdDelete";
 import ModalAdUpdate from "../../components/ModalAdUpdate";
 import Section from "../../components/Section";
 import { MotorShopContext } from "../../context";
+import { IUser } from "../../interfaces/IUser/IUser";
+import api from "../../services";
 import {
 	BackgroundInfo,
 	Container,
@@ -30,13 +33,25 @@ const AdvertiverProfile = () => {
 	document.body.style.overflow = "unset";
 	const [profileOwner, setProfileOwner] = useState(false);
 
-	const { user, userProfile } = useContext(MotorShopContext);
+	const { user, userProfile, setUserProfile } = useContext(MotorShopContext);
+
+	const { id } = useParams();
+
+	const retrieveUser = async () => {
+		try {
+			const res = await api.get<IUser>(`/users/${id}`);
+			setUserProfile(res.data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	useEffect(() => {
 		if (user.id === userProfile.id) {
 			setProfileOwner(true);
 		}
-	}, []);
+		retrieveUser();
+	}, [id]);
 
 	return (
 		<Container>
@@ -45,7 +60,9 @@ const AdvertiverProfile = () => {
 				<InfoUser>
 					<BackgroundInfo />
 					<Info>
-						<UserImg>{userProfile.name[0]}</UserImg>
+						{userProfile.name && (
+							<UserImg>{userProfile.name[0]}</UserImg>
+						)}
 						<Name>
 							<p>{userProfile.name}</p>
 							<Tag>Anunciante</Tag>
@@ -66,35 +83,39 @@ const AdvertiverProfile = () => {
 						)}
 					</Info>
 				</InfoUser>
-				<Section
-					titleSection="Leilão"
-					value="Leilão"
-					userAd={userProfile}
-					vehicles={userProfile.ads}
-					auction={true}
-					advertiser={profileOwner}
-					profile
-				/>
-				<Section
-					titleSection="Carros"
-					value="Carro"
-					userAd={userProfile}
-					vehicles={userProfile.ads}
-					auction={false}
-					advertiser={profileOwner}
-					profile
-					tags
-				/>
-				<Section
-					titleSection="Motos"
-					value="Moto"
-					userAd={userProfile}
-					vehicles={userProfile.ads}
-					auction={false}
-					advertiser={profileOwner}
-					profile
-					tags
-				/>
+				{userProfile.ads && (
+					<>
+						<Section
+							titleSection="Leilão"
+							value="Leilão"
+							userAd={userProfile}
+							vehicles={userProfile.ads}
+							auction={true}
+							advertiser={profileOwner}
+							profile
+						/>
+						<Section
+							titleSection="Carros"
+							value="Carro"
+							userAd={userProfile}
+							vehicles={userProfile.ads}
+							auction={false}
+							advertiser={profileOwner}
+							profile
+							tags
+						/>
+						<Section
+							titleSection="Motos"
+							value="Moto"
+							userAd={userProfile}
+							vehicles={userProfile.ads}
+							auction={false}
+							advertiser={profileOwner}
+							profile
+							tags
+						/>
+					</>
+				)}
 
 				{openModalDeleteAd && <ModalAdDelete />}
 				{openModalUpdateAd && <ModalAdUpdate />}

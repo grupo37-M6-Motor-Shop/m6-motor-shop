@@ -36,7 +36,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 	const [isSideBarVisible, setIsSideBarVisible] = useState<boolean>(false);
 	const {
 		isLoggedIn,
-		user: { name, advertiser },
+		user: { id, name, advertiser },
 		getUserByProfile,
 		modalEditUser,
 		setModalEditUser,
@@ -52,7 +52,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 
 	const handleClickProfile = async () => {
 		await getUserByProfile();
-		navigate("/profile");
+		navigate(`/profile/${id}`);
 	};
 
 	const setBackgroundRandomColor = () => {
