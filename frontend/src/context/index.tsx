@@ -51,7 +51,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 						.get("/users/profile")
 						.then((res) => setUser(res.data));
 					setIsLoggedIn(true);
-					navigate("/homepage", { replace: true });
 				} catch (error) {
 					console.error(error);
 					localStorage.removeItem("@motors-shop:token");
@@ -79,11 +78,13 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		localStorage.setItem("@motors-shop:token", token);
 		setToken(token);
 		api.defaults.headers.Authorization = `Bearer ${token}`;
+		navigate("/homepage");
 	};
 
 	const logout = () => {
 		localStorage.removeItem("@motors-shop:token");
-		window.location.reload();
+		navigate("/homepage");
+		setIsLoggedIn(false);
 	};
 
 	const registerUser = async (data: IRegisterUser) => {

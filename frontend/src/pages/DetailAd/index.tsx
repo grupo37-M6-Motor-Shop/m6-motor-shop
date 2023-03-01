@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import CardComment from "../../components/CardComment";
 import Footer from "../../components/Footer";
@@ -7,6 +7,9 @@ import Header from "../../components/Header";
 import InputComment from "../../components/InputComment";
 import PhotoList from "../../components/PhotoList";
 import { MotorShopContext } from "../../context";
+import { IAds } from "../../interfaces/IAds/IAds";
+import { IGallery } from "../../interfaces/IGallery/IGallery";
+import api from "../../services";
 import {
 	BackgroundContent,
 	Comments,
@@ -30,13 +33,28 @@ import {
 } from "./style";
 
 const DetailAd = () => {
-	const { ad, userProfile, getUserById } = useContext(MotorShopContext);
+	const { getUserById } = useContext(MotorShopContext);
 	document.body.style.overflow = "unset";
 	const navigate = useNavigate();
+	const [ad, setAd] = useState<IAds>({} as IAds);
+	const { id } = useParams();
+
+	const retrieveAd = async () => {
+		try {
+			const res = await api.get<IAds>(`/ads/${id}`);
+			setAd(res.data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	useEffect(() => {
+		retrieveAd();
+	}, [id]);
 
 	const handleClick = async () => {
 		await getUserById(ad.user.id);
-		navigate("/profile", { replace: true });
+		navigate(`/profile/${ad.user.id}`, { replace: true });
 	};
 
 	return (
@@ -79,31 +97,35 @@ const DetailAd = () => {
 						</InfoAd>
 
 						<InfoAdvertiser>
-							<PhotoList
-								id={ad.gallery.id}
-								urlImage1={ad.gallery.urlImage1}
-								urlImage2={ad.gallery.urlImage2}
-								urlImage3={ad.gallery.urlImage3}
-								urlImage4={ad.gallery.urlImage4}
-								urlImage5={ad.gallery.urlImage5}
-								urlImage6={ad.gallery.urlImage6}
-							/>
-							<Info>
-								<UserImg>{userProfile.name[0]}</UserImg>
-								<Name>{userProfile.name}</Name>
-								<Description align="center">
-									{userProfile.description}
-								</Description>
-								<Button
-									color="whiteFixed"
-									bgcolor="grey0"
-									component="medium"
-									width="14rem"
-									onClick={handleClick}
-								>
-									Ver todos os anúncios
-								</Button>
-							</Info>
+							{ad.gallery && (
+								<>
+									<PhotoList
+										id={ad.gallery.id}
+										urlImage1={ad.gallery.urlImage1}
+										urlImage2={ad.gallery.urlImage2}
+										urlImage3={ad.gallery.urlImage3}
+										urlImage4={ad.gallery.urlImage4}
+										urlImage5={ad.gallery.urlImage5}
+										urlImage6={ad.gallery.urlImage6}
+									/>
+									<Info>
+										<UserImg>{ad.user.name[0]}</UserImg>
+										<Name>{ad.user.name}</Name>
+										<Description align="center">
+											{ad.user.description}
+										</Description>
+										<Button
+											color="whiteFixed"
+											bgcolor="grey0"
+											component="medium"
+											width="14rem"
+											onClick={handleClick}
+										>
+											Ver todos os anúncios
+										</Button>
+									</Info>
+								</>
+							)}
 						</InfoAdvertiser>
 					</ContainerInfo>
 					<ContainerComments>
