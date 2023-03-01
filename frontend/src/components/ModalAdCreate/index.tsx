@@ -163,6 +163,7 @@ const ModalAdCreate = () => {
 						component={"medium"}
 						width={"100%"}
 						style={{ maxWidth: "315px" }}
+						hover={{ bgcolor: "brand3" }}
 						onClick={addInput}
 					>
 						Adicionar campo para imagem da galeria
@@ -176,6 +177,7 @@ const ModalAdCreate = () => {
 						bgcolor={"grey6"}
 						component={"big"}
 						width={"126px"}
+						hover={{ bgcolor: "grey5" }}
 					>
 						Cancelar
 					</Button>
@@ -185,6 +187,7 @@ const ModalAdCreate = () => {
 						bgcolor={"brand1"}
 						component={"big"}
 						width={"193px"}
+						hover={{ bgcolor: "brand2" }}
 					>
 						Criar anúncio
 					</Button>

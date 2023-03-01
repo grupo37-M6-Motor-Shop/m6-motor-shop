@@ -12,7 +12,7 @@ const ModalAdDelete = () => {
 		deleteAd(ad.id);
 		handleCloseModal();
 	};
-	
+
 	return (
 		<Modal title={"Excluir anúncio"}>
 			<TextQuestion>
@@ -28,14 +28,16 @@ const ModalAdDelete = () => {
 					bgcolor={"grey6"}
 					component={"big"}
 					width={"126px"}
+					hover={{ bgcolor: "grey5" }}
 				>
 					Cancelar
 				</Button>
 				<Button
 					color={"alert1"}
-					bgcolor={"alert2"}
+					bgcolor={"alert3"}
 					component={"big"}
 					width={"211px"}
+					hover={{ bgcolor: "alert2" }}
 					onClick={handleClick}
 				>
 					Sim, exluir anúncio

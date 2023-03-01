@@ -66,6 +66,7 @@ const DetailAd = () => {
 									bgcolor="brand1"
 									component="medium"
 									width="8rem"
+									hover={{ bgcolor: "brand2" }}
 								>
 									Comprar
 								</Button>
