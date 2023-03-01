@@ -51,6 +51,7 @@ const AdvertiverProfile = () => {
 			setProfileOwner(true);
 		}
 		retrieveUser();
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	}, [id]);
 
 	return (

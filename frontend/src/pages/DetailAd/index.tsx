@@ -33,10 +33,10 @@ import {
 } from "./style";
 
 const DetailAd = () => {
-	const { getUserById } = useContext(MotorShopContext);
+	const { ad, setAd, getUserById } = useContext(MotorShopContext);
 	document.body.style.overflow = "unset";
 	const navigate = useNavigate();
-	const [ad, setAd] = useState<IAds>({} as IAds);
+
 	const { id } = useParams();
 
 	const retrieveAd = async () => {
@@ -50,6 +50,7 @@ const DetailAd = () => {
 
 	useEffect(() => {
 		retrieveAd();
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	}, [id]);
 
 	const handleClick = async () => {
