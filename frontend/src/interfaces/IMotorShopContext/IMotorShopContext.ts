@@ -52,4 +52,7 @@ export interface IMotorShopContext {
 	setOpenModalUpdateAddresUser: React.Dispatch<React.SetStateAction<boolean>>;
 	updateAddressUser: (data: FormUpdateAddressUser, addressId: string) => void;
 	createComment: (data: FormCreateComment) => void;
+	openModalDeleteUser: boolean;
+	setOpenModalDeleteUser: React.Dispatch<React.SetStateAction<boolean>>;
+	deleteUser: (userId: string) => void;
 }

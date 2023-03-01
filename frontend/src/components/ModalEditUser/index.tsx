@@ -13,7 +13,8 @@ import { useContext } from "react";
 import { MotorShopContext } from "../../context";
 
 const ModalEditUser = () => {
-	const { user, updateUser, handleCloseModal } = useContext(MotorShopContext);
+	const { user, updateUser, handleCloseModal, setOpenModalDeleteUser } =
+		useContext(MotorShopContext);
 	const { name, email, cpf, phone, birthday, description } = user;
 
 	const {
@@ -23,6 +24,11 @@ const ModalEditUser = () => {
 	} = useForm<FormUpdateUser>({
 		resolver: yupResolver(schemaUpdateUser),
 	});
+
+	const handleClickDelete = () => {
+		handleCloseModal();
+		setOpenModalDeleteUser(true);
+	};
 
 	return (
 		<Modal title="Editar Perfil">
@@ -89,11 +95,11 @@ const ModalEditUser = () => {
 						color={"grey2"}
 						bgcolor={"grey6"}
 						component={"big"}
-						width={"126px"}
+						width={"150px"}
 						hover={{ bgcolor: "grey5" }}
-						onClick={handleCloseModal}
+						onClick={handleClickDelete}
 					>
-						Cancelar
+						Excluir Perfil
 					</Button>
 					<Button
 						type="submit"
