@@ -34,6 +34,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		useState(false);
 	const [openModalRegisterUserSuccess, setOpenModalRegisterUserSuccess] =
 		useState(false);
+	const [openModalDeleteUser, setOpenModalDeleteUser] = useState(false);
 	const [isActiveAd, setIsActiveAd] = useState(false);
 	const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
 	const [token, setToken] = useState(
@@ -78,7 +79,10 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		localStorage.setItem("@motors-shop:token", token);
 		setToken(token);
 		api.defaults.headers.Authorization = `Bearer ${token}`;
-		navigate("/homepage", { replace: true });
+
+		if (token.length > 1) {
+			navigate("/homepage");
+		}
 	};
 
 	const logout = () => {
@@ -105,6 +109,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		setModalEditUser(false);
 		setOpenModalRegisterUserSuccess(false);
 		setOpenModalUpdateAddresUser(false);
+		setOpenModalDeleteUser(false);
 	};
 
 	const getUserByProfile = async () => {
@@ -133,6 +138,20 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			setUser(res.data);
 			handleCloseModal();
 			toast.success("Perfil alterado com sucesso!");
+		} catch (error) {
+			const err = error as AxiosError<IError>;
+			console.log(err);
+			toast.error("Algo deu errado! Tente novamente!");
+		}
+	};
+
+	const deleteUser = async (userId: string) => {
+		try {
+			await api.delete(`/users/${userId}`);
+			localStorage.clear();
+			setIsLoggedIn(false);
+			toast.success("Perfil excluído com sucesso!");
+			navigate("/homepage");
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
@@ -266,6 +285,8 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				setOpenModalRegisterUserSuccess,
 				openModalUpdateAddresUser,
 				setOpenModalUpdateAddresUser,
+				openModalDeleteUser,
+				setOpenModalDeleteUser,
 				handleCloseModal,
 				registerAd,
 				getRandomAds,
@@ -284,6 +305,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				registerUser,
 				updateAddressUser,
 				createComment,
+				deleteUser,
 			}}
 		>
 			{children}

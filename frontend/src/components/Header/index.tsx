@@ -30,6 +30,7 @@ import { MotorShopContext } from "../../context";
 import { useNavigate } from "react-router-dom";
 import ModalEditUser from "../ModalEditUser";
 import ModalEditAddressUser from "../ModalEditAddressUser";
+import ModalDeleteUser from "../ModalDeleteUser";
 
 const Header = ({ auction, colorFont, image }: any) => {
 	const [dropDown, setDropDown] = useState<number>(0);
@@ -42,6 +43,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 		setModalEditUser,
 		openModalUpdateAddresUser,
 		setOpenModalUpdateAddresUser,
+		openModalDeleteUser,
 		logout,
 	} = useContext(MotorShopContext);
 	const navigate = useNavigate();
@@ -344,6 +346,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 			</StyledHeader>
 			{modalEditUser && <ModalEditUser />}
 			{openModalUpdateAddresUser && <ModalEditAddressUser />}
+			{openModalDeleteUser && <ModalDeleteUser />}
 		</>
 	);
 };
