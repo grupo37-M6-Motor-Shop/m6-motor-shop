@@ -6,6 +6,7 @@ interface props {
 	auction?: boolean;
 	image?: string;
 	isActive?: boolean;
+	advertiser?: boolean;
 }
 
 export const FontCardDescription = styled(FontIntegerNormal)<props>`
@@ -53,17 +54,72 @@ export const CustomLi = styled.li<props>`
 	${(props) => (props.auction ? "max-width: 735px;" : "max-width: 312px;")}
 	min-width: 312px;
 	list-style: none;
+	border: 2px solid transparent;
+
+	${(props) =>
+		!props.auction &&
+		!props.advertiser &&
+		`
+			:hover > div:first-child {
+				border: 2px solid var(--brand1);
+				
+				img {
+					scale: 1.15;
+				}
+
+				div {
+					opacity: 0;
+				}
+			}
+		`}
+	${(props) =>
+		props.auction &&
+		!props.advertiser &&
+		`
+	:hover > div:nth-child(2) {
+		background-color: var(--brand2);
+		
+		img {
+			transform: translateX(10px) 
+		}
+	}
+	`}
 `;
 
 export const ContainerInfoCard = styled.div<props>`
+	transition: 0.7s;
+	position: relative;
 	${(props) =>
 		props.auction &&
 		`
-    background-image: url("${props.image}");
-    background-position: center;
-    background-size: cover;
-    `}
-	cursor: pointer
+		background-image: url("${props.image}");
+		background-position: center;
+		background-size: cover;
+		`}
+
+	cursor: ${(props) => !props.auction && "pointer"};
+
+	::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-image: url(${(props) => props.image});
+		background-position: center;
+		background-size: cover;
+		filter: brightness(70%);
+		transition: 0.7s;
+		opacity: 0;
+	}
+
+	${(props) =>
+		props.auction &&
+		!props.advertiser &&
+		`
+		:hover::before {
+			opacity: 1;
+		}
+		`}
 `;
 
 export const InfoCard = styled(ContainerInfoCard)`
@@ -78,6 +134,7 @@ export const InfoCard = styled(ContainerInfoCard)`
     padding: 24px 5%;
     color: var(--whiteFixed); 
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.29) 0%, #000000 100%);
+
   `}
 `;
 
@@ -99,21 +156,20 @@ export const Clock = styled.div`
 
 export const ContainerCarImg = styled.div`
 	height: 152px;
-	width: 312px;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	background-color: var(--grey7);
 	position: relative;
 	cursor: pointer;
 	border: 2px solid transparent;
-
-	:hover {
-		border: 2px solid var(--brand1);
-	}
+	transition: 0.7s;
+	overflow: hidden;
 `;
 
 export const CarImg = styled.img`
 	object-fit: scale-down;
+	transition: 0.7s;
 `;
 
 export const ContainerPriceYearKm = styled.div<props>`
@@ -150,10 +206,12 @@ export const ButtonAuction = styled.div`
 	color: var(--whiteFixed);
 	padding: 25px 5.1%;
 	border-radius: 0 0 6px 6px;
+	transition: 0.7s;
 `;
 export const RightArrow = styled.img`
 	width: 26px;
 	height: 14px;
+	transition: 0.7s;
 `;
 
 export const IsActiveInfo = styled.div<props>`
@@ -166,4 +224,6 @@ export const IsActiveInfo = styled.div<props>`
 	font-weight: 500;
 	font-size: 14px;
 	padding: 5px 7px;
+	transition: 0.7s;
+	z-index: 10;
 `;

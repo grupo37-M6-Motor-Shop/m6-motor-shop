@@ -7,7 +7,6 @@ import { schemaUpdateAd } from "../../validations/FormUpdateAds";
 import Button from "../Button";
 import Form from "../Form";
 import Input from "../Input";
-import InputCheckbox from "../InputCheckbox";
 import InputChoices from "../InputChoices";
 import InputTextArea from "../InputTextArea";
 import Modal from "../modal";
@@ -73,9 +72,9 @@ const ModalAdUpdate = () => {
 	};
 
 	const handleClickDelete = () => {
-		handleCloseModal()
-		setOpenModalDeleteAd(true)
-	}
+		handleCloseModal();
+		setOpenModalDeleteAd(true);
+	};
 
 	const AdditionalInputs = ({ count }: AdditionalInputsProps) => {
 		const inputs = [];
@@ -224,6 +223,7 @@ const ModalAdUpdate = () => {
 						component={"medium"}
 						width={"100%"}
 						style={{ maxWidth: "315px" }}
+						hover={{ bgcolor: "brand3" }}
 						onClick={addInput}
 					>
 						Adicionar campo para imagem da galeria
@@ -236,6 +236,7 @@ const ModalAdUpdate = () => {
 						bgcolor={"grey6"}
 						component={"big"}
 						width={"126px"}
+						hover={{ bgcolor: "grey5" }}
 						onClick={handleClickDelete}
 					>
 						Excluir anúncio
@@ -246,6 +247,7 @@ const ModalAdUpdate = () => {
 						bgcolor={"brand1"}
 						component={"big"}
 						width={"193px"}
+						hover={{ bgcolor: "brand2" }}
 					>
 						Salvar alterações
 					</Button>
