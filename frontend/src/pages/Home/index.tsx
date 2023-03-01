@@ -39,6 +39,10 @@ const Home = () => {
 								color="grey10"
 								border="grey10"
 								width="fullWidth"
+								hover={{
+									bgcolor: "whiteFixed",
+									color: "grey1",
+								}}
 							>
 								Carros
 							</Button>
@@ -48,6 +52,10 @@ const Home = () => {
 								color="grey10"
 								border="grey10"
 								width="fullWidth"
+								hover={{
+									bgcolor: "whiteFixed",
+									color: "grey1",
+								}}
 							>
 								Motos
 							</Button>

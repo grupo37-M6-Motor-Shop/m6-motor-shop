@@ -70,6 +70,7 @@ const InputComment = () => {
 							color="whiteFixed"
 							width="fullWidth"
 							disabled={!isLoggedIn}
+							hover={{ bgcolor: "brand2" }}
 						>
 							Comentar
 						</Button>

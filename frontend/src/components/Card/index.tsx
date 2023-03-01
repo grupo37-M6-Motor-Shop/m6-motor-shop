@@ -29,6 +29,8 @@ const Card = ({ auction = false, ...props }) => {
 		setIsActiveAd,
 	} = useContext(MotorShopContext);
 
+	console.log(props.advertiser);
+
 	const navigate = useNavigate();
 
 	const handleClickUpdate = async () => {
@@ -53,7 +55,11 @@ const Card = ({ auction = false, ...props }) => {
 		}
 	};
 	return (
-		<CustomLi key={props.id} auction={auction}>
+		<CustomLi
+			key={props.id}
+			auction={auction}
+			advertiser={props.advertiser}
+		>
 			{!auction && (
 				<ContainerCarImg onClick={handleClickAdvertiser}>
 					{!props.advertiser && props.tags && (
