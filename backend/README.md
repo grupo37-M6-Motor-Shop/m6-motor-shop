@@ -188,7 +188,6 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 > # Retrieve User - GET `/users/:id-user`
 >> ## Formato da requisição:
 >
-> * Necessário autenticação por `token`;
 > * Apenas o `administrador` pode ver os dados de outro `administrador` e de usuário desativados - `(isActive = false)`;
 >
 >> ## Formato da resposta:
@@ -451,7 +450,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 
 <br>
 
-> # Delete User - DELETE `/users/:id-user`
+> # SoftDelete User - DELETE `/users/desactive/:id-user`
 >> ## Formato da requisição:
 >
 > * Necessário autenticação por `token`;
@@ -460,6 +459,55 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >> ## Formato da resposta:
 >
 > * Propriedade isActive passa para `false`;
+> * Status: `204 NO CONTENT`;
+>
+> ## Sem token / token inválido
+>> ## Formato da resposta:
+>
+> * Status: `401 UNAUTHORIZED`;
+>
+>```json
+> {
+>   "message": "Missing authorization headers"
+> }
+>```
+> ## Id inválido:
+>> ## Formato da resposta:
+>
+> * Status: `404 NOT FOUND`;
+>
+>```json
+> {
+>   "message": "User not found"
+> }
+>```
+> ## Deletando outro usuário sem ser administrador
+>> ## Formato da resposta:
+>
+> * Status: `401 UNAUTHORIZED`;
+>
+>```json
+> {
+>   "message": "User is not admin"
+> }
+>```
+>---
+
+<br>
+
+---
+---
+
+<br>
+
+> # Delete User - DELETE `/users/:id-user`
+>> ## Formato da requisição:
+>
+> * Necessário autenticação por `token`;
+> * Apenas o `administrador` pode deletar `outros usuários`;
+> 
+>> ## Formato da resposta:
+>
 > * Status: `204 NO CONTENT`;
 >
 > ## Sem token / token inválido
@@ -765,7 +813,6 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 
 <br>
 
-
 > # Create Ad - POST `/ads`
 >> ## Formato da requisição:
 >
@@ -781,13 +828,13 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	"mileage": 10000,
 >	"price": "170.000,00",
 >	"typeVehicle": "Carro",
->	"urlCoverImage": "https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
->	"urlImage1": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->	"urlImage2": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->	"urlImage3": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->	"urlImage4": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->	"urlImage5": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->	"urlImage6": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg"
+>	"urlCoverImage": "https://image.jpg",
+>	"urlImage1": "https://image.jpg",
+>	"urlImage2": "https://image.jpg",
+>	"urlImage3": "https://image.jpg",
+>	"urlImage4": "https://image.jpg",
+>	"urlImage5": "https://image.jpg",
+>	"urlImage6": "https://image.jpg"
 >}
 >```
 >
@@ -807,17 +854,17 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	"price": "170.000,00",
 >	"isActive": true,
 >	"typeVehicle": "Carro",
->	"urlCoverImage": "https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
+>	"urlCoverImage": "https://image.jpg",
 >	"createdAt": "2023-02-24T01:18:07.506Z",
 >	"updatedAt": "2023-02-24T01:18:07.506Z",
 >	"gallery": {
 >		"id": "dbc4c5d2-2bc4-44f2-b85c-ba1d54170f69",
->		"urlImage1": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->		"urlImage2": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->		"urlImage3": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->		"urlImage4": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->		"urlImage5": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->		"urlImage6": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>		"urlImage1": "https://image.jpg",
+>		"urlImage2": "https://image.jpg",
+>		"urlImage3": "https://image.jpg",
+>		"urlImage4": "https://image.jpg",
+>		"urlImage5": "https://image.jpg",
+>		"urlImage6": "https://image.jpg",
 >		"createdAt": "2023-02-24T01:18:07.473Z",
 >		"updatedAt": "2023-02-24T01:18:07.506Z"
 >	},
@@ -861,17 +908,17 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >		"price": "170.000,00",
 >		"isActive": true,
 >		"typeVehicle": "Carro",
->		"urlCoverImage": "https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
+>		"urlCoverImage": "https://image.jpg",
 >		"createdAt": "2023-02-24T01:18:07.506Z",
 >		"updatedAt": "2023-02-24T01:18:07.506Z",
 >		"gallery": {
 >			"id": "dbc4c5d2-2bc4-44f2-b85c-ba1d54170f69",
->			"urlImage1": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->			"urlImage2": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->			"urlImage3": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->			"urlImage4": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->			"urlImage5": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->			"urlImage6": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>			"urlImage1": "https://image.jpg",
+>			"urlImage2": "https://image.jpg",
+>			"urlImage3": "https://image.jpg",
+>			"urlImage4": "https://image.jpg",
+>			"urlImage5": "https://image.jpg",
+>			"urlImage6": "https://image.jpg",
 >			"createdAt": "2023-02-24T01:18:07.473Z",
 >			"updatedAt": "2023-02-24T01:18:07.506Z"
 >		},
@@ -903,7 +950,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >		"price": "61.990,00",
 >		"isActive": true,
 >		"typeVehicle": "Carro",
->		"urlCoverImage": "https://cdn.autopapo.com.br/box/uploads/2022/03/25160359/fiat-mobi-trekking-2023-cinza-frente-scaled.jpg",
+>		"urlCoverImage": "https://image.jpg",
 >		"createdAt": "2023-02-24T01:25:47.457Z",
 >		"updatedAt": "2023-02-24T01:25:47.457Z",
 >		"gallery": {
@@ -959,17 +1006,17 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >		"price": "170.000,00",
 >		"isActive": true,
 >		"typeVehicle": "Carro",
->		"urlCoverImage": "https://www.webmotors.com.br/wp-content/uploads/2020/06/03124927/Mercedes-Benz-A200-Sedan-49.jpg",
+>		"urlCoverImage": "https://image.jpg",
 >		"createdAt": "2023-02-24T01:18:07.506Z",
 >		"updatedAt": "2023-02-24T01:18:07.506Z",
 >		"gallery": {
 >			"id": "dbc4c5d2-2bc4-44f2-b85c-ba1d54170f69",
->			"urlImage1": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->			"urlImage2": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->			"urlImage3": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->			"urlImage4": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->			"urlImage5": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->			"urlImage6": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
+>			"urlImage1": "https://image.jpg",
+>			"urlImage2": "https://image.jpg",
+>			"urlImage3": "https://image.jpg",
+>			"urlImage4": "https://image.jpg",
+>			"urlImage5": "https://image.jpg",
+>			"urlImage6": "https://image.jpg",
 >			"createdAt": "2023-02-24T01:18:07.473Z",
 >			"updatedAt": "2023-02-24T01:18:07.506Z"
 >		},
@@ -1001,7 +1048,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >		"price": "61.990,00",
 >		"isActive": true,
 >		"typeVehicle": "Carro",
->		"urlCoverImage": "https://cdn.autopapo.com.br/box/uploads/2022/03/25160359/fiat-mobi-trekking-2023-cinza-frente-scaled.jpg",
+>		"urlCoverImage": "https://image.jpg",
 >		"createdAt": "2023-02-24T01:25:47.457Z",
 >		"updatedAt": "2023-02-24T01:25:47.457Z",
 >		"gallery": {
@@ -1055,7 +1102,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	"price": "61.990,00",
 >	"isActive": true,
 >	"typeVehicle": "Carro",
->	"urlCoverImage": "https://cdn.autopapo.com.br/box/uploads/2022/03/25160359/fiat-mobi-trekking-2023-cinza-frente-scaled.jpg",
+>	"urlCoverImage": "https://image.jpg",
 >	"createdAt": "2023-02-24T01:25:47.457Z",
 >	"updatedAt": "2023-02-24T01:25:47.457Z",
 >	"user": {
@@ -1118,13 +1165,13 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	"price": "61.990,00",
 >	"typeVehicle": "Carro",
 >	"isActive": false,
->	"urlCoverImage": "https://cdn.autopapo.com.br/box/uploads/2022/03/25160359/fiat-mobi-trekking-2023-cinza-frente-scaled.jpg",
->	"urlImage1": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->	"urlImage2": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->	"urlImage3": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->	"urlImage4": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->	"urlImage5": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg",
->	"urlImage6": "https://1.bp.blogspot.com/-kqfeFXmh478/XSEBBiKAAQI/AAAAAAAAViI/cIh5hRa87585jr4JCcXYPfxZOnWYhoL6ACLcBGAs/s1600/Novo-Mercedes-Classe-A-200-Sedan%2B%25286%2529.jpg"
+>	"urlCoverImage": "https://image.jpg",
+>	"urlImage1": "https://image.jpg",
+>	"urlImage2": "https://image.jpg",
+>	"urlImage3": "https://image.jpg",
+>	"urlImage4": "https://image.jpg",
+>	"urlImage5": "https://image.jpg",
+>	"urlImage6": "https://image.jpg"
 >}
 >```
 >> ## Formato da resposta:
@@ -1142,7 +1189,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	"price": "61.990,00",
 >	"isActive": false,
 >	"typeVehicle": "Carro",
->	"urlCoverImage": "https://cdn.autopapo.com.br/box/uploads/2022/03/25160359/fiat-mobi-trekking-2023-cinza-frente-scaled.jpg",
+>	"urlCoverImage": "https://image.jpg",
 >	"createdAt": "2023-02-24T01:25:47.457Z",
 >	"updatedAt": "2023-02-24T01:40:14.824Z",
 >	"gallery": {
@@ -1238,6 +1285,277 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 
 <br/>
 
+> # Create Galery - POST `/galleries`
+>> ## Formato da requisição:
+>
+> * Necessário autenticação por `token`;
+> * Os campos `urlImage1` a `urlImage6` são opcionais;
+>
+>```json
+>{
+>	"ad": "a456b9ab-17d6-4040-87c1-30ff08619662",
+>	"urlImage1": "https://image.jpg",
+>	"urlImage2": "https://image.jpg",
+>	"urlImage3": "https://image.jpg",
+>	"urlImage4": "https://image.jpg",
+>	"urlImage5": "https://image.jpg",
+>	"urlImage6": "https://image.jpg"
+>}
+>```
+>
+>> ## Formato da resposta:
+>
+> * Status: `201 CREATED`;
+>
+>```json
+>{
+>	"id": "dbc4c5d2-2bc4-44f2-b85c-ba1d54170f69",
+>	"urlImage1": "https://image.jpg",
+>	"urlImage2": "https://image.jpg",
+>	"urlImage3": "https://image.jpg",
+>	"urlImage4": "https://image.jpg",
+>	"urlImage5": "https://image.jpg",
+>	"urlImage6": "https://image.jpg",
+>	"createdAt": "2023-02-24T01:18:07.473Z",
+>	"updatedAt": "2023-02-24T01:18:07.506Z",
+>	"ad": {
+>	   "id": "a456b9ab-17d6-4040-87c1-30ff08619662",
+>	   "typeAd": "Leilão",
+>	   "title": "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes",
+>	   "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>	   "year": 1990,
+>	   "mileage": 10000,
+>	   "price": "170.000,00",
+>	   "isActive": true,
+>	   "typeVehicle": "Carro",
+>	   "urlCoverImage": "https://image.jpg",
+>	   "createdAt": "2023-02-24T01:18:07.506Z",
+>	   "updatedAt": "2023-02-24T01:18:07.506Z"
+>  }
+>}
+>```
+>---
+
+<br>
+
+> # List Galleries - GET `/galleries`
+>> ## Formato da resposta:
+>
+> * Status: `200 OK`;
+>
+>```json
+>[
+>	{
+>		"id": "b6bebd98-e311-46cd-9d43-e5384679e1e2",
+>		"urlImage1": "https://image.jpg",
+>		"urlImage2": "https://image.jpg",
+>		"urlImage3": "https://image.jpg",
+>		"urlImage4": "",
+>		"urlImage5": "",
+>		"urlImage6": "",
+>		"createdAt": "2023-03-01T12:54:01.967Z",
+>		"updatedAt": "2023-03-01T12:54:01.993Z",
+>		"ad": {
+>			"id": "0c9add74-4158-4eee-b26e-16c58bf26390",
+>			"typeAd": "Venda",
+>			"title": "Fiat Mobi Trekking",
+>			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>			"year": 2023,
+>			"mileage": 0,
+>			"price": "60.000,00",
+>			"isActive": true,
+>			"typeVehicle": "Carro",
+>			"urlCoverImage": "https://image.jpg",
+>			"createdAt": "2023-03-01T12:54:01.993Z",
+>			"updatedAt": "2023-03-01T12:54:01.993Z"
+>		}
+>	},
+>	{
+>		"id": "20968e64-8cf3-47ca-84c8-c6a0d3ca018a",
+>		"urlImage1": "",
+>		"urlImage2": "",
+>		"urlImage3": "",
+>		"urlImage4": "",
+>		"urlImage5": "",
+>		"urlImage6": "",
+>		"createdAt": "2023-03-01T12:57:29.727Z",
+>		"updatedAt": "2023-03-01T13:00:20.736Z",
+>		"ad": {
+>			"id": "08874c2d-e6c0-4ab7-9261-8130d1ae000b",
+>			"typeAd": "Venda",
+>			"title": "Fiat Mobi 2023",
+>			"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>			"year": 2023,
+>			"mileage": 0,
+>			"price": "61.990,00",
+>			"isActive": false,
+>			"typeVehicle": "Carro",
+>			"urlCoverImage": "https://image.jpg",
+>			"createdAt": "2023-03-01T12:57:29.751Z",
+>			"updatedAt": "2023-03-01T13:00:20.693Z"
+>		}
+>	},
+>]
+>```
+>---
+
+<br/>
+
+> # Retrieve Gallery - GET `/galleries/:id-gallery`
+>> ## Formato da resposta:
+>
+> * Status: `200 OK`;
+>
+>```json
+>{
+>	"id": "b6bebd98-e311-46cd-9d43-e5384679e1e2",
+>	"urlImage1": "https://image.jpg",
+>	"urlImage2": "https://image.jpg",
+>	"urlImage3": "https://image.jpg",
+>	"urlImage4": "",
+>	"urlImage5": "",
+>	"urlImage6": "",
+>	"createdAt": "2023-03-01T12:54:01.967Z",
+>	"updatedAt": "2023-03-01T12:54:01.993Z",
+>	"ad": {
+>		"id": "0c9add74-4158-4eee-b26e-16c58bf26390",
+>		"typeAd": "Venda",
+>		"title": "Fiat Mobi Trekking",
+>		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>		"year": 2023,
+>		"mileage": 0,
+>		"price": "60.000,00",
+>		"isActive": true,
+>		"typeVehicle": "Carro",
+>		"urlCoverImage": "https://image.jpg",
+>		"createdAt": "2023-03-01T12:54:01.993Z",
+>		"updatedAt": "2023-03-01T12:54:01.993Z"
+>	}
+>}
+>```
+> ## Id inválido
+>> ## Formato da resposta:
+>
+> * Status: `404 NOT FOUND`;
+>```json
+> {
+>   "message": "Gallery not found"
+> }
+>```
+>---
+
+<br>
+
+> # Update Gallery - PATCH `/galleries/:id-gallery`
+>> ## Formato da requisição:
+>
+> * Necessário autenticação por `token`;
+> * Apenas os campos de `urlImage1` à `urlImage6` podem ser alterados;
+>  
+>```json
+>{
+>	"urlImage1": "https://image.jpg",
+>	"urlImage2": "https://image.jpg",
+>	"urlImage3": "https://image.jpg",
+>	"urlImage4": "https://image.jpg",
+>	"urlImage5": "https://image.jpg",
+>	"urlImage6": "https://image.jpg"
+>}
+>```
+>> ## Formato da resposta:
+>
+> * Status: `200 OK`;  
+>
+>```json
+>{
+>	"id": "26dd6afe-029b-4784-b805-eeadf91930d1",
+>	"urlImage1": "https://image.jpg",
+>	"urlImage2": "https://image.jpg",
+>	"urlImage3": "https://image.jpg",
+>	"urlImage4": "https://image.jpg",
+>	"urlImage5": "https://image.jpg",
+>	"urlImage6": "https://image.jpg",
+>	"createdAt": "2023-02-24T01:25:47.457Z",
+>	"updatedAt": "2023-02-24T01:40:14.824Z",
+>	"ad": {
+>		"id": "0c9add74-4158-4eee-b26e-16c58bf26390",
+>		"typeAd": "Venda",
+>		"title": "Fiat Mobi Trekking",
+>		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>		"year": 2023,
+>		"mileage": 0,
+>		"price": "60.000,00",
+>		"isActive": true,
+>		"typeVehicle": "Carro",
+>		"urlCoverImage": "https://image.jpg",
+>		"createdAt": "2023-03-01T12:54:01.993Z",
+>		"updatedAt": "2023-03-01T12:54:01.993Z"
+>	}
+>}
+>```
+> ## Sem token / token inválido
+>> ## Formato da resposta:
+>  
+> * Status: `401 UNAUTHORIZED`;
+>
+>```json
+> {
+>   "message": "Missing authorization headers"
+> }
+>```
+>
+> ## Id inválido
+>> ## Formato da resposta:
+>  
+> * Status: `404 NOT FOUND`;
+>
+>```json
+> {
+>   "message": "Gallery not found"
+> }
+>```
+>---
+
+<br>
+
+> # Delete Gallery - DELETE `/galleries/:id-gallery`
+>> ## Formato da requisição:
+>
+> * Necessário autenticação por `token`;
+> 
+>> ## Formato da resposta:
+>
+> * Status: `204 NO CONTENT`;
+>
+> ## Sem token / token inválido
+>> ## Formato da resposta:
+>
+> * Status: `401 UNAUTHORIZED`;
+>
+>```json
+> {
+>   "message": "Missing authorization headers"
+> }
+>```
+> ## Id inválido:
+>> ## Formato da resposta:
+>
+> * Status: `404 NOT FOUND`;
+>
+>```json
+> {
+>   "message": "Gallery not found"
+> }
+>```
+>---
+
+<br>
+
+---
+---
+
+<br/>
+
 > # Create Comment - POST `/comment`
 >> ## Formato da requisição:
 >
@@ -1271,7 +1589,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >  	 "price": "61.990,00",
 >  	 "isActive": true,
 >  	 "typeVehicle": "Carro",
->  	 "urlCoverImage": "https://cdn.autopapo.com.br/box/uploads/2022/03/25160359/fiat-mobi-trekking-2023-cinza-frente-scaled.jpg",
+>  	 "urlCoverImage": "https://image.jpg",
 >  	 "createdAt": "2023-03-01T00:16:46.001Z",
 >  	 "updatedAt": "2023-03-01T00:16:46.001Z"
 >  },
