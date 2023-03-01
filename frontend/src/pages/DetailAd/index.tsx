@@ -133,7 +133,7 @@ const DetailAd = () => {
 								<Comments>
 									<Title>Comentários</Title>
 									{ad.comments.map((elem: ICooments ) => (
-										<CardComment
+										<CardComment key={elem.id}
 											name={elem.owner.name}
 											description={elem.description}
 											update={elem.updatedAt}

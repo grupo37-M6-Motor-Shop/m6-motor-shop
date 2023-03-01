@@ -17,6 +17,15 @@ const retrieveAdService = async (adId: string): Promise<IAd> => {
 		},
 		select: {
 		  id: true,
+		  typeAd: true,
+		  title: true,
+		  description: true,
+		  year: true,
+		  mileage: true,
+		  price: true,
+		  isActive: true,
+		  typeVehicle: true,
+		  urlCoverImage: true,
 		  comments: { id: true, description:true, updatedAt: true, owner: { id: true, name: true } },
 		},
 	  });
