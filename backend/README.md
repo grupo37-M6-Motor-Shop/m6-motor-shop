@@ -1039,7 +1039,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 
 <br/>
 
-> # Retrieve User - GET `/users/:id-ad`
+> # Retrieve User - GET `/ads/:id-ad`
 >> ## Formato da resposta:
 >
 > * Status: `200 OK`;
@@ -1101,7 +1101,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 
 <br>
 
-> # Update Ad - PATCH `/users/:id-ad`
+> # Update Ad - PATCH `/ads/:id-ad`
 >> ## Formato da requisição:
 >
 > * Necessário autenticação por `token`;
@@ -1200,7 +1200,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 
 <br>
 
-> # Delete Ad - DELETE `/users/:id-ad`
+> # Delete Ad - DELETE `/ads/:id-ad`
 >> ## Formato da requisição:
 >
 > * Necessário autenticação por `token`;
@@ -1237,3 +1237,243 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 ---
 
 <br/>
+
+> # Create Comment - POST `/comment`
+>> ## Formato da requisição:
+>
+> * Necessário autenticação por `token`;
+> * Todos os campos são `obrigatórios`;
+>
+>```json
+> {
+> 	"ad": "001f7a7d-6187-47b0-b762-4fa3360b8a62",
+> 	"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem..."
+> }
+>```
+>
+>> ## Formato da resposta:
+>
+> * Status: `201 CREATED`;
+>
+>```json
+>{
+>  "id": "5a0847d4-31b1-43f2-a03f-dd4157577166",
+>  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>  "createdAt": "2023-03-01T00:38:50.122Z",
+>  "updatedAt": "2023-03-01T00:38:50.122Z",
+>  "ad": {
+>  	 "id": "001f7a7d-6187-47b0-b762-4fa3360b8a62",
+>  	 "typeAd": "Venda",
+>  	 "title": "Fiat Mobi Trekking",
+>  	 "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>  	 "year": 2023,
+>  	 "mileage": 0,
+>  	 "price": "61.990,00",
+>  	 "isActive": true,
+>  	 "typeVehicle": "Carro",
+>  	 "urlCoverImage": "https://cdn.autopapo.com.br/box/uploads/2022/03/25160359/fiat-mobi-trekking-2023-cinza-frente-scaled.jpg",
+>  	 "createdAt": "2023-03-01T00:16:46.001Z",
+>  	 "updatedAt": "2023-03-01T00:16:46.001Z"
+>  },
+>  "owner": {
+>  	 "id": "cfb14fef-6dcf-4217-9419-07650d5ff61c",
+>  	 "name": "Anunciante 1",
+>  	 "email": "anunciante.1@mail.com",
+>  	 "cpf": "753.952.901.63",
+>  	 "phone": "24992654895",
+>  	 "birthday": "22/05/85",
+>  	 "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
+>  	 "advertiser": true,
+>  	 "newPassrwordCode": null,
+>  	 "isActive": true,
+>  	 "isAdm": false,
+>  	 "createdAt": "2023-03-01T00:12:10.612Z",
+>  	 "updatedAt": "2023-03-01T00:12:10.612Z"
+>  }
+>}
+>```
+>
+> ## Sem token / token inválido
+>> ## Formato da resposta:
+>
+> * Status: `401 UNAUTHORIZED`;
+>```json
+> {
+>   "message": "Missing authorization headers"
+> }
+>```
+>
+> ## Id inválido
+>> ## Formato da resposta:
+>
+> * Status: `404 NOT FOUND`;
+>```json
+> {
+>   "message": "Ad not found"
+> }
+>```
+>---
+
+<br>
+
+> # Retrieve Comment - GET `/comment/:id-comment`
+>> ## Formato da requisição:
+>
+> * Necessário autenticação por `token`;
+>
+>> ## Formato da resposta:
+>
+> * Status: `200 OK`;
+>
+>```json
+>{
+>  "id": "5a0847d4-31b1-43f2-a03f-dd4157577166",
+>  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>  "createdAt": "2023-03-01T00:38:50.122Z",
+>  "updatedAt": "2023-03-01T00:38:50.122Z"
+>}
+>```
+> ## Sem token / token inválido
+>> ## Formato da resposta:
+>
+> * Status: `401 UNAUTHORIZED`;
+>```json
+> {
+>   "message": "Missing authorization headers"
+> }
+>```
+> ## Id inválido
+>> ## Formato da resposta:
+>
+> * Status: `404 NOT FOUND`;
+>```json
+> {
+>   "message": "Comment not found"
+> }
+>```
+>---
+
+<br>
+
+> # List Comments - GET `/comment`
+>
+> * Necessário autenticação por `token`;
+>
+>> ## Formato da resposta:
+>
+> * Status: `200 OK`;
+>
+>```json
+>[
+>	{
+>		"id": "5a0847d4-31b1-43f2-a03f-dd4157577166",
+>		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>		"createdAt": "2023-03-01T00:38:50.122Z",
+>		"updatedAt": "2023-03-01T00:38:50.122Z"
+>	},
+>	{
+>		"id": "212b374e-6e9a-4259-b158-7c0eaf540fd1",
+>		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+>		"createdAt": "2023-03-01T00:43:36.817Z",
+>		"updatedAt": "2023-03-01T00:43:36.817Z"
+>	}
+>]
+>
+>```
+> ## Sem token / token inválido
+>> ## Formato da resposta:
+>
+> * Status: `401 UNAUTHORIZED`;
+>```json
+> {
+>   "message": "Missing authorization headers"
+> }
+>```
+>---
+
+<br>
+
+> # Update Comment - PATCH `/comment/:id-comment`
+>> ## Formato da requisição:
+>
+> * Necessário autenticação por `token`;
+> * Apenas o campo `description` pode ser alterado;
+>  
+>```json
+>{
+>   "description": "Comentário atualizado"
+>}
+>```
+>> ## Formato da resposta:
+>
+> * Status: `200 OK`;  
+>
+>```json
+>{
+> 	"id": "5a0847d4-31b1-43f2-a03f-dd4157577166",
+> 	"description": "Comentário atualizado",
+> 	"createdAt": "2023-03-01T00:38:50.122Z",
+> 	"updatedAt": "2023-03-01T00:52:43.347Z"
+>}
+>```
+> ## Sem token / token inválido
+>> ## Formato da resposta:
+>  
+> * Status: `401 UNAUTHORIZED`;
+>
+>```json
+> {
+>   "message": "Missing authorization headers"
+> }
+>```
+> ## Id inválido
+>> ## Formato da resposta:
+>  
+> * Status: `404 NOT FOUND`;
+>
+>```json
+> {
+>   "message": "Comment not found"
+> }
+>```
+>---
+
+<br>
+
+> # Delete Comment - DELETE `/comment/:id-comment`
+>> ## Formato da requisição:
+>
+> * Necessário autenticação por `token`;
+> 
+>> ## Formato da resposta:
+>
+> * Status: `204 NO CONTENT`;
+>
+> ## Sem token / token inválido
+>> ## Formato da resposta:
+>
+> * Status: `401 UNAUTHORIZED`;
+>
+>```json
+> {
+>   "message": "Missing authorization headers"
+> }
+>```
+> ## Id inválido:
+>> ## Formato da resposta:
+>
+> * Status: `404 NOT FOUND`;
+>
+>```json
+> {
+>   "message": "Comment not found"
+> }
+>```
+>---
+
+<br>
+
+---
+---
+
+<br>
