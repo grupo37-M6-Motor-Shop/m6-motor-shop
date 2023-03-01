@@ -8,14 +8,18 @@ const retrieveAdService = async (adId: string): Promise<IAd> => {
 
 	const foundAd = await adRepository.findOne({
 		where: {
-			id: adId,
+		  id: adId,
 		},
 		relations: {
-			user: true,
-			gallery: true,
-			comments: { owner: true },
+		  user: true,
+		  gallery: true,
+		  comments: { owner: true },
 		},
-	});
+		select: {
+		  id: true,
+		  comments: { id: true, description:true, updatedAt: true, owner: { id: true, name: true } },
+		},
+	  });
 
 	if (!foundAd) {
 		throw new AppError("Ad not found", 404);
