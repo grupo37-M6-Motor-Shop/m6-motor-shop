@@ -134,6 +134,9 @@ export const DivNav = styled.div`
 	justify-content: space-between;
 	gap: 2.75rem;
   padding-right: 2.75rem;
+  @media (max-width: 900px) {
+		padding-right: 0rem;
+	}
 `;
 
 export const DivButton = styled.div`
