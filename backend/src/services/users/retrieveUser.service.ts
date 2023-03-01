@@ -5,7 +5,7 @@ import { IUser } from "../../interfaces/users.interface";
 
 const retrieveUserService = async (
 	userId: string,
-	isAdm: boolean
+	// isAdm: boolean
 ): Promise<IUser> => {
 	const userRepository = AppDataSource.getRepository(User);
 
@@ -24,9 +24,9 @@ const retrieveUserService = async (
 		throw new AppError("User not found", 404);
 	}
 
-	if ((!isAdm && findUser.isAdm) || (!isAdm && findUser.isActive === false)) {
-		throw new AppError("User is not admin", 401);
-	}
+	// if ((!isAdm && findUser.isAdm) || (!isAdm && findUser.isActive === false)) {
+	// 	throw new AppError("User is not admin", 401);
+	// }
 
 	return findUser;
 };

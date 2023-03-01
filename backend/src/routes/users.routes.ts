@@ -14,7 +14,7 @@ const userRoutes = Router();
 userRoutes.post("", ensureEmailAlreadyExistMiddleware, createUserController);
 userRoutes.get("", ensureAuthMiddleware, listUsersController);
 userRoutes.get("/profile", ensureAuthMiddleware, userProfileController);
-userRoutes.get("/:id", ensureAuthMiddleware, retrieveUserController);
+userRoutes.get("/:id", retrieveUserController);
 userRoutes.patch("/:id", ensureAuthMiddleware, updateUserController);
 userRoutes.delete("/desactive/:id", ensureAuthMiddleware, softDeleteUserController);
 userRoutes.delete("/:id", ensureAuthMiddleware, deleteUserController);
