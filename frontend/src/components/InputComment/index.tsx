@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { MotorShopContext } from "../../context";
 import { FormCreateComment } from "../../interfaces/FormCreateComment/FormCreateComment";
 import { schemaCreateComment } from "../../validations/FormCreateComment";
@@ -20,7 +21,7 @@ const InputComment = () => {
 	const { isLoggedIn, user, createComment, ad } =
 		useContext(MotorShopContext);
 	const [defaultValue, setDefaultValue] = useState("");
-
+	const navigate = useNavigate()
 	const {
 		register,
 		handleSubmit,
@@ -64,13 +65,13 @@ const InputComment = () => {
 					/>
 					<ButtonWrapper>
 						<Button
-							type="submit"
+							type={isLoggedIn ? "submit" : "button"}
 							component="medium"
-							bgcolor="brand1"
+							bgcolor={isLoggedIn ? "brand1" : "brand3"}
 							color="whiteFixed"
 							width="fullWidth"
-							disabled={!isLoggedIn}
-							hover={{ bgcolor: "brand2" }}
+							hover={{ bgcolor: isLoggedIn ? "brand2" : "brand3" }}
+							onClick={() => !isLoggedIn && navigate("/login")}
 						>
 							Comentar
 						</Button>

@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { IFormCreateAd } from "../interfaces/FormCreateAd/FromCreateAd";
 import { IFormUpdateAd } from "../interfaces/FormUpdateAd/FormUpdateAd";
 import { FormUpdateAddressUser } from "../interfaces/FormUpdateAddressUser/FormUpdateAddressUser";
@@ -79,6 +79,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		localStorage.setItem("@motors-shop:token", token);
 		setToken(token);
 		api.defaults.headers.Authorization = `Bearer ${token}`;
+
 		if (token.length > 1) {
 			navigate("/homepage");
 		}

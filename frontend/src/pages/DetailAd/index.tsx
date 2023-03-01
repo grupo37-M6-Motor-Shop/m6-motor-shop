@@ -8,6 +8,7 @@ import InputComment from "../../components/InputComment";
 import PhotoList from "../../components/PhotoList";
 import { MotorShopContext } from "../../context";
 import { IAds } from "../../interfaces/IAds/IAds";
+import { ICooments } from "../../interfaces/IComments/IComments";
 import { IGallery } from "../../interfaces/IGallery/IGallery";
 import api from "../../services";
 import {
@@ -33,7 +34,7 @@ import {
 } from "./style";
 
 const DetailAd = () => {
-	const { ad, setAd, getUserById } = useContext(MotorShopContext);
+	const { ad, setAd, getUserById, user } = useContext(MotorShopContext);
 	document.body.style.overflow = "unset";
 	const navigate = useNavigate();
 
@@ -69,7 +70,6 @@ const DetailAd = () => {
 							<Image>
 								<img src={ad.urlCoverImage} alt="" />
 							</Image>
-
 							<InfoVehicle>
 								<p>{ad.title}</p>
 
@@ -90,13 +90,11 @@ const DetailAd = () => {
 									Comprar
 								</Button>
 							</InfoVehicle>
-
 							<Description align="justify">
 								<Title>Descrição</Title>
 								{ad.description}
 							</Description>
 						</InfoAd>
-
 						<InfoAdvertiser>
 							{ad.gallery && (
 								<>
@@ -130,21 +128,20 @@ const DetailAd = () => {
 						</InfoAdvertiser>
 					</ContainerInfo>
 					<ContainerComments>
-						<Comments>
-							<Title>Comentários</Title>
-							<CardComment
-								name="Marco Oliveira"
-								description="Gostei muito!"
-							/>
-							<CardComment
-								name="Marcelo Silva"
-								description="Excelente. Gostaria de saber sobre a forma de pagamento."
-							/>
-							<CardComment
-								name="Larissa Neves"
-								description="Lorem ipsum dolor sit amet. Et autem fuga et quas officiis et nostrum repellat hic molestias perspiciatis aut adipisci accusantium est voluptatem similique non ipsam quis. Est excepturi commodi a atque nulla est distinctio animi."
-							/>
-						</Comments>
+						{ad.comments && (
+							<>
+								<Comments>
+									<Title>Comentários</Title>
+									{ad.comments.map((elem: ICooments ) => (
+										<CardComment
+											name={elem.owner.name}
+											description={elem.description}
+											update={elem.updatedAt}
+										/>
+									))}
+								</Comments>
+							</>
+						)}
 						<InputComment />
 					</ContainerComments>
 				</Content>
