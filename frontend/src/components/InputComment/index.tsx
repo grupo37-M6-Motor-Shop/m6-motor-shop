@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { MotorShopContext } from "../../context";
 import { FormCreateComment } from "../../interfaces/FormCreateComment/FormCreateComment";
 import { schemaCreateComment } from "../../validations/FormCreateComment";
@@ -18,10 +18,11 @@ import {
 } from "./style";
 
 const InputComment = () => {
-	const { isLoggedIn, user, createComment, ad } =
+	const { isLoggedIn, user, createComment, ad, setPrevLocation } =
 		useContext(MotorShopContext);
 	const [defaultValue, setDefaultValue] = useState("");
 	const navigate = useNavigate()
+	const location = useLocation()
 	const {
 		register,
 		handleSubmit,
@@ -39,6 +40,10 @@ const InputComment = () => {
 		createComment(newData);
 		setDefaultValue("");
 	};
+
+	const handlePrevLocation = (route: string) => {
+		setPrevLocation(route)
+	}
 
 	return (
 		<Container>
@@ -71,7 +76,10 @@ const InputComment = () => {
 							color="whiteFixed"
 							width="fullWidth"
 							hover={{ bgcolor: isLoggedIn ? "brand2" : "brand3" }}
-							onClick={() => !isLoggedIn && navigate("/login")}
+							onClick={() => {
+								!isLoggedIn && navigate("/login")
+								handlePrevLocation(location.pathname)
+							}}
 						>
 							Comentar
 						</Button>

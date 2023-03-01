@@ -40,6 +40,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const [token, setToken] = useState(
 		localStorage.getItem("@motors-shop:token") || ""
 	);
+	const [prevLocation, setPrevLocation] = useState<string>("");
 
 	const navigate = useNavigate();
 
@@ -80,7 +81,9 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		setToken(token);
 		api.defaults.headers.Authorization = `Bearer ${token}`;
 
-		if (token.length > 1) {
+		if (token.length > 1 && prevLocation) {
+			navigate(prevLocation);
+		} else if (token.length > 1) {
 			navigate("/homepage");
 		}
 	};
@@ -306,6 +309,8 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				updateAddressUser,
 				createComment,
 				deleteUser,
+				prevLocation,
+				setPrevLocation
 			}}
 		>
 			{children}
