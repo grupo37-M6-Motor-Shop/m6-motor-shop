@@ -26,7 +26,7 @@ const retrieveAdService = async (adId: string): Promise<IAd> => {
 		  isActive: true,
 		  typeVehicle: true,
 		  urlCoverImage: true,
-		  comments: { id: true, description:true, updatedAt: true, owner: { id: true, name: true } },
+		  comments: { id: true, description:true, createdAt: true,updatedAt: true, owner: { id: true, name: true } },
 		},
 	  });
 
