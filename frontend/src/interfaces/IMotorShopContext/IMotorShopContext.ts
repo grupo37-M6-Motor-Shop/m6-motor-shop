@@ -63,4 +63,16 @@ export interface IMotorShopContext {
 	setOpenModalReturnUpdateAd: React.Dispatch<React.SetStateAction<boolean>>;
 	openModalReturnDeleteAd: boolean;
 	setOpenModalReturnDeleteAd: React.Dispatch<React.SetStateAction<boolean>>;
+	openModalImage1: boolean;
+	openModalImage2: boolean;
+	openModalImage3: boolean;
+	openModalImage4: boolean;
+	openModalImage5: boolean;
+	openModalImage6: boolean;
+	setOpenModalImage1: React.Dispatch<React.SetStateAction<boolean>>;
+	setOpenModalImage2: React.Dispatch<React.SetStateAction<boolean>>;
+	setOpenModalImage3: React.Dispatch<React.SetStateAction<boolean>>;
+	setOpenModalImage4: React.Dispatch<React.SetStateAction<boolean>>;
+	setOpenModalImage5: React.Dispatch<React.SetStateAction<boolean>>;
+	setOpenModalImage6: React.Dispatch<React.SetStateAction<boolean>>;
 }

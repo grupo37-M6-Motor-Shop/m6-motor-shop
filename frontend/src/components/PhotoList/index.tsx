@@ -1,4 +1,7 @@
+import { useContext } from "react";
+import { MotorShopContext } from "../../context";
 import { IGallery } from "../../interfaces/IGallery/IGallery";
+import Modal from "../modal";
 import {
 	CustomerPhotoList,
 	ContainerPhoto,
@@ -15,37 +18,46 @@ const PhotoList = ({
 	urlImage5,
 	urlImage6,
 }: IGallery) => {
+	const {
+		setOpenModalImage1,
+		setOpenModalImage2,
+		setOpenModalImage3,
+		setOpenModalImage4,
+		setOpenModalImage5,
+		setOpenModalImage6,
+	} = useContext(MotorShopContext);
+
 	return (
 		<ContainerPhotoList>
 			<TextPhoto>Fotos</TextPhoto>
 			<CustomerPhotoList>
 				{urlImage1 && (
-					<ContainerPhoto>
+					<ContainerPhoto onClick={() => setOpenModalImage1(true)}>
 						<Photo src={urlImage1} alt="" />
 					</ContainerPhoto>
 				)}
-        {urlImage2 && (
-					<ContainerPhoto>
+				{urlImage2 && (
+					<ContainerPhoto onClick={() => setOpenModalImage2(true)}>
 						<Photo src={urlImage2} alt="" />
 					</ContainerPhoto>
 				)}
-        {urlImage3 && (
-					<ContainerPhoto>
+				{urlImage3 && (
+					<ContainerPhoto onClick={() => setOpenModalImage3(true)}>
 						<Photo src={urlImage3} alt="" />
 					</ContainerPhoto>
 				)}
-        {urlImage4 && (
-					<ContainerPhoto>
+				{urlImage4 && (
+					<ContainerPhoto onClick={() => setOpenModalImage4(true)}>
 						<Photo src={urlImage4} alt="" />
 					</ContainerPhoto>
 				)}
-        {urlImage5 && (
-					<ContainerPhoto>
+				{urlImage5 && (
+					<ContainerPhoto onClick={() => setOpenModalImage5(true)}>
 						<Photo src={urlImage5} alt="" />
 					</ContainerPhoto>
 				)}
-        {urlImage6 && (
-					<ContainerPhoto>
+				{urlImage6 && (
+					<ContainerPhoto onClick={() => setOpenModalImage6(true)}>
 						<Photo src={urlImage6} alt="" />
 					</ContainerPhoto>
 				)}

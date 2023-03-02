@@ -41,6 +41,12 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		useState(false);
 	const [openModalReturnDeleteAd, setOpenModalReturnDeleteAd] =
 		useState(false);
+	const [openModalImage1, setOpenModalImage1] = useState(false);
+	const [openModalImage2, setOpenModalImage2] = useState(false);
+	const [openModalImage3, setOpenModalImage3] = useState(false);
+	const [openModalImage4, setOpenModalImage4] = useState(false);
+	const [openModalImage5, setOpenModalImage5] = useState(false);
+	const [openModalImage6, setOpenModalImage6] = useState(false);
 	const [isActiveAd, setIsActiveAd] = useState(false);
 	const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
 	const [token, setToken] = useState(
@@ -117,6 +123,12 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		setOpenModalReturnCreateAd(false);
 		setOpenModalReturnUpdateAd(false);
 		setOpenModalReturnDeleteAd(false);
+		setOpenModalImage1(false);
+		setOpenModalImage2(false);
+		setOpenModalImage3(false);
+		setOpenModalImage4(false);
+		setOpenModalImage5(false);
+		setOpenModalImage6(false);
 	};
 
 	const getUserByProfile = async () => {
@@ -308,6 +320,18 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				setOpenModalReturnUpdateAd,
 				openModalReturnDeleteAd,
 				setOpenModalReturnDeleteAd,
+				openModalImage1,
+				openModalImage2,
+				openModalImage3,
+				openModalImage4,
+				openModalImage5,
+				openModalImage6,
+				setOpenModalImage1,
+				setOpenModalImage2,
+				setOpenModalImage3,
+				setOpenModalImage4,
+				setOpenModalImage5,
+				setOpenModalImage6,
 				handleCloseModal,
 				registerAd,
 				getRandomAds,
