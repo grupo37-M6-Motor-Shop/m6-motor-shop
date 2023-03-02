@@ -50,7 +50,7 @@ export const StyledHeader = styled.header`
 `;
 
 export const Image = styled.img`
-
+  cursor: pointer;
 `;
 
 export const Nav = styled.nav`

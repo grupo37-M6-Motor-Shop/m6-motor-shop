@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext, useEffect, useState } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { MotorShopContext } from "../../context";
 import { FormCreateComment } from "../../interfaces/FormCreateComment/FormCreateComment";
@@ -26,7 +26,6 @@ const InputComment = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
 	} = useForm<FormCreateComment>({
 		resolver: yupResolver(schemaCreateComment),
 	});
@@ -66,7 +65,6 @@ const InputComment = () => {
 						offFocus
 						offBorder
 						register={register}
-						error={errors.description}
 					/>
 					<ButtonWrapper>
 						<Button
