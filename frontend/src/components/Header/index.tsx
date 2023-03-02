@@ -106,7 +106,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 	return (
 		<>
 			<StyledHeader>
-				<Image src={logo} alt="logo-motor-shop" />
+				<Image src={logo} alt="logo-motor-shop" onClick={() => navigate("/homepage")}/>
 				<Nav>
 					<DivNav>
 						<MenuBurger onClick={showSideBar}>
