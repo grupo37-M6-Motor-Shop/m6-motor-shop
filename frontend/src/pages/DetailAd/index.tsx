@@ -46,7 +46,6 @@ const DetailAd = () => {
 
 	const showLessComments = () => {
 		setNumComments(10);
-		console.log(numComments === ad.comments.length && numComments > 10)
 	}
 
 	const retrieveAd = async () => {
@@ -151,19 +150,22 @@ const DetailAd = () => {
 											update={elem.updatedAt}
 										/>
 									))}
-									{ad.comments.length > numComments ?
-										<Button
-											color={"brand1"}
-											bgcolor={"tranparent"}
-											component={"medium"}
-											onClick={showMoreComments}
-											hover={{ color: "brand3" }}
-										>
-											Ver mais
-										</Button>
-										:
-										ad.comments.length < numComments ? setNumComments(ad.comments.length) : null
-									}
+									<>
+										{ad.comments.length > numComments ?
+											<Button
+												color={"brand1"}
+												bgcolor={"tranparent"}
+												component={"medium"}
+												onClick={showMoreComments}
+												hover={{ color: "brand3" }}
+											>
+												Ver mais
+											</Button>
+											:
+											ad.comments.length < numComments ? setNumComments(ad.comments.length) : null
+										}
+									</>
+
 									{ad.comments.length === numComments ?
 										<Button
 											color={"brand1"}
@@ -171,7 +173,7 @@ const DetailAd = () => {
 											component={"medium"}
 											onClick={showLessComments}
 											hover={{ color: "brand3" }}
-											>
+										>
 											Ver menos
 										</Button>
 										:
