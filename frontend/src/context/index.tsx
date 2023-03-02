@@ -35,6 +35,12 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const [openModalRegisterUserSuccess, setOpenModalRegisterUserSuccess] =
 		useState(false);
 	const [openModalDeleteUser, setOpenModalDeleteUser] = useState(false);
+	const [openModalReturnCreateAd, setOpenModalReturnCreateAd] =
+		useState(false);
+	const [openModalReturnUpdateAd, setOpenModalReturnUpdateAd] =
+		useState(false);
+	const [openModalReturnDeleteAd, setOpenModalReturnDeleteAd] =
+		useState(false);
 	const [isActiveAd, setIsActiveAd] = useState(false);
 	const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
 	const [token, setToken] = useState(
@@ -108,6 +114,9 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		setOpenModalRegisterUserSuccess(false);
 		setOpenModalUpdateAddresUser(false);
 		setOpenModalDeleteUser(false);
+		setOpenModalReturnCreateAd(false);
+		setOpenModalReturnUpdateAd(false);
+		setOpenModalReturnDeleteAd(false);
 	};
 
 	const getUserByProfile = async () => {
@@ -210,6 +219,10 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			await api.post<IFormCreateAd>("/ads", data);
 			getUserByProfile();
 			handleCloseModal();
+			setOpenModalReturnCreateAd(true);
+			setTimeout(() => {
+				handleCloseModal();
+			}, 3000);
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
@@ -224,11 +237,13 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			await api.patch(`/galleries/${galleryData.galleryId}`, galleryData);
 			getUserByProfile();
 			handleCloseModal();
-			toast.success("Anúncio alterado com sucessos!");
+			setOpenModalReturnUpdateAd(true);
+			setTimeout(() => {
+				handleCloseModal();
+			}, 3000);
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
-			toast.error("Algo deu errado! Tente novamente!");
 		}
 	};
 
@@ -236,11 +251,13 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		try {
 			await api.delete(`/ads/${adId}`);
 			getUserByProfile();
-			toast.success("Anúncio excuído com sucesso!");
+			setOpenModalReturnDeleteAd(true);
+			setTimeout(() => {
+				handleCloseModal();
+			}, 3000);
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
-			toast.error("Algo deu errado! Tente novamente!");
 		}
 	};
 
@@ -285,6 +302,12 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				setOpenModalUpdateAddresUser,
 				openModalDeleteUser,
 				setOpenModalDeleteUser,
+				openModalReturnCreateAd,
+				setOpenModalReturnCreateAd,
+				openModalReturnUpdateAd,
+				setOpenModalReturnUpdateAd,
+				openModalReturnDeleteAd,
+				setOpenModalReturnDeleteAd,
 				handleCloseModal,
 				registerAd,
 				getRandomAds,

@@ -57,4 +57,10 @@ export interface IMotorShopContext {
 	deleteUser: (userId: string) => void;
 	prevLocation: string;
 	setPrevLocation: React.Dispatch<React.SetStateAction<string>>;
+	openModalReturnCreateAd: boolean;
+	setOpenModalReturnCreateAd: React.Dispatch<React.SetStateAction<boolean>>;
+	openModalReturnUpdateAd: boolean;
+	setOpenModalReturnUpdateAd: React.Dispatch<React.SetStateAction<boolean>>;
+	openModalReturnDeleteAd: boolean;
+	setOpenModalReturnDeleteAd: React.Dispatch<React.SetStateAction<boolean>>;
 }
