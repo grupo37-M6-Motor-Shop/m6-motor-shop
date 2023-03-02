@@ -46,6 +46,7 @@ const DetailAd = () => {
     openModalImage4,
     openModalImage5,
     openModalImage6,
+    userProfile,
   } = useContext(MotorShopContext);
   document.body.style.overflow = "unset";
   const [numComments, setNumComments] = useState(10);
@@ -107,7 +108,12 @@ const DetailAd = () => {
                   width="8rem"
                   hover={{ bgcolor: "brand2" }}
                 >
-                  Comprar
+                  <a
+                    href={`https://api.whatsapp.com/send?phone=+55${userProfile.phone}&text=Ol%C3%A1%2C%20[…]C%20gostaria%20de%20conhecer%20melhor%20seus%20servi%C3%A7os`}
+                    target="_blank"
+                  >
+                    Comprar
+                  </a>
                 </Button>
               </InfoVehicle>
               <Description align="justify">
