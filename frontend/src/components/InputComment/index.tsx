@@ -21,14 +21,12 @@ const InputComment = () => {
 	const { isLoggedIn, user, createComment, ad, setPrevLocation } =
 		useContext(MotorShopContext);
 	const [defaultValue, setDefaultValue] = useState("");
-	const navigate = useNavigate()
-	const location = useLocation()
-	const {
-		register,
-		handleSubmit,
-	} = useForm<FormCreateComment>({
-		resolver: yupResolver(schemaCreateComment),
-	});
+	const navigate = useNavigate();
+	const location = useLocation();
+	const { register, handleSubmit, reset, setValue } =
+		useForm<FormCreateComment>({
+			resolver: yupResolver(schemaCreateComment),
+		});
 
 	const handleClick = (data: FormCreateComment) => {
 		const { description } = data;
@@ -38,11 +36,13 @@ const InputComment = () => {
 		};
 		createComment(newData);
 		setDefaultValue("");
+		reset();
+		setValue("description", "");
 	};
 
 	const handlePrevLocation = (route: string) => {
-		setPrevLocation(route)
-	}
+		setPrevLocation(route);
+	};
 
 	return (
 		<Container>
@@ -73,10 +73,12 @@ const InputComment = () => {
 							bgcolor={isLoggedIn ? "brand1" : "brand3"}
 							color="whiteFixed"
 							width="fullWidth"
-							hover={{ bgcolor: isLoggedIn ? "brand2" : "brand3" }}
+							hover={{
+								bgcolor: isLoggedIn ? "brand2" : "brand3",
+							}}
 							onClick={() => {
-								!isLoggedIn && navigate("/login")
-								handlePrevLocation(location.pathname)
+								!isLoggedIn && navigate("/login");
+								handlePrevLocation(location.pathname);
 							}}
 						>
 							Comentar
