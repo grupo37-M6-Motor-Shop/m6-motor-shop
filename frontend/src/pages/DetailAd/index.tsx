@@ -101,20 +101,20 @@ const DetailAd = () => {
                   </div>
                   <FontPrice>R$ {ad.price}</FontPrice>
                 </ContainerPriceYearKm>
-                <Button
-                  color="whiteFixed"
-                  bgcolor="brand1"
-                  component="medium"
-                  width="8rem"
-                  hover={{ bgcolor: "brand2" }}
+                <a
+                  href={`https://api.whatsapp.com/send?phone=+55${userProfile.phone}&text=Ol%C3%A1%2C%20[…]C%20gostaria%20de%20conhecer%20melhor%20seus%20servi%C3%A7os`}
+                  target="_blank"
                 >
-                  <a
-                    href={`https://api.whatsapp.com/send?phone=+55${userProfile.phone}&text=Ol%C3%A1%2C%20[…]C%20gostaria%20de%20conhecer%20melhor%20seus%20servi%C3%A7os`}
-                    target="_blank"
+                  <Button
+                    color="whiteFixed"
+                    bgcolor="brand1"
+                    component="medium"
+                    width="8rem"
+                    hover={{ bgcolor: "brand2" }}
                   >
                     Comprar
-                  </a>
-                </Button>
+                  </Button>
+                </a>
               </InfoVehicle>
               <Description align="justify">
                 <Title>Descrição</Title>
