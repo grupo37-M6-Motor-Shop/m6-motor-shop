@@ -36,9 +36,18 @@ import {
 const DetailAd = () => {
 	const { ad, setAd, getUserById, user } = useContext(MotorShopContext);
 	document.body.style.overflow = "unset";
+	const [numComments, setNumComments] = useState(10);
 	const navigate = useNavigate();
-
 	const { id } = useParams();
+
+	const showMoreComments = () => {
+		setNumComments(numComments + 10);
+	}
+
+	const showLessComments = () => {
+		setNumComments(10);
+		console.log(numComments === ad.comments.length && numComments > 10)
+	}
 
 	const retrieveAd = async () => {
 		try {
@@ -132,8 +141,9 @@ const DetailAd = () => {
 							<>
 								<Comments>
 									<Title>Comentários</Title>
-									{ad.comments.map((elem: ICooments ) => (
-										<CardComment key={elem.id}
+									{ad.comments.slice(0, numComments).map((elem: ICooments) => (
+										<CardComment
+											key={elem.id}
 											name={elem.owner.name}
 											description={elem.description}
 											time={elem.createdAt}
@@ -141,6 +151,32 @@ const DetailAd = () => {
 											update={elem.updatedAt}
 										/>
 									))}
+									{ad.comments.length > numComments ?
+										<Button
+											color={"brand1"}
+											bgcolor={"tranparent"}
+											component={"medium"}
+											onClick={showMoreComments}
+											hover={{ color: "brand3" }}
+										>
+											Ver mais
+										</Button>
+										:
+										ad.comments.length < numComments ? setNumComments(ad.comments.length) : null
+									}
+									{ad.comments.length === numComments ?
+										<Button
+											color={"brand1"}
+											bgcolor={"tranparent"}
+											component={"medium"}
+											onClick={showLessComments}
+											hover={{ color: "brand3" }}
+											>
+											Ver menos
+										</Button>
+										:
+										null
+									}
 								</Comments>
 							</>
 						)}
