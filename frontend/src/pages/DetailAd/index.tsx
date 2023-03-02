@@ -136,6 +136,8 @@ const DetailAd = () => {
 										<CardComment key={elem.id}
 											name={elem.owner.name}
 											description={elem.description}
+											time={elem.createdAt}
+											create={elem.createdAt}
 											update={elem.updatedAt}
 										/>
 									))}
