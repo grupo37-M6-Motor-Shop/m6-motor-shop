@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import Modal from "../../components/modal";
 import ModalAdCreate from "../../components/ModalAdCreate";
 import ModalAdDelete from "../../components/ModalAdDelete";
 import ModalAdUpdate from "../../components/ModalAdUpdate";
@@ -11,7 +10,6 @@ import ModalReturnCreateAd from "../../components/ModalReturnCreateAd";
 import ModalReturnDeleteAd from "../../components/ModalReturnDeleteAd";
 import ModalReturnUpdateAd from "../../components/ModalReturnUpdateAd";
 import Section from "../../components/Section";
-import StandardReturns from "../../components/StandardReturns";
 import { MotorShopContext } from "../../context";
 import { IUser } from "../../interfaces/IUser/IUser";
 import api from "../../services";
@@ -40,6 +38,7 @@ const AdvertiverProfile = () => {
 		openModalReturnCreateAd,
 		openModalReturnUpdateAd,
 		openModalReturnDeleteAd,
+		setPrevLocation,
 	} = useContext(MotorShopContext);
 	document.body.style.overflow = "unset";
 	const [profileOwner, setProfileOwner] = useState(false);
@@ -61,6 +60,7 @@ const AdvertiverProfile = () => {
 		}
 		retrieveUser();
 		window.scrollTo({ top: 0, behavior: "smooth" });
+		setPrevLocation(window.location.pathname);
 	}, [id]);
 
 	return (
