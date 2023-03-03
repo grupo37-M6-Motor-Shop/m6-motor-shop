@@ -1,3 +1,4 @@
+import { IComments } from "../IComments/IComments"
 import { IGallery } from "../IGallery/IGallery"
 import { IUser } from "../IUser/IUser"
 
@@ -14,5 +15,5 @@ export interface IAds {
 	urlCoverImage: string
 	user: IUser
 	gallery: IGallery
-	comments: []
+	comments: IComments[]
 }

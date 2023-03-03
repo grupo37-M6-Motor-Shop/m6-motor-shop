@@ -15,6 +15,7 @@ import { IUser } from "../interfaces/IUser/IUser";
 import api from "../services";
 import { toast } from "react-toastify";
 import { FormCreateComment } from "../interfaces/FormCreateComment/FormCreateComment";
+import { FormUpdateComment } from "../interfaces/FormUpdateComment/FormUpdateComment";
 
 export const MotorShopContext = createContext<IMotorShopContext>(
 	{} as IMotorShopContext
@@ -55,6 +56,9 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const [prevLocation, setPrevLocation] = useState<string>("");
 
 	const navigate = useNavigate();
+	const notifySuccess = (text: string, idNotify: string) => toast.success(text, { toastId: idNotify });
+    const notifyError = (text: string, idNotify: string) => toast.error(text,  { toastId: idNotify});
+    const notifyWarn = (text: string, idNotify: string) => toast.warn(text, { toastId: idNotify });
 
 	useEffect(() => {
 		const loadUser = async () => {
@@ -84,13 +88,14 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			const res = await api.post("/login", { email, password });
 			localStorage.setItem("@motors-shop:token", res.data.token);
 			setToken(res.data.token);
+			notifySuccess("Login efetuado com sucesso!", "successLogin")
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
 			if (err.response?.data.message === "Invalid e-mail or password") {
-				return toast.error("Email ou senha inválidos!");
+				return notifyError("Email ou senha inválidos!", "errorEmail");
 			}
-			toast.error("Algo deu errado! Tente Novamente!");
+			notifyError("Algo deu errado! Tente Novamente!", "errorLogin");
 		}
 	};
 
@@ -108,7 +113,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
-			toast.error("Algo deu errado! Tente novamente!");
+			notifyError("Algo deu errado! Tente novamente!", "errorRegisterUser");
 		}
 	};
 
@@ -156,11 +161,11 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			const res = await api.patch<IUser>(`/users/${user.id}`, data);
 			setUser(res.data);
 			handleCloseModal();
-			toast.success("Perfil alterado com sucesso!");
+			notifySuccess("Perfil alterado com sucesso!", "sucessUpdateUser");
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
-			toast.error("Algo deu errado! Tente novamente!");
+			notifyError("Algo deu errado! Tente novamente!", "errorUpdateUser");
 		}
 	};
 
@@ -169,12 +174,12 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			await api.delete(`/users/${userId}`);
 			localStorage.clear();
 			setIsLoggedIn(false);
-			toast.success("Perfil excluído com sucesso!");
+			notifySuccess("Perfil excluído com sucesso!", "sucessDeleteUser");
 			navigate("/homepage");
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
-			toast.error("Algo deu errado! Tente novamente!");
+			notifyError("Algo deu errado! Tente novamente!", "errorDeleteUser");
 		}
 	};
 
@@ -187,11 +192,11 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			handleCloseModal();
 			const res = await api.get(`/users/${user.id}`);
 			setUser(res.data);
-			toast.success("Endereço atualizado com successo!");
+			notifySuccess("Endereço atualizado com successo!", "sucessUpdateAddressUser");
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
-			toast.error("Algo deu errado! Tente novamente!");
+			notifyError("Algo deu errado! Tente novamente!", "errorUpdateAddressUser");
 		}
 	};
 
@@ -238,7 +243,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
-			toast.error("Algo deu errado! Tente novamente!");
+			notifyError("Algo deu errado! Tente novamente!", "errorRegisterAd");
 		}
 	};
 
@@ -276,14 +281,36 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const createComment = async (data: FormCreateComment) => {
 		try {
 			await api.post("/comment", data);
-			toast.success("Comentário postado!");
+			notifySuccess("Comentário postado!", "sucessCreateComment");
 			getAdbyId(ad.id);
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
-			toast.error("Algo deu errado! Tente novamente!");
+			notifyError("Algo deu errado! Tente novamente!", "errorCreateComment");
 		}
 	};
+
+	const updateComment = async (data: FormUpdateComment, id: string) => {
+		try {
+			await api.patch(`/comment/${id}`, data);
+			getAdbyId(ad.id);
+		} catch (error) {
+			const err = error as AxiosError<IError>;
+			console.log(err);
+		}
+	};
+
+	const deleteComment = async (id: string) => {
+		try {
+			await api.delete(`/comment/${id}`);
+			getAdbyId(ad.id);
+		} catch (error) {
+			const err = error as AxiosError<IError>;
+			console.log(err);
+		}
+	};
+
+	
 
 	return (
 		<MotorShopContext.Provider
@@ -353,6 +380,8 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				deleteUser,
 				prevLocation,
 				setPrevLocation,
+				deleteComment,
+				updateComment
 			}}
 		>
 			{children}

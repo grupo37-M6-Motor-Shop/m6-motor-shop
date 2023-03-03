@@ -9,8 +9,7 @@ import Modal from "../../components/modal";
 import PhotoList from "../../components/PhotoList";
 import { MotorShopContext } from "../../context";
 import { IAds } from "../../interfaces/IAds/IAds";
-import { ICooments } from "../../interfaces/IComments/IComments";
-import { IGallery } from "../../interfaces/IGallery/IGallery";
+import { IComments } from "../../interfaces/IComments/IComments";
 import api from "../../services";
 import {
   BackgroundContent,
@@ -46,19 +45,25 @@ const DetailAd = () => {
     openModalImage4,
     openModalImage5,
     openModalImage6,
-    userProfile,
+    userProfile
   } = useContext(MotorShopContext);
-  document.body.style.overflow = "unset";
   const [numComments, setNumComments] = useState(10);
+  const [activeCardId, setActiveCardId] = useState<string | null>(null);
+
+  document.body.style.overflow = "unset";
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const showMoreComments = () => {
-    setNumComments(numComments + 10);
+  const handleCardClick = (id: string) => {
+    if (activeCardId === id) {
+      setActiveCardId(null);
+    } else {
+      setActiveCardId(id);
+    }
   };
 
-  const showLessComments = () => {
-    setNumComments(10);
+  const handleCloseAllCards = () => {
+    setActiveCardId(null);
   };
 
   const retrieveAd = async () => {
@@ -80,6 +85,10 @@ const DetailAd = () => {
     navigate(`/profile/${ad.user.id}`, { replace: true });
   };
 
+  const showMoreComments = () => {
+    setNumComments(numComments + 10);
+  };
+
   return (
     <Container>
       <Header />
@@ -93,7 +102,6 @@ const DetailAd = () => {
               </Image>
               <InfoVehicle>
                 <p>{ad.title}</p>
-
                 <ContainerPriceYearKm>
                   <div>
                     <InfoKmYear>{ad.mileage} KM</InfoKmYear>
@@ -159,23 +167,29 @@ const DetailAd = () => {
                 <Comments>
                   <Title>Comentários</Title>
                   {ad.comments.length === 0 ? (
-                    <span>ainda não há comentários neste anúncio</span>
+                    <span>Ainda não há comentários neste anúncio</span>
                   ) : (
                     <>
                       {ad.comments
+                        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
                         .slice(0, numComments)
-                        .map((elem: ICooments) => (
+                        .map((elem: IComments) => (
                           <CardComment
                             key={elem.id}
                             name={elem.owner.name}
+                            id={elem.id}
+                            idOwner={elem.owner.id}
                             description={elem.description}
+                            isActive={activeCardId === elem.id}
                             time={elem.createdAt}
                             create={elem.createdAt}
                             update={elem.updatedAt}
+                            close={handleCloseAllCards}
+                            open={handleCardClick}
                           />
                         ))}
                       <>
-                        {ad.comments.length > numComments ? (
+                        {ad.comments.length >= numComments + 1 ? (
                           <Button
                             color={"brand1"}
                             bgcolor={"tranparent"}
@@ -185,22 +199,8 @@ const DetailAd = () => {
                           >
                             Ver mais
                           </Button>
-                        ) : ad.comments.length < numComments ? (
-                          setNumComments(ad.comments.length)
                         ) : null}
                       </>
-
-                      {ad.comments.length === numComments ? (
-                        <Button
-                          color={"brand1"}
-                          bgcolor={"tranparent"}
-                          component={"medium"}
-                          onClick={showLessComments}
-                          hover={{ color: "brand3" }}
-                        >
-                          Ver menos
-                        </Button>
-                      ) : null}
                     </>
                   )}
                 </Comments>
