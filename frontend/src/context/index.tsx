@@ -73,11 +73,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 					const res = await api.get("/users/profile");
 					setUser(res.data);
 					setIsLoggedIn(true);
-					if (token.length > 1 && prevLocation) {
-						navigate(prevLocation);
-					} else if (token.length > 1) {
-						navigate("/homepage");
-					}
 				} catch (error) {
 					console.error(error);
 					localStorage.removeItem("@motors-shop:token");
@@ -93,6 +88,11 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			const res = await api.post("/login", { email, password });
 			localStorage.setItem("@motors-shop:token", res.data.token);
 			setToken(res.data.token);
+			if (prevLocation) {
+				navigate(prevLocation);
+			} else if (token.length > 1 && !prevLocation) {
+				navigate("/homepage");
+			}
 			notifySuccess("Login efetuado com sucesso!", "successLogin");
 		} catch (error) {
 			const err = error as AxiosError<IError>;
