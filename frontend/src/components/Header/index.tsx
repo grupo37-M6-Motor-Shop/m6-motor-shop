@@ -22,7 +22,7 @@ import {
 	FontUserName,
 	UserImg,
 	DivProfile,
-	ButtonAnimation
+	ButtonAnimation,
 } from "./style";
 import logo from "../../assets/img/motor_shop_logo_header.svg";
 import Button from "../Button";
@@ -32,7 +32,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ModalEditUser from "../ModalEditUser";
 import ModalEditAddressUser from "../ModalEditAddressUser";
 import ModalDeleteUser from "../ModalDeleteUser";
-import { Link as LinkScroll, scroller } from 'react-scroll'
+import { Link as LinkScroll, scroller } from "react-scroll";
 
 const Header = ({ auction, colorFont, image }: any) => {
 	const [dropDown, setDropDown] = useState<number>(0);
@@ -40,45 +40,45 @@ const Header = ({ auction, colorFont, image }: any) => {
 	const [isSideBarVisible, setIsSideBarVisible] = useState<boolean>(false);
 	const {
 		isLoggedIn,
-		user: { id, name, advertiser },
+		user: { id, name, advertiser, avatarColor },
 		getUserByProfile,
 		modalEditUser,
 		setModalEditUser,
 		openModalUpdateAddresUser,
 		setOpenModalUpdateAddresUser,
 		openModalDeleteUser,
-		logout
+		logout,
 	} = useContext(MotorShopContext);
 	const navigate = useNavigate();
 	const showSideBar = () => setIsSideBarVisible(!isSideBarVisible);
 	const [backgroundColor, setBackgroundColor] = useState<string | undefined>(
 		undefined
 	);
-	const locationRoute = useLocation()
+	const locationRoute = useLocation();
 
 	const handleLocation = async () => {
 		if (locationRoute.pathname === "/homepage") {
-			setLocation(true)
+			setLocation(true);
 		} else {
-			setLocation(false)
+			setLocation(false);
 		}
 	};
 	useEffect(() => {
-		handleLocation()
-	}, [])
+		handleLocation();
+	}, []);
 
-  const handleClickProfile = async () => {
-    await getUserByProfile();
-    navigate(`/profile/${id}`);
-  };
+	const handleClickProfile = async () => {
+		await getUserByProfile();
+		navigate(`/profile/${id}`);
+	};
 
-  const handleClickdropDownProfile = () => {
-    if (dropDown === 0) {
-      setDropDown(1);
-    } else {
-      setDropDown(0);
-    }
-  };
+	const handleClickdropDownProfile = () => {
+		if (dropDown === 0) {
+			setDropDown(1);
+		} else {
+			setDropDown(0);
+		}
+	};
 
 	const twoLetters = () => {
 		if (name !== undefined) {
@@ -96,7 +96,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 		scroller.scrollTo(route, {
 			duration: 1500,
 			delay: 100,
-			smooth: 'easeInOutQuart',
+			smooth: "easeInOutQuart",
 			spy: true,
 			hashSpy: true,
 			offset: -40,
@@ -106,14 +106,18 @@ const Header = ({ auction, colorFont, image }: any) => {
 	};
 
 	const handleButtonClick = (routes: string) => {
-		navigate('/homepage');
+		navigate("/homepage");
 		setTimeout(() => scrollToCarroSection(routes), 500);
 	};
 
 	return (
 		<>
 			<StyledHeader>
-				<Image src={logo} alt="logo-motor-shop" onClick={() => navigate("/homepage")} />
+				<Image
+					src={logo}
+					alt="logo-motor-shop"
+					onClick={() => navigate("/homepage")}
+				/>
 				<Nav>
 					<DivNav>
 						<MenuBurger onClick={showSideBar}>
@@ -172,12 +176,26 @@ const Header = ({ auction, colorFont, image }: any) => {
 							</>
 						) : (
 							<>
-								<ButtonAnimation className="link" onClick={() => handleButtonClick("carros")}>Carros</ButtonAnimation>
-								<ButtonAnimation className="link" onClick={() => handleButtonClick("motos")}>Motos</ButtonAnimation>
-								<ButtonAnimation className="link" onClick={() => handleButtonClick("leilao")}>Leilão</ButtonAnimation>
+								<ButtonAnimation
+									className="link"
+									onClick={() => handleButtonClick("carros")}
+								>
+									Carros
+								</ButtonAnimation>
+								<ButtonAnimation
+									className="link"
+									onClick={() => handleButtonClick("motos")}
+								>
+									Motos
+								</ButtonAnimation>
+								<ButtonAnimation
+									className="link"
+									onClick={() => handleButtonClick("leilao")}
+								>
+									Leilão
+								</ButtonAnimation>
 							</>
 						)}
-
 					</DivNav>
 					<Divise />
 					<DivProfile>
@@ -214,7 +232,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 											handleClickdropDownProfile()
 										}
 									>
-										<UserImg colorRandom={backgroundColor}>
+										<UserImg colorRandom={avatarColor}>
 											{image ? image : twoLetters()}
 										</UserImg>
 										<FontUserName
@@ -345,9 +363,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 										<Settings>
 											<ContainerUser>
 												<UserImg
-													colorRandom={
-														backgroundColor
-													}
+													colorRandom={avatarColor}
 												>
 													{image
 														? image
