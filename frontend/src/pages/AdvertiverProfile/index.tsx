@@ -6,6 +6,9 @@ import Header from "../../components/Header";
 import ModalAdCreate from "../../components/ModalAdCreate";
 import ModalAdDelete from "../../components/ModalAdDelete";
 import ModalAdUpdate from "../../components/ModalAdUpdate";
+import ModalReturnCreateAd from "../../components/ModalReturnCreateAd";
+import ModalReturnDeleteAd from "../../components/ModalReturnDeleteAd";
+import ModalReturnUpdateAd from "../../components/ModalReturnUpdateAd";
 import Section from "../../components/Section";
 import { MotorShopContext } from "../../context";
 import { IUser } from "../../interfaces/IUser/IUser";
@@ -25,15 +28,20 @@ import {
 const AdvertiverProfile = () => {
 	document.body.style.overflow = "unset";
 	const {
+		user,
+		userProfile,
+		setUserProfile,
 		openModalCreateAd,
 		setOpenModalCreateAd,
 		openModalUpdateAd,
 		openModalDeleteAd,
+		openModalReturnCreateAd,
+		openModalReturnUpdateAd,
+		openModalReturnDeleteAd,
+		setPrevLocation,
 	} = useContext(MotorShopContext);
 	document.body.style.overflow = "unset";
 	const [profileOwner, setProfileOwner] = useState(false);
-
-	const { user, userProfile, setUserProfile } = useContext(MotorShopContext);
 
 	const { id } = useParams();
 
@@ -52,6 +60,7 @@ const AdvertiverProfile = () => {
 		}
 		retrieveUser();
 		window.scrollTo({ top: 0, behavior: "smooth" });
+		setPrevLocation(window.location.pathname);
 	}, [id]);
 
 	return (
@@ -121,6 +130,9 @@ const AdvertiverProfile = () => {
 				{openModalDeleteAd && <ModalAdDelete />}
 				{openModalUpdateAd && <ModalAdUpdate />}
 				{openModalCreateAd && <ModalAdCreate />}
+				{openModalReturnCreateAd && <ModalReturnCreateAd />}
+				{openModalReturnUpdateAd && <ModalReturnUpdateAd />}
+				{openModalReturnDeleteAd && <ModalReturnDeleteAd />}
 			</Main>
 			<Footer />
 		</Container>

@@ -21,22 +21,12 @@ import {
 } from "./style";
 
 const Card = ({ auction = false, ...props }) => {
-	const {
-		setOpenModalUpdateAd,
-		getAdbyId,
-		getAdbyIdNotOwner,
-		ad,
-		setIsActiveAd,
-	} = useContext(MotorShopContext);
+	const { setOpenModalUpdateAd, getAdbyId, getAdbyIdNotOwner } =
+		useContext(MotorShopContext);
 
 	const navigate = useNavigate();
 
 	const handleClickUpdate = async () => {
-		if (ad.isActive) {
-			setIsActiveAd(true);
-		} else {
-			setIsActiveAd(false);
-		}
 		await getAdbyId(props.id);
 		setOpenModalUpdateAd(true);
 	};

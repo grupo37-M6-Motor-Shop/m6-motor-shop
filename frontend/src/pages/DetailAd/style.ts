@@ -32,15 +32,14 @@ export const Content = styled.div`
 
 export const BackgroundContent = styled.div`
   width: 100%;
-	min-height: 26rem;
+  min-height: 26rem;
   display: flex;
   justify-content: center;
   background: var(--brand1);
   position: absolute;
 
-    
   @media screen and (min-width: 1240px) {
-	  min-height: 30rem;
+    min-height: 30rem;
   }
 `;
 
@@ -53,7 +52,7 @@ export const ContainerInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   @media screen and (min-width: 1250px) {
     flex-direction: row;
     justify-content: space-between;
@@ -75,13 +74,13 @@ export const Image = styled.div`
   height: 20rem;
   border-radius: 0.25rem;
   background-color: var(--whiteFixed);
-  
+
   > img {
     width: 100%;
-		height: 100%;
-		object-fit: scale-down;
-		border-radius: 0.5rem;
-	}
+    height: 100%;
+    object-fit: scale-down;
+    border-radius: 0.5rem;
+  }
 `;
 
 export const InfoVehicle = styled.div`
@@ -101,7 +100,7 @@ export const Description = styled.div<DescriptionProps>`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  text-align: ${({align}) => align === "center" ? "center" : "justify"};
+  text-align: ${({ align }) => (align === "center" ? "center" : "justify")};
 `;
 
 export const Title = styled.p`
@@ -111,9 +110,9 @@ export const Title = styled.p`
 `;
 
 export const ContainerPriceYearKm = styled.div`
-	display: flex;
+  display: flex;
   flex-direction: column;
-	gap: 1rem;
+  gap: 1rem;
 
   @media screen and (min-width: 550px) {
     flex-direction: row;
@@ -122,16 +121,16 @@ export const ContainerPriceYearKm = styled.div`
 `;
 
 export const InfoKmYear = styled(FontIntegerNormal)`
-	background-color: red;
-	padding: 4px 8px;
-	margin-right: 12px;
-	border-radius: 4px;
-	background: var(--brand4);
-	color: var(--brand1);
+  background-color: red;
+  padding: 4px 8px;
+  margin-right: 12px;
+  border-radius: 4px;
+  background: var(--brand4);
+  color: var(--brand1);
 `;
 
 export const FontPrice = styled.div`
-	font-weight: 500;
+  font-weight: 500;
 `;
 
 export const InfoAdvertiser = styled.div`
@@ -144,7 +143,7 @@ export const InfoAdvertiser = styled.div`
   display: flex;
   gap: 1rem;
   max-width: 47rem;
-  
+
   @media screen and (min-width: 1250px) {
     max-width: 27rem;
   }
@@ -205,4 +204,16 @@ export const Comments = styled.div`
   padding: 1rem 1.5rem;
   gap: 2rem;
   border-radius: 0.25rem;
+
+  > span {
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+`;
+
+export const ZoomImg = styled.img`
+  max-width: 29.0625rem;
+  max-height: 15rem;
 `;

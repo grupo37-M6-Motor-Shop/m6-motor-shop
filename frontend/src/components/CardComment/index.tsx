@@ -33,11 +33,21 @@ const CardComment = ({ ...props }) => {
     }
   };
 
+  const edit = (create: string, update: string): string => {
+    const createdAt = new Date(create);
+    const updatedAt = new Date(update);
+      if(createdAt < updatedAt) {
+        return " • (Editado)"
+      }else {
+        return ""
+      }
+  };
+
   return (
     <ContainerCardComment>
       <ContainerDetailAndCreation>
         <Detail name={props.name} colorFont="--grey1" />
-        <CreationTime>• {creatioTime(props.update)}</CreationTime>
+        <CreationTime>• {creatioTime(props.time)}{edit(props.create,props.update)}</CreationTime>
       </ContainerDetailAndCreation>
       <FontIntegerNormal>{props.description}</FontIntegerNormal>
     </ContainerCardComment>

@@ -5,6 +5,7 @@ import CardComment from "../../components/CardComment";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import InputComment from "../../components/InputComment";
+import Modal from "../../components/modal";
 import PhotoList from "../../components/PhotoList";
 import { MotorShopContext } from "../../context";
 import { IAds } from "../../interfaces/IAds/IAds";
@@ -31,14 +32,34 @@ import {
 	UserImg,
 	Name,
 	ContainerComments,
+	ZoomImg,
 } from "./style";
 
 const DetailAd = () => {
-	const { ad, setAd, getUserById, user } = useContext(MotorShopContext);
+	const {
+		ad,
+		setAd,
+		getUserById,
+		openModalImage1,
+		openModalImage2,
+		openModalImage3,
+		openModalImage4,
+		openModalImage5,
+		openModalImage6,
+		userProfile,
+	} = useContext(MotorShopContext);
 	document.body.style.overflow = "unset";
+	const [numComments, setNumComments] = useState(10);
 	const navigate = useNavigate();
-
 	const { id } = useParams();
+
+	const showMoreComments = () => {
+		setNumComments(numComments + 10);
+	};
+
+	const showLessComments = () => {
+		setNumComments(10);
+	};
 
 	const retrieveAd = async () => {
 		try {
@@ -80,15 +101,20 @@ const DetailAd = () => {
 									</div>
 									<FontPrice>R$ {ad.price}</FontPrice>
 								</ContainerPriceYearKm>
-								<Button
-									color="whiteFixed"
-									bgcolor="brand1"
-									component="medium"
-									width="8rem"
-									hover={{ bgcolor: "brand2" }}
+								<a
+									href={`https://api.whatsapp.com/send?phone=+55${userProfile.phone}&text=Ol%C3%A1%2C%20%20gostaria%20de%20conhecer%20melhor%20seus%20servi%C3%A7os`}
+									target="_blank"
 								>
-									Comprar
-								</Button>
+									<Button
+										color="whiteFixed"
+										bgcolor="brand1"
+										component="medium"
+										width="8rem"
+										hover={{ bgcolor: "brand2" }}
+									>
+										Comprar
+									</Button>
+								</a>
 							</InfoVehicle>
 							<Description align="justify">
 								<Title>Descrição</Title>
@@ -132,19 +158,125 @@ const DetailAd = () => {
 							<>
 								<Comments>
 									<Title>Comentários</Title>
-									{ad.comments.map((elem: ICooments ) => (
-										<CardComment key={elem.id}
-											name={elem.owner.name}
-											description={elem.description}
-											update={elem.updatedAt}
-										/>
-									))}
+									{ad.comments.length === 0 ? (
+										<span>
+											ainda não há comentários neste
+											anúncio
+										</span>
+									) : (
+										<>
+											{ad.comments
+												.slice(0, numComments)
+												.map((elem: ICooments) => (
+													<CardComment
+														key={elem.id}
+														name={elem.owner.name}
+														description={
+															elem.description
+														}
+														time={elem.createdAt}
+														create={elem.createdAt}
+														update={elem.updatedAt}
+													/>
+												))}
+											<>
+												{ad.comments.length >
+												numComments ? (
+													<Button
+														color={"brand1"}
+														bgcolor={"tranparent"}
+														component={"medium"}
+														onClick={
+															showMoreComments
+														}
+														hover={{
+															color: "brand3",
+														}}
+													>
+														Ver mais
+													</Button>
+												) : ad.comments.length <
+												  numComments ? (
+													setNumComments(
+														ad.comments.length
+													)
+												) : null}
+											</>
+
+											{ad.comments.length ===
+											numComments ? (
+												<Button
+													color={"brand1"}
+													bgcolor={"tranparent"}
+													component={"medium"}
+													onClick={showLessComments}
+													hover={{ color: "brand3" }}
+												>
+													Ver menos
+												</Button>
+											) : null}
+										</>
+									)}
 								</Comments>
 							</>
 						)}
 						<InputComment />
 					</ContainerComments>
 				</Content>
+				{openModalImage1 && (
+					<Modal title="Imagem do veículo">
+						<ZoomImg
+							src={ad.gallery.urlImage1}
+							alt=""
+							style={{ maxWidth: "465px", maxHeight: "240px" }}
+						/>
+					</Modal>
+				)}
+				{openModalImage2 && (
+					<Modal title="Imagem do veículo">
+						<ZoomImg
+							src={ad.gallery.urlImage2}
+							alt=""
+							style={{ maxWidth: "465px", maxHeight: "240px" }}
+						/>
+					</Modal>
+				)}
+				{openModalImage3 && (
+					<Modal title="Imagem do veículo">
+						<ZoomImg
+							src={ad.gallery.urlImage3}
+							alt=""
+							style={{ maxWidth: "465px", maxHeight: "240px" }}
+						/>
+					</Modal>
+				)}
+				{openModalImage4 && (
+					<Modal title="Imagem do veículo">
+						<ZoomImg
+							src={ad.gallery.urlImage4}
+							alt=""
+							style={{ maxWidth: "465px", maxHeight: "240px" }}
+						/>
+					</Modal>
+				)}
+				{openModalImage5 && (
+					<Modal title="Imagem do veículo">
+						<ZoomImg
+							src={ad.gallery.urlImage5}
+							alt=""
+							style={{ maxWidth: "465px", maxHeight: "240px" }}
+						/>
+					</Modal>
+				)}
+				{openModalImage6 && (
+					<Modal title="Imagem do veículo">
+						<ZoomImg
+							src={ad.gallery.urlImage6}
+							alt=""
+							style={{ maxWidth: "465px", maxHeight: "240px" }}
+						/>
+					</Modal>
+				)}
 			</Main>
 			<Footer />
 		</Container>

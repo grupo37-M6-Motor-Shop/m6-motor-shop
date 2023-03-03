@@ -32,8 +32,6 @@ export interface IMotorShopContext {
 	getUserByProfile: () => void;
 	getUserById: (userId: string) => void;
 	updateAd: (data: IFormUpdateAd, adId: string) => void;
-	isActiveAd: boolean;
-	setIsActiveAd: React.Dispatch<React.SetStateAction<boolean>>;
 	deleteAd: (adId: string) => void;
 	signIn: (data: ILogin) => void;
 	token: string;
@@ -42,8 +40,6 @@ export interface IMotorShopContext {
 	setModalEditUser: React.Dispatch<React.SetStateAction<boolean>>;
 	updateUser: (data: FormUpdateUser) => void;
 	logout: () => void;
-	isAdvertiser: boolean;
-	setIsAdvertiser: React.Dispatch<React.SetStateAction<boolean>>;
 	registerUser: (data: IRegisterUser) => void;
 	openModalRegisterUserSuccess: boolean;
 	setOpenModalRegisterUserSuccess: React.Dispatch<
@@ -60,4 +56,22 @@ export interface IMotorShopContext {
 	setPrevLocation: React.Dispatch<React.SetStateAction<string>>;
 	sendEmailRedefinePassword: (email: ISendEmailForgotPassword) => void;
 	redefinePassword: (data: IRedefinePassword) => void;
+	openModalReturnCreateAd: boolean;
+	setOpenModalReturnCreateAd: React.Dispatch<React.SetStateAction<boolean>>;
+	openModalReturnUpdateAd: boolean;
+	setOpenModalReturnUpdateAd: React.Dispatch<React.SetStateAction<boolean>>;
+	openModalReturnDeleteAd: boolean;
+	setOpenModalReturnDeleteAd: React.Dispatch<React.SetStateAction<boolean>>;
+	openModalImage1: boolean;
+	openModalImage2: boolean;
+	openModalImage3: boolean;
+	openModalImage4: boolean;
+	openModalImage5: boolean;
+	openModalImage6: boolean;
+	setOpenModalImage1: React.Dispatch<React.SetStateAction<boolean>>;
+	setOpenModalImage2: React.Dispatch<React.SetStateAction<boolean>>;
+	setOpenModalImage3: React.Dispatch<React.SetStateAction<boolean>>;
+	setOpenModalImage4: React.Dispatch<React.SetStateAction<boolean>>;
+	setOpenModalImage5: React.Dispatch<React.SetStateAction<boolean>>;
+	setOpenModalImage6: React.Dispatch<React.SetStateAction<boolean>>;
 }
