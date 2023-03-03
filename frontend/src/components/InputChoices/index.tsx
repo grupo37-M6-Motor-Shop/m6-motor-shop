@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { FiAlertCircle } from "react-icons/fi";
-import { MotorShopContext } from "../../context";
 import { InputChoicesProps } from "../../interfaces/InputChoices/InputChoices";
 import Button from "../Button";
 import { CustomLabel, ErrorSpan } from "../Input/style";
@@ -20,10 +19,6 @@ const InputChoices = React.forwardRef(
 		}: InputChoicesProps,
 		ref
 	) => {
-		console.log(value)
-
-		const { setIsActiveAd, setIsAdvertiser } = useContext(MotorShopContext)
-
 		return (
 			<CustomLabel style={{ display: "flex", flexDirection: "column" }}>
 				{label}
@@ -34,22 +29,22 @@ const InputChoices = React.forwardRef(
 					<Button
 						type="button"
 						component="big"
-						color="grey0"
-						bgcolor="tranparent"
+						color={value === choice1 ? "whiteFixed" : "grey0"}
+						bgcolor={value === choice1 ? "brand1" : "tranparent"}
 						border="grey4"
 						width="100%"
-						onClick={() => setSelectedValue(choice1 === "Sim" ? setIsActiveAd(true) : choice1 === "Comprador" ? setIsAdvertiser(false) : choice1)}
+						onClick={() => setSelectedValue(choice1)}
 					>
 						{choice1}
 					</Button>
 					<Button
 						type="button"
 						component="big"
-						color="grey0"
-						bgcolor="tranparent"
+						color={value === choice2 ? "whiteFixed" : "grey0"}
+						bgcolor={value === choice2 ? "brand1" : "tranparent"}
 						border="grey4"
 						width="100%"
-						onClick={() => setSelectedValue(choice2 === "Não" ? setIsActiveAd(false) : choice2 === "Anunciante" ? setIsAdvertiser(true) : choice2)}
+						onClick={() => setSelectedValue(choice2)}
 					>
 						{choice2}
 					</Button>

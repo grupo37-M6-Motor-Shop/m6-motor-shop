@@ -31,8 +31,6 @@ export interface IMotorShopContext {
 	getUserByProfile: () => void;
 	getUserById: (userId: string) => void;
 	updateAd: (data: IFormUpdateAd, adId: string) => void;
-	isActiveAd: boolean;
-	setIsActiveAd: React.Dispatch<React.SetStateAction<boolean>>;
 	deleteAd: (adId: string) => void;
 	signIn: (data: ILogin) => void;
 	token: string;
@@ -41,8 +39,6 @@ export interface IMotorShopContext {
 	setModalEditUser: React.Dispatch<React.SetStateAction<boolean>>;
 	updateUser: (data: FormUpdateUser) => void;
 	logout: () => void;
-	isAdvertiser: boolean;
-	setIsAdvertiser: React.Dispatch<React.SetStateAction<boolean>>;
 	registerUser: (data: IRegisterUser) => void;
 	openModalRegisterUserSuccess: boolean;
 	setOpenModalRegisterUserSuccess: React.Dispatch<

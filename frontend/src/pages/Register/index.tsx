@@ -15,7 +15,7 @@ import { schemaRegisterUser } from "../../validations/FormRegisterUser";
 import { Container, ContainerForm, Fieldset, Main, Title } from "./styles";
 
 const Register = () => {
-	const { isAdvertiser, registerUser, openModalRegisterUserSuccess } =
+	const { registerUser, openModalRegisterUserSuccess } =
 		useContext(MotorShopContext);
 	const [selectedIsAdvertiser, setSelectedIsAdvertiser] = useState<
 		string | void
@@ -30,7 +30,10 @@ const Register = () => {
 	});
 
 	const newRegisterUser = (data: IRegisterUser) => {
-		const newData = { ...data, advertiser: isAdvertiser };
+		const newData = {
+			...data,
+			advertiser: selectedIsAdvertiser === "Anunciante" ? true : false,
+		};
 		registerUser(newData);
 	};
 

@@ -20,11 +20,10 @@ interface AdditionalInputsProps {
 const ModalAdUpdate = () => {
 	const [numInputs, setNumInputs] = useState(1);
 	document.body.style.overflow = "hidden";
-	const { handleCloseModal, setOpenModalDeleteAd, ad, updateAd, isActiveAd } =
+	const { handleCloseModal, setOpenModalDeleteAd, ad, updateAd } =
 		useContext(MotorShopContext);
 
 	const {
-		id,
 		typeAd,
 		typeVehicle,
 		description,
@@ -59,7 +58,7 @@ const ModalAdUpdate = () => {
 			...data,
 			typeAd: selectedValueTypeAd,
 			typeVehicle: selectedValueTypeVec,
-			isActive: isActiveAd,
+			isActive: selectedValueAdPublic === "Sim" ? true : false,
 			galleryId: gallery.id,
 		};
 		updateAd(newData, ad.id);
