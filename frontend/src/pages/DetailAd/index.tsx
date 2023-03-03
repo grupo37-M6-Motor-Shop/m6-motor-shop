@@ -12,26 +12,26 @@ import { IAds } from "../../interfaces/IAds/IAds";
 import { IComments } from "../../interfaces/IComments/IComments";
 import api from "../../services";
 import {
-	BackgroundContent,
-	Comments,
-	Container,
-	Image,
-	ContainerInfo,
-	InfoAd,
-	Main,
-	ContainerPriceYearKm,
-	InfoKmYear,
-	FontPrice,
-	InfoVehicle,
-	Description,
-	InfoAdvertiser,
-	Title,
-	Content,
-	Info,
-	UserImg,
-	Name,
-	ContainerComments,
-	ZoomImg,
+  BackgroundContent,
+  Comments,
+  Container,
+  Image,
+  ContainerInfo,
+  InfoAd,
+  Main,
+  ContainerPriceYearKm,
+  InfoKmYear,
+  FontPrice,
+  InfoVehicle,
+  Description,
+  InfoAdvertiser,
+  Title,
+  Content,
+  Info,
+  UserImg,
+  Name,
+  ContainerComments,
+  ZoomImg,
 } from "./style";
 
 const DetailAd = () => {
@@ -45,7 +45,7 @@ const DetailAd = () => {
     openModalImage4,
     openModalImage5,
     openModalImage6,
-    userProfile
+    userProfile,
   } = useContext(MotorShopContext);
   const [numComments, setNumComments] = useState(10);
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
@@ -66,24 +66,24 @@ const DetailAd = () => {
     setActiveCardId(null);
   };
 
-	const retrieveAd = async () => {
-		try {
-			const res = await api.get<IAds>(`/ads/${id}`);
-			setAd(res.data);
-		} catch (error) {
-			console.error(error);
-		}
-	};
+  const retrieveAd = async () => {
+    try {
+      const res = await api.get<IAds>(`/ads/${id}`);
+      setAd(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-	useEffect(() => {
-		retrieveAd();
-		window.scrollTo({ top: 0, behavior: "smooth" });
-	}, [id]);
+  useEffect(() => {
+    retrieveAd();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [id]);
 
-	const handleClick = async () => {
-		await getUserById(ad.user.id);
-		navigate(`/profile/${ad.user.id}`, { replace: true });
-	};
+  const handleClick = async () => {
+    await getUserById(ad.user.id);
+    navigate(`/profile/${ad.user.id}`, { replace: true });
+  };
 
   const showMoreComments = () => {
     setNumComments(numComments + 10);
@@ -142,7 +142,9 @@ const DetailAd = () => {
                     urlImage6={ad.gallery.urlImage6}
                   />
                   <Info>
-                    <UserImg>{ad.user.name[0]}</UserImg>
+                    <UserImg avatarColor={userProfile.avatarColor}>
+                      {ad.user.name[0]}
+                    </UserImg>
                     <Name>{ad.user.name}</Name>
                     <Description align="center">
                       {ad.user.description}
@@ -171,7 +173,11 @@ const DetailAd = () => {
                   ) : (
                     <>
                       {ad.comments
-                        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                        .sort(
+                          (a, b) =>
+                            new Date(b.createdAt).getTime() -
+                            new Date(a.createdAt).getTime()
+                        )
                         .slice(0, numComments)
                         .map((elem: IComments) => (
                           <CardComment
