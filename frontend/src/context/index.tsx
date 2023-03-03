@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { createContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IFormCreateAd } from "../interfaces/FormCreateAd/FromCreateAd";
 import { IFormUpdateAd } from "../interfaces/FormUpdateAd/FormUpdateAd";
 import { FormUpdateAddressUser } from "../interfaces/FormUpdateAddressUser/FormUpdateAddressUser";
@@ -47,8 +47,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const [openModalImage4, setOpenModalImage4] = useState(false);
 	const [openModalImage5, setOpenModalImage5] = useState(false);
 	const [openModalImage6, setOpenModalImage6] = useState(false);
-	const [isActiveAd, setIsActiveAd] = useState(false);
-	const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
 	const [token, setToken] = useState(
 		localStorage.getItem("@motors-shop:token") || ""
 	);
@@ -335,8 +333,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				handleCloseModal,
 				registerAd,
 				getRandomAds,
-				isActiveAd,
-				setIsActiveAd,
 				deleteAd,
 				signIn,
 				token,
@@ -345,8 +341,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				setModalEditUser,
 				updateUser,
 				logout,
-				isAdvertiser,
-				setIsAdvertiser,
 				registerUser,
 				updateAddressUser,
 				createComment,
