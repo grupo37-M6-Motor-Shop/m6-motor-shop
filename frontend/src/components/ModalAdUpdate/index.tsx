@@ -44,7 +44,7 @@ const ModalAdUpdate = () => {
 	>(typeVehicle);
 	const [selectedValueAdPublic, setSelectedValueAdPublic] = useState<
 		string | void
-	>(isActive === true ? "Sim" : "Não");
+	>(isActive ? "Sim" : "Não");
 
 	const {
 		register,

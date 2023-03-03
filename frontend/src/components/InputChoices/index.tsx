@@ -20,9 +20,9 @@ const InputChoices = React.forwardRef(
 		}: InputChoicesProps,
 		ref
 	) => {
+		console.log(value)
 
 		const { setIsActiveAd, setIsAdvertiser } = useContext(MotorShopContext)
-
 
 		return (
 			<CustomLabel style={{ display: "flex", flexDirection: "column" }}>
@@ -49,7 +49,7 @@ const InputChoices = React.forwardRef(
 						bgcolor="tranparent"
 						border="grey4"
 						width="100%"
-						onClick={() => setSelectedValue(choice2 === "Sim" ? setIsActiveAd(false) : choice2 === "Anunciante" ? setIsAdvertiser(true) : choice2)}
+						onClick={() => setSelectedValue(choice2 === "Não" ? setIsActiveAd(false) : choice2 === "Anunciante" ? setIsAdvertiser(true) : choice2)}
 					>
 						{choice2}
 					</Button>
