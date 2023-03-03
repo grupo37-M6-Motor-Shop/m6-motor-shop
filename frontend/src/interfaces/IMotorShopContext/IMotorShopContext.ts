@@ -3,6 +3,7 @@ import { IFormUpdateAd } from "../FormUpdateAd/FormUpdateAd";
 import { FormUpdateAddressUser } from "../FormUpdateAddressUser/FormUpdateAddressUser";
 import { FormUpdateUser } from "../FormUpdateUser/FormUpdateUser";
 import { IAds } from "../IAds/IAds";
+import { IRedefinePassword, ISendEmailForgotPassword } from "../IFormForgotPassword/IFormForgotPassword";
 import { ILogin } from "../ILogin/ILogin";
 import { IRegisterUser } from "../IRegisterUser/IRegisterUser";
 import { IUser } from "../IUser/IUser";
@@ -57,4 +58,6 @@ export interface IMotorShopContext {
 	deleteUser: (userId: string) => void;
 	prevLocation: string;
 	setPrevLocation: React.Dispatch<React.SetStateAction<string>>;
+	sendEmailRedefinePassword: (email: ISendEmailForgotPassword) => void;
+	redefinePassword: (data: IRedefinePassword) => void;
 }
