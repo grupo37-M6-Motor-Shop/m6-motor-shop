@@ -2,7 +2,13 @@ import Detail from "../Detail";
 import { useContext, useState } from "react";
 import { MotorShopContext } from "../../context";
 import { FontIntegerNormal, FontIntegerLight } from "../../style/fonts";
-import { ContainerCardComment, ContainerDetailAndCreation, CreationTime, Div, InputDescripition } from "./style";
+import {
+  ContainerCardComment,
+  ContainerDetailAndCreation,
+  CreationTime,
+  Div,
+  InputDescripition,
+} from "./style";
 import InputCommentEdit from "../InputCommentEdit";
 
 const CardComment = ({ ...props }) => {
@@ -41,45 +47,61 @@ const CardComment = ({ ...props }) => {
     const createdAt = new Date(create);
     const updatedAt = new Date(update);
     if (createdAt < updatedAt) {
-      return " • Editado"
+      return " • Editado";
     } else {
-      return ""
+      return "";
     }
   };
 
   const owner_comment = (idOwner: string, idUser: string): boolean => {
     if (idOwner === idUser) {
-      return true
+      return true;
     } else {
-      return false
+      return false;
     }
-  }
+  };
 
   return (
     <ContainerCardComment>
       <ContainerDetailAndCreation>
-        <Detail name={props.name} colorFont="--grey1" />
-        <CreationTime>• {creatioTime(props.time)}{editString(props.create, props.update)}</CreationTime>
+        <Detail
+          name={props.name}
+          colorFont="--grey1"
+          avatarColor={props.avatarColor}
+        />
+        <CreationTime>
+          • {creatioTime(props.time)}
+          {editString(props.create, props.update)}
+        </CreationTime>
       </ContainerDetailAndCreation>
       {props.isActive ? (
         <>
-          <InputCommentEdit idComment={props.id} close={props.close} description={props.description}/>
+          <InputCommentEdit
+            idComment={props.id}
+            close={props.close}
+            description={props.description}
+          />
         </>
-      ) :
-        (
-          <>
-            <FontIntegerNormal>{props.description}</FontIntegerNormal>
-            {owner_comment(props.idOwner, user.id) && (
-              <Div>
-                <FontIntegerLight onClick={() => {
-                  props.open(props.id)
-                }}>Editar</FontIntegerLight>
-                <FontIntegerLight>•</FontIntegerLight>
-                <FontIntegerLight onClick={() => deleteComment(props.id)}>Excluir</FontIntegerLight>
-              </Div>
-            )}
-          </>
-        )}
+      ) : (
+        <>
+          <FontIntegerNormal>{props.description}</FontIntegerNormal>
+          {owner_comment(props.idOwner, user.id) && (
+            <Div>
+              <FontIntegerLight
+                onClick={() => {
+                  props.open(props.id);
+                }}
+              >
+                Editar
+              </FontIntegerLight>
+              <FontIntegerLight>•</FontIntegerLight>
+              <FontIntegerLight onClick={() => deleteComment(props.id)}>
+                Excluir
+              </FontIntegerLight>
+            </Div>
+          )}
+        </>
+      )}
     </ContainerCardComment>
   );
 };
