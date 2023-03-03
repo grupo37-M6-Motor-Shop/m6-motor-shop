@@ -47,6 +47,17 @@ export const StyledHeader = styled.header`
 	font-family: "Inter", sans-serif;
 	border-bottom: .125rem solid var(--grey6);
   z-index: 20;
+  .link {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.75rem;
+    color: var(--grey2);
+    text-decoration: none;
+    cursor: pointer;
+    @media (max-width: 900px) {
+		  display: none;
+	}
+  }
 `;
 
 export const Image = styled.img`
@@ -61,6 +72,11 @@ export const Nav = styled.nav`
     justify-content: center;
     gap: 0rem;
 	}
+`;
+
+export const ButtonAnimation = styled.button`
+  border:none;
+  background-color: var(--transparent);
 `;
 
 export const MenuBurger = styled.div`
