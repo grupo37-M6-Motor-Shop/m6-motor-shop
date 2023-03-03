@@ -139,7 +139,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 										component={"big"}
 										border={"grey4"}
 										width={"133px"}
-										hover={{ bgcolor: "brand4" }}
+										hover={{ bgcolor: "grey1", color: "whiteFixed" }}
 										onClick={() => navigate(`/register`)}
 									>
 										Cadastrar
@@ -260,6 +260,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 											component={"big"}
 											border={"grey4"}
 											width={"fullWidth"}
+											hover={{ bgcolor: "grey1", color: "whiteFixed" }}
 										>
 											Cadastrar
 										</Button>

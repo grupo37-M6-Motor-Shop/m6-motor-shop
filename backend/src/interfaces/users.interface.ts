@@ -34,11 +34,18 @@ export interface IUser {
 }
 
 export interface IUserUpdate {
-  name: string,
-  email: string,
-  cpf: string,
-  phone: string,
-  birthday: string,
-  description: string,
+  name?: string,
+  email?: string,
+  cpf?: string,
+  phone?: string,
+  birthday?: string,
+  description?: string,
+  password?: string,
+}
+
+export interface IUpdatePassword {
+  id: string,
   password: string,
+  newPasswordCode: string,
+  user: string,
 }
