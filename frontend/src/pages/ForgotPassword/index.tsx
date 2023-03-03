@@ -1,8 +1,6 @@
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import RedefinePassword from "../../components/RedefinePassword";
 import SendEmailForgotPassword from "../../components/SendEmailForgotPassword";
-import ValidateCodeForgotPassword from "../../components/ValidateCodeForgotPassword";
 import { Container, Main } from "./styles";
 
 const ForgotPassword = () => {
@@ -10,9 +8,7 @@ const ForgotPassword = () => {
     <Container>
       <Header/>
       <Main>
-        {/* <SendEmailForgotPassword/> */}
-        {/* <ValidateCodeForgotPassword/> */}
-        <RedefinePassword/>
+        <SendEmailForgotPassword/>
       </Main>
       <Footer/>
     </Container>

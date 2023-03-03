@@ -7,6 +7,8 @@ import { Container, Fieldset, Title } from "./styles";
 import { schemaSendEmailForgotPassword } from "../../validations/FormForgotPassword";
 import { ISendEmailForgotPassword } from "../../interfaces/IFormForgotPassword/IFormForgotPassword";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { MotorShopContext } from "../../context";
 
 const SendEmailForgotPassword = () => {
 	const {
@@ -16,6 +18,7 @@ const SendEmailForgotPassword = () => {
 	} = useForm<ISendEmailForgotPassword>({
 		resolver: yupResolver(schemaSendEmailForgotPassword),
 	});
+	const { sendEmailRedefinePassword } = useContext(MotorShopContext);
 	const navigate = useNavigate();
 
 	return (
@@ -27,13 +30,14 @@ const SendEmailForgotPassword = () => {
 					enviaremos um email de validação.
 				</p>
 			</Title>
-			<Form>
+			<Form onSubmit={handleSubmit(sendEmailRedefinePassword)}>
 				<Fieldset style={{ gap: 0 }}>
 					<Input
 						label="Email"
 						type="text"
 						placeholder="Digitar email"
 						register={register}
+						error={errors.email}
 						name="email"
 					/>
 				</Fieldset>

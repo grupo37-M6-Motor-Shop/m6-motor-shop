@@ -12,26 +12,26 @@ import { IAds } from "../../interfaces/IAds/IAds";
 import { IComments } from "../../interfaces/IComments/IComments";
 import api from "../../services";
 import {
-  BackgroundContent,
-  Comments,
-  Container,
-  Image,
-  ContainerInfo,
-  InfoAd,
-  Main,
-  ContainerPriceYearKm,
-  InfoKmYear,
-  FontPrice,
-  InfoVehicle,
-  Description,
-  InfoAdvertiser,
-  Title,
-  Content,
-  Info,
-  UserImg,
-  Name,
-  ContainerComments,
-  ZoomImg,
+	BackgroundContent,
+	Comments,
+	Container,
+	Image,
+	ContainerInfo,
+	InfoAd,
+	Main,
+	ContainerPriceYearKm,
+	InfoKmYear,
+	FontPrice,
+	InfoVehicle,
+	Description,
+	InfoAdvertiser,
+	Title,
+	Content,
+	Info,
+	UserImg,
+	Name,
+	ContainerComments,
+	ZoomImg,
 } from "./style";
 
 const DetailAd = () => {
@@ -66,24 +66,24 @@ const DetailAd = () => {
     setActiveCardId(null);
   };
 
-  const retrieveAd = async () => {
-    try {
-      const res = await api.get<IAds>(`/ads/${id}`);
-      setAd(res.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	const retrieveAd = async () => {
+		try {
+			const res = await api.get<IAds>(`/ads/${id}`);
+			setAd(res.data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-  useEffect(() => {
-    retrieveAd();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [id]);
+	useEffect(() => {
+		retrieveAd();
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	}, [id]);
 
-  const handleClick = async () => {
-    await getUserById(ad.user.id);
-    navigate(`/profile/${ad.user.id}`, { replace: true });
-  };
+	const handleClick = async () => {
+		await getUserById(ad.user.id);
+		navigate(`/profile/${ad.user.id}`, { replace: true });
+	};
 
   const showMoreComments = () => {
     setNumComments(numComments + 10);

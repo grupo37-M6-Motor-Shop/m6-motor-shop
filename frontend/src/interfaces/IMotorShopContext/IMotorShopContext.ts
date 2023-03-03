@@ -4,6 +4,7 @@ import { FormUpdateAddressUser } from "../FormUpdateAddressUser/FormUpdateAddres
 import { FormUpdateComment } from "../FormUpdateComment/FormUpdateComment";
 import { FormUpdateUser } from "../FormUpdateUser/FormUpdateUser";
 import { IAds } from "../IAds/IAds";
+import { IRedefinePassword, ISendEmailForgotPassword } from "../IFormForgotPassword/IFormForgotPassword";
 import { ILogin } from "../ILogin/ILogin";
 import { IRegisterUser } from "../IRegisterUser/IRegisterUser";
 import { IUser } from "../IUser/IUser";
@@ -35,8 +36,6 @@ export interface IMotorShopContext {
 	getUserByProfile: () => void;
 	getUserById: (userId: string) => void;
 	updateAd: (data: IFormUpdateAd, adId: string) => void;
-	isActiveAd: boolean;
-	setIsActiveAd: React.Dispatch<React.SetStateAction<boolean>>;
 	deleteAd: (adId: string) => void;
 	signIn: (data: ILogin) => void;
 	token: string;
@@ -45,8 +44,6 @@ export interface IMotorShopContext {
 	setModalEditUser: React.Dispatch<React.SetStateAction<boolean>>;
 	updateUser: (data: FormUpdateUser) => void;
 	logout: () => void;
-	isAdvertiser: boolean;
-	setIsAdvertiser: React.Dispatch<React.SetStateAction<boolean>>;
 	registerUser: (data: IRegisterUser) => void;
 	openModalRegisterUserSuccess: boolean;
 	setOpenModalRegisterUserSuccess: React.Dispatch<
@@ -63,6 +60,8 @@ export interface IMotorShopContext {
 	updateComment: (data: FormUpdateComment, id: string) => void;
 	prevLocation: string;
 	setPrevLocation: React.Dispatch<React.SetStateAction<string>>;
+	sendEmailRedefinePassword: (email: ISendEmailForgotPassword) => void;
+	redefinePassword: (data: IRedefinePassword) => void;
 	openModalReturnCreateAd: boolean;
 	setOpenModalReturnCreateAd: React.Dispatch<React.SetStateAction<boolean>>;
 	openModalReturnUpdateAd: boolean;
