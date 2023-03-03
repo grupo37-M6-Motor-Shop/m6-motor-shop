@@ -190,6 +190,7 @@ const DetailAd = () => {
                             time={elem.createdAt}
                             create={elem.createdAt}
                             update={elem.updatedAt}
+                            avatarColor={elem.owner.avatarColor}
                             close={handleCloseAllCards}
                             open={handleCardClick}
                           />
