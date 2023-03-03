@@ -57,6 +57,13 @@ export const StyledHeader = styled.header`
     @media (max-width: 900px) {
 		  display: none;
 	}
+  .link-mobile {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.75rem;
+    color: var(--grey2);
+    text-decoration: none;
+  }
   }
 `;
 
@@ -74,7 +81,7 @@ export const Nav = styled.nav`
 	}
 `;
 
-export const ButtonAnimation = styled.button`
+export const ButtonAnimation = styled.a`
   border:none;
   background-color: var(--transparent);
 `;
