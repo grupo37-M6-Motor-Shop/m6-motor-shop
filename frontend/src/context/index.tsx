@@ -310,8 +310,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		}
 	};
 
-	
-
 	return (
 		<MotorShopContext.Provider
 			value={{

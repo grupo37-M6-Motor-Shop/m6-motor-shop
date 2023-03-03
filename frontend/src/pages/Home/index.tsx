@@ -78,7 +78,7 @@ const Home = () => {
 					auction={false}
 				/>
 				<Section
-					id="leilao"
+					id="motos"
 					titleSection="Motos"
 					value="Moto"
 					vehicles={randomAds}

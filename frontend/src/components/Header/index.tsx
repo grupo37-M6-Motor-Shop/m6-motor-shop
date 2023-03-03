@@ -22,18 +22,21 @@ import {
 	FontUserName,
 	UserImg,
 	DivProfile,
+	ButtonAnimation
 } from "./style";
 import logo from "../../assets/img/motor_shop_logo_header.svg";
 import Button from "../Button";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MotorShopContext } from "../../context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import ModalEditUser from "../ModalEditUser";
 import ModalEditAddressUser from "../ModalEditAddressUser";
 import ModalDeleteUser from "../ModalDeleteUser";
+import { Link as LinkScroll, scroller } from 'react-scroll'
 
 const Header = ({ auction, colorFont, image }: any) => {
 	const [dropDown, setDropDown] = useState<number>(0);
+	const [location, setLocation] = useState<boolean>(true);
 	const [isSideBarVisible, setIsSideBarVisible] = useState<boolean>(false);
 	const {
 		isLoggedIn,
@@ -44,13 +47,25 @@ const Header = ({ auction, colorFont, image }: any) => {
 		openModalUpdateAddresUser,
 		setOpenModalUpdateAddresUser,
 		openModalDeleteUser,
-		logout,
+		logout
 	} = useContext(MotorShopContext);
 	const navigate = useNavigate();
 	const showSideBar = () => setIsSideBarVisible(!isSideBarVisible);
 	const [backgroundColor, setBackgroundColor] = useState<string | undefined>(
 		undefined
 	);
+	const locationRoute = useLocation()
+
+	const handleLocation = async () => {
+		if (locationRoute.pathname === "/homepage") {
+			setLocation(true)
+		} else {
+			setLocation(false)
+		}
+	};
+	useEffect(() => {
+		handleLocation()
+	}, [])
 
 	const handleClickProfile = async () => {
 		await getUserByProfile();
@@ -103,10 +118,28 @@ const Header = ({ auction, colorFont, image }: any) => {
 		}
 	};
 
+	const scrollToCarroSection = (route: string) => {
+		scroller.scrollTo(route, {
+			duration: 1500,
+			delay: 100,
+			smooth: 'easeInOutQuart',
+			spy: true,
+			hashSpy: true,
+			offset: -40,
+			isDynamic: true,
+			ignoreCancelEvents: false,
+		});
+	};
+
+	const handleButtonClick = (routes: string) => {
+		navigate('/homepage');
+		setTimeout(() => scrollToCarroSection(routes), 500);
+	};
+
 	return (
 		<>
 			<StyledHeader>
-				<Image src={logo} alt="logo-motor-shop" onClick={() => navigate("/homepage")}/>
+				<Image src={logo} alt="logo-motor-shop" onClick={() => navigate("/homepage")} />
 				<Nav>
 					<DivNav>
 						<MenuBurger onClick={showSideBar}>
@@ -115,9 +148,62 @@ const Header = ({ auction, colorFont, image }: any) => {
 								onClick={showSideBar}
 							></MenuAnimation>
 						</MenuBurger>
-						<Link href="/homepage#carros">Carros</Link>
-						<Link href="/homepage#motos">Motos</Link>
-						<Link href="/homepage#leilao">Leilão</Link>
+						{location ? (
+							<>
+								<LinkScroll
+									className="link"
+									activeClass="active"
+									to="carros"
+									spy={true}
+									smooth={true}
+									hashSpy={true}
+									offset={-40}
+									duration={1500}
+									delay={100}
+									isDynamic={true}
+									ignoreCancelEvents={false}
+								>
+									Carros
+								</LinkScroll>
+								<LinkScroll
+									className="link"
+									activeClass="active"
+									to="motos"
+									spy={true}
+									smooth={true}
+									hashSpy={true}
+									offset={-40}
+									duration={1500}
+									delay={100}
+									isDynamic={true}
+									ignoreCancelEvents={false}
+								>
+									Motos
+								</LinkScroll>
+								<LinkScroll
+									className="link"
+									activeClass="active"
+									to="leilao"
+									spy={true}
+									smooth={true}
+									hashSpy={true}
+									offset={-40}
+									duration={1500}
+									delay={100}
+									isDynamic={true}
+									ignoreCancelEvents={false}
+								>
+									Leilão
+								</LinkScroll>
+							</>
+						) : (
+							<>
+								<ButtonAnimation className="link" onClick={() => handleButtonClick("carros")}>Carros</ButtonAnimation>
+								<ButtonAnimation className="link" onClick={() => handleButtonClick("motos")}>Motos</ButtonAnimation>
+								<ButtonAnimation className="link" onClick={() => handleButtonClick("leilao")}>Leilão</ButtonAnimation>
+							</>
+						)}
+
 					</DivNav>
 					<Divise />
 					<DivProfile>
