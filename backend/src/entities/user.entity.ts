@@ -43,8 +43,11 @@ class User {
 	@Exclude()
 	password: string;
 
-	@Column({ length: 6, default: null })
-	newPassrwordCode: string;
+	@Column({ nullable: true })
+	newPasswordCode: string;
+
+	@Column({ default: "--random10"})
+	avatarColor: string;
 
 	@Column({ default: true })
 	isActive: boolean;

@@ -3,4 +3,5 @@ export interface DetailProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
   image?: string;
   auction?: boolean;
+  avatarColor?: string;
 }

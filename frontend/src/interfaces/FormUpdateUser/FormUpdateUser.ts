@@ -5,4 +5,5 @@ export interface FormUpdateUser {
 	phone?: string;
 	birthday?: string;
 	description?: string;
+	password: string;
 }

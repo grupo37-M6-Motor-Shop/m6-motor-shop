@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { createContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IFormCreateAd } from "../interfaces/FormCreateAd/FromCreateAd";
 import { IFormUpdateAd } from "../interfaces/FormUpdateAd/FormUpdateAd";
 import { FormUpdateAddressUser } from "../interfaces/FormUpdateAddressUser/FormUpdateAddressUser";
@@ -16,6 +16,10 @@ import api from "../services";
 import { toast } from "react-toastify";
 import { FormCreateComment } from "../interfaces/FormCreateComment/FormCreateComment";
 import { FormUpdateComment } from "../interfaces/FormUpdateComment/FormUpdateComment";
+import {
+	IRedefinePassword,
+	ISendEmailForgotPassword,
+} from "../interfaces/IFormForgotPassword/IFormForgotPassword";
 
 export const MotorShopContext = createContext<IMotorShopContext>(
 	{} as IMotorShopContext
@@ -48,17 +52,18 @@ const MotorShopProvider = ({ children }: IProvider) => {
 	const [openModalImage4, setOpenModalImage4] = useState(false);
 	const [openModalImage5, setOpenModalImage5] = useState(false);
 	const [openModalImage6, setOpenModalImage6] = useState(false);
-	const [isActiveAd, setIsActiveAd] = useState(false);
-	const [isAdvertiser, setIsAdvertiser] = useState<boolean>(false);
 	const [token, setToken] = useState(
 		localStorage.getItem("@motors-shop:token") || ""
 	);
 	const [prevLocation, setPrevLocation] = useState<string>("");
 
 	const navigate = useNavigate();
-	const notifySuccess = (text: string, idNotify: string) => toast.success(text, { toastId: idNotify });
-    const notifyError = (text: string, idNotify: string) => toast.error(text,  { toastId: idNotify});
-    const notifyWarn = (text: string, idNotify: string) => toast.warn(text, { toastId: idNotify });
+	const notifySuccess = (text: string, idNotify: string) =>
+		toast.success(text, { toastId: idNotify });
+	const notifyError = (text: string, idNotify: string) =>
+		toast.error(text, { toastId: idNotify });
+	const notifyWarn = (text: string, idNotify: string) =>
+		toast.warn(text, { toastId: idNotify });
 
 	useEffect(() => {
 		const loadUser = async () => {
@@ -88,7 +93,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			const res = await api.post("/login", { email, password });
 			localStorage.setItem("@motors-shop:token", res.data.token);
 			setToken(res.data.token);
-			notifySuccess("Login efetuado com sucesso!", "successLogin")
+			notifySuccess("Login efetuado com sucesso!", "successLogin");
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
@@ -113,7 +118,45 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
-			notifyError("Algo deu errado! Tente novamente!", "errorRegisterUser");
+			notifyError(
+				"Algo deu errado! Tente novamente!",
+				"errorRegisterUser"
+			);
+		}
+	};
+
+	const sendEmailRedefinePassword = async (
+		data: ISendEmailForgotPassword
+	) => {
+		const { email } = data;
+
+		try {
+			await api.post("/users/redefine_password", { email });
+			toast.success("Verifique sua caixa de entrada no email!");
+			navigate("/homepage", { replace: true });
+		} catch (error) {
+			const err = error as AxiosError<IError>;
+			console.log(err);
+			toast.error("Algo deu errado! Tente novamente!");
+		}
+	};
+
+	const redefinePassword = async (data: IRedefinePassword) => {
+		const { userId } = data;
+
+		try {
+			await api.patch<IUser>(`/users/redefine-password/${userId}`, data);
+			toast.success("Senha atualizada com sucesso!");
+			navigate("/login", { replace: true });
+		} catch (error) {
+			const err = error as AxiosError<IError>;
+			console.log(err);
+
+			if (err.response?.data.message === "Invalid code!") {
+				toast.error("Código inválido!");
+			} else {
+				toast.error("Algo deu errado! Tente novamente!");
+			}
 		}
 	};
 
@@ -192,11 +235,17 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			handleCloseModal();
 			const res = await api.get(`/users/${user.id}`);
 			setUser(res.data);
-			notifySuccess("Endereço atualizado com successo!", "sucessUpdateAddressUser");
+			notifySuccess(
+				"Endereço atualizado com successo!",
+				"sucessUpdateAddressUser"
+			);
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
-			notifyError("Algo deu errado! Tente novamente!", "errorUpdateAddressUser");
+			notifyError(
+				"Algo deu errado! Tente novamente!",
+				"errorUpdateAddressUser"
+			);
 		}
 	};
 
@@ -286,7 +335,10 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
-			notifyError("Algo deu errado! Tente novamente!", "errorCreateComment");
+			notifyError(
+				"Algo deu errado! Tente novamente!",
+				"errorCreateComment"
+			);
 		}
 	};
 
@@ -360,8 +412,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				handleCloseModal,
 				registerAd,
 				getRandomAds,
-				isActiveAd,
-				setIsActiveAd,
 				deleteAd,
 				signIn,
 				token,
@@ -370,8 +420,6 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				setModalEditUser,
 				updateUser,
 				logout,
-				isAdvertiser,
-				setIsAdvertiser,
 				registerUser,
 				updateAddressUser,
 				createComment,
@@ -379,7 +427,9 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				prevLocation,
 				setPrevLocation,
 				deleteComment,
-				updateComment
+				updateComment,
+				sendEmailRedefinePassword,
+				redefinePassword,
 			}}
 		>
 			{children}

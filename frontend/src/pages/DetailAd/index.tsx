@@ -45,7 +45,7 @@ const DetailAd = () => {
     openModalImage4,
     openModalImage5,
     openModalImage6,
-    userProfile
+    userProfile,
   } = useContext(MotorShopContext);
   const [numComments, setNumComments] = useState(10);
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
@@ -142,7 +142,9 @@ const DetailAd = () => {
                     urlImage6={ad.gallery.urlImage6}
                   />
                   <Info>
-                    <UserImg>{ad.user.name[0]}</UserImg>
+                    <UserImg avatarColor={userProfile.avatarColor}>
+                      {ad.user.name[0]}
+                    </UserImg>
                     <Name>{ad.user.name}</Name>
                     <Description align="center">
                       {ad.user.description}
@@ -171,7 +173,11 @@ const DetailAd = () => {
                   ) : (
                     <>
                       {ad.comments
-                        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                        .sort(
+                          (a, b) =>
+                            new Date(b.createdAt).getTime() -
+                            new Date(a.createdAt).getTime()
+                        )
                         .slice(0, numComments)
                         .map((elem: IComments) => (
                           <CardComment
@@ -184,6 +190,7 @@ const DetailAd = () => {
                             time={elem.createdAt}
                             create={elem.createdAt}
                             update={elem.updatedAt}
+                            avatarColor={elem.owner.avatarColor}
                             close={handleCloseAllCards}
                             open={handleCardClick}
                           />

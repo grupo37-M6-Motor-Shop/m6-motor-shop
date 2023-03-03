@@ -45,7 +45,12 @@ const Section = ({
 			(!auction &&
 				vehicle.typeVehicle === value &&
 				vehicle.typeAd === "Venda" &&
-				vehicle.isActive)
+				vehicle.isActive) ||
+			(profile && auction && vehicle.typeAd === value) ||
+			(profile &&
+				!auction &&
+				vehicle.typeVehicle === value &&
+				vehicle.typeAd === "Venda")
 		) {
 			hasList = true;
 		}

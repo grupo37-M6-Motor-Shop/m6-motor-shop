@@ -67,44 +67,18 @@ const Header = ({ auction, colorFont, image }: any) => {
 		handleLocation()
 	}, [])
 
-	const handleClickProfile = async () => {
-		await getUserByProfile();
-		navigate(`/profile/${id}`);
-	};
+  const handleClickProfile = async () => {
+    await getUserByProfile();
+    navigate(`/profile/${id}`);
+  };
 
-	const setBackgroundRandomColor = () => {
-		if (!backgroundColor) {
-			const colors: string[] = [
-				"--random1",
-				"--random2",
-				"--random3",
-				"--random4",
-				"--random5",
-				"--random6",
-				"--random7",
-				"--random8",
-				"--random9",
-				"--random10",
-				"--random11",
-				"--random12",
-			];
-
-			const colorRandom = Math.floor(Math.random() * colors.length);
-			const randomColor = colors[colorRandom] as string;
-
-			setBackgroundColor(randomColor);
-		}
-	};
-
-	const colorRandom = setBackgroundRandomColor();
-
-	const handleClickdropDownProfile = () => {
-		if (dropDown === 0) {
-			setDropDown(1);
-		} else {
-			setDropDown(0);
-		}
-	};
+  const handleClickdropDownProfile = () => {
+    if (dropDown === 0) {
+      setDropDown(1);
+    } else {
+      setDropDown(0);
+    }
+  };
 
 	const twoLetters = () => {
 		if (name !== undefined) {

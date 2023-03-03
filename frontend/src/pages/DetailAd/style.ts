@@ -5,6 +5,10 @@ interface DescriptionProps {
   align: "center" | "justify";
 }
 
+interface IUserImg {
+  avatarColor: string;
+}
+
 export const Container = styled.div`
   width: 100%;
   background-color: var(--grey8);
@@ -161,8 +165,8 @@ export const Info = styled.div`
   gap: 1rem;
 `;
 
-export const UserImg = styled.div`
-  background-color: var(--random2);
+export const UserImg = styled.div<IUserImg>`
+  background-color: ${(props) => `var(${props.avatarColor})`};
   min-height: 5rem;
   min-width: 5rem;
   border-radius: 50%;
