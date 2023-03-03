@@ -1,6 +1,6 @@
 import { IUser } from "../IUser/IUser"
 
-export interface ICooments {
+export interface IComments {
     id: string,
     description: string,
     owner: IUser,

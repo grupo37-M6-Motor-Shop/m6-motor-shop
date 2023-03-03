@@ -1,6 +1,7 @@
 import { FormCreateComment } from "../FormCreateComment/FormCreateComment";
 import { IFormUpdateAd } from "../FormUpdateAd/FormUpdateAd";
 import { FormUpdateAddressUser } from "../FormUpdateAddressUser/FormUpdateAddressUser";
+import { FormUpdateComment } from "../FormUpdateComment/FormUpdateComment";
 import { FormUpdateUser } from "../FormUpdateUser/FormUpdateUser";
 import { IAds } from "../IAds/IAds";
 import { IRedefinePassword, ISendEmailForgotPassword } from "../IFormForgotPassword/IFormForgotPassword";
@@ -9,6 +10,9 @@ import { IRegisterUser } from "../IRegisterUser/IRegisterUser";
 import { IUser } from "../IUser/IUser";
 
 export interface IMotorShopContext {
+	notifySuccess?: (text: string, id: string) => void;
+    notifyError?: (text: string, id: string) => void;
+    notifyWarn?: (text: string, id: string) => void;
 	user: IUser;
 	setUser: (state: IUser) => void;
 	userProfile: IUser;
@@ -52,6 +56,8 @@ export interface IMotorShopContext {
 	openModalDeleteUser: boolean;
 	setOpenModalDeleteUser: React.Dispatch<React.SetStateAction<boolean>>;
 	deleteUser: (userId: string) => void;
+	deleteComment: (id: string) => void;
+	updateComment: (data: FormUpdateComment, id: string) => void;
 	prevLocation: string;
 	setPrevLocation: React.Dispatch<React.SetStateAction<string>>;
 	sendEmailRedefinePassword: (email: ISendEmailForgotPassword) => void;
