@@ -140,6 +140,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 									delay={100}
 									isDynamic={true}
 									ignoreCancelEvents={false}
+									onClick={showSideBar}
 								>
 									Carros
 								</LinkScroll>
@@ -155,6 +156,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 									delay={100}
 									isDynamic={true}
 									ignoreCancelEvents={false}
+									onClick={showSideBar}
 								>
 									Motos
 								</LinkScroll>
@@ -170,6 +172,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 									delay={100}
 									isDynamic={true}
 									ignoreCancelEvents={false}
+									onClick={showSideBar}
 								>
 									Leilão
 								</LinkScroll>
@@ -317,15 +320,79 @@ const Header = ({ auction, colorFont, image }: any) => {
 							<Sidebar isSideBarVisible={isSideBarVisible}>
 								<Menu>
 									<DivBar>
-										<LinkBar href="/homepage#carros">
-											Carros
-										</LinkBar>
-										<LinkBar href="/homepage#motos">
-											Motos
-										</LinkBar>
-										<LinkBar href="/homepage#leilao">
-											Leilão
-										</LinkBar>
+										{location ? (
+											<>
+												<LinkScroll
+													className="link-mobile"
+													activeClass="active"
+													to="carros"
+													spy={true}
+													smooth={true}
+													hashSpy={true}
+													offset={-40}
+													duration={1500}
+													delay={100}
+													isDynamic={true}
+													ignoreCancelEvents={false}
+													onClick={showSideBar}
+												>
+													Carros
+												</LinkScroll>
+												<LinkScroll
+													className="link-mobile"
+													activeClass="active"
+													to="motos"
+													spy={true}
+													smooth={true}
+													hashSpy={true}
+													offset={-40}
+													duration={1500}
+													delay={100}
+													isDynamic={true}
+													ignoreCancelEvents={false}
+													onClick={showSideBar}
+												>
+													Motos
+												</LinkScroll>
+												<LinkScroll
+													className="link-mobile"
+													activeClass="active"
+													to="leilao"
+													spy={true}
+													smooth={true}
+													hashSpy={true}
+													offset={-40}
+													duration={1500}
+													delay={100}
+													isDynamic={true}
+													ignoreCancelEvents={false}
+													onClick={showSideBar}
+												>
+													Leilão
+												</LinkScroll>
+											</>
+										) : (
+											<>
+												<ButtonAnimation
+													className="link-mobile"
+													onClick={() => handleButtonClick("carros")}
+												>
+													Carros
+												</ButtonAnimation>
+												<ButtonAnimation
+													className="link-mobile"
+													onClick={() => handleButtonClick("motos")}
+												>
+													Motos
+												</ButtonAnimation>
+												<ButtonAnimation
+													className="link-mobile"
+													onClick={() => handleButtonClick("leilao")}
+												>
+													Leilão
+												</ButtonAnimation>
+											</>
+										)}
 									</DivBar>
 									<Divider />
 									<DivBar>
@@ -348,15 +415,79 @@ const Header = ({ auction, colorFont, image }: any) => {
 							<Sidebar isSideBarVisible={isSideBarVisible}>
 								<Menu>
 									<DivBar>
-										<LinkBar href="/homepage#carros">
-											Carros
-										</LinkBar>
-										<LinkBar href="/homepage#motos">
-											Motos
-										</LinkBar>
-										<LinkBar href="/homepage#leilao">
-											Leilão
-										</LinkBar>
+										{location ? (
+											<>
+												<LinkScroll
+													className="link-mobile"
+													activeClass="active"
+													to="carros"
+													spy={true}
+													smooth={true}
+													hashSpy={true}
+													offset={-40}
+													duration={1500}
+													delay={100}
+													isDynamic={true}
+													ignoreCancelEvents={false}
+													onClick={showSideBar}
+												>
+													Carros
+												</LinkScroll>
+												<LinkScroll
+													className="link-mobile"
+													activeClass="active"
+													to="motos"
+													spy={true}
+													smooth={true}
+													hashSpy={true}
+													offset={-40}
+													duration={1500}
+													delay={100}
+													isDynamic={true}
+													ignoreCancelEvents={false}
+													onClick={showSideBar}
+												>
+													Motos
+												</LinkScroll>
+												<LinkScroll
+													className="link-mobile"
+													activeClass="active"
+													to="leilao"
+													spy={true}
+													smooth={true}
+													hashSpy={true}
+													offset={-40}
+													duration={1500}
+													delay={100}
+													isDynamic={true}
+													ignoreCancelEvents={false}
+													onClick={showSideBar}
+												>
+													Leilão
+												</LinkScroll>
+											</>
+										) : (
+											<>
+												<ButtonAnimation
+													className="link-mobile"
+													onClick={() => handleButtonClick("carros")}
+												>
+													Carros
+												</ButtonAnimation>
+												<ButtonAnimation
+													className="link-mobile"
+													onClick={() => handleButtonClick("motos")}
+												>
+													Motos
+												</ButtonAnimation>
+												<ButtonAnimation
+													className="link-mobile"
+													onClick={() => handleButtonClick("leilao")}
+												>
+													Leilão
+												</ButtonAnimation>
+											</>
+										)}
 									</DivBar>
 									<Divider />
 									<DivBar>
