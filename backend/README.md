@@ -37,6 +37,12 @@ O usuário que não deseja apenas comprar um veiculo poderá se cadastrar como a
 
 <br>
 
+<details>
+
+<summary>
+/USERS
+</summary>
+
 > # Create User - POST `/users`
 >> ## Formato da requisição:
 >
@@ -581,6 +587,10 @@ O usuário que não deseja apenas comprar um veiculo poderá se cadastrar como a
 ---
 
 <br>
+</details>
+
+<details>
+  <summary>/ADDRESS</summary>
 
 > # Create Address - POST `/address`
 >> ## Formato da requisição:
@@ -806,6 +816,10 @@ O usuário que não deseja apenas comprar um veiculo poderá se cadastrar como a
 ---
 
 <br>
+</details>
+
+<details>
+  <summary>/LOGIN</summary>
 
 > # Login - POST `/login`
 >> ## Formato da requisição:
@@ -845,6 +859,10 @@ O usuário que não deseja apenas comprar um veiculo poderá se cadastrar como a
 ---
 
 <br>
+</details>
+
+<details>
+  <summary>/ADS</summary>
 
 > # Create Ad - POST `/ads`
 >> ## Formato da requisição:
@@ -1317,6 +1335,10 @@ O usuário que não deseja apenas comprar um veiculo poderá se cadastrar como a
 ---
 
 <br/>
+</details>
+
+<details>
+  <summary>/GALLERY</summary>
 
 > # Create Galery - POST `/galleries`
 >> ## Formato da requisição:
@@ -1589,6 +1611,10 @@ O usuário que não deseja apenas comprar um veiculo poderá se cadastrar como a
 ---
 
 <br/>
+</details>
+
+<details>
+  <summary>/COMMENT</summary>
 
 > # Create Comment - POST `/comment`
 >> ## Formato da requisição:
@@ -1831,3 +1857,4 @@ O usuário que não deseja apenas comprar um veiculo poderá se cadastrar como a
 ---
 
 <br>
+</details>
