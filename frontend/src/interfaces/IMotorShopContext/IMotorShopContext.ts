@@ -1,5 +1,5 @@
 import { FormCreateComment } from "../FormCreateComment/FormCreateComment";
-import { IFormUpdateAd } from "../FormUpdateAd/FormUpdateAd";
+import { IFormUpdateAd, IFormUpdateAdGallery } from "../FormUpdateAd/FormUpdateAd";
 import { FormUpdateAddressUser } from "../FormUpdateAddressUser/FormUpdateAddressUser";
 import { FormUpdateComment } from "../FormUpdateComment/FormUpdateComment";
 import { FormUpdateUser } from "../FormUpdateUser/FormUpdateUser";
@@ -30,6 +30,8 @@ export interface IMotorShopContext {
 	setOpenModalUpdateAd: React.Dispatch<React.SetStateAction<boolean>>;
 	openModalDeleteAd: boolean;
 	setOpenModalDeleteAd: React.Dispatch<React.SetStateAction<boolean>>;
+	openModaAddImage: boolean;
+	setOpenModaAddImage: React.Dispatch<React.SetStateAction<boolean>>
 	handleCloseModal: () => void;
 	registerAd: (data: any) => void;
 	getRandomAds: () => void;
@@ -81,4 +83,5 @@ export interface IMotorShopContext {
 	setOpenModalImage4: React.Dispatch<React.SetStateAction<boolean>>;
 	setOpenModalImage5: React.Dispatch<React.SetStateAction<boolean>>;
 	setOpenModalImage6: React.Dispatch<React.SetStateAction<boolean>>;
+	updateGallery: (data: IFormUpdateAdGallery) => void;
 }
