@@ -110,7 +110,7 @@ const DetailAd = () => {
                   <FontPrice>R$ {ad.price}</FontPrice>
                 </ContainerPriceYearKm>
                 <a
-                  href={`https://api.whatsapp.com/send?phone=+55${userProfile.phone}&text=Ol%C3%A1%2C%20[…]C%20gostaria%20de%20conhecer%20melhor%20seus%20servi%C3%A7os`}
+                  href={`https://api.whatsapp.com/send?phone=+55${userProfile.phone}&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20detalhes%20sobre%20seu%20anúncio,%20${ad.title}!`}
                   target="_blank"
                 >
                   <Button

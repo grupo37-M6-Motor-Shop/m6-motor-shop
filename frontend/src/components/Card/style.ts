@@ -102,7 +102,7 @@ export const ContainerInfoCard = styled.div<props>`
 	::before {
 		content: "";
 		position: absolute;
-		width: 100%;
+		width: 90%;
 		height: 100%;
 		background-image: url(${(props) => props.image});
 		background-position: center;
