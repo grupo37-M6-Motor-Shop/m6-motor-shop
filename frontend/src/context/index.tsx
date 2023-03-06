@@ -227,6 +227,24 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		}
 	};
 
+	const desactiveUser = async (userId: string) => {
+		try {
+			await api.delete(`/users/desactive/${userId}`);
+			localStorage.clear();
+			setIsLoggedIn(false);
+			notifySuccess("Perfil desativado com sucesso!", "sucessDesactiveUser");
+			navigate("/homepage");
+		} catch (error) {
+			const err = error as AxiosError<IError>;
+			console.log(err);
+			if (err.response?.data.message === "User is not active") {
+				notifyError("Perfil do usuário desativado!", "errorDesactiveUser");
+			} else {
+				notifyError("Algo deu errado! Tente novamente!", "errorDesactiveUser");
+			}
+		}
+	};
+
 	const updateAddressUser = async (
 		data: FormUpdateAddressUser,
 		addressId: string
@@ -443,6 +461,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				updateComment,
 				sendEmailRedefinePassword,
 				redefinePassword,
+				desactiveUser,
 				openModaAddImage, 
 				setOpenModaAddImage,
 				updateGallery
