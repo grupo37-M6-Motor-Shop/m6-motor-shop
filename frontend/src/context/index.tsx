@@ -216,6 +216,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
       await api.delete(`/users/${userId}`);
       localStorage.clear();
       setIsLoggedIn(false);
+      getRandomAds();
       notifySuccess("Perfil excluído com sucesso!", "sucessDeleteUser");
       navigate("/homepage");
     } catch (error) {
