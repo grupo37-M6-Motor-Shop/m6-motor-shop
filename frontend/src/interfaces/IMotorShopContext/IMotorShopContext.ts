@@ -56,6 +56,7 @@ export interface IMotorShopContext {
 	openModalDeleteUser: boolean;
 	setOpenModalDeleteUser: React.Dispatch<React.SetStateAction<boolean>>;
 	deleteUser: (userId: string) => void;
+	desactiveUser: (userId: string) => void;
 	deleteComment: (id: string) => void;
 	updateComment: (data: FormUpdateComment, id: string) => void;
 	prevLocation: string;
