@@ -1,7 +1,12 @@
 # Motor Shop API
-Esse projeto é uma loja de veículos no qual um usuário(user) poderá se cadastrar e fazer o login, para que assim possa postar um anuncio sobre um veiculo, ou comentar no anuncio de outros usuários.
 
-## TECNOLOGIAS
+Este projeto tem como objetivo facilitar a conexão de um usuário com o seu tão sonhado veiculo. Nele, o usuário poderá visualizar todos os anúncios ativos e deixar comentários no que mais agradar.
+O usuário que não deseja apenas comprar um veiculo poderá se cadastrar como anunciante, para então utilizar as recursos da Motors Shop da melhor forma, podendo anunciar carros e motos, tanto no formado padrão de venda, quanto como leilão.
+
+[Documentação Principal](/README.md)
+
+<h2> Tecnologias: </h2>
+
   * Typeorm
   * Typescript
   * Express NodeJs
@@ -17,7 +22,7 @@ Esse projeto é uma loja de veículos no qual um usuário(user) poderá se cadas
 
 <br>
 
-## Rodando a aplicação localmente:
+<h2> Rodando a aplicação localmente: </h2>
 
 * Faça clone do projeto em sua máquina;
 * Pelo terminal, acesse a pasta `backend` e execute o comando `yarn` para instalar as dependências;
@@ -28,9 +33,15 @@ Esse projeto é uma loja de veículos no qual um usuário(user) poderá se cadas
 
 <br>
 
-## Requisições:
+<h2> Requisições: </h2>
 
 <br>
+
+<details>
+
+<summary>
+/USERS
+</summary>
 
 > # Create User - POST `/users`
 >> ## Formato da requisição:
@@ -576,6 +587,10 @@ Esse projeto é uma loja de veículos no qual um usuário(user) poderá se cadas
 ---
 
 <br>
+</details>
+
+<details>
+  <summary>/ADDRESS</summary>
 
 > # Create Address - POST `/address`
 >> ## Formato da requisição:
@@ -801,6 +816,10 @@ Esse projeto é uma loja de veículos no qual um usuário(user) poderá se cadas
 ---
 
 <br>
+</details>
+
+<details>
+  <summary>/LOGIN</summary>
 
 > # Login - POST `/login`
 >> ## Formato da requisição:
@@ -840,6 +859,10 @@ Esse projeto é uma loja de veículos no qual um usuário(user) poderá se cadas
 ---
 
 <br>
+</details>
+
+<details>
+  <summary>/ADS</summary>
 
 > # Create Ad - POST `/ads`
 >> ## Formato da requisição:
@@ -1312,6 +1335,10 @@ Esse projeto é uma loja de veículos no qual um usuário(user) poderá se cadas
 ---
 
 <br/>
+</details>
+
+<details>
+  <summary>/GALLERY</summary>
 
 > # Create Galery - POST `/galleries`
 >> ## Formato da requisição:
@@ -1584,6 +1611,10 @@ Esse projeto é uma loja de veículos no qual um usuário(user) poderá se cadas
 ---
 
 <br/>
+</details>
+
+<details>
+  <summary>/COMMENT</summary>
 
 > # Create Comment - POST `/comment`
 >> ## Formato da requisição:
@@ -1826,3 +1857,4 @@ Esse projeto é uma loja de veículos no qual um usuário(user) poderá se cadas
 ---
 
 <br>
+</details>

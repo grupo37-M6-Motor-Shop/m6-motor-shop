@@ -131,7 +131,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		const { email } = data;
 
 		try {
-			await api.post("/users/redefine_password", { email });
+			await api.post("/users/redefine-password", { email });
 			toast.success("Verifique sua caixa de entrada no email!");
 			navigate("/homepage", { replace: true });
 		} catch (error) {
