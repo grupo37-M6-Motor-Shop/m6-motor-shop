@@ -6,6 +6,7 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import InputComment from "../../components/InputComment";
 import Modal from "../../components/modal";
+import ModalAdUpdateImage from "../../components/ModalAdUpdateImage";
 import PhotoList from "../../components/PhotoList";
 import { MotorShopContext } from "../../context";
 import { IAds } from "../../interfaces/IAds/IAds";
@@ -46,6 +47,7 @@ const DetailAd = () => {
     openModalImage5,
     openModalImage6,
     userProfile,
+    openModaAddImage,
   } = useContext(MotorShopContext);
   const [numComments, setNumComments] = useState(10);
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
@@ -53,6 +55,8 @@ const DetailAd = () => {
   document.body.style.overflow = "unset";
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const gallery = ad.gallery
 
   const handleCardClick = (id: string) => {
     if (activeCardId === id) {
@@ -130,19 +134,19 @@ const DetailAd = () => {
               </Description>
             </InfoAd>
             <InfoAdvertiser>
-              {ad.gallery && (
+              {gallery && (
                 <>
                   <PhotoList
-                    id={ad.gallery.id}
-                    urlImage1={ad.gallery.urlImage1}
-                    urlImage2={ad.gallery.urlImage2}
-                    urlImage3={ad.gallery.urlImage3}
-                    urlImage4={ad.gallery.urlImage4}
-                    urlImage5={ad.gallery.urlImage5}
-                    urlImage6={ad.gallery.urlImage6}
+                    id={gallery.id}
+                    urlImage1={gallery.urlImage1}
+                    urlImage2={gallery.urlImage2}
+                    urlImage3={gallery.urlImage3}
+                    urlImage4={gallery.urlImage4}
+                    urlImage5={gallery.urlImage5}
+                    urlImage6={gallery.urlImage6}
                   />
                   <Info>
-                    <UserImg avatarColor={userProfile.avatarColor}>
+                    <UserImg avatarColor={ad.user.avatarColor}>
                       {ad.user.name[0]}
                     </UserImg>
                     <Name>{ad.user.name}</Name>
@@ -219,7 +223,7 @@ const DetailAd = () => {
         {openModalImage1 && (
           <Modal title="Imagem do veículo">
             <ZoomImg
-              src={ad.gallery.urlImage1}
+              src={gallery.urlImage1}
               alt=""
               style={{ maxWidth: "465px", maxHeight: "240px" }}
             />
@@ -228,7 +232,7 @@ const DetailAd = () => {
         {openModalImage2 && (
           <Modal title="Imagem do veículo">
             <ZoomImg
-              src={ad.gallery.urlImage2}
+              src={gallery.urlImage2}
               alt=""
               style={{ maxWidth: "465px", maxHeight: "240px" }}
             />
@@ -237,7 +241,7 @@ const DetailAd = () => {
         {openModalImage3 && (
           <Modal title="Imagem do veículo">
             <ZoomImg
-              src={ad.gallery.urlImage3}
+              src={gallery.urlImage3}
               alt=""
               style={{ maxWidth: "465px", maxHeight: "240px" }}
             />
@@ -246,7 +250,7 @@ const DetailAd = () => {
         {openModalImage4 && (
           <Modal title="Imagem do veículo">
             <ZoomImg
-              src={ad.gallery.urlImage4}
+              src={gallery.urlImage4}
               alt=""
               style={{ maxWidth: "465px", maxHeight: "240px" }}
             />
@@ -255,7 +259,7 @@ const DetailAd = () => {
         {openModalImage5 && (
           <Modal title="Imagem do veículo">
             <ZoomImg
-              src={ad.gallery.urlImage5}
+              src={gallery.urlImage5}
               alt=""
               style={{ maxWidth: "465px", maxHeight: "240px" }}
             />
@@ -264,12 +268,13 @@ const DetailAd = () => {
         {openModalImage6 && (
           <Modal title="Imagem do veículo">
             <ZoomImg
-              src={ad.gallery.urlImage6}
+              src={gallery.urlImage6}
               alt=""
               style={{ maxWidth: "465px", maxHeight: "240px" }}
             />
           </Modal>
         )}
+        {openModaAddImage && <ModalAdUpdateImage />}
       </Main>
       <Footer />
     </Container>

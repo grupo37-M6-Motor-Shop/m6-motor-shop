@@ -14,6 +14,29 @@ export const CustomerPhotoList = styled.ul`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 14px;
+  .icon{
+    width:100%;
+    font-size: 2.5rem;
+    color: var(--grey5);
+    @media (max-width: 1250px) {
+    font-size: 3.5rem;
+	}
+  @media (max-width: 600px) {
+    font-size: 3rem;
+	}
+  @media (max-width: 1250px) {
+    font-size: 4.5rem;
+	}
+  @media (max-width: 426px) {
+    font-size: 3rem;
+	}
+  @media (max-width: 376px) {
+    font-size: 2.5rem;
+	}
+  @media (max-width: 321px) {
+    font-size: 2rem;
+	}
+  }
 `;
 
 export const ContainerPhoto = styled.li`
@@ -24,6 +47,7 @@ export const ContainerPhoto = styled.li`
   border-radius: 4px;
   background: var(--grey7);
   overflow: hidden;
+  cursor: pointer;
 `;
 
 export const Photo = styled.img`
