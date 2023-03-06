@@ -1,8 +1,11 @@
-# Motor Shop uma loja de carros e motos
+# Motor Shop
 
-Este projeto tem como objetivo facilitar a conexão de um usuario com o seu tao sonhado veiculo. nele, o usuario podera passiar pela loja de veiculos dando comentarios para o mesmo, alem de poder ver os comentarios de outros usuarios. o usuario que nao deseja apenas comprar um veiculo tambem poderá coloca-lo a venda na motor shop, sendo esse um anuncio padrao ou um leilao do veiculo.
+Este projeto tem como objetivo facilitar a conexão de um usuário com o seu tão sonhado veiculo. Nele, o usuário poderá visualizar todos os anúncios ativos e deixar comentários no que mais agradar.
+O usuário que não deseja apenas comprar um veiculo poderá se cadastrar como anunciante, para então utilizar as recursos da Motors Shop da melhor forma, podendo anunciar carros e motos, tanto no formado padrão de venda, quanto como leilão.
 
-<h2 align ='center'> Tecnologias utilizadas: </h2>
+[Documentação Principal](/README.md)
+
+<h2> Tecnologias utilizadas: </h2>
 
 <br>
 <div id="tecs"style='display:flex; gap: 5px;'><br>
@@ -18,12 +21,8 @@ Este projeto tem como objetivo facilitar a conexão de um usuario com o seu tao 
 <hr>
 <br>
 
-<h2 align ='center'> Rodando o Projeto Localmente: </h2>
+<h2> Rodando a aplicação localmente: </h2>
 
-### Primeiramente...
-1 - Copie a chave SSH clicando no botão "Code" logo acima.
-2 - Após ter feito a copia da chave SSH, abra seu terminal e digite o comando: `git clone` (ainda não aperte enter), mais o clone da "chave SSH".
-
-### Após clonar o repositório...
-3 - No terminal bash do projeto, rode o comando `yarn`, para que assim possa ser instalada todas as dependências.
-4 - Ainda no bash do projeto, rode o comando `yarn dev`, para que assim possa ser iniciado o projeto em ambiente de produção.
+* Faça clone do projeto em sua máquina;
+* Pelo terminal, acesse a pasta `frontend` e execute o comando `yarn` para instalar as dependências;
+* Por fim, execute o comando `yarn dev` para rodar a aplicação. Acesse o link informado no terminal. Ex: `http://localhost:5173`.
