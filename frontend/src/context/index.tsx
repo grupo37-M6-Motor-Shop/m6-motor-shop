@@ -2,7 +2,7 @@ import { AxiosError } from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IFormCreateAd } from "../interfaces/FormCreateAd/FromCreateAd";
-import { IFormUpdateAd } from "../interfaces/FormUpdateAd/FormUpdateAd";
+import { IFormUpdateAd, IFormUpdateAdGallery } from "../interfaces/FormUpdateAd/FormUpdateAd";
 import { FormUpdateAddressUser } from "../interfaces/FormUpdateAddressUser/FormUpdateAddressUser";
 import { FormUpdateUser } from "../interfaces/FormUpdateUser/FormUpdateUser";
 import { IAds } from "../interfaces/IAds/IAds";
@@ -56,7 +56,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		localStorage.getItem("@motors-shop:token") || ""
 	);
 	const [prevLocation, setPrevLocation] = useState<string>("");
-
+	const [openModaAddImage, setOpenModaAddImage] = useState(false)
 	const navigate = useNavigate();
 	const notifySuccess = (text: string, idNotify: string) =>
 		toast.success(text, { toastId: idNotify });
@@ -177,6 +177,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		setOpenModalImage4(false);
 		setOpenModalImage5(false);
 		setOpenModalImage6(false);
+		setOpenModaAddImage(false)
 	};
 
 	const getUserByProfile = async () => {
@@ -223,6 +224,24 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			const err = error as AxiosError<IError>;
 			console.log(err);
 			notifyError("Algo deu errado! Tente novamente!", "errorDeleteUser");
+		}
+	};
+
+	const desactiveUser = async (userId: string) => {
+		try {
+			await api.delete(`/users/desactive/${userId}`);
+			localStorage.clear();
+			setIsLoggedIn(false);
+			notifySuccess("Perfil desativado com sucesso!", "sucessDesactiveUser");
+			navigate("/homepage");
+		} catch (error) {
+			const err = error as AxiosError<IError>;
+			console.log(err);
+			if (err.response?.data.message === "User is not active") {
+				notifyError("Perfil do usuário desativado!", "errorDesactiveUser");
+			} else {
+				notifyError("Algo deu errado! Tente novamente!", "errorDesactiveUser");
+			}
 		}
 	};
 
@@ -298,6 +317,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 
 	const updateAd = async (data: IFormUpdateAd, adId: string) => {
 		const galleryData = data;
+		console.log(data)
 		try {
 			await api.patch<IFormUpdateAd>(`/ads/${adId}`, data);
 			await api.patch(`/galleries/${galleryData.galleryId}`, galleryData);
@@ -356,6 +376,17 @@ const MotorShopProvider = ({ children }: IProvider) => {
 		try {
 			await api.delete(`/comment/${id}`);
 			getAdbyId(ad.id);
+		} catch (error) {
+			const err = error as AxiosError<IError>;
+			console.log(err);
+		}
+	};
+
+	const updateGallery = async (data: IFormUpdateAdGallery) => {
+		try {
+			await api.patch(`/galleries/${data.galleryId}`, data);
+			getAdbyId(ad.id);
+			handleCloseModal();
 		} catch (error) {
 			const err = error as AxiosError<IError>;
 			console.log(err);
@@ -430,6 +461,10 @@ const MotorShopProvider = ({ children }: IProvider) => {
 				updateComment,
 				sendEmailRedefinePassword,
 				redefinePassword,
+				desactiveUser,
+				openModaAddImage, 
+				setOpenModaAddImage,
+				updateGallery
 			}}
 		>
 			{children}

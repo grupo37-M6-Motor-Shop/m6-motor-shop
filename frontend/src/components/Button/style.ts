@@ -13,13 +13,14 @@ export const CustomButton = styled.button<ButtonProps>`
   font-weight: 600;
   border: ${({ border }) =>
     border ? `0.0938rem solid var(--${border})` : "none"};
+    transition: all .5s ease;
 
   :hover:not([disabled]) {
     background-color: ${({ hover }) =>
-      hover?.bgcolor ? `var(--${hover.bgcolor})` : null};
+    hover?.bgcolor ? `var(--${hover.bgcolor})` : null};
     color: ${({ hover }) => (hover?.color ? `var(--${hover.color})` : null)};
     border: ${({ hover }) =>
-      hover?.border ? `0.0938rem solid var(--${hover.border})` : null};
+    hover?.border ? `0.0938rem solid var(--${hover.border})` : null};
   }
 
   :disabled {

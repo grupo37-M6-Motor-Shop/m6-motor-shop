@@ -6,9 +6,14 @@ import { TextQuestion, TextWarning, Div } from "../ModalAdDelete/style";
 
 const ModalDeleteUser = () => {
 	document.body.style.overflow = "hidden";
-	const { user, deleteUser, handleCloseModal } = useContext(MotorShopContext);
+	const { user, deleteUser, desactiveUser, handleCloseModal } = useContext(MotorShopContext);
 
-	const handleClick = () => {
+	const handleClickdeactive = () => {
+		desactiveUser(user.id)
+		handleCloseModal();
+	}
+
+	const handleClickDelete = () => {
 		deleteUser(user.id);
 		handleCloseModal();
 	};
@@ -39,7 +44,17 @@ const ModalDeleteUser = () => {
 					component={"big"}
 					width={"211px"}
 					hover={{ bgcolor: "alert2" }}
-					onClick={handleClick}
+					onClick={handleClickdeactive}
+				>
+					Desativar Perfil
+				</Button>
+				<Button
+					color={"alert1"}
+					bgcolor={"alert3"}
+					component={"big"}
+					width={"211px"}
+					hover={{ bgcolor: "alert2" }}
+					onClick={handleClickDelete}
 				>
 					Sim, exluir Perfil
 				</Button>
