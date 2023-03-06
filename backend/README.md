@@ -17,32 +17,18 @@ Esse projeto é uma loja de veículos no qual um usuário(user) poderá se cadas
 
 <br>
 
-<h2 align ='center'> Rodando a aplicação localmente: </h2>
-### Primeiramente...
-1 - Copie a chave SSH clicando no botão "Code" logo acima.
-2 - Após ter feito a copia da chave SSH, abra seu terminal e digite o comando: `git clone` (ainda não aperte enter), mais o clone da "chave SSH".
+## Rodando a aplicação localmente:
 
-### Após clonar o repositório...
-3 - No terminal bash do projeto, rode o comando `yarn`, para que assim possa ser instalada todas as dependências.
-4 - Quando todas as dependencias estiverem instaladas, crie um arquivo `.env` na "raiz" do projeto.
-5 - Faça um cópia de tudo oque estiver no arquivo `.env.example` e cole no arquivo `.env`. Não esqueca de preencher suas informações no arquivo `.env`.
-
-### Depois de preencher o arquivo .env...
-6 - Vá para o terminal bash do projeto e rode a seguinte cadeia de comandos:
-
-(obs: não se esqueça de criar seu banco de dados antes de fazer esse procedimento)
-
-- primeiro - `yarn typeorm migration:create src/migrations/initialMigration`
-- segundo - `yarn typeorm migration:generate src/migrations/createTables -d src/data-source.ts`
-- terceiro - `yarn typeorm migration:run -d src/data-source.ts`
-com esses três comandos será possivel criar as imagens das entidades do banco de dados, montar essas imagens e roda-las.
-
-### terminando de popular o banco de dados...
-7 - Rode o comando `yarn dev`, que irá abrir o servidor local para se utilizar da api. 
+* Faça clone do projeto em sua máquina;
+* Pelo terminal, acesse a pasta `backend` e execute o comando `yarn` para instalar as dependências;
+* Renomeie o arquivo `.env.example` para `.env` e preencha as informações;
+* Crie um banco de dados com o mesmo nome que usou no arquivo `.env`;
+* Ainda na pasta `backend`, execute o comando `yarn typeorm migration:run -d src/data-source.ts` para criar as tabelas no bando de dados;
+* Por fim, execute o comando `yarn dev` para rodar a aplicação. Ela será executada por padrão em `http://localhost:8000`.
 
 <br>
 
-# REQUISIÇÕES
+## Requisições:
 
 <br>
 
@@ -55,8 +41,8 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >
 >```json
 > {
->   "name": "Admin",
->   "email": "admin@mail.com",
+>   "name": "Felipe Silva",
+>   "email": "felipe@mail.com",
 >   "cpf": "123.456.789-12",
 >   "phone": "24999123456",
 >   "birthday": "01/01/90",
@@ -64,9 +50,9 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >   "advertiser": false,
 >   "password": "1234",
 >   "isAdm": true,
->   "cep": "26.206-000",
->   "state": "RJ",
->   "city": "Volta Redonda",
+>   "cep": "80.420-010",
+>   "state": "SP",
+>   "city": "Curitiba",
 >   "street": "Rua das Laranjeiras",
 >   "number": "105", 
 >   "complement": "Próximo a quadra"
@@ -80,18 +66,19 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >
 >```json
 >{
->	"name": "Admin",
->	"email": "admin@mail.com",
+>	"name": "Felipe Silva",
+>	"email": "felipe@mail.com",
 >	"cpf": "123.456.789-12",
 >	"phone": "24999123456",
 >	"birthday": "01/01/90",
 >	"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
 >	"advertiser": false,
+>	"avatarColor": "--random9",
 >	"address": {
 >		"id": "65da75f6-092a-4bd4-a2d8-90b07aa15944",
->		"cep": "26.206-000",
->		"state": "RJ",
->		"city": "Volta Redonda",
+>		"cep": "80.420-010",
+>		"state": "SP",
+>		"city": "Curitiba",
 >		"street": "Rua das Laranjeiras",
 >		"number": "105",
 >		"complement": "Próximo a quadra",
@@ -144,13 +131,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >```json
 >{
 >	"id": "078beee5-c3f6-411f-8af5-93c9a6fd2d0e",
->	"name": "Admin",
->	"email": "admin@mail.com",
+>	"name": "Felipe Silva",
+>	"email": "felipe@mail.com",
 >	"cpf": "123.456.789-12",
 >	"phone": "24999123456",
 >	"birthday": "01/01/90",
 >	"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
 >	"advertiser": false,
+>	"avatarColor": "--random9",
 >	"newPassrwordCode": null,
 >	"isActive": true,
 >	"isAdm": true,
@@ -158,9 +146,9 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	"updatedAt": "2023-02-23T23:24:24.744Z",
 >	"address": {
 >		"id": "65da75f6-092a-4bd4-a2d8-90b07aa15944",
->		"cep": "26.206-000",
->		"state": "RJ",
->		"city": "Volta Redonda",
+>		"cep": "80.420-010",
+>		"state": "SP",
+>		"city": "Curitiba",
 >		"street": "Rua das Laranjeiras",
 >		"number": "105",
 >		"complement": "Próximo a quadra",
@@ -188,8 +176,6 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 > # Retrieve User - GET `/users/:id-user`
 >> ## Formato da requisição:
 >
-> * Apenas o `administrador` pode ver os dados de outro `administrador` e de usuário desativados - `(isActive = false)`;
->
 >> ## Formato da resposta:
 >
 > * Status: `200 OK`;
@@ -198,13 +184,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >```json
 >{
 >	"id": "0f4a8191-e40f-47ee-89a6-13a86cfb56c5",
->	"name": "Anunciante 1",
->	"email": "anunciante.1@mail.com",
+>	"name": "Fernando Santos",
+>	"email": "fernando@mail.com",
 >	"cpf": "753.952.901.62",
 >	"phone": "24992654895",
 >	"birthday": "22/05/85",
 >	"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
->	"advertiser": false,
+>	"advertiser": true,
+>	"avatarColor": "--random10",
 >	"newPassrwordCode": null,
 >	"isActive": true,
 >	"isAdm": false,
@@ -225,15 +212,6 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	"comments": []
 >}
 >```
-> ## Sem token / token inválido
->> ## Formato da resposta:
->
-> * Status: `401 UNAUTHORIZED`;
->```json
-> {
->   "message": "Missing authorization headers"
-> }
->```
 > ## Id inválido
 >> ## Formato da resposta:
 >
@@ -241,16 +219,6 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >```json
 > {
 >   "message": "User not found"
-> }
->```
-> ## Buscando administrador ou usuário desativado sem ser administrador
->> ## Formato da resposta:
->
-> * Status: `401 UNAUTHORIZED`;
->
->```json
-> {
->   "message": "User is not admin"
 > }
 >```
 >---
@@ -272,13 +240,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >[
 >	{
 >		"id": "e8182885-f71a-42c8-94fe-4ca1ab04308c",
->		"name": "Comprador 1",
->		"email": "comprador.1@mail.com",
+>		"name": "Amanda Pereira",
+>		"email": "amanda@mail.com",
 >		"cpf": "256.156.327.12",
 >		"phone": "24992654895",
 >		"birthday": "24/05/87",
 >		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
 >		"advertiser": false,
+>		"avatarColor": "--random4",
 >		"newPassrwordCode": null,
 >		"isActive": true,
 >		"isAdm": false,
@@ -298,13 +267,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	},
 >	{
 >		"id": "0f4a8191-e40f-47ee-89a6-13a86cfb56c5",
->		"name": "Anunciante 1",
->		"email": "anunciante.1@mail.com",
+>		"name": "Fernando Santos",
+>		"email": "fernando@mail.com",
 >		"cpf": "753.952.901.62",
 >		"phone": "24992654895",
 >		"birthday": "22/05/85",
 >		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
->		"advertiser": false,
+>		"advertiser": true,
+>		"avatarColor": "--random10",
 >		"newPassrwordCode": null,
 >		"isActive": true,
 >		"isAdm": false,
@@ -324,13 +294,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	},
 >	{
 >		"id": "078beee5-c3f6-411f-8af5-93c9a6fd2d0e",
->		"name": "Admin",
->		"email": "admin1@mail.com",
+>		"name": "Felipe Silva",
+>		"email": "felipe@mail.com",
 >		"cpf": "123.456.789-12",
 >		"phone": "24999123456",
 >		"birthday": "01/01/90",
 >		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
 >		"advertiser": false,
+>		"avatarColor": "--random9",
 >		"newPassrwordCode": null,
 >		"isActive": true,
 >		"isAdm": true,
@@ -338,9 +309,9 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >		"updatedAt": "2023-02-23T23:24:24.744Z",
 >		"address": {
 >		  "id": "65da75f6-092a-4bd4-a2d8-90b07aa15944",
->		  "cep": "26.206-000",
->		  "state": "RJ",
->		  "city": "Volta Redonda",
+>		  "cep": "80.420-010",
+>		  "state": "SP",
+>		  "city": "Curitiba",
 >		  "street": "Rua das Laranjeiras",
 >		  "number": "25",
 >		  "complement": "Próximo a quadra",
@@ -363,6 +334,67 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 
 <br>
 
+> # Send Email Redefine Password - POST `/users/redefine-password`
+>> ## Formato da requisição:
+>  
+>```json
+>{
+>	"email": "fernando.mota@mail.com"
+>}
+>```
+>> ## Formato da resposta:
+>
+>```json
+>{
+>	"message": "Email successfully sent"
+>}
+>```
+> ## Email inválido
+>> ## Formato da resposta:
+>  
+> * Status: `404 NOT FOUND`;
+>
+>```json
+> {
+>   "message": "User not found"
+> }
+>```
+>---
+
+<br>
+
+> # Redefine Password - POST `/users/redefine-password/:id-user`
+>> ## Formato da requisição:
+>  
+>```json
+>{
+>	"password": "9876",
+>	"newPasswordCode": "296475",
+>}
+>```
+>> ## Formato da resposta:
+>
+> * Status: `200 OK`;  
+>
+>```json
+>{
+>	"message": "Updated password"
+>}
+>```
+> ## Código inválido
+>> ## Formato da resposta:
+>  
+> * Status: `404 NOT FOUND`;
+>
+>```json
+> {
+>   "message": "Invalid Code!"
+> }
+>```
+>---
+
+<br>
+
 > # Update User - PATCH `/users/:id-user`
 >> ## Formato da requisição:
 >
@@ -372,8 +404,8 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >  
 >```json
 >{
->	"name": "Anunciante Atualizado",
->	"email": "anunciante.atualizado@mail.com",
+>	"name": "Fernando Mota",
+>	"email": "fernando.mota@mail.com",
 >	"cpf": "111.222.333.44",
 >	"phone": "22981458595",
 >	"birthday": "22/05/85",
@@ -389,13 +421,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >```json
 >{
 >	"id": "e8182885-f71a-42c8-94fe-4ca1ab04308c",
->	"name": "Anunciante Atualizado",
->	"email": "anunciante.atualizado@mail.com",
+>	"name": "Fernando Mota",
+>	"email": "fernando.mota@mail.com",
 >	"cpf": "111.222.333.44",
 >	"phone": "22981458595",
 >	"birthday": "22/05/85",
 >	"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
->	"advertiser": false,
+>	"advertiser": true,
+>	"avatarColor": "--random10",
 >	"newPassrwordCode": null,
 >	"isActive": true,
 >	"isAdm": false,
@@ -411,7 +444,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	  "complement": "Em frente ao mercado",
 >	  "createdAt": "2023-02-28T13:29:43.622Z",
 >	  "updatedAt": "2023-02-28T13:29:43.622Z"
->	}
+>	},
 >	"ads": [],
 >	"comments": []
 >}
@@ -458,7 +491,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 > 
 >> ## Formato da resposta:
 >
-> * Propriedade isActive passa para `false`;
+> * Propriedade `isActive` passa para `false`;
 > * Status: `204 NO CONTENT`;
 >
 > ## Sem token / token inválido
@@ -492,11 +525,6 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 > }
 >```
 >---
-
-<br>
-
----
----
 
 <br>
 
@@ -553,7 +581,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >> ## Formato da requisição:
 >
 > * Todos os campos são `obrigatórios`;
-> * A criação do `address` de um `user` é feita em na criação de usuário;
+> * A criação do vinculação do `address` de um `user` está imbutida diretamente na criação do próprio usuário;
 >
 >```json
 > {
@@ -655,7 +683,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	},
 >	{
 >		"id": "06e8ee55-b412-4422-8c27-d4fcb8d3f253",
->		"cep": "27.185-000",
+>		"cep": "26.206-000",
 >		"state": "RJ",
 >		"city": "Volta Redonda",
 >		"street": "Rua das Laranjeiras",
@@ -781,7 +809,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >>
 >```json
 >{
->	"email": "comprador.1@mail.com",
+>	"email": "amanda@mail.com",
 >	"password": "1234"
 >}
 >```
@@ -870,14 +898,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	},
 >	"user": {
 >		"id": "64cae1d7-be4d-47f6-8ccf-75a49dbaebad",
->		"name": "Anunciante 1",
->		"email": "anunciante.1@mail.com",
+>		"name": "Fernando Santos",
+>		"email": "fernando@mail.com",
 >		"cpf": "753.952.901.62",
 >		"phone": "24992654895",
 >		"birthday": "22/05/85",
 >		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
->		"advertiser": false,
->		"password": "$2a$10$HtuifB.sdLG.2phhxJJHbOvDarVLbc.V7z8bqW8SIFWVO3sVz05rO",
+>		"advertiser": true,
+>		"avatarColor": "--random10",
 >		"newPassrwordCode": null,
 >		"isActive": true,
 >		"isAdm": false,
@@ -924,14 +952,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >		},
 >		"user": {
 >			"id": "64cae1d7-be4d-47f6-8ccf-75a49dbaebad",
->			"name": "Anunciante 1",
->			"email": "anunciante.1@mail.com",
+>			"name": "Fernando Santos",
+>			"email": "fernando@mail.com",
 >			"cpf": "753.952.901.62",
 >			"phone": "24992654895",
 >			"birthday": "22/05/85",
 >			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
->			"advertiser": false,
->			"password": "$2a$10$HtuifB.sdLG.2phhxJJHbOvDarVLbc.V7z8bqW8SIFWVO3sVz05rO",
+>			"advertiser": true,
+>			"avatarColor": "--random10",
 >			"newPassrwordCode": null,
 >			"isActive": true,
 >			"isAdm": false,
@@ -966,14 +994,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >		},
 >		"user": {
 >			"id": "64cae1d7-be4d-47f6-8ccf-75a49dbaebad",
->			"name": "Anunciante 1",
->			"email": "anunciante.1@mail.com",
+>			"name": "Fernando Santos",
+>			"email": "fernando@mail.com",
 >			"cpf": "753.952.901.62",
 >			"phone": "24992654895",
 >			"birthday": "22/05/85",
 >			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
->			"advertiser": false,
->			"password": "$2a$10$HtuifB.sdLG.2phhxJJHbOvDarVLbc.V7z8bqW8SIFWVO3sVz05rO",
+>			"advertiser": true,
+>			"avatarColor": "--random10",
 >			"newPassrwordCode": null,
 >			"isActive": true,
 >			"isAdm": false,
@@ -1022,14 +1050,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >		},
 >		"user": {
 >			"id": "64cae1d7-be4d-47f6-8ccf-75a49dbaebad",
->			"name": "Anunciante 1",
->			"email": "anunciante.1@mail.com",
+>			"name": "Fernando Santos",
+>			"email": "fernando@mail.com",
 >			"cpf": "753.952.901.62",
 >			"phone": "24992654895",
 >			"birthday": "22/05/85",
 >			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
->			"advertiser": false,
->			"password": "$2a$10$HtuifB.sdLG.2phhxJJHbOvDarVLbc.V7z8bqW8SIFWVO3sVz05rO",
+>			"advertiser": true,
+>			"avatarColor": "--random10",
 >			"newPassrwordCode": null,
 >			"isActive": true,
 >			"isAdm": false,
@@ -1064,14 +1092,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >		},
 >		"user": {
 >			"id": "64cae1d7-be4d-47f6-8ccf-75a49dbaebad",
->			"name": "Anunciante 1",
->			"email": "anunciante.1@mail.com",
+>			"name": "Fernando Santos",
+>			"email": "fernando@mail.com",
 >			"cpf": "753.952.901.62",
 >			"phone": "24992654895",
 >			"birthday": "22/05/85",
 >			"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
->			"advertiser": false,
->			"password": "$2a$10$HtuifB.sdLG.2phhxJJHbOvDarVLbc.V7z8bqW8SIFWVO3sVz05rO",
+>			"advertiser": true,
+>			"avatarColor": "--random10",
 >			"newPassrwordCode": null,
 >			"isActive": true,
 >			"isAdm": false,
@@ -1107,14 +1135,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	"updatedAt": "2023-02-24T01:25:47.457Z",
 >	"user": {
 >		"id": "64cae1d7-be4d-47f6-8ccf-75a49dbaebad",
->		"name": "Anunciante 1",
->		"email": "anunciante.1@mail.com",
+>		"name": "Fernando Santos",
+>		"email": "fernando@mail.com",
 >		"cpf": "753.952.901.62",
 >		"phone": "24992654895",
 >		"birthday": "22/05/85",
 >		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
->		"advertiser": false,
->		"password": "$2a$10$HtuifB.sdLG.2phhxJJHbOvDarVLbc.V7z8bqW8SIFWVO3sVz05rO",
+>		"advertiser": true,
+>		"avatarColor": "--random10",
 >		"newPassrwordCode": null,
 >		"isActive": true,
 >		"isAdm": false,
@@ -1205,14 +1233,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >	},
 >	"user": {
 >		"id": "64cae1d7-be4d-47f6-8ccf-75a49dbaebad",
->		"name": "Anunciante 1",
->		"email": "anunciante.1@mail.com",
+>		"name": "Fernando Santos",
+>		"email": "fernando@mail.com",
 >		"cpf": "753.952.901.62",
 >		"phone": "24992654895",
 >		"birthday": "22/05/85",
 >		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
->		"advertiser": false,
->		"password": "$2a$10$HtuifB.sdLG.2phhxJJHbOvDarVLbc.V7z8bqW8SIFWVO3sVz05rO",
+>		"advertiser": true,
+>		"avatarColor": "--random10",
 >		"newPassrwordCode": null,
 >		"isActive": true,
 >		"isAdm": false,
@@ -1289,6 +1317,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >> ## Formato da requisição:
 >
 > * Necessário autenticação por `token`;
+> * Necessário informar `id` do `anúncio`;
 > * Os campos `urlImage1` a `urlImage6` são opcionais;
 >
 >```json
@@ -1560,6 +1589,7 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >> ## Formato da requisição:
 >
 > * Necessário autenticação por `token`;
+> * Necessário informar `id` do `anúncio`;
 > * Todos os campos são `obrigatórios`;
 >
 >```json
@@ -1595,13 +1625,14 @@ com esses três comandos será possivel criar as imagens das entidades do banco 
 >  },
 >  "owner": {
 >  	 "id": "cfb14fef-6dcf-4217-9419-07650d5ff61c",
->  	 "name": "Anunciante 1",
->  	 "email": "anunciante.1@mail.com",
+>  	 "name": "Fernando Santos",
+>  	 "email": "fernando@mail.com",
 >  	 "cpf": "753.952.901.63",
 >  	 "phone": "24992654895",
 >  	 "birthday": "22/05/85",
 >  	 "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum quidem reiciendis vero reprehenderit aut...",
 >  	 "advertiser": true,
+>  	 "avatarColor": "--random10",
 >  	 "newPassrwordCode": null,
 >  	 "isActive": true,
 >  	 "isAdm": false,
