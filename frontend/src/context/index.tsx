@@ -232,6 +232,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
 			await api.delete(`/users/desactive/${userId}`);
 			localStorage.clear();
 			setIsLoggedIn(false);
+			getRandomAds();
 			notifySuccess("Perfil desativado com sucesso!", "sucessDesactiveUser");
 			navigate("/homepage");
 		} catch (error) {
