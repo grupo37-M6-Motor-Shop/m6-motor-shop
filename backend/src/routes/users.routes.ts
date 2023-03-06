@@ -13,7 +13,7 @@ import redefinePasswordController from "../controllers/users/redefinePassword.co
 
 const userRoutes = Router();
 
-userRoutes.post("/redefine_password", sendEmailRedefinePasswordController);
+userRoutes.post("/redefine-password", sendEmailRedefinePasswordController);
 userRoutes.post("", ensureEmailAlreadyExistMiddleware, createUserController);
 userRoutes.get("", ensureAuthMiddleware, listUsersController);
 userRoutes.get("/profile", ensureAuthMiddleware, userProfileController);
