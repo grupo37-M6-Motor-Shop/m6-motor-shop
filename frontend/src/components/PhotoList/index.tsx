@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { MotorShopContext } from "../../context";
 import { IGallery } from "../../interfaces/IGallery/IGallery";
-import Modal from "../modal";
+import { BsFillPlusCircleFill } from 'react-icons/bs';
 import {
 	CustomerPhotoList,
 	ContainerPhoto,
@@ -25,7 +25,13 @@ const PhotoList = ({
 		setOpenModalImage4,
 		setOpenModalImage5,
 		setOpenModalImage6,
+		setOpenModaAddImage,
+		isLoggedIn,
+		ad,
+		user
 	} = useContext(MotorShopContext);
+
+	const imageCount = [urlImage1, urlImage2, urlImage3, urlImage4, urlImage5, urlImage6].filter(Boolean).length;
 
 	return (
 		<ContainerPhotoList>
@@ -61,6 +67,11 @@ const PhotoList = ({
 						<Photo src={urlImage6} alt="" />
 					</ContainerPhoto>
 				)}
+				{imageCount < 6 && isLoggedIn && user.id === ad.user.id ? (
+					<ContainerPhoto onClick={() => setOpenModaAddImage(true)}>
+						<BsFillPlusCircleFill className="icon" />
+					</ContainerPhoto>
+				) : null}
 			</CustomerPhotoList>
 		</ContainerPhotoList>
 	);
