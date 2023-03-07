@@ -78,8 +78,9 @@ const PhotoList = ({
 					<ContainerPhoto onClick={() => setOpenModaAddImage(true)}>
 						<BsFillPlusCircleFill className="icon" />
 					</ContainerPhoto>
-				) : (
-					<p style={{ position: "absolute" }}>Sem imagens extras</p>
+				) : null}
+				{!imageCount && (
+					<p style={{ position: "absolute" }}>Não há mais imagens cadastradas</p>
 				)}
 			</CustomerPhotoList>
 		</ContainerPhotoList>
