@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { MotorShopContext } from "../../context";
 import { IGallery } from "../../interfaces/IGallery/IGallery";
-import { BsFillPlusCircleFill } from 'react-icons/bs';
+import { BsFillPlusCircleFill } from "react-icons/bs";
 import {
 	CustomerPhotoList,
 	ContainerPhoto,
@@ -28,10 +28,17 @@ const PhotoList = ({
 		setOpenModaAddImage,
 		isLoggedIn,
 		ad,
-		user
+		user,
 	} = useContext(MotorShopContext);
 
-	const imageCount = [urlImage1, urlImage2, urlImage3, urlImage4, urlImage5, urlImage6].filter(Boolean).length;
+	const imageCount = [
+		urlImage1,
+		urlImage2,
+		urlImage3,
+		urlImage4,
+		urlImage5,
+		urlImage6,
+	].filter(Boolean).length;
 
 	return (
 		<ContainerPhotoList>
@@ -71,7 +78,9 @@ const PhotoList = ({
 					<ContainerPhoto onClick={() => setOpenModaAddImage(true)}>
 						<BsFillPlusCircleFill className="icon" />
 					</ContainerPhoto>
-				) : null}
+				) : (
+					<p style={{ position: "absolute" }}>Sem imagens extras</p>
+				)}
 			</CustomerPhotoList>
 		</ContainerPhotoList>
 	);

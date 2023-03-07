@@ -220,7 +220,10 @@ const Header = ({ auction, colorFont, image }: any) => {
 										component={"big"}
 										border={"grey4"}
 										width={"133px"}
-										hover={{ bgcolor: "brand4" }}
+										hover={{
+											bgcolor: "grey1",
+											color: "whiteFixed",
+										}}
 										onClick={() => navigate(`/register`)}
 									>
 										Cadastrar
@@ -375,19 +378,31 @@ const Header = ({ auction, colorFont, image }: any) => {
 											<>
 												<ButtonAnimation
 													className="link-mobile"
-													onClick={() => handleButtonClick("carros")}
+													onClick={() =>
+														handleButtonClick(
+															"carros"
+														)
+													}
 												>
 													Carros
 												</ButtonAnimation>
 												<ButtonAnimation
 													className="link-mobile"
-													onClick={() => handleButtonClick("motos")}
+													onClick={() =>
+														handleButtonClick(
+															"motos"
+														)
+													}
 												>
 													Motos
 												</ButtonAnimation>
 												<ButtonAnimation
 													className="link-mobile"
-													onClick={() => handleButtonClick("leilao")}
+													onClick={() =>
+														handleButtonClick(
+															"leilao"
+														)
+													}
 												>
 													Leilão
 												</ButtonAnimation>
@@ -470,19 +485,31 @@ const Header = ({ auction, colorFont, image }: any) => {
 											<>
 												<ButtonAnimation
 													className="link-mobile"
-													onClick={() => handleButtonClick("carros")}
+													onClick={() =>
+														handleButtonClick(
+															"carros"
+														)
+													}
 												>
 													Carros
 												</ButtonAnimation>
 												<ButtonAnimation
 													className="link-mobile"
-													onClick={() => handleButtonClick("motos")}
+													onClick={() =>
+														handleButtonClick(
+															"motos"
+														)
+													}
 												>
 													Motos
 												</ButtonAnimation>
 												<ButtonAnimation
 													className="link-mobile"
-													onClick={() => handleButtonClick("leilao")}
+													onClick={() =>
+														handleButtonClick(
+															"leilao"
+														)
+													}
 												>
 													Leilão
 												</ButtonAnimation>

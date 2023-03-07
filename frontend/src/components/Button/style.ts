@@ -13,7 +13,7 @@ export const CustomButton = styled.button<ButtonProps>`
   font-weight: 600;
   border: ${({ border }) =>
     border ? `0.0938rem solid var(--${border})` : "none"};
-    transition: all .5s ease;
+    transition: all .3s ease;
 
   :hover:not([disabled]) {
     background-color: ${({ hover }) =>
