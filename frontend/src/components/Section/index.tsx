@@ -1,3 +1,4 @@
+import ScrollContainer from "react-indiana-drag-scroll";
 import { IAds } from "../../interfaces/IAds/IAds";
 import { IUser } from "../../interfaces/IUser/IUser";
 import Card from "../Card";
@@ -63,148 +64,166 @@ const Section = ({
 				<>
 					{!profile && (
 						<ListCards>
-							{auction
-								? vehicles.map(
-										({
-											id,
-											user,
-											urlCoverImage,
-											title,
-											description,
-											mileage,
-											year,
-											price,
-											typeAd,
-											isActive,
-											typeVehicle,
-										}: IAds) =>
-											typeAd === value &&
-											isActive && (
-												<Card
-													key={id}
-													auction
-													id={id}
-													user={user}
-													urlCoverImage={
-														urlCoverImage
-													}
-													title={title}
-													description={description}
-													mileage={mileage}
-													year={year}
-													price={price}
-													advertiser={advertiser}
-													isActive={isActive}
-													tags={tags}
-												/>
-											)
-								  )
-								: vehicles.map(
-										({
-											id,
-											user,
-											urlCoverImage,
-											title,
-											description,
-											mileage,
-											year,
-											price,
-											typeAd,
-											typeVehicle,
-											isActive,
-										}: IAds) =>
-											typeVehicle === value &&
-											typeAd === "Venda" &&
-											isActive && (
-												<Card
-													key={id}
-													id={id}
-													user={user}
-													urlCoverImage={
-														urlCoverImage
-													}
-													title={title}
-													description={description}
-													mileage={mileage}
-													year={year}
-													price={price}
-													advertiser={advertiser}
-													isActive={isActive}
-													tags={tags}
-												/>
-											)
-								  )}
+							<ScrollContainer
+								className="list-cards"
+								hideScrollbars={false}
+							>
+								{auction
+									? vehicles.map(
+											({
+												id,
+												user,
+												urlCoverImage,
+												title,
+												description,
+												mileage,
+												year,
+												price,
+												typeAd,
+												isActive,
+												typeVehicle,
+											}: IAds) =>
+												typeAd === value &&
+												isActive && (
+													<Card
+														key={id}
+														auction
+														id={id}
+														user={user}
+														urlCoverImage={
+															urlCoverImage
+														}
+														title={title}
+														description={
+															description
+														}
+														mileage={mileage}
+														year={year}
+														price={price}
+														advertiser={advertiser}
+														isActive={isActive}
+														tags={tags}
+													/>
+												)
+									  )
+									: vehicles.map(
+											({
+												id,
+												user,
+												urlCoverImage,
+												title,
+												description,
+												mileage,
+												year,
+												price,
+												typeAd,
+												typeVehicle,
+												isActive,
+											}: IAds) =>
+												typeVehicle === value &&
+												typeAd === "Venda" &&
+												isActive && (
+													<Card
+														key={id}
+														id={id}
+														user={user}
+														urlCoverImage={
+															urlCoverImage
+														}
+														title={title}
+														description={
+															description
+														}
+														mileage={mileage}
+														year={year}
+														price={price}
+														advertiser={advertiser}
+														isActive={isActive}
+														tags={tags}
+													/>
+												)
+									  )}
+							</ScrollContainer>
 						</ListCards>
 					)}
 					{profile && (
 						<ListCards>
-							{auction
-								? vehicles.map(
-										({
-											id,
-											urlCoverImage,
-											title,
-											description,
-											mileage,
-											year,
-											price,
-											typeAd,
-											isActive,
-											typeVehicle,
-										}: IAds) =>
-											typeAd === value && (
-												<Card
-													key={id}
-													auction
-													id={id}
-													user={userAd}
-													urlCoverImage={
-														urlCoverImage
-													}
-													title={title}
-													description={description}
-													mileage={mileage}
-													year={year}
-													price={price}
-													advertiser={advertiser}
-													isActive={isActive}
-													tags={tags}
-												/>
-											)
-								  )
-								: vehicles.map(
-										({
-											id,
-											urlCoverImage,
-											title,
-											description,
-											mileage,
-											year,
-											price,
-											typeVehicle,
-											isActive,
-											typeAd,
-										}: IAds) =>
-											typeVehicle === value &&
-											typeAd === "Venda" && (
-												<Card
-													key={id}
-													id={id}
-													user={userAd}
-													urlCoverImage={
-														urlCoverImage
-													}
-													title={title}
-													description={description}
-													mileage={mileage}
-													year={year}
-													price={price}
-													advertiser={advertiser}
-													isActive={isActive}
-													tags={tags}
-												/>
-											)
-								  )}
+							<ScrollContainer
+								className="list-cards"
+								hideScrollbars={false}
+							>
+								{auction
+									? vehicles.map(
+											({
+												id,
+												urlCoverImage,
+												title,
+												description,
+												mileage,
+												year,
+												price,
+												typeAd,
+												isActive,
+												typeVehicle,
+											}: IAds) =>
+												typeAd === value && (
+													<Card
+														key={id}
+														auction
+														id={id}
+														user={userAd}
+														urlCoverImage={
+															urlCoverImage
+														}
+														title={title}
+														description={
+															description
+														}
+														mileage={mileage}
+														year={year}
+														price={price}
+														advertiser={advertiser}
+														isActive={isActive}
+														tags={tags}
+													/>
+												)
+									  )
+									: vehicles.map(
+											({
+												id,
+												urlCoverImage,
+												title,
+												description,
+												mileage,
+												year,
+												price,
+												typeVehicle,
+												isActive,
+												typeAd,
+											}: IAds) =>
+												typeVehicle === value &&
+												typeAd === "Venda" && (
+													<Card
+														key={id}
+														id={id}
+														user={userAd}
+														urlCoverImage={
+															urlCoverImage
+														}
+														title={title}
+														description={
+															description
+														}
+														mileage={mileage}
+														year={year}
+														price={price}
+														advertiser={advertiser}
+														isActive={isActive}
+														tags={tags}
+													/>
+												)
+									  )}
+							</ScrollContainer>
 						</ListCards>
 					)}
 				</>
