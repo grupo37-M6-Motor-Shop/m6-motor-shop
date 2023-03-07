@@ -162,7 +162,7 @@ const ModalAdCreate = () => {
 						bgcolor={"brand4"}
 						component={"medium"}
 						width={"100%"}
-						style={{ maxWidth: "315px" }}
+						style={{ maxWidth: "19.6875rem" }}
 						hover={{ bgcolor: "brand3" }}
 						onClick={addInput}
 					>
@@ -176,7 +176,7 @@ const ModalAdCreate = () => {
 						color={"grey2"}
 						bgcolor={"grey6"}
 						component={"big"}
-						width={"126px"}
+						width={"7.875rem"}
 						hover={{ bgcolor: "grey5" }}
 					>
 						Cancelar
@@ -186,7 +186,7 @@ const ModalAdCreate = () => {
 						color={"whiteFixed"}
 						bgcolor={"brand1"}
 						component={"big"}
-						width={"193px"}
+						width={"12.0625rem"}
 						hover={{ bgcolor: "brand2" }}
 					>
 						Criar anúncio

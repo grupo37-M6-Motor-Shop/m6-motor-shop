@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const InfoSpan = styled.span`
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 	font-family: "Inter", sans-serif;
 	font-style: normal;
 	font-weight: 500;

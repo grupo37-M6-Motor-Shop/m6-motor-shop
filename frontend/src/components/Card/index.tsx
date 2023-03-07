@@ -94,9 +94,9 @@ const Card = ({ auction = false, ...props }) => {
             color="grey1"
             border="grey1"
             bgcolor="tranparent"
-            width="80px"
+            width="5rem"
             hover={{ bgcolor: "grey6" }}
-            style={{ marginRight: "10px" }}
+            style={{ marginRight: "0.625rem" }}
             onClick={handleClickUpdate}
           >
             Editar
@@ -106,9 +106,9 @@ const Card = ({ auction = false, ...props }) => {
             color="grey1"
             border="grey1"
             bgcolor="tranparent"
-            width="105px"
+            width="6.5625rem"
             hover={{ bgcolor: "grey6" }}
-            style={{ marginLeft: "10px" }}
+            style={{ marginLeft: "0.625rem" }}
             onClick={handClickDetail}
           >
             Ver como
@@ -116,7 +116,7 @@ const Card = ({ auction = false, ...props }) => {
         </>
       )}
       {auction && props.advertiser && (
-        <ButtonAuction style={{ justifyContent: "flex-start", gap: "20px" }}>
+        <ButtonAuction style={{ justifyContent: "flex-start", gap: "1.25rem" }}>
           <Button
             type="button"
             component="medium"

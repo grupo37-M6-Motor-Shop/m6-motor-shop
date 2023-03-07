@@ -16,7 +16,7 @@ export const InputWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	gap: 5px;
+	gap: 0.3125rem;
 
 	@media screen and (min-width: 768px) {
 		flex-direction: row;
@@ -42,17 +42,17 @@ export const ButtonWrapper = styled.div`
 export const SpansWrapper = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	gap: 8px;
+	gap: 0.5rem;
 `;
 export const Span = styled.span`
 	font-family: "Inter", sans-serif;
 	font-weight: 500;
-	font-size: 12px;
+	font-size: 0.75rem;
 	color: var(--grey3);
 	background-color: var(--grey7);
-	border-radius: 24px;
-	padding: 0 12px;
-	height: 24px;
+	border-radius: 1.5rem;
+	padding: 0 0.75rem;
+	height: 1.5rem;
 	display: flex;
 	align-items: center;
 

@@ -95,7 +95,7 @@ const ModalEditUser = () => {
 						color={"grey2"}
 						bgcolor={"grey6"}
 						component={"big"}
-						width={"150px"}
+						width={"9.375rem"}
 						hover={{ bgcolor: "grey5" }}
 						onClick={handleClickDelete}
 					>
@@ -106,7 +106,7 @@ const ModalEditUser = () => {
 						color={"whiteFixed"}
 						bgcolor={"brand1"}
 						component={"big"}
-						width={"193px"}
+						width={"12.0625rem"}
 						hover={{ bgcolor: "brand2" }}
 					>
 						Salvar alterações

@@ -175,8 +175,8 @@ export const DivButton = styled.div`
 
 export const Avatar = styled.div`
   background-color: var(--brand1);
-  height: 32px;
-  width: 32px;
+  height: 2rem;
+  width: 2rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -192,7 +192,7 @@ export const Text = styled.p`
 
 export const Profile = styled.div`
 	display: flex;
-  min-width: 120px;
+  min-width: 7.5rem;
   justify-content: center;
 	align-items: center;
 	cursor: pointer;
@@ -255,7 +255,7 @@ export const Sidebar = styled.div<SidebarProps>`
     align-items: center;
     position: fixed;
     width: 100%;
-    max-width: 425px;
+    max-width: 26.5625rem;
     top: 5rem;
     right: 0;
     z-index: 3;
@@ -263,7 +263,7 @@ export const Sidebar = styled.div<SidebarProps>`
     pointer-events: ${(props: SidebarProps) => props.isSideBarVisible ? `all` : `none`};
     border-top: .2rem solid var(--grey6);
     background: var(--whiteFixed);
-    filter: drop-shadow(0px 40px 40px rgba(0, 0, 0, 0.09));
+    filter: drop-shadow(0 2.5rem 2.5rem rgba(0, 0, 0, 0.09));
   }
 `;
 

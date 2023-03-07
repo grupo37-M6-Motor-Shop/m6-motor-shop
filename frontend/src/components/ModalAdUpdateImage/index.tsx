@@ -93,7 +93,7 @@ const ModalAdUpdate = () => {
 						color={"grey2"}
 						bgcolor={"grey6"}
 						component={"big"}
-						width={"126px"}
+						width={"7.875rem"}
 						hover={{ bgcolor: "grey5" }}
 						onClick={() => setOpenModaAddImage(false)}
 					>
@@ -104,7 +104,7 @@ const ModalAdUpdate = () => {
 						color={"whiteFixed"}
 						bgcolor={"brand1"}
 						component={"big"}
-						width={"193px"}
+						width={"12.0625rem"}
 						hover={{ bgcolor: "brand2" }}
 					>
 						Salvar alterações

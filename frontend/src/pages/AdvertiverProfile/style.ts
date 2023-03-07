@@ -13,12 +13,12 @@ export const Main = styled.main`
   width: 100%;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 180px);
+  min-height: calc(100vh - 11.25rem);
 `;
 
 export const InfoUser = styled.main`
   width: 100%;
-  min-height: 400px;
+  min-height: 25rem;
   display: flex;
   flex-direction: column;
   align-items: center;

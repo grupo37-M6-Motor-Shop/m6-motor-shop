@@ -24,7 +24,7 @@ const InputChoices = React.forwardRef(
 				{label}
 
 				<div
-					style={{ display: "flex", gap: "20px", paddingTop: "15px" }}
+					style={{ display: "flex", gap: "1.25rem", paddingTop: "0.9375rem" }}
 				>
 					<Button
 						type="button"
@@ -49,7 +49,7 @@ const InputChoices = React.forwardRef(
 						{choice2}
 					</Button>
 				</div>
-				<ErrorSpan style={{ marginTop: "5px" }}>
+				<ErrorSpan style={{ marginTop: "0.3125rem" }}>
 					{error?.message && <FiAlertCircle />}
 					{error?.message && error.message}
 				</ErrorSpan>

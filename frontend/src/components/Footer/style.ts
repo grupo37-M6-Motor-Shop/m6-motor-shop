@@ -8,11 +8,11 @@ export const StyledFooter = styled.footer`
 	width: 100%;
 	font-family: "Inter", sans-serif;
 	background-color: var(--grey0);
-	height: 100px;
+	height: 6.25rem;
 	color: var(--whiteFixed);
 	@media (max-width: 600px) {
 		flex-direction: column;
-		height: 250px;
+		height: 15.625rem;
 	}
 `;
 export const Image = styled.img`

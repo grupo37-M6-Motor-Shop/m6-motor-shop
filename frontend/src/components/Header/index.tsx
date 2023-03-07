@@ -210,7 +210,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 										color={"brand1"}
 										bgcolor={"grey10"}
 										component={"big"}
-										width={"133px"}
+										width={"8.3125rem"}
 										onClick={() => navigate(`/login`)}
 									>
 										Fazer Login
@@ -220,7 +220,7 @@ const Header = ({ auction, colorFont, image }: any) => {
 										bgcolor={"grey10"}
 										component={"big"}
 										border={"grey4"}
-										width={"133px"}
+										width={"8.3125rem"}
 										hover={{
 											bgcolor: "grey1",
 											color: "whiteFixed",

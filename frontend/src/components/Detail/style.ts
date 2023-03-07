@@ -17,14 +17,14 @@ export const FontUserName = styled(FontIntegerNormal)<props>`
 
 export const ContainerUser = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 0.5rem;
   align-items: center;
 `;
 
 export const UserImg = styled.div<props>`
   background-color: ${(props) => `var(${props.colorRandom})`};
-  height: 32px;
-  width: 32px;
+  height: 2rem;
+  width: 2rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;

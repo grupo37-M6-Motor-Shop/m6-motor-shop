@@ -261,7 +261,7 @@ const DetailAd = () => {
 						<ZoomImg
 							src={gallery.urlImage1}
 							alt=""
-							style={{ maxWidth: "465px", maxHeight: "240px" }}
+							style={{ maxWidth: "29.0625rem", maxHeight: "15rem" }}
 						/>
 					</Modal>
 				)}
@@ -270,7 +270,7 @@ const DetailAd = () => {
 						<ZoomImg
 							src={gallery.urlImage2}
 							alt=""
-							style={{ maxWidth: "465px", maxHeight: "240px" }}
+							style={{ maxWidth: "29.0625rem", maxHeight: "15rem" }}
 						/>
 					</Modal>
 				)}
@@ -279,7 +279,7 @@ const DetailAd = () => {
 						<ZoomImg
 							src={gallery.urlImage3}
 							alt=""
-							style={{ maxWidth: "465px", maxHeight: "240px" }}
+							style={{ maxWidth: "29.0625rem", maxHeight: "15rem" }}
 						/>
 					</Modal>
 				)}
@@ -288,7 +288,7 @@ const DetailAd = () => {
 						<ZoomImg
 							src={gallery.urlImage4}
 							alt=""
-							style={{ maxWidth: "465px", maxHeight: "240px" }}
+							style={{ maxWidth: "29.0625rem", maxHeight: "15rem" }}
 						/>
 					</Modal>
 				)}
@@ -297,7 +297,7 @@ const DetailAd = () => {
 						<ZoomImg
 							src={gallery.urlImage5}
 							alt=""
-							style={{ maxWidth: "465px", maxHeight: "240px" }}
+							style={{ maxWidth: "29.0625rem", maxHeight: "15rem" }}
 						/>
 					</Modal>
 				)}
@@ -306,7 +306,7 @@ const DetailAd = () => {
 						<ZoomImg
 							src={gallery.urlImage6}
 							alt=""
-							style={{ maxWidth: "465px", maxHeight: "240px" }}
+							style={{ maxWidth: "29.0625rem", maxHeight: "15rem" }}
 						/>
 					</Modal>
 				)}

@@ -32,7 +32,7 @@ const ModalDeleteUser = () => {
 					color={"grey2"}
 					bgcolor={"grey6"}
 					component={"big"}
-					width={"126px"}
+					width={"7.875rem"}
 					hover={{ bgcolor: "grey5" }}
 					onClick={handleCloseModal}
 				>
@@ -42,7 +42,7 @@ const ModalDeleteUser = () => {
 					color={"alert1"}
 					bgcolor={"alert3"}
 					component={"big"}
-					width={"211px"}
+					width={"13.1875rem"}
 					hover={{ bgcolor: "alert2" }}
 					onClick={handleClickdeactive}
 				>
@@ -52,7 +52,7 @@ const ModalDeleteUser = () => {
 					color={"alert1"}
 					bgcolor={"alert3"}
 					component={"big"}
-					width={"211px"}
+					width={"13.1875rem"}
 					hover={{ bgcolor: "alert2" }}
 					onClick={handleClickDelete}
 				>

@@ -18,7 +18,7 @@ export const Main = styled.main`
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	min-height: calc(100vh - 180px);
+	min-height: calc(100vh - 11.25rem);
 `;
 
 export const Content = styled.div`
@@ -30,7 +30,7 @@ export const Content = styled.div`
 	gap: 2rem;
 
 	@media screen and (min-width: 1240px) {
-		max-width: 1240px;
+		max-width: 77.5rem;
 		align-items: flex-start;
 	}
 `;
@@ -50,7 +50,7 @@ export const BackgroundContent = styled.div`
 
 export const ContainerInfo = styled.div`
 	width: 100%;
-	max-width: 1240px;
+	max-width: 77.5rem;
 	margin-top: 2rem;
 	z-index: 2;
 	gap: 1rem;
@@ -127,9 +127,9 @@ export const ContainerPriceYearKm = styled.div`
 
 export const InfoKmYear = styled(FontIntegerNormal)`
 	background-color: red;
-	padding: 4px 8px;
-	margin-right: 12px;
-	border-radius: 4px;
+	padding: 0.25rem 0.5rem;
+	margin-right: 0.75rem;
+	border-radius: 0.25rem;
 	background: var(--brand4);
 	color: var(--brand1);
 `;
@@ -189,14 +189,14 @@ export const Name = styled.div`
 
 export const ContainerComments = styled.div`
 	width: 100%;
-	max-width: 1240px;
+	max-width: 77.5rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 1rem;
 
 	@media screen and (min-width: 1250px) {
-		max-width: 750px;
+		max-width: 46.875rem;
 	}
 `;
 
@@ -212,9 +212,9 @@ export const Comments = styled.div`
 
 	> span {
 		font-weight: 400;
-		font-size: 14px;
+		font-size: 0.875rem;
 		text-align: center;
-		margin-bottom: 30px;
+		margin-bottom: 1.875rem;
 	}
 `;
 

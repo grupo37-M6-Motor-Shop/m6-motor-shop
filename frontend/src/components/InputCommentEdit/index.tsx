@@ -38,7 +38,7 @@ const InputCommentEdit = ({ idComment, close, description }: InputCommentEditPro
 				style={{
 					display: "flex",
 					flexDirection: "column",
-					gap: "15px",
+					gap: "0.9375rem",
 				}}
 				onSubmit={handleSubmit(handleUpdate)}
 			>
