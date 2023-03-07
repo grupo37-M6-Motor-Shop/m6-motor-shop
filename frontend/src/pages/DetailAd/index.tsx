@@ -39,7 +39,6 @@ import {
 
 const DetailAd = () => {
 	const {
-		user: { name, avatarColor },
 		ad,
 		setAd,
 		getUserById,
@@ -97,8 +96,8 @@ const DetailAd = () => {
 	};
 
 	const twoLetters = () => {
-		if (name !== undefined) {
-			const splitedName = name.split(" ");
+		if (ad.user.name !== undefined) {
+			const splitedName = ad.user.name.split(" ");
 			const first = splitedName[0][0];
 			const second = splitedName.length > 1 ? splitedName[1][0] : "";
 			return (
@@ -161,10 +160,10 @@ const DetailAd = () => {
 										urlImage6={gallery.urlImage6}
 									/>
 									<Info>
-										<UserImg avatarColor={avatarColor}>
+										<UserImg avatarColor={ad.user.avatarColor}>
 											{twoLetters()}
 										</UserImg>
-										<Name>{name}</Name>
+										<Name>{ad.user.name}</Name>
 										<Description align="center">
 											{ad.user.description}
 										</Description>
