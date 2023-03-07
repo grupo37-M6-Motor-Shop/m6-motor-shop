@@ -56,7 +56,7 @@ const DetailAd = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const gallery = ad.gallery
+  const gallery = ad.gallery;
 
   const handleCardClick = (id: string) => {
     if (activeCardId === id) {
@@ -116,6 +116,7 @@ const DetailAd = () => {
                 <a
                   href={`https://api.whatsapp.com/send?phone=+55${userProfile.phone}&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20detalhes%20sobre%20seu%20anúncio,%20${ad.title}!`}
                   target="_blank"
+                  style={{ width: "fit-content" }}
                 >
                   <Button
                     color="whiteFixed"

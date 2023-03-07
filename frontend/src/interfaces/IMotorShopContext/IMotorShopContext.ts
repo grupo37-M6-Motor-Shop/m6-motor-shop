@@ -92,4 +92,6 @@ export interface IMotorShopContext {
   updateGallery: (data: IFormUpdateAdGallery) => void;
   cep: string;
   setCep: React.Dispatch<React.SetStateAction<string>>;
+  isDragging: boolean;
+  setIsDragging: React.Dispatch<React.SetStateAction<boolean>>;
 }

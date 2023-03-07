@@ -59,6 +59,7 @@ const MotorShopProvider = ({ children }: IProvider) => {
   const [openModaAddImage, setOpenModaAddImage] = useState(false);
 
   const [cep, setCep] = useState("");
+  const [isDragging, setIsDragging] = useState(false);
 
   const navigate = useNavigate();
   const notifySuccess = (text: string, idNotify: string) =>
@@ -464,6 +465,8 @@ const MotorShopProvider = ({ children }: IProvider) => {
         updateGallery,
         cep,
         setCep,
+        isDragging,
+        setIsDragging,
       }}
     >
       {children}

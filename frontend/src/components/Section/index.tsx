@@ -3,7 +3,14 @@ import { IUser } from "../../interfaces/IUser/IUser";
 import Card from "../Card";
 import { motion } from "framer-motion";
 import { CustonSection, EmptyList, ListCards } from "./style";
-import { BaseSyntheticEvent, useEffect, useRef, useState } from "react";
+import {
+  BaseSyntheticEvent,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { MotorShopContext } from "../../context";
 
 interface SectionProps {
   id?: string;
@@ -32,6 +39,15 @@ const Section = ({
 
   const carousel = useRef<null | HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
+  const { setIsDragging } = useContext(MotorShopContext);
+
+  const handleDragStart = () => {
+    setIsDragging(true);
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+  };
 
   useEffect(() => {
     carousel.current &&
@@ -92,6 +108,8 @@ const Section = ({
                 className="inner"
                 drag="x"
                 dragConstraints={{ right: 0, left: -width }}
+                onDragStart={handleDragStart}
+                onDragEnd={handleDragEnd}
                 onClick={(event: BaseSyntheticEvent) => event.stopPropagation()}
               >
                 {auction
@@ -184,6 +202,8 @@ const Section = ({
                 className="inner"
                 drag="x"
                 dragConstraints={{ right: 0, left: -width }}
+                onDragStart={handleDragStart}
+                onDragEnd={handleDragEnd}
                 onClick={(event: BaseSyntheticEvent) => event.stopPropagation()}
               >
                 {auction
