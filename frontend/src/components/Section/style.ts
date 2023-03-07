@@ -6,16 +6,48 @@ export const CustonSection = styled.section`
   flex-direction: column;
   /* gap: 40px; */
 
+  ul {
+    list-style: none;
+  }
+
+  .titleSection {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--grey0);
+    margin-bottom: 10px;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .carousel {
+      cursor: grab;
+      overflow: hidden;
+
+      .inner {
+        display: flex;
+
+        .item {
+          min-height: 200px;
+          min-width: 400px;
+          padding: 10px;
+
+          > div {
+            width: 100%;
+            height: 90%;
+          }
+        }
+      }
+    }
+  }
+
   @media screen and (min-width: 1024px) {
     padding: 40px 0 40px 60px;
   }
 `;
 
-export const TitleSection = styled.h5`
-  font-size: 24px;
-  font-weight: 600;
-  color: black;
-`;
 export const ListCards = styled.ul`
   padding: 3rem 0;
   display: flex;
