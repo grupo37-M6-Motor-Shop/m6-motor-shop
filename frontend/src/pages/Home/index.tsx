@@ -14,10 +14,11 @@ import { MotorShopContext } from "../../context";
 
 const Home = () => {
 	document.body.style.overflow = "unset";
-	const { randomAds, getRandomAds } = useContext(MotorShopContext);
+	const { randomAds, getRandomAds, setPrevLocation } = useContext(MotorShopContext);
 
 	useEffect(() => {
 		getRandomAds();
+		setPrevLocation(location.pathname)
 	}, []);
 
 	return (

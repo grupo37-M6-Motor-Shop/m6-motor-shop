@@ -79,8 +79,10 @@ const PhotoList = ({
 						<BsFillPlusCircleFill className="icon" />
 					</ContainerPhoto>
 				) : null}
-				{!imageCount && (
-					<p style={{ position: "absolute" }}>Não há mais imagens cadastradas</p>
+				{!imageCount && user.id !== ad.user.id && (
+					<p style={{ position: "absolute" }}>
+						Não há mais imagens cadastradas
+					</p>
 				)}
 			</CustomerPhotoList>
 		</ContainerPhotoList>
