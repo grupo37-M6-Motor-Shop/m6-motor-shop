@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { BaseSyntheticEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MotorShopContext } from "../../context";
 import Button from "../Button";
@@ -21,6 +21,8 @@ import {
 } from "./style";
 
 const Card = ({ auction = false, ...props }) => {
+  const [touchCount, setTouchCount] = useState(0);
+
   const { setOpenModalUpdateAd, getAdbyId, getAdbyIdNotOwner } =
     useContext(MotorShopContext);
 
@@ -36,16 +38,35 @@ const Card = ({ auction = false, ...props }) => {
     navigate(`/detail-ad/${props.id}`, { replace: true });
   };
 
-  const handleClickAdvertiser = async () => {
+  const handleClickAdvertiserMobile = async () => {
+    if (touchCount === 1) {
+      if (!props.advertiser && props.isActive) {
+        await getAdbyIdNotOwner(props.id);
+        navigate(`/detail-ad/${props.id}`, { replace: true });
+      }
+      setTouchCount(0);
+    } else {
+      setTouchCount(touchCount + 1);
+      setTimeout(() => {
+        setTouchCount(0);
+      }, 300);
+    }
+  };
+
+  const handleClickAdvertiserDesktop = async () => {
     if (!props.advertiser && props.isActive) {
       await getAdbyIdNotOwner(props.id);
       navigate(`/detail-ad/${props.id}`, { replace: true });
     }
   };
+
   return (
     <CustomLi key={props.id} auction={auction} advertiser={props.advertiser}>
       {!auction && (
-        <ContainerCarImg onClick={handleClickAdvertiser}>
+        <ContainerCarImg
+          onTouchStart={handleClickAdvertiserMobile}
+          onDoubleClick={handleClickAdvertiserDesktop}
+        >
           {!props.advertiser && props.tags && (
             <IsActiveInfo isActive={props.isActive}>
               {props.isActive ? "Ativo" : "Inativo"}
@@ -57,7 +78,8 @@ const Card = ({ auction = false, ...props }) => {
       <ContainerInfoCard
         auction={auction}
         image={props.urlCoverImage}
-        onClick={handleClickAdvertiser}
+        onTouchStart={handleClickAdvertiserMobile}
+        onDoubleClick={handleClickAdvertiserDesktop}
       >
         <InfoCard auction={auction}>
           {auction && (
