@@ -18,6 +18,7 @@ export const Main = styled.main`
   width: 100%;
   display: flex;
   justify-content: center;
+  min-height: calc(100vh - 180px);
 `;
 
 export const Content = styled.div`

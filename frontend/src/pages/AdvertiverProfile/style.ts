@@ -13,6 +13,7 @@ export const Main = styled.main`
   width: 100%;
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - 180px);
 `;
 
 export const InfoUser = styled.main`
