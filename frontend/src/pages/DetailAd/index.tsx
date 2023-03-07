@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import CardComment from "../../components/CardComment";
+import { FontTwoLatters } from "../../components/Detail/style";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import InputComment from "../../components/InputComment";
@@ -33,10 +34,12 @@ import {
 	Name,
 	ContainerComments,
 	ZoomImg,
+	FontUserName,
 } from "./style";
 
 const DetailAd = () => {
 	const {
+		user: { name, avatarColor },
 		ad,
 		setAd,
 		getUserById,
@@ -93,6 +96,17 @@ const DetailAd = () => {
 		setNumComments(numComments + 10);
 	};
 
+	const twoLetters = () => {
+		if (name !== undefined) {
+			const splitedName = name.split(" ");
+			const first = splitedName[0][0];
+			const second = splitedName.length > 1 ? splitedName[1][0] : "";
+			return (
+				<FontUserName>{`${first}${second}`.toUpperCase()}</FontUserName>
+			);
+		}
+	};
+
 	return (
 		<Container>
 			<Header />
@@ -147,12 +161,10 @@ const DetailAd = () => {
 										urlImage6={gallery.urlImage6}
 									/>
 									<Info>
-										<UserImg
-											avatarColor={ad.user.avatarColor}
-										>
-											{ad.user.name[0]}
+										<UserImg avatarColor={avatarColor}>
+											{twoLetters()}
 										</UserImg>
-										<Name>{ad.user.name}</Name>
+										<Name>{name}</Name>
 										<Description align="center">
 											{ad.user.description}
 										</Description>

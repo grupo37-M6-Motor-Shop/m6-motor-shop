@@ -82,8 +82,9 @@ const Header = ({ auction, colorFont, image }: any) => {
 
 	const twoLetters = () => {
 		if (name !== undefined) {
-			const first = name[0];
-			const second = name[name.indexOf(" ") + 1];
+			const splitedName = name.split(" ");
+			const first = splitedName[0][0];
+			const second = splitedName.length > 1 ? splitedName[1][0] : "";
 			return (
 				<FontTwoLatters>
 					{`${first}${second}`.toUpperCase()}
