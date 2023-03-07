@@ -4,7 +4,7 @@ import { MotorShopContext } from "../../context";
 import Button from "../Button";
 import Detail from "../Detail";
 import {
-  CustomLi,
+  CustomDiv,
   ContainerPriceYearKm,
   InfoCard,
   InfoKmYear,
@@ -61,7 +61,7 @@ const Card = ({ auction = false, ...props }) => {
   };
 
   return (
-    <CustomLi key={props.id} auction={auction} advertiser={props.advertiser}>
+    <CustomDiv key={props.id} auction={auction} advertiser={props.advertiser}>
       {!auction && (
         <ContainerCarImg
           onTouchStart={handleClickAdvertiserMobile}
@@ -171,7 +171,7 @@ const Card = ({ auction = false, ...props }) => {
           <RightArrow src="/img/right_arrow.png" alt="right arrow" />
         </ButtonAuction>
       )}
-    </CustomLi>
+    </CustomDiv>
   );
 };
 

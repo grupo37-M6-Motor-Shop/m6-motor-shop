@@ -112,6 +112,7 @@ const Section = ({
                         typeAd === value &&
                         isActive && (
                           <motion.li
+                            key={id}
                             className="item"
                             onClick={(event: BaseSyntheticEvent) =>
                               event.stopPropagation()
@@ -153,6 +154,7 @@ const Section = ({
                         typeAd === "Venda" &&
                         isActive && (
                           <motion.li
+                            key={id}
                             className="item"
                             onClick={(event: BaseSyntheticEvent) =>
                               event.stopPropagation()
@@ -200,6 +202,7 @@ const Section = ({
                       }: IAds) =>
                         typeAd === value && (
                           <motion.li
+                            key={id}
                             className="item"
                             onClick={(event: BaseSyntheticEvent) =>
                               event.stopPropagation()
@@ -239,6 +242,7 @@ const Section = ({
                         typeVehicle === value &&
                         typeAd === "Venda" && (
                           <motion.li
+                            key={id}
                             className="item"
                             onClick={(event: BaseSyntheticEvent) =>
                               event.stopPropagation()
