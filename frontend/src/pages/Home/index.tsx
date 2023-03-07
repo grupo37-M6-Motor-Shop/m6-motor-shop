@@ -23,7 +23,7 @@ const Home = () => {
 	return (
 		<>
 			<Header />
-			<main id="#home">
+			<main id="#home" style={{ minHeight: "calc(100vh - 180px)"}}>
 				<InfoSection>
 					<ContainerInfo>
 						<TitleHome>
